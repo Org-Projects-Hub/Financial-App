@@ -1,0 +1,25 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css";
+
+.nav-item{
+  color: inherit;
+}
+
+.txt-md{
+    font-size: 2em;
+    padding: .3em;
+}
+
+.grid-main{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.show{
+}
+
+.hide{
+  position: absolute;
+  left: -230px;
+
+  transition: 300ms ease-out;
+}
