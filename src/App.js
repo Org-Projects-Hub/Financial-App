@@ -1,11 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom";
 import './App.css';
-import Home from './pages/Home';
-import Navbar from './components/Navbar'
-import Startpage from './pages/Startpage';
-import Setting from './pages/Setting';
-import Simulation from './pages/Simulation';
+import {Navbar} from './components';
+import {Home, Setting, Simulation, Startpage} from './pages';
+
 
 class App extends React.Component{
   constructor(props){
