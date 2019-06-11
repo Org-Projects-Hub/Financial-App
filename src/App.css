@@ -8,6 +8,10 @@
     font-size: 2em;
     padding: .3em;
 }
+.txt-xl{
+    font-size: 15em;
+    padding: 10px;
+}
 
 .grid-main{
   display: grid;
@@ -22,4 +26,13 @@
   left: -230px;
 
   transition: 300ms ease-out;
+}
+.full{
+
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
 }

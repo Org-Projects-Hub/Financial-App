@@ -14,8 +14,8 @@ const Nav = styled.div`
 
 const FloatBtn = styled.button`
   position: fixed;
-  bottom: 2em;
-  left: 2em;
+  bottom: 1em;
+  left: 1em;
   border: 0;
   border-radius: 50%;
 `;
@@ -25,7 +25,7 @@ const Navbar = ({showNav, hide})=> (
       <Link className="nav-item txt-md" to="/setting"><i class="fas fa-cog"></i></Link>
       <Link className="nav-item txt-md" to="/home"><i className="fas fa-home"></i></Link>
       <Link className="nav-item txt-md" to="/Simulation"><i className="fas fa-gamepad"></i></Link>
-      <FloatBtn onClick={hide}><i class="fas fa-angle-left txt-md"></i></FloatBtn>
+      <FloatBtn onClick={hide}><i class={ showNav? "fa fa-angle-left txt-md" : "fa fa-angle-right txt-md"}></i></FloatBtn>
     </Nav>
   );
 

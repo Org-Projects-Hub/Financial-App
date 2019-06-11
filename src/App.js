@@ -19,7 +19,7 @@ class App extends React.Component{
     if(!this.state.loggedin){
       return (
         <Router>
-          <div className="grid-main">
+          <div className={this.state.showNav? "grid-main": ""}>
           <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
           <Switch>
             <Route path="/Simulation" render={()=> <Simulation {...this.state}  />} />
