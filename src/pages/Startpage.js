@@ -12,11 +12,11 @@ const Start = styled.form`
 
 const Startpage = ({login, onChange})=>
                       <Wrapper className="center">
-                      <Start>
-                        <h1 className="gradient-heading">Welcome!</h1>
-                        <div>Enter Your Name<input onChange={onChange}/></div>
-                        <div><button className="btn-round" onClick={login}><i className= "fa fa-angle-right txt-md"></i></button></div>
-                      </Start>
+                        <Start>
+                          <h1 className="gradient-heading">Welcome!</h1>
+                          <div>Enter Your Name<input onChange={onChange}/></div>
+                          <div><button className="btn-round" onClick={login}><i className= "fa fa-angle-right txt-md"></i></button></div>
+                        </Start>
                       </Wrapper>;
 
 export default Startpage;
