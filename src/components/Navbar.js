@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 
 const Nav = styled.div`
   top: 0em;
@@ -9,24 +9,25 @@ const Nav = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
-    transition: 300ms ease-out;
-`;
+  transition: 300ms ease-out;`;
 
 const FloatBtn = styled.button`
   position: fixed;
   bottom: 1em;
   left: 1em;
   border: 0;
-  border-radius: 50%;
-`;
+  border-radius: 50%;`;
 
+const active = {filter: "drop-shadow(30px 10px 4px gray);", textShadow: "2px 2px 4px #000000" , color: "white"};
 const Navbar = ({showNav, hide})=> (
+  <div>
     <Nav className={showNav? "show": "hide"}>
-      <Link className="nav-item txt-md" to="/setting"><i class="fas fa-cog"></i></Link>
-      <Link className="nav-item txt-md" to="/home"><i className="fas fa-home"></i></Link>
-      <Link className="nav-item txt-md" to="/Simulation"><i className="fas fa-gamepad"></i></Link>
-      <FloatBtn onClick={hide}><i class={ showNav? "fa fa-angle-left txt-md" : "fa fa-angle-right txt-md"}></i></FloatBtn>
+      <NavLink activeStyle={active}   className="nav-item txt-md" to="/setting"><i className="fas fa-cog"></i></NavLink>
+      <NavLink activeStyle={active} className="nav-item txt-md" to="/home"><i className="fas fa-home"></i></NavLink>
+      <NavLink activeStyle={active}  className="nav-item txt-md" to="/Simulation"><i className="fas fa-gamepad"></i></NavLink>
     </Nav>
+      <FloatBtn onClick={hide}><i className={ showNav? "fa fa-angle-left txt-md" : "fa fa-angle-right txt-md"}></i></FloatBtn>
+  </div>
   );
 
 export default Navbar;

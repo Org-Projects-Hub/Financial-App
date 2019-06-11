@@ -7,6 +7,6 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Setting = ()=> <Wrapper className="center"><i className="fas fa-sliders-h txt-xl"></i><h1>Setting</h1></Wrapper>;
+const Setting =({userName})=> <Wrapper className="center"><div className="top">Hello, {userName}</div><i className="fas fa-sliders-h txt-xl"></i><h1>Setting</h1></Wrapper>;
 
 export default Setting;

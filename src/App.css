@@ -1,5 +1,8 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css";
-
+*, html, body, #root{
+  padding: 0;
+  margin: 0;
+}
 .nav-item{
   color: inherit;
 }
@@ -35,4 +38,35 @@
   align-items: center;
   justify-content: center;
   vertical-align: middle;
+}
+
+.selected{
+  color: red!important;
+}
+
+.btn-round{
+  border: 0;
+  border-radius: 50%;
+}
+.capitalize{
+   text-transform: capitalize;
+}
+
+.gradient-heading{
+  background: -webkit-linear-gradient(-150deg, #4fc3f7, dodgerblue);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-weight: 900;
+line-height: 1;
+font-size: 3em;
+text-transform: uppercase;
+color: #a483c5;
+font-family: arial;
+}
+
+.top{
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-weight: bold;
 }
