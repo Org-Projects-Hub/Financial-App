@@ -4,15 +4,18 @@ import './App.css';
 import {Navbar} from './components';
 import {Home, Setting, Simulation, Startpage} from './pages';
 
+type Props = {
+  loggedin: boolean, tokenChecked: boolean, showNav: boolean, userName: string
+}
 
-class App extends React.Component{
-  constructor(props){
+
+export default class App extends React.Component <{}, Props>{
+  constructor(props: Props){
     super(props);
     this.state = { loggedin: false, tokenChecked: false, showNav: true, userName: ""};
   }
 
   componentWillMount() {}
-
   render(){
     if(this.state.loggedin){
       return (
@@ -27,8 +30,6 @@ class App extends React.Component{
           </div>
         </Router>
       )} else{
-        return(<Startpage onChange={(e)=>{this.setState({userName: e.target.value})}} login={()=>{this.setState({loggedin: true})}}/>)};
+        return(<Startpage onChange={(e:any)=>{this.setState({userName: e.target.value})}} login={()=>{this.setState({loggedin: true})}}/>)};
     }
 }
-
-export default App;

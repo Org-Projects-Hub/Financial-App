@@ -8,6 +8,11 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Simulation =({userName})=> <Wrapper className="center"><div className="top">Hello, {userName}</div><i className="fas fa-dice-four txt-xl"></i><h1>Simulation</h1></Wrapper>;
+const Simulation =({userName}:{userName: string})=>
+      <Wrapper className="center">
+        <div className="top">Hello, {userName}</div>
+        <i className="fas fa-dice-four txt-xl"></i>
+        <h1>Simulation</h1>
+      </Wrapper>;
 
 export default Simulation;

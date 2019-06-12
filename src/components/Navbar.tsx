@@ -18,8 +18,11 @@ const FloatBtn = styled.button`
   border: 0;
   border-radius: 50%;`;
 
-const active = {filter: "drop-shadow(30px 10px 4px gray);", textShadow: "2px 2px 4px #000000" , color: "white"};
-const Navbar = ({showNav, hide})=> (
+  const FloatBtn2 = styled(FloatBtn)`
+    left: 95%;`;
+
+const active = {textShadow: "2px 2px 4px #000000" , color: "white"};
+const Navbar = ({showNav, hide}: {showNav: any, hide: any})=> (
   <div>
     <Nav className={showNav? "show": "hide"}>
       <NavLink activeStyle={active}   className="nav-item txt-md" to="/setting"><i className="fas fa-cog"></i></NavLink>
@@ -27,6 +30,7 @@ const Navbar = ({showNav, hide})=> (
       <NavLink activeStyle={active}  className="nav-item txt-md" to="/Simulation"><i className="fas fa-gamepad"></i></NavLink>
     </Nav>
       <FloatBtn onClick={hide}><i className={ showNav? "fa fa-angle-left txt-md" : "fa fa-angle-right txt-md"}></i></FloatBtn>
+      <FloatBtn2><a href="mailto:help@finapp.com"><i className="fas fa-question-circle  txt-md"></i></a></FloatBtn2>
   </div>
   );
 

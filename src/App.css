@@ -1,9 +1,14 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css";
+@import "./style/normalize.css";
+
 *, html, body, #root{
   padding: 0;
   margin: 0;
 }
 .nav-item{
+  color: inherit;
+}
+a, a:visited {
   color: inherit;
 }
 

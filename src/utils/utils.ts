@@ -1,13 +1,13 @@
-function setLocalStorage(key, value) {
+function setLocalStorage(key: string, value: string) {
   if (typeof value === "object") {
     value = JSON.stringify(value);
   }
   localStorage.setItem(key, value);
 }
 
-function getLocalStorage(key) {
+function getLocalStorage(key: string) {
   try {
-    let obj = JSON.parse(localStorage.getItem(key));
+    let obj = JSON.parse(localStorage.getItem(key) || "{}" );
     return obj;
   }
   catch(err) {

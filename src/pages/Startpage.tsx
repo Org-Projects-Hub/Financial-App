@@ -10,7 +10,7 @@ const Start = styled.form`
   display: grid;
   grid-template-rows: 1fr 1fr auto;`;
 
-const Startpage = ({login, onChange})=>
+const Startpage = ({login, onChange}:{login: any, onChange: any})=>
                       <Wrapper className="center">
                         <Start>
                           <h1 className="gradient-heading">Welcome!</h1>
