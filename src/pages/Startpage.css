@@ -1,1 +1,46 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css";
+
+.fixed-button{
+
+        position:fixed;
+        top:93%;
+        right:1%;
+}
+
+.logo{
+        left:2%;
+}
+
+.directory{
+        right:2%
+}
+
+.login-logo{
+        text-align:center;
+        padding-bottom:2em;
+}
+
+
+.UpperDashboard{
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+}
+
+.MiddleDashboard{
+        display: grid;
+        grid-template-columns: 70% 30%;
+}
+
+.BottomDashboard{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+}
+
+
+@media(max-width: 760px){
+
+  .BottomDashboard, .MiddleDashboard, .UpperDashboard{
+          grid-template-columns: 1fr;
+  }
+
+}
