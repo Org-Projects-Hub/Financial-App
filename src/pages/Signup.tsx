@@ -1,40 +1,100 @@
-import React ,{ useState, useRef } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
-import './Startpage.css';
 import api from '../api';
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 
 
-const Wrapper = styled.div`
-  background-color: #dde1ea;
-  display: grid;
-  height: 100vh;
-  place-items: center;
-  `;
 
-  const Header = styled.div`
-  font-size: 250%;
-  font-weight: bolder:
-  text-align: center;
-  padding-bottom: 10%;
-  padding-left: 30%;
-  text-decoration: underline;`;
+type Props = {
+  job: string, 
+  fName: string, 
+  lName: string, 
+  userName: string, 
+  email: string,
+  age: number, 
+  school: string, 
+  pass: string, 
+  cPass: string, 
+  correct: boolean
+}
 
-const Signup = ({login, onChange}:{login: any, onChange: any})=>{
-  const firstName = React.createRef<HTMLInputElement>();
-  const lastName = React.createRef<HTMLInputElement>();
-  const email = React.createRef<HTMLInputElement>();
-  const userName = React.createRef<HTMLInputElement>();
-  const password = React.createRef<HTMLInputElement>();
-            return  (<Wrapper className="wrapper-item-center">
+
+export default class Signup extends React.Component <{}, Props>{
+
+        constructor(props: Props){
+                super(props);
+
+                this.usernameCheck = this.usernameCheck.bind(this);
+                this.inputVal = this.inputVal.bind(this);
+
+                this.state = {
+                        job: '',
+                        fName: '',
+                        lName:'',
+                        userName: '', // 8 < u < 30 
+                        email:'', // email regect
+                        age: 15, // 0 < a  < 120
+                        school:'', 
+                        pass:'',
+                        correct: false,
+                        cPass:''
+                }
+        }
+
+
+        usernameCheck(e: React.ChangeEvent<HTMLInputElement>){
+    
+          this.setState({
+            userName: e.target.value,
+            correct: true
+          })
+
+
+          console.log("Username:" + this.state.userName); 
+
+
+        }
+
+        inputVal(e: HTMLFormElement){
+
+
+        }
+
+        render(){
+                
+        const Wrapper = styled.div`
+        background-color: #dde1ea;
+        display: grid;
+        height: 100vh;
+        place-items: center;
+        `;
+      
+        const Header = styled.div`
+        font-size: 250%;
+        font-weight: bolder:
+        text-align: center;
+        padding-bottom: 10%;
+        padding-left: 30%;
+        text-decoration: underline;`;
+
+        const firstName = React.createRef<HTMLInputElement>();
+        const lastName = React.createRef<HTMLInputElement>();
+        const email = React.createRef<HTMLInputElement>();
+        const userName = React.createRef<HTMLInputElement>();
+        const password = React.createRef<HTMLInputElement>();
+        const pnumber = React.createRef<HTMLInputElement>();
+
+                return(
+
+                <Wrapper>
                 <div className="row card">
                   <div className="row card-content">
-                    <p className="center-align">
+                    <div className="center-align">
                       <Header>SIGN UP</Header>
-                    </p>
+                    </div>
                     <div className="row">
                       <div className="col S4">
-                        <input type="text" ref={firstName} placeholder="First Name"
-                        />
+                        <input type="text" ref={firstName} placeholder="First Name"/>
                       </div>
                       <div className="col s6"><input type="text" ref={lastName} placeholder="Last Name"/></div>
                     </div>
@@ -45,7 +105,7 @@ const Signup = ({login, onChange}:{login: any, onChange: any})=>{
                       <div className="col s12"><input type="text" ref={email} placeholder="Email Address"/></div>
                     </div>
                     <div className="row">
-                      <div className="col s12"><input type="text"  placeholder="Phone Number (Optional)"/></div>
+                      <div className="col s12"><input type="text"  ref={pnumber} placeholder="Phone Number (Optional)"/></div>
                     </div>
                     <div className="row">
                       <div className="col s12"><input type="password" ref={password} placeholder="Password"/></div>
@@ -53,21 +113,30 @@ const Signup = ({login, onChange}:{login: any, onChange: any})=>{
                     <div className="row">
                       <div className="col s12"><input type="password" placeholder="Confirm Password"/></div>
                     </div>
-                    <p className="center-align">
-                      <button className="btn btn-small waves-effect waves-light" onClick={
-                        ()=>{
+                    <div className="center-align">
+                        <button className="btn btn-small waves-effect waves-light" type='submit'>Create Account</button>
+                        {/*()=>{
 
-                          const obj =  { firstName:firstName.current.value,
+                          {/*const obj =  { firstName:firstName.current.value,
                                           lastName: lastName.current.value,
                                           password: password.current.value,
                                           email: email.current.value,
                                           userName: userName.current.value}
                           api.signup(obj);
-                        }
-                        }
-                        >Create Account</button>
-                    </p>
+
+                          console.log(userName);
+                        } 
+                        
+                        >Create Account</button>*/}
+
+                        <br/> <br/>Already have an account? <Link to='../pages/Startpage'>Log In</Link>
+                      
+                    </div>
                   </div>
                 </div>
-              </Wrapper>);}
-export default Signup;
+                </Wrapper>
+                
+                )
+        }
+
+}
