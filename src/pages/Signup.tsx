@@ -14,7 +14,8 @@ type Props = {
   pass: string,
   cPass: string,
   correct: boolean,
-  valid: boolean
+  valid: boolean,
+  jobPicked: boolean
 }
 
 const Wrapper = styled.div`
@@ -42,8 +43,13 @@ const Signup= ()=>{
         const userName = React.createRef<HTMLInputElement>();
         const password = React.createRef<HTMLInputElement>();
         const pnumber = React.createRef<HTMLInputElement>();
-
-                return(
+        const jobPicked = false; 
+        let job = "";
+                
+                  return(
+                <div>
+                
+                {jobPicked ?
 
                 <Wrapper>
                 <div className="row card">
@@ -99,8 +105,32 @@ const Signup= ()=>{
                   </div>
                 </div>
                 </Wrapper>
+                
+                :
 
+                <Wrapper>
+                  <div className="row card">
+                  <div className="row card-content">
+                    <div className="center-align">
+                      <Header>Are you a:</Header>
+                    </div>
+                    <div className="row">
+                      <div className="col S6">
+                        <input type='radio' name="teacher">Teacher</input>
+                        <input type='radio' name="student">Student</input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </Wrapper>
+
+                
+                }
+                </div>
+                
+      
                 )
+                
         }
 
 
