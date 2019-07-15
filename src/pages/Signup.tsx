@@ -1,82 +1,41 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import styled from 'styled-components';
 import api from '../api';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-
-
-
+import {nameTest} from '../utils/utils';
 type Props = {
-  job: string, 
-  fName: string, 
-  lName: string, 
-  userName: string, 
+  job: string,
+  fName: string,
+  lName: string,
+  userName: string,
   email: string,
-  age: number, 
-  school: string, 
-  pass: string, 
-  cPass: string, 
-  correct: boolean
+  age: number,
+  school: string,
+  pass: string,
+  cPass: string,
+  correct: boolean,
+  valid: boolean
 }
 
+const Wrapper = styled.div`
+background-color: #dde1ea;
+display: grid;
+height: 100vh;
+place-items: center;
+`;
 
-export default class Signup extends React.Component <{}, Props>{
+const Header = styled.div`
+font-size: 250%;
+font-weight: bolder:
+text-align: center;
+padding-bottom: 10%;
+padding-left: 30%;
+text-decoration: underline;`;
 
-        constructor(props: Props){
-                super(props);
-
-                this.usernameCheck = this.usernameCheck.bind(this);
-                this.inputVal = this.inputVal.bind(this);
-
-                this.state = {
-                        job: '',
-                        fName: '',
-                        lName:'',
-                        userName: '', // 8 < u < 30 
-                        email:'', // email regect
-                        age: 15, // 0 < a  < 120
-                        school:'', 
-                        pass:'',
-                        correct: false,
-                        cPass:''
-                }
-        }
+const Signup= ()=>{
 
 
-        usernameCheck(e: React.ChangeEvent<HTMLInputElement>){
-    
-          this.setState({
-            userName: e.target.value,
-            correct: true
-          })
-
-
-          console.log("Username:" + this.state.userName); 
-
-
-        }
-
-        inputVal(e: HTMLFormElement){
-
-
-        }
-
-        render(){
-                
-        const Wrapper = styled.div`
-        background-color: #dde1ea;
-        display: grid;
-        height: 100vh;
-        place-items: center;
-        `;
-      
-        const Header = styled.div`
-        font-size: 250%;
-        font-weight: bolder:
-        text-align: center;
-        padding-bottom: 10%;
-        padding-left: 30%;
-        text-decoration: underline;`;
-
+        const [valid, setValid] = useState(false);
         const firstName = React.createRef<HTMLInputElement>();
         const lastName = React.createRef<HTMLInputElement>();
         const email = React.createRef<HTMLInputElement>();
@@ -94,9 +53,14 @@ export default class Signup extends React.Component <{}, Props>{
                     </div>
                     <div className="row">
                       <div className="col S4">
-                        <input type="text" ref={firstName} placeholder="First Name"/>
+
+
+                        <input type="text" ref={firstName} placeholder="First Name"
+                               onChange={(e:any)=>{ setValid(nameTest(e.target.value)) }}
+                        />
+                        {!valid? "Name not Valid" : "Name is Valid"}
                       </div>
-                      <div className="col s6"><input type="text" ref={lastName} placeholder="Last Name"/></div>
+                      <div className="col s6"><input type="text" ref={lastName}  placeholder="Last Name"/></div>
                     </div>
                     <div className="row">
                       <div className="col s12"><input type="text" ref={userName} placeholder="Username"/></div>
@@ -125,18 +89,19 @@ export default class Signup extends React.Component <{}, Props>{
                           api.signup(obj);
 
                           console.log(userName);
-                        } 
-                        
+                        }
+
                         >Create Account</button>*/}
 
-                        <br/> <br/>Already have an account? <Link to='../pages/Startpage'>Log In</Link>
-                      
+                        <br/> <br/>Already have an account? <Link to='/'>Log In</Link>
+
                     </div>
                   </div>
                 </div>
                 </Wrapper>
-                
+
                 )
         }
 
-}
+
+export default Signup;
