@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import api from '../api';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest} from '../utils/utils';
+
+
+
 type Props = {
   job: string,
   fName: string,
@@ -45,35 +48,11 @@ const Signup= ()=>{
         const userName = React.createRef<HTMLInputElement>();
         const password = React.createRef<HTMLInputElement>();
         const pnumber = React.createRef<HTMLInputElement>();
+        const [jobSelected, setJobSelected] = useState(false);
+        const [job, setJob] = useState("");
 
-        var jobSelected: boolean= false;
-        var job: string ="";
-
-
-
-        function jobSelect(x: string){
-
-          if(x === "s")
-          {
-            job = "student";
-          }
-          else if(x === "t")
-          {
-            job = "teacher";
-          }
-          else if (x === "o")
-          {
-            job = "other";
-          }
-
-
-        }
-
-        function handleSubmit(){
-         jobSelected = true;
-        }
                 
-                  return(
+          return(
                 <div>
                 
                 {jobSelected ?
@@ -142,23 +121,20 @@ const Signup= ()=>{
                         <Header>Are you a:</Header>
                       </div>
                       <div className="row">
-                      <ul>
-                        <li>
-                        <label>Student</label>
-                          <input type="radio" name="job" value="student" onClick={() => jobSelect("s")}/>
-                        </li>
-                
-                        <li>
-                        <label>Teacher</label>
-                          <input type="radio" name="job" value="teacher" onClick={() => jobSelect("t")}/>
-                        </li>
-                        <li>
-                        <label>Other</label>
-                          <input type="radio" name="job" value="other" onClick={() => jobSelect("o")}/>
-                        </li>
-                      </ul>
+                        <label>
+                          <input type="radio" name="job" onClick={(( )=> setJob("student"))} checked/>
+                          Student
+                        </label>
+                        <label>
+                          <input type="radio" name="job"  onClick={(( )=> setJob("teacher"))}/>
+                          Teacher
+                        </label>
+                        <label>
+                          <input type="radio" name="job"  onClick={(( )=> setJob("other"))}/>
+                          Other
+                        </label>
                       </div>
-                      <button type="submit" onClick={() => handleSubmit()}/>
+                      <button type="submit" onClick={() => setJobSelected(true)}> Create Account</button>
                     </div>
                   </div>
                 </Wrapper>
