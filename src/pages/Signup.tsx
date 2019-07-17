@@ -18,6 +18,9 @@ type Props = {
   jobPicked: boolean
 }
 
+
+
+
 const Wrapper = styled.div`
 background-color: #dde1ea;
 display: grid;
@@ -30,8 +33,7 @@ font-size: 250%;
 font-weight: bolder:
 text-align: center;
 padding-bottom: 10%;
-padding-left: 30%;
-text-decoration: underline;`;
+padding-left: 30%;`;
 
 const Signup= ()=>{
 
@@ -43,13 +45,38 @@ const Signup= ()=>{
         const userName = React.createRef<HTMLInputElement>();
         const password = React.createRef<HTMLInputElement>();
         const pnumber = React.createRef<HTMLInputElement>();
-        const jobPicked = false; 
-        let job = "";
+
+        var jobSelected: boolean= false;
+        var job: string ="";
+
+
+
+        function jobSelect(x: string){
+
+          if(x === "s")
+          {
+            job = "student";
+          }
+          else if(x === "t")
+          {
+            job = "teacher";
+          }
+          else if (x === "o")
+          {
+            job = "other";
+          }
+
+
+        }
+
+        function handleSubmit(){
+         jobSelected = true;
+        }
                 
                   return(
                 <div>
                 
-                {jobPicked ?
+                {jobSelected ?
 
                 <Wrapper>
                 <div className="row card">
@@ -107,25 +134,37 @@ const Signup= ()=>{
                 </Wrapper>
                 
                 :
-
+                  
                 <Wrapper>
                   <div className="row card">
-                  <div className="row card-content">
-                    <div className="center-align">
-                      <Header>Are you a:</Header>
-                    </div>
-                    <div className="row">
-                      <div className="col S6">
-                        <input type='radio' name="teacher">Teacher</input>
-                        <input type='radio' name="student">Student</input>
+                    <div className="row card-content">
+                      <div className="center-align">
+                        <Header>Are you a:</Header>
                       </div>
+                      <div className="row">
+                      <ul>
+                        <li>
+                        <label>Student</label>
+                          <input type="radio" name="job" value="student" onClick={() => jobSelect("s")}/>
+                        </li>
+                
+                        <li>
+                        <label>Teacher</label>
+                          <input type="radio" name="job" value="teacher" onClick={() => jobSelect("t")}/>
+                        </li>
+                        <li>
+                        <label>Other</label>
+                          <input type="radio" name="job" value="other" onClick={() => jobSelect("o")}/>
+                        </li>
+                      </ul>
+                      </div>
+                      <button type="submit" onClick={() => handleSubmit()}/>
                     </div>
                   </div>
-                </div>
                 </Wrapper>
-
                 
                 }
+                
                 </div>
                 
       
