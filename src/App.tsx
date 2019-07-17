@@ -30,7 +30,6 @@ export default class App extends React.Component <{}, Props>{
             </Switch>
             </div>
            :<Switch>
-
             <Route exact path="/signup" render={()=> <Signup onChange={(e:any)=>{this.setState({userName: e.target.value})}}
                   login={()=>{this.setState({loggedin: true})}} />} />
 
@@ -38,7 +37,6 @@ export default class App extends React.Component <{}, Props>{
                                                     login={()=>{this.setState({loggedin: true})}}
                                                     createAccount={()=> {this.setState({newUser: true})}}  />} />
             </Switch>
-
           }
 
         </Router>
