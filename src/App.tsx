@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom";
 import './App.css';
 import {Navbar} from './components';
-import {Home, Setting, Simulation, Startpage, Signup} from './pages';
+import {Home, Setting, Simulation, Startpage, Signup, Pretest } from './pages';
 
 type Props = {
   loggedin: boolean, tokenChecked: boolean, showNav: boolean, userName: string, newUser: boolean
@@ -25,6 +25,7 @@ export default class App extends React.Component <{}, Props>{
             <Switch>
             <Route path="/Simulation" render={()=> <Simulation {...this.state} />} />
             <Route path="/setting" component={Setting} />
+            <Route path="/pretest" render={()=> <Pretest {...this.state}/>} />
             <Route path="/" render={()=> <Home {...this.state}  />} />
 
             </Switch>
