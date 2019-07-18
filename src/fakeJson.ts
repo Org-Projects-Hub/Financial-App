@@ -1,3 +1,5 @@
+import { register } from "./serviceWorker";
+
 const projects = [{
   title: "Cool Project",
   status: "Testing",
@@ -80,4 +82,24 @@ const employees = [
 ];
 
 
-export {projects, employees};
+const requests = [
+  {
+
+  }
+]
+
+const classes = [
+  {
+    name: "Career Fair First Session",
+    registers: requests.length,
+    confirmed: 0
+
+
+  },
+  {
+
+  }
+]
+
+
+export {projects, employees, classes};
