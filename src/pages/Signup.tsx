@@ -2,7 +2,7 @@ import React, {Component, useState} from 'react';
 import styled from 'styled-components';
 import api from '../api';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import {nameTest} from '../utils/utils';
+import {nameTest, usernameTest, emailTest, passwordTest} from '../utils/utils';
 
 
 
@@ -36,23 +36,38 @@ font-size: 250%;
 font-weight: bolder:
 text-align: center;
 padding-bottom: 10%;
-padding-left: 30%;`;
+align-items: center;`;
+  
+
+const Selection = styled.button`
+background-color: grey;
+maring-right: 25%;
+tet-align: center;
+align-items: center;
+width:100%;
+`;
+
 
 const Signup= ()=>{
 
 
         const [valid, setValid] = useState(false);
-        const firstName = React.createRef<HTMLInputElement>();
+        const firstName = String;
         const lastName = React.createRef<HTMLInputElement>();
         const email = React.createRef<HTMLInputElement>();
         const userName = React.createRef<HTMLInputElement>();
         const password = React.createRef<HTMLInputElement>();
         const pnumber = React.createRef<HTMLInputElement>();
+        
         const [jobSelected, setJobSelected] = useState(false);
-        const [job, setJob] = useState("");
+        const [job, setJob] = useState(""); 
 
-                
-          return(
+        const [selection, setSelection] = useState(false);
+
+
+      
+        
+        return(
                 <div>
                 
                 {jobSelected ?
@@ -61,7 +76,7 @@ const Signup= ()=>{
                 <div className="row card">
                   <div className="row card-content">
                     <div className="center-align">
-                      <Header>SIGN UP</Header>
+                      <Header> {job} SIGN UP</Header>
                     </div>
                     <div className="row">
                       <div className="col S4">
@@ -70,7 +85,7 @@ const Signup= ()=>{
                         <input type="text" ref={firstName} placeholder="First Name"
                                onChange={(e:any)=>{ setValid(nameTest(e.target.value)) }}
                         />
-                        {!valid? "Name not Valid" : "Name is Valid"}
+                        {!valid ? "Name not Valid" : "Name is Valid"}
                       </div>
                       <div className="col s6"><input type="text" ref={lastName}  placeholder="Last Name"/></div>
                     </div>
@@ -116,25 +131,27 @@ const Signup= ()=>{
                   
                 <Wrapper>
                   <div className="row card">
-                    <div className="row card-content">
+                    <div className="row card-content" style={{height: "40em", width: "20em"}}>
                       <div className="center-align">
                         <Header>Are you a:</Header>
                       </div>
                       <div className="row">
-                        <label>
-                          <input type="radio" name="job" onClick={(( )=> setJob("student"))} checked/>
-                          Student
-                        </label>
-                        <label>
-                          <input type="radio" name="job"  onClick={(( )=> setJob("teacher"))}/>
-                          Teacher
-                        </label>
-                        <label>
-                          <input type="radio" name="job"  onClick={(( )=> setJob("other"))}/>
-                          Other
-                        </label>
+                        <div>
+                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("STUDENT"))}>Student</Selection>
+                        </div>
+                        <br/>
+                        <div>
+                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("TEACHER"))}>Teacher</Selection>
+                        </div>
+                        <br/>
+                        <div>
+                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("OTHER"))}>Other</Selection>
+                        </div>
+                        <br/>
                       </div>
-                      <button type="submit" onClick={() => setJobSelected(true)}> Create Account</button>
+                      <button type="submit" className="btn btn-small waves-effect waves-light" style={{margin: "33%"}}onClick={() => setJobSelected(true)}> 
+                        Submit
+                      </button>
                     </div>
                   </div>
                 </Wrapper>
