@@ -50,7 +50,8 @@ class Test extends React.Component<{}, Props> {
                         {this.state.answers.map((answer, j) =>
                             <button onClick={this.handleChange} value={answer}>{answer}</button>
                         )}
-                    </div> 
+                        
+                    </div>
                 )}
              </div>
         );
