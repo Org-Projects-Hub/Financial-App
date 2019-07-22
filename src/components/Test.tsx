@@ -6,57 +6,18 @@
 //each "return" must contain div which holds questions and answers(w radio buttons)
 import React from 'react';
 import Tests from './Tests.json';
-
-type Props = {
-    questions: string[],
-    answers: string[],
-    responses: []
-};
-
-class Test extends React.Component<{}, Props> {
-    constructor(props: Props){
-        super(props);
-        this.state = {
-            questions: Tests.testType.posttest.questions,
-            answers: Tests.testType.posttest.answers,
-            responses: []
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e: any){
-        e.preventDefault();
-        if(true /**there is nothing in current spot at array, add, otherwise update */) {
-
-        } else {
-
-        }
-    }
-
-    handleSubmit(e: any){
-        e.preventDefault();
-
-    }
+import Question from './Question';
 
 
-    render() {
-        return(
+
+const Test = ()=>
+(
             <div>
-                {this.state.questions.map((question, i) =>
-                    <div>
-                        {question} <br />
-                        {this.state.answers.map((answer, j) =>
-                            <button onClick={this.handleChange} value={answer}>{answer}</button>
-                        )}
-                        
-                    </div>
-                )}
+                {Tests.testType.pretest.questions.map((question, i) =>
+                  <Question {...question} key={i}/>)
+                }
              </div>
         );
-    }
-}
 
 
 

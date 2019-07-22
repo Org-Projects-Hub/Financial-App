@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Test from '../components/Test';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import Test from './Test';
+
 type Props = {
     begin: boolean
     questions: string[],
@@ -33,22 +29,15 @@ export default class Pretest extends React.Component<{}, Props> {
     render() {
     let { begin } = this.state;
     return(
-          begin?
-                <div className="container">
+          !begin?
+                <div className="container center">
                     Pretest explanation <br />
-                    <button onClick={this.onClick}>Begin Pretest</button>
+                    <button className="btn" onClick={this.onClick}>Begin Pretest</button>
                 </div>
                :
                 <div className="container">
                     <form><Test />
-                    <RadioGroup aria-label="Gender"
-                    name="gender1"
-                    value={null}
-                    onChange={(e: any)=>console.log(e.target.value)}>
-                      <FormControlLabel value="female" control={<Radio />} label="Female" />
-                      <FormControlLabel value="male" control={<Radio />} label="Male" />
-                      <FormControlLabel value="other" control={<Radio />} label="Other" />
-                    </RadioGroup>
+
          </form>
                 </div>
             );
