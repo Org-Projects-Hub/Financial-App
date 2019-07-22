@@ -3,9 +3,6 @@ import Test from './Test';
 
 type Props = {
     begin: boolean
-    questions: string[],
-    answers: string[],
-    responses: string[],
 };
 
 export default class Pretest extends React.Component<{}, Props> {
@@ -14,9 +11,6 @@ export default class Pretest extends React.Component<{}, Props> {
         super(props);
         this.state = {
             begin: false,
-            questions: [],
-            answers: [],
-            responses: [],
         };
 
         this.onClick = this.onClick.bind(this);
@@ -36,9 +30,9 @@ export default class Pretest extends React.Component<{}, Props> {
                 </div>
                :
                 <div className="container">
-                    <form><Test />
+                    <form><Test testType="pretest"/>
 
-         </form>
+                </form>
                 </div>
             );
         }

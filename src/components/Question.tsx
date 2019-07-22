@@ -6,21 +6,27 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 const Question = (props: any)=>{
-  const [answer, setAnswer] = useState(null);
-        return(  <div>
-                    {props.q}
-                    {console.log(props)}
-                            <RadioGroup aria-label="Gender"
-                            name="gender1"
-                            value={answer}
-                            onChange={(e: any)=>{setAnswer(e.target.value)
-                                                // Fetch to backend here
-                                                console.log(`answer is ${e.target.value}`)
-                            }}>
-                              <FormControlLabel value="1" control={<Radio />} label="Answer 1" />
-                              <FormControlLabel value="2" control={<Radio />} label="Answer 2" />
-                              <FormControlLabel value="3" control={<Radio />} label="Answer 3" />
-                            </RadioGroup>
-                    </div>)};
+  const [answer, setAnswer] = useState('');
+
+  return(
+    <div>
+      {props.q}
+      {console.log(props)}
+      <RadioGroup 
+        aria-label="answers" 
+        name={props.id.toString()}
+        value={answer} 
+        onChange={(e: any)=>{setAnswer(e.target.value)
+                  // Fetch to backend here
+                  console.log(`answer is ${e.target.value}`)
+        }}
+      >
+        {props.answers.map((answer: string) =>
+            <FormControlLabel value={answer} control={<Radio />} label={answer} />
+        )}
+      </RadioGroup>
+    </div>
+  )
+};
 
 export default Question;

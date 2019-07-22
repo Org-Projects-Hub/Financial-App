@@ -1,23 +1,23 @@
-//get test type from parent
-//if the test type has the same answers for all questions, call that function
-//otherwise, if test type has differnt answers for diffrent questions, call that function to render the questions
 
-
-//each "return" must contain div which holds questions and answers(w radio buttons)
 import React from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
+import { getThemeProps } from '@material-ui/styles';
 
+const Test = (props: any)=>
+{
 
+  if(props.testType === 'pretest' || props.testType === 'posttest') {
+    return(
+      <div>
+        {Tests.testType.pretest.questions.map((question, i) =>
+          <Question {...question} answers={Tests.testType.pretest.answers} key={i}/>)}
+      </div>
+    );
+  } else {
 
-const Test = ()=>
-(
-            <div>
-                {Tests.testType.pretest.questions.map((question, i) =>
-                  <Question {...question} key={i}/>)
-                }
-             </div>
-        );
+  }
+};
 
 
 
