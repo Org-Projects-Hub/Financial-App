@@ -62,7 +62,7 @@ const Signup = ({login, onChange}:{login: any, onChange: any})=>{
                                           password: password.current.value,
                                           email: email.current.value,
                                           userName: userName.current.value}
-                          api.signup(obj);
+                          console.log(obj);
                         }
                         }
                         >Create Account</button>
