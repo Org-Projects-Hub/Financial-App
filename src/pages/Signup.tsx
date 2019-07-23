@@ -170,9 +170,13 @@ const Signup= ()=>{
                                           password: password.current.value,
                                           email: email.current.value,
                                           userName: userName.current.value}
+<<<<<<< HEAD
                           api.signup(obj);
 
                           console.log(userName);
+=======
+                          console.log(obj);
+>>>>>>> da4eb3641d59df1e217088c3288fc467add13f4d
                         }
 
                         >Create Account</button>*/}
