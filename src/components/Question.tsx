@@ -5,6 +5,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import {Card} from '../style/styled';
 
 const Wrapper = styled.div`
   display: block;
@@ -12,36 +13,35 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Span = styled.div`
-  text-align: left;
-  width: 50%;
+const Div = styled.div`
+  margin:auto;
 `;
 
 const Question = (props: any)=>{
   const [answer, setAnswer] = useState('');
 
   return (
-    <Wrapper>
-      {props.q}
-      {console.log(props)}
-      
-      <RadioGroup
-        aria-label="answers" 
-        name={props.id.toString()}
-        value={answer} 
-        onChange={(e: any)=>{setAnswer(e.target.value)
-                  // Fetch to backend here
-                  console.log(`answer is ${e.target.value}`)
-        }}
-      >
-        {props.answers.map((answer: string, i: any) =>
-            <Span>
-              <FormControlLabel value={answer} control={<Radio />} label={answer} key={i}/>
-            </Span>
-        )}
-      </RadioGroup>
-
-    </Wrapper>
+    <Card>
+      <Wrapper>
+        <h6>{props.q}</h6>
+        {console.log(props)}
+        <RadioGroup
+          aria-label="answers" 
+          name={props.id.toString()}
+          value={answer} 
+          onChange={(e: any)=>{setAnswer(e.target.value)
+                    // Fetch to backend here
+                    console.log(`answer is ${e.target.value}`)
+          }}
+        >
+          {props.answers.map((answer: string, i: any) =>
+                <Div>
+                  <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
+                </Div>
+          )}
+        </RadioGroup>
+      </Wrapper>
+    </Card>
   )
 };
 
