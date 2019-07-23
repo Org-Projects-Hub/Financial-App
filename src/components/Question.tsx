@@ -12,8 +12,9 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Span = styled.span`
+const Span = styled.div`
   text-align: left;
+  width: 50%;
 `;
 
 const Question = (props: any)=>{
