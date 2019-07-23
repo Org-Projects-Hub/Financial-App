@@ -37,19 +37,20 @@ place-items: center;
 `;
 
 const Header = styled.div`
-font-size: 250%;
+font-size: 200%;
 font-weight: bolder:
 text-align: center;
-padding-bottom: 10%;
+padding-bottom: 5%;
 align-items: center;`;
   
+
 
 
 const Signup= ()=>{
 
 
         const [valid, setValid] = useState(false);
-        const firstName = String;
+        const firstName = React.createRef<HTMLInputElement>();
         const lastName = React.createRef<HTMLInputElement>();
         const email = React.createRef<HTMLInputElement>();
         const userName = React.createRef<HTMLInputElement>();
@@ -82,7 +83,16 @@ const Signup= ()=>{
                         <input type="text" ref={firstName} placeholder="First Name"
                                onChange={(e:any)=>{ setValid(nameTest(e.target.value)) }}
                         />
-                        {!valid ? "Name not Valid" : "Name is Valid"}
+
+                        {console.log(firstName.current)}
+                        {!valid ?
+                        
+                        "Name is not Valid"
+                        :
+                        "Name is Valid"
+                      
+                        }
+
                       </div>
                       <div className="col s6"><input type="text" ref={lastName}  placeholder="Last Name"/></div>
                     </div>
