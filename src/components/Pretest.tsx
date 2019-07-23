@@ -30,9 +30,9 @@ export default class Pretest extends React.Component<{}, Props> {
                 </div>
                :
                 <div className="container">
-                    <form><Test testType="pretest"/>
-
-                </form>
+                    <form>
+                        <Test testType="pretest"/>
+                    </form>
                 </div>
             );
         }
