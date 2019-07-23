@@ -48,22 +48,3 @@ const Question = (props: any)=>{
 export default Question;
 
 
-
-
-/*
-<RadioGroup
-        aria-label="answers" 
-        name={props.id.toString()}
-        value={answer} 
-        onChange={(e: any)=>{setAnswer(e.target.value)
-                  // Fetch to backend here
-                  console.log(`answer is ${e.target.value}`)
-        }}
-      >
-        {props.answers.map((answer: string, i: any) =>
-            <Span>
-              <FormControlLabel value={answer} control={<Radio />} label={answer} key={i}/>
-            </Span>
-        )}
-      </RadioGroup>
-*/
