@@ -30,13 +30,8 @@ export default class App extends React.Component <{}, Props>{
             </Switch>
             </div>
            :<Switch>
-<<<<<<< HEAD
 
             <Route exact path="/signup" render={()=> <Signup />} /> 
-=======
-            <Route exact path="/signup" render={()=> <Signup onChange={(e:any)=>{this.setState({userName: e.target.value})}}
-                  login={()=>{this.setState({loggedin: true})}} />} />
->>>>>>> 142c34b2bf2aac0e9732b758fb072c88560d0511
 
              <Route path="*" render={()=> <Startpage onChange={(e:any)=>{this.setState({userName: e.target.value})}}
                                                     login={()=>{this.setState({loggedin: true})}}

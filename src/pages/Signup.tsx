@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import api from '../api';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest, usernameTest, emailTest, passwordTest} from '../utils/utils';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControlLabel';
+
 
 
 
@@ -39,14 +44,6 @@ padding-bottom: 10%;
 align-items: center;`;
   
 
-const Selection = styled.button`
-background-color: grey;
-maring-right: 25%;
-tet-align: center;
-align-items: center;
-width:100%;
-`;
-
 
 const Signup= ()=>{
 
@@ -60,7 +57,7 @@ const Signup= ()=>{
         const pnumber = React.createRef<HTMLInputElement>();
         
         const [jobSelected, setJobSelected] = useState(false);
-        const [job, setJob] = useState(""); 
+        const [job, setJob] = useState("STUDENT"); 
 
         const [selection, setSelection] = useState(false);
 
@@ -131,27 +128,34 @@ const Signup= ()=>{
                   
                 <Wrapper>
                   <div className="row card">
-                    <div className="row card-content" style={{height: "40em", width: "20em"}}>
+                    <div className="row card-content" style={{height: "30em", width: "20em"}}>
                       <div className="center-align">
                         <Header>Are you a:</Header>
                       </div>
-                      <div className="row">
-                        <div>
-                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("STUDENT"))}>Student</Selection>
-                        </div>
-                        <br/>
-                        <div>
-                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("TEACHER"))}>Teacher</Selection>
-                        </div>
-                        <br/>
-                        <div>
-                          <Selection className="btn btn-small" type="submit" onClick={(( )=> setJob("OTHER"))}>Other</Selection>
-                        </div>
-                        <br/>
-                      </div>
+                        <RadioGroup onChange={(e: any) =>(setJob(e.target.value))}>
+                          <FormControlLabel
+                            value="STUDENT"
+                            control={<Radio color="primary" />}
+                            label="Student"
+                            checked={job === "STUDENT"}
+                          />
+                          <FormControlLabel
+                            value="TEACHER"
+                            control={<Radio color="primary" />}
+                            label="Teacher"
+                          />
+                          <FormControlLabel
+                            value="OTHER"
+                            control={<Radio color="primary" />}
+                            label="Other"
+                          />
+                        </RadioGroup>
                       <button type="submit" className="btn btn-small waves-effect waves-light" style={{margin: "33%"}}onClick={() => setJobSelected(true)}> 
                         Submit
                       </button>
+                      
+                        <br/>Already have an account? <Link to='/'>Log In</Link>
+
                     </div>
                   </div>
                 </Wrapper>
