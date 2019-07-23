@@ -6,6 +6,7 @@ const Nav = styled.div`
   top: 0em;
   height: 100vh;
   display: grid;
+  position: fixed;
   grid-template-rows: 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
