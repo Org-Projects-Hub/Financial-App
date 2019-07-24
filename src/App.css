@@ -19,6 +19,10 @@ txt-green {
   color: green;
 }
 
+.full-row{
+   grid-column: span 2;
+}
+
 .pointer{
   cursor: pointer;
 }
