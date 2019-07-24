@@ -4,16 +4,20 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import {Card} from '../style/styled';
+import {Card, Grid} from '../style/styled';
 
 const Wrapper = styled.div`
   display: block;
   padding: 15px;
-  text-align: center;
 `;
 
 const Div = styled.div`
-  margin:auto;
+  text-align: left;
+`;
+
+const Span = styled.div`
+  padding-bottom: 10px;
+  text-align: center;
 `;
 
 const Question = (props: any)=>{
@@ -22,12 +26,14 @@ const Question = (props: any)=>{
   return (
     <Card>
       <Wrapper>
-        <h6>{props.q}</h6>
+        <Span>{props.q}</Span>
         {console.log(props)}
+      <Grid cols="1">
+        <div style={{width: "60%"}}  className="justify-end">
         <RadioGroup
-          aria-label="answers" 
+          aria-label="answers"
           name={props.id.toString()}
-          value={answer} 
+          value={answer}
           onChange={(e: any)=>{setAnswer(e.target.value)
                     // Fetch to backend here
                     console.log(`answer is ${e.target.value}`)
@@ -39,11 +45,11 @@ const Question = (props: any)=>{
                 </Div>
           )}
         </RadioGroup>
+        </div>
+      </Grid>
       </Wrapper>
     </Card>
   )
 };
 
 export default Question;
-
-

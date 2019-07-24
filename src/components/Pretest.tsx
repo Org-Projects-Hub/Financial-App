@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Test from './Test';
 import styled from 'styled-components';
+import {Card, GridRow} from '../style/styled';
+
 
 const Div = styled.div`
     text-align: center;
     padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat (2, 1fr);
 `;
+
+const PretestExplanation: string = 'Pretest explanation';
 
 type Props = {
     begin: boolean,
@@ -32,10 +39,10 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
     let { begin } = this.state;
     return(
           !begin?
-                <div className="container center">
-                    Pretest explanation <br />
-                    <button className="btn" onClick={this.onClick}>Begin Pretest</button>
-                </div>
+                <GridRow rows="2">
+                    <Card>{PretestExplanation}</Card>
+                    <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
+                </GridRow>
                :
                 <div className="container">
                     <Test testType="pretest"/>
@@ -44,4 +51,3 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
             );
         }
     }
-

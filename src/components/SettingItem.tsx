@@ -7,7 +7,7 @@ const SettingItem = ({name, value}:any)=>
   const [edit, setEdit] = useState(false);
   return (
     <Card>
-    <Grid color="3">
+    <Grid cols="3">
       <span className="bold text-md justify-start">{name}</span>
        {!edit?
          <span className="bold text-md justify-center">{value}</span> :
