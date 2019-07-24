@@ -3,10 +3,13 @@ import Test from './Test';
 import styled from 'styled-components';
 import {Card} from '../style/styled';
 
+
 const Div = styled.div`
     text-align: center;
     padding: 15px;
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat (2, 1fr);
 `;
 
 const PretestExplanation: string = 'Pretest explanation';
@@ -37,8 +40,8 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
     return(
           !begin?
                 <div className="container center">
-                    <Card>{PretestExplanation}</Card>
-                    <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
+                    <Div><Card>{PretestExplanation}</Card>
+                    <button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
                 </div>
                :
                 <div className="container">
