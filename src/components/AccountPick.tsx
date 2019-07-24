@@ -29,46 +29,54 @@ align-items: center;`;
 const AccountPick = () => {
 
 const [job, setJob] = useState("STUEDNT");
+const [flag, setFlag] = useState(false)
 
 return(
-<Wrapper>
-    <div className="row card">
-      <div className="row card-content" style={{height: "30em", width: "20em"}}>
-        <div className="center-align">
-          <Header>Choose your Account Type:</Header>
+  <div>
+  {!flag ?
+  <Wrapper>
+      <div className="row card">
+        <div className="row card-content" style={{height: "30em", width: "20em"}}>
+          <div className="center-align">
+            <Header>Choose your Account Type:</Header>
+          </div>
+            <RadioGroup onChange={(e: any) =>(setJob(e.target.value))}>
+              <FormControlLabel
+                value="STUDENT"
+                control={<Radio color="primary" />}
+                label="Student"
+                checked={job === "STUDENT"}
+              />
+              <FormControlLabel
+                value="TEACHER"
+                control={<Radio color="primary" />}
+                label="Teacher"
+              />
+              <FormControlLabel
+                value="OTHER"
+                control={<Radio color="primary" />}
+                label="Other"
+              />
+            </RadioGroup>
+          <button type="submit" 
+                  className="btn btn-small waves-effect waves-light" 
+                  style={{margin: "33%"}} 
+                  onClick={()=> setFlag(!flag)}> 
+            Submit
+          </button>
+          
+            <br/>Already have an account? <Link to='/'>Log In</Link>
+
         </div>
-          <RadioGroup onChange={(e: any) =>(setJob(e.target.value))}>
-            <FormControlLabel
-              value="STUDENT"
-              control={<Radio color="primary" />}
-              label="Student"
-              checked={job === "STUDENT"}
-            />
-            <FormControlLabel
-              value="TEACHER"
-              control={<Radio color="primary" />}
-              label="Teacher"
-            />
-            <FormControlLabel
-              value="OTHER"
-              control={<Radio color="primary" />}
-              label="Other"
-            />
-          </RadioGroup>
-        <button type="submit" 
-                className="btn btn-small waves-effect waves-light" 
-                style={{margin: "33%"}} 
-                onClick={()=> <AccountInfo job={job}/>}> 
-          Submit
-        </button>
-        
-          <br/>Already have an account? <Link to='/'>Log In</Link>
-
       </div>
-    </div>
-  </Wrapper>
+    </Wrapper>
 
-)
-};
+    :
+    <AccountInfo job={job}/>
+    
+    }
+  </div>
+  )
+  };
 
 export default AccountPick;

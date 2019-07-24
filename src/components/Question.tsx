@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-<<<<<<< HEAD
-=======
 import FormControl from '@material-ui/core/FormControl';
 import {Card} from '../style/styled';
->>>>>>> 8ecc06f9bcbddba53d9b2ae6d662d003eb0b25c7
 
 const Wrapper = styled.div`
   display: block;

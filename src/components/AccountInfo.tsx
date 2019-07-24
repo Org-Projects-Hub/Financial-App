@@ -16,6 +16,13 @@ import {nameTest, usernameTest, emailTest, passwordTest} from '../utils/utils';
         text-align: center;
         padding-bottom: 5%;
         align-items: center;`;
+
+        const correctSize = styled.div`
+        height: 10%;
+        wdth: 10%
+        `;
+
+        const correct = <img src="https://www.kisspng.com/png-check-mark-computer-icons-clip-art-green-check-mar-625084/"/>
             
 const AccountInfo= (props: any) =>{   
 
@@ -46,11 +53,11 @@ const AccountInfo= (props: any) =>{
 
                         {console.log(firstName)}
                         
-                        {!firstName === null? 
+                        {!(firstName)=== null? 
                         
                           !valid?
                           
-                          "Name is not Valid"
+                            correct
                           :
                           "Name is Valid"
                         
