@@ -1,5 +1,4 @@
 import React from 'react';
-import {GridRow} from '../style/styled';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
