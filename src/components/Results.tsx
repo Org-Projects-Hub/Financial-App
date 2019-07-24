@@ -14,7 +14,7 @@ const Results = () => {
     return(
         <Wrapper>
             <Div>
-                <div style={{fontSize: 20, padding: "5px", fontWeight: "bold" }}>Good</div>
+                <div style={{fontSize: 20, padding: "5px", fontWeight: "bold" }}>Proficient</div>
                 <ul>
                     <li>This is good</li>
                     <li>This is good</li>
