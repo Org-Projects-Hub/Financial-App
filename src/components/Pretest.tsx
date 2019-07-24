@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Test from './Test';
 import styled from 'styled-components';
-import {Card} from '../style/styled';
+import {Card, GridRow} from '../style/styled';
 
 const Div = styled.div`
     text-align: center;
@@ -36,10 +36,10 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
     let { begin } = this.state;
     return(
           !begin?
-                <div className="container center">
+                <GridRow rows="2">
                     <Card>{PretestExplanation}</Card>
                     <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
-                </div>
+                </GridRow>
                :
                 <div className="container">
                     <Test testType="pretest"/>
@@ -48,4 +48,3 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
             );
         }
     }
-

@@ -13,7 +13,7 @@ const Setting = ()=>{
     return (
       <Wrapper>
        <div className="container full-height" >
-       <Grid color="1">
+       <Grid cols="1">
           <button className="btn justify-end">Logout</button>
       </Grid>
       {fields.map((data,i)=><SettingItem {...data} key={i} />)}

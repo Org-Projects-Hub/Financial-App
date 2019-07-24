@@ -3,7 +3,7 @@
     {
         "pretest": {
             "questions": [
-                { "id": 0, "q": "I understand what basic living expenses are." },
+                { "id": 0, "q": "I understand what basic living expenses are."},
                 { "id": 1, "q": "I think buying a used car for my first car is a good idea." },
                 { "id": 1, "q": "I know salary ranges for occupations I'm interested in." },
                 { "id": 3, "q": "I understand that credit card companies charge interest when I use my card." },
@@ -16,10 +16,10 @@
                 { "id": 10, "q": "I believe there is more I should know about personal finances." }
             ],
             "answers": [
-                "Strongly Disagree", 
-                "Disagree", 
-                "Uncertain/Neutral", 
-                "Agree", 
+                "Strongly Disagree",
+                "Disagree",
+                "Uncertain/Neutral",
+                "Agree",
                 "Strongly Agree"
             ]
         },
@@ -39,10 +39,10 @@
                 { "id": 10, "q": "I believe there is more I should know about personal finances." }
             ],
             "answers": [
-                "Strongly Disagree", 
-                "Disagree", 
-                "Uncertain/Neutral", 
-                "Agree", 
+                "Strongly Disagree",
+                "Disagree",
+                "Uncertain/Neutral",
+                "Agree",
                 "Strongly Agree"
             ]
         },

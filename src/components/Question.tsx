@@ -5,7 +5,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import {Card} from '../style/styled';
+import {Card, Grid} from '../style/styled';
 
 const Wrapper = styled.div`
   display: block;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-  margin:auto;
+  text-align: left;
 `;
 
 const Span = styled.div`
@@ -29,10 +29,12 @@ const Question = (props: any)=>{
       <Wrapper>
         <Span>{props.q}</Span>
         {console.log(props)}
+      <Grid cols="1">
+        <div style={{width: "60%"}}  className="justify-end">
         <RadioGroup
-          aria-label="answers" 
+          aria-label="answers"
           name={props.id.toString()}
-          value={answer} 
+          value={answer}
           onChange={(e: any)=>{setAnswer(e.target.value)
                     // Fetch to backend here
                     console.log(`answer is ${e.target.value}`)
@@ -44,11 +46,11 @@ const Question = (props: any)=>{
                 </Div>
           )}
         </RadioGroup>
+        </div>
+      </Grid>
       </Wrapper>
     </Card>
   )
 };
 
 export default Question;
-
-
