@@ -31,60 +31,11 @@ const Pretest = ({setStage}: any)=> {
                     <Div><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></Div>
                 </div>
             :
-                <GridRow rows="2">
+                <div>
                     <Card><Results /></Card>
-                    <Div><button className="btn" onClick={(e) => setStage("posttest")}>Begin Simulation</button></Div>
-                </GridRow>
+                    <Div><button className="btn" onClick={(e) => setStage("posttest") } >Begin Simulation</button></Div>
+                </div>
     );
 };
 
 export default Pretest;
-
-
-
-
-
-
-
-
-
-
-/*
-type Props = {
-    begin: boolean,
-    setStage: Function
-};
-
-export default class Pretest extends React.Component<{setStage: Function}, Props> {
-
-    constructor(props: Props){
-        super(props);
-        this.state = {
-            begin: false,
-            setStage: props.setStage
-        };
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(event: any) {
-        this.setState({ begin: true });
-    }
-
-    render() {
-    let { begin } = this.state;
-    return(
-          !begin?
-                <GridRow rows="2">
-                    <Card>{PretestExplanation}</Card>
-                    <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
-                </GridRow>
-               :
-                <div className="container">
-                    <Test testType="pretest"/>
-                    <Div><button className="btn" onClick={(e) => this.props.setStage("posttest")}>Submit</button></Div>
-                </div>
-            );
-        }
-    }
-*/
