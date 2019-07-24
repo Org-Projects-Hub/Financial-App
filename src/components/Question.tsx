@@ -10,11 +10,15 @@ import {Card} from '../style/styled';
 const Wrapper = styled.div`
   display: block;
   padding: 15px;
-  text-align: center;
 `;
 
 const Div = styled.div`
   margin:auto;
+`;
+
+const Span = styled.div`
+  padding-bottom: 10px;
+  text-align: center;
 `;
 
 const Question = (props: any)=>{
@@ -23,7 +27,7 @@ const Question = (props: any)=>{
   return (
     <Card>
       <Wrapper>
-        <h6>{props.q}</h6>
+        <Span>{props.q}</Span>
         {console.log(props)}
         <RadioGroup
           aria-label="answers" 

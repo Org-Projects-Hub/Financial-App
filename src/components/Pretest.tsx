@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Test from './Test';
 import styled from 'styled-components';
+import {Card} from '../style/styled';
 
 const Div = styled.div`
     text-align: center;
     padding: 15px;
+    display: block;
 `;
+
+const PretestExplanation: string = 'Pretest explanation';
 
 type Props = {
     begin: boolean,
@@ -33,8 +37,8 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
     return(
           !begin?
                 <div className="container center">
-                    Pretest explanation <br />
-                    <button className="btn" onClick={this.onClick}>Begin Pretest</button>
+                    <Card>{PretestExplanation}</Card>
+                    <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
                 </div>
                :
                 <div className="container">
