@@ -7,9 +7,6 @@ import {Card, GridRow} from '../style/styled';
 const Div = styled.div`
     text-align: center;
     padding: 15px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat (2, 1fr);
 `;
 
 const PretestExplanation: string = 'Pretest explanation';
