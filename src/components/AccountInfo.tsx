@@ -86,7 +86,7 @@ const AccountInfo= (props: any) =>{
                       <div className="col s12"><input type="password" placeholder="Confirm Password"/></div>
                     </div>
                     <div className="center-align">
-                        <button className="btn btn-small waves-effect waves-light" type='submit'>Create Account</button>
+                        <button className="btn btn-small waves-effect waves-light" type='submit' onClick={()=> <Link to ='/'></Link> }>Create Account</button>
                         {/*()=>{
 
                           {/*const obj =  { 

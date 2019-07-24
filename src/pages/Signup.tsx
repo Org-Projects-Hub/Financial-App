@@ -357,16 +357,13 @@ import {AccountPick} from '../components'
 const Signup = () => {
 
 const [status, setStatus] = useState(false);
+const [job, setJob] = useState("STUDENT");
 
-function changeStatus (props: boolean){
-
-  setStatus(!status);
-
-}
 
 return(
 
   <AccountPick/>
+
 );
 }
 
