@@ -38,6 +38,14 @@ txt-green {
   justify-self: center;
 }
 
+txt-red{
+  color: red;
+}
+
+txt-green{
+  color: green;
+}
+
 .txt-md{
     font-size: 2em;
     padding: .3em;

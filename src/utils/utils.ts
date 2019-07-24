@@ -34,6 +34,10 @@ function passwordTest(name: string){
   return passwordRegex.test(name);
 }
 
+function numberTest(name: string){
+  const nameRegex = /^[0-9]{7,12}$/;
+  return nameRegex.test(name);
+}
 
 
-export {setLocalStorage, getLocalStorage , nameTest, usernameTest, emailTest, passwordTest};
+export {setLocalStorage, getLocalStorage , nameTest, usernameTest, emailTest, passwordTest, numberTest};

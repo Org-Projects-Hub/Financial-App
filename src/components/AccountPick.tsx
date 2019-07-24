@@ -24,8 +24,6 @@ padding-bottom: 5%;
 align-items: center;`;
 
 
-
-
 const AccountPick = () => {
 
 const [job, setJob] = useState("STUEDNT");
@@ -58,13 +56,13 @@ return(
                 label="Other"
               />
             </RadioGroup>
-          <button type="submit" 
-                  className="btn btn-small waves-effect waves-light" 
-                  style={{margin: "33%"}} 
-                  onClick={()=> setFlag(!flag)}> 
+          <button type="submit"
+                  className="btn btn-small waves-effect waves-light"
+                  style={{margin: "33%"}}
+                  onClick={()=> setFlag(!flag)}>
             Submit
           </button>
-          
+
             <br/>Already have an account? <Link to='/'>Log In</Link>
 
         </div>
@@ -73,7 +71,7 @@ return(
 
     :
     <AccountInfo job={job}/>
-    
+
     }
   </div>
   )
