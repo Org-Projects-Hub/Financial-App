@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
-const SignupItem = ({type, placeholder, ref, handler, className}:any)=>
+const SignupItem = ({type, placeholder, handler, className}:any)=>
 {
-  const ref1 = React.createRef<HTMLInputElement>();
+
+  const ref = React.createRef<HTMLInputElement>();
   const [valid, setValid] = useState(false);
   const [value, setValue] = useState("");
+
   return (
     <div className={className} style={{width: "100%"}}>
 

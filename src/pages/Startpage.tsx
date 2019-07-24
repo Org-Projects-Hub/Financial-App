@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './Startpage.css';
-import Logo from '../assets/images/logo_on.png';
+import Logo from '../assets/images/UnitedWayLogo.png';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
