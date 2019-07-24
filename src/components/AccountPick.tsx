@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import AccountInfo from './AccountInfo'
+import changeStatus from '../pages/Signup';
 
 
 
@@ -54,7 +55,10 @@ return(
               label="Other"
             />
           </RadioGroup>
-        <button type="submit" className="btn btn-small waves-effect waves-light" style={{margin: "33%"}} onClick={()=><AccountInfo job={job} />}> 
+        <button type="submit" 
+                className="btn btn-small waves-effect waves-light" 
+                style={{margin: "33%"}} 
+                onClick={()=> <AccountInfo job={job}/>}> 
           Submit
         </button>
         

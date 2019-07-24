@@ -350,15 +350,25 @@
 
 // export default Signup;
 
-import React from 'react';
+import React, {useState} from 'react';
 import {AccountPick} from '../components'
 
 
 const Signup = () => {
-return(
-  <AccountPick/>
 
+const [status, setStatus] = useState(false);
+
+function changeStatus (props: boolean){
+
+  setStatus(!status);
+
+}
+
+return(
+
+  <AccountPick/>
 );
 }
+
 
 export default Signup;

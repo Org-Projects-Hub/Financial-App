@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import Test from './Test';
-import styled from 'styled-components';
-
-const Div = styled.div`
-    text-align: center;
-    padding: 15px;
-`;
 
 type Props = {
     begin: boolean,
     setStage: Function
 };
 
-export default class Pretest extends React.Component<{setStage: Function}, Props> {
+export default class Posttest extends React.Component<{setStage: Function}, Props> {
 
     constructor(props: Props){
         super(props);
@@ -33,13 +27,11 @@ export default class Pretest extends React.Component<{setStage: Function}, Props
     return(
           !begin?
                 <div className="container center">
-                    Pretest explanation <br />
-                    <button className="btn" onClick={this.onClick}>Begin Pretest</button>
+                    <button className="btn" onClick={this.onClick}>Begin Posttest</button>
                 </div>
                :
                 <div className="container">
-                    <Test testType="pretest"/>
-                    <Div><button className="btn" onClick={(e) => this.props.setStage("posttest")}>Submit</button></Div>
+                        <Test testType="posttest"/>
                 </div>
             );
         }
