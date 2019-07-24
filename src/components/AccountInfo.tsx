@@ -36,7 +36,7 @@ const AccountInfo= (props: any) =>{
                     </div>
                     <Grid cols="2">
                       {
-                      el.map((item ,i )=> <SignupItem {...item} key={i}/>)
+                      el.map((item ,index )=> <SignupItem {...item} key={index}/>)
                       }
                     </Grid>
                     <div className="center-align">
