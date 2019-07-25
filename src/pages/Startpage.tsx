@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   background-color: #dde1ea;
   display: grid;
   height: 100vh;
-  grid-template-columns: 29% 42% 29%;
+  grid-template-columns:1fr;
   place-items: center;
   `;
 
@@ -16,8 +16,7 @@ const Startpage = ({login, onChange, createAccount}:{login: any, onChange: any,c
 {
 return(
                   <Wrapper>
-                    <div className="wrapper-item-left"></div>
-                    <div className="wrapper-item-center">
+                    <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
                       <div className="container center" >
                           <div className="row card full-on-mobile">
                           <div className="card-image " style={{padding:"2em"}}>
@@ -33,7 +32,8 @@ return(
                                 <p><a href="*">Forget Password ?</a></p>
                               </div>
                               <div className=" col s12 center">
-                                <p><a href="/Signup" onClick={createAccount}>Sign Up</a></p>
+                                <p><NavLink to="/signup">Sign Up</NavLink></p>
+
                               </div>
                             </div>
                             <div className="row">
@@ -47,7 +47,6 @@ return(
                           </div>
                         </div>
                     </div>
-                    <div className="wrapper-item-right"></div>
 
                     </Wrapper>);}
 export default Startpage;

@@ -28,7 +28,7 @@ const AccountInfo= (props: any) =>{
                     ];
             return(
             <Wrapper>
-                <div className="row card">
+                <div className="row card"  style={{ width:"90%", maxWidth: "550px" }}>
                   <div className="row card-content">
                     <div className="center-align">
                       <Header> {props.job} SIGN UP</Header>

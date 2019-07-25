@@ -38,11 +38,11 @@ txt-green {
   justify-self: center;
 }
 
-txt-red{
+.txt-red{
   color: red;
 }
 
-txt-green{
+.txt-green{
   color: green;
 }
 

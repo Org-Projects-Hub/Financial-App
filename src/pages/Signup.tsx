@@ -33,23 +33,23 @@
 
 
 //         const [valid, setValid] = useState(false);
-        
+
 //         const firstName = React.createRef<HTMLInputElement>();
 //         const lastName = React.createRef<HTMLInputElement>();
 //         const email = React.createRef<HTMLInputElement>();
 //         const userName = React.createRef<HTMLInputElement>();
 //         const password = React.createRef<HTMLInputElement>();
 //         const pnumber = React.createRef<HTMLInputElement>();
-        
+
 //         const [fName, setName] = useState("")
 
 //         const [selection, setSelection] = useState(false);
-        
+
 //         const [jobSelected, setJobSelected] = useState(false);
 //         const [job, setJob] = useState("");
 
 
-        
+
 //         const Wrapper = styled.div`
 //         background-color: #dde1ea;
 //         display: grid;
@@ -63,13 +63,13 @@
 //         text-align: center;
 //         padding-bottom: 5%;
 //         align-items: center;`;
-      
-        
+
+
 //         return(
 //                 <div>
-                
-//                 {jobSelected ? 
-                
+
+//                 {jobSelected ?
+
 
 //                 <Wrapper>
 //                 <div className="row card">
@@ -86,16 +86,16 @@
 //                         />
 
 //                         {console.log(firstName)}
-                        
-//                         {!firstName === null? 
-                        
+
+//                         {!firstName === null?
+
 //                           !valid?
-                          
+
 //                           "Name is not Valid"
 //                           :
 //                           "Name is Valid"
-                        
-                          
+
+
 //                         :
 
 //                         ""
@@ -123,7 +123,7 @@
 //                         <button className="btn btn-small waves-effect waves-light" type='submit'>Create Account</button>
 //                         {/*()=>{
 
-//                           {/*const obj =  { 
+//                           {/*const obj =  {
 //                                           firstName:firstName.current.value,
 //                                           lastName: lastName.current.value,
 //                                           password: password.current.value,
@@ -145,14 +145,14 @@
 
 //                 :
 
-                
+
 
 //                       }
 
 //                 </div>
-                
+
 // )};
-                
+
 
 
 // export default Signup;
@@ -193,7 +193,7 @@
 //   function setJob(props: string){
 
 //   }
-    
+
 
 //   return(
 //     <div>
@@ -240,10 +240,10 @@
 //                   label="Other"
 //                 />
 //               </RadioGroup>
-//             <button type="submit" className="btn btn-small waves-effect waves-light" style={{margin: "33%"}}> 
+//             <button type="submit" className="btn btn-small waves-effect waves-light" style={{margin: "33%"}}>
 //               Submit
 //             </button>
-            
+
 //               <br/>Already have an account? <Link to='/'>Log In</Link>
 
 //           </div>
@@ -255,25 +255,25 @@
 
 // class AccountInfo extends React.Component{
 // render(){
-  
+
 //   const [valid, setValid] = useState(false);
-        
+
 //           const firstName = React.createRef<HTMLInputElement>();
 //           const lastName = React.createRef<HTMLInputElement>();
 //           const email = React.createRef<HTMLInputElement>();
 //           const userName = React.createRef<HTMLInputElement>();
 //           const password = React.createRef<HTMLInputElement>();
 //           const pnumber = React.createRef<HTMLInputElement>();
-          
+
 //           const [fName, setName] = useState("")
-  
+
 //           const [selection, setSelection] = useState(false);
-          
+
 //           const [jobSelected, setJobSelected] = useState(false);
 //           const [job, setJob] = useState("");
-  
+
 //   return(
-          
+
 //     <Wrapper>
 //                      <div className="row card">
 //                        <div className="row card-content">
@@ -285,23 +285,23 @@
 //                             <input type="text" ref={firstName} placeholder="First Name"
 //                                    onChange={(e:any)=>{ setValid(nameTest(e.target.value)) }}
 //                             />
-    
+
 //                             {console.log(firstName)}
-                            
-//                             {!firstName === null? 
-                            
+
+//                             {!firstName === null?
+
 //                               !valid?
-                              
+
 //                               "Name is not Valid"
 //                               :
 //                               "Name is Valid"
-                            
-                              
+
+
 //                             :
-    
+
 //                             ""
 //                             }
-    
+
 //                           </div>
 //                           <div className="col s6"><input type="text" ref={lastName}  placeholder="Last Name"/></div>
 //                         </div>
@@ -323,26 +323,26 @@
 //                         <div className="center-align">
 //                             <button className="btn btn-small waves-effect waves-light" type='submit'>Create Account</button>
 //                             {/*()=>{
-    
-//                               {/*const obj =  { 
+
+//                               {/*const obj =  {
 //                                               firstName:firstName.current.value,
 //                                               lastName: lastName.current.value,
 //                                               password: password.current.value,
 //                                               email: email.current.value,
 //                                               userName: userName.current.value}
 //                               api.signup(obj);
-    
+
 //                               console.log(userName);
 //                             }
-    
+
 //                             >Create Account</button>*/}
-    
+
 //                             <br/> <br/>Already have an account? <Link to='/'>Log In</Link>
-    
+
 //                         </div>
 //                       </div>
 //                     </div>
-//                     </Wrapper>    
+//                     </Wrapper>
 //   );
 // }
 
@@ -359,12 +359,9 @@ const Signup = () => {
 const [status, setStatus] = useState(false);
 const [job, setJob] = useState("STUDENT");
 
-
 return(
-
   <AccountPick/>
-
-);
+  );
 }
 
 

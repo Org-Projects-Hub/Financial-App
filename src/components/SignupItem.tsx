@@ -8,16 +8,21 @@ const SignupItem = ({type, placeholder, handler, className}:any)=>
   const [value, setValue] = useState("");
 
   return (
-    
-    <div className={className} style={{width: "100%"}}>
+
+    <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
         <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value));
                                                                                 setValue(e.target.value)
                                                                           }}
             />
 
-        {!valid && value !== "" && <i  className="material-icons justify-end txt-red" >close</i>}
-          {valid  &&   <i className="material-icons justify-end txt-green">done</i>}
+        {!valid && value !== "" && <span className="txt-red">
+                                      <i className="material-icons justify-end" >close</i>{`Invalid ${placeholder}`}
+                                    </span>}
+                                    
+          {valid  && <span className="txt-green">
+                        <i className="material-icons justify-end">done</i>{`${placeholder} is Valid`}
+                      </span>}
     </div>
 
   )
