@@ -1,39 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Test from './Test';
+import Results from './Results';
+import styled from 'styled-components';
+import {Card, GridRow} from '../style/styled';
 
-type Props = {
-    begin: boolean,
-    setStage: Function
-};
+const Div = styled.div`
+    text-align: center;
+    padding: 15px;
+`;
 
-export default class Posttest extends React.Component<{setStage: Function}, Props> {
-
-    constructor(props: Props){
-        super(props);
-        this.state = {
-            begin: false,
-            setStage: props.setStage
-        };
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(event: any) {
-        this.setState({ begin: true });
-    }
-
-    render() {
-    let { begin } = this.state;
-    return(
-          !begin?
-                <div className="container center">
-                    <button className="btn" onClick={this.onClick}>Begin Posttest</button>
-                </div>
-               :
+const Posttest = ({setStage}: any) => {
+    const [begin, setBegin] = useState(false);
+    const [testComplete, setTestComplete] = useState(false);
+  
+    return (
+        !begin?
+            <GridRow rows="2">
+                <button className="btn" onClick={(e) => setBegin(true)}>Begin Posttest</button>
+            </GridRow>
+        :
+            !testComplete?
                 <div className="container">
-                        <Test testType="posttest"/>
+                    <Test testType="pretest"/>
+                    <Div><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></Div>
                 </div>
-            );
-        }
-    }
+            :
+                <div>
+                    <Card><Results /></Card>
+                    <Div><button className="btn" /**onClick={(e) => setStage("posttest")}*/>Finish</button></Div>
+                </div>
+    );
+}
 
+export default Posttest;
