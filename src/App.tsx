@@ -31,9 +31,9 @@ export default class App extends React.Component <{}, Props>{
             </div>
            :<Switch>
 
-            <Route exact path="/signup" render={() => <Signup />} /> 
+            <Route path="/signup" render={() => <Signup />} />
 
-             <Route path="*" render={()=> <Startpage onChange={(e:any)=>{this.setState({userName: e.target.value})}}
+             <Route path="/" render={()=> <Startpage onChange={(e:any)=>{this.setState({userName: e.target.value})}}
                                                     login={()=>{this.setState({loggedin: true})}}
                                                     createAccount={()=> {this.setState({newUser: true})}}  />} />
             </Switch>

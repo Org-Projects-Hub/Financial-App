@@ -33,7 +33,8 @@ return(
                                 <p><a href="*">Forget Password ?</a></p>
                               </div>
                               <div className=" col s12 center">
-                                <p><a href="/Signup" onClick={createAccount}>Sign Up</a></p>
+                                <p><NavLink to="/signup">Sign Up</NavLink></p>
+
                               </div>
                             </div>
                             <div className="row">
