@@ -82,24 +82,66 @@ const employees = [
 ];
 
 
-const requests = [
-  {
 
-  }
-]
+/*
+classCode = ({
+  id: String,
+  code: String,
+  school: String,
+  className: String,
+  studentsSignedUp: Number,
+  createdOn: Date
+});
+
+
+user = ({
+  id: String,
+  firstName: String,
+  lastName:  String,
+  userName: String,
+  email: { type: String, unique: true },
+  password: String,
+  gender: Boolean,
+  joinedOn: Date,
+  teacher: Boolean,
+  grade: String
+});
+
+*/
 
 const classes = [
   {
-    name: "Career Fair First Session",
-    registers: requests.length,
-    confirmed: 0
+    id: 'lkjlkijlkj',
+    instructorId: '555ttt',
+    classCode: 'ff55ts',
+    className: 'Mrs. Bridges 7th Period Class',
+    requests: [''],
+    registered: [''],
+    completed: [''],
+    createdOn: '07/07/19'
+  }
+];
 
 
+const users = [
+  {
+    username: 'JessieB',
+    accountId: '555ttt',
+    firstName: 'Jessica',
+    lastName: 'Bridges',
+    accountType: 'teacher',
+    classes: ['lkjlkijlkj','bubsubdub']
   },
   {
-
+    username: 'BJones',
+    accountId: 'ffsdff',
+    firstName: 'Billy',
+    lastName: 'Jones',
+    accountType: 'student',
+    classes: ['lkjlkijlkj']
   }
-]
+];
 
 
-export {projects, employees, classes};
+
+export {projects, employees, users, classes};
