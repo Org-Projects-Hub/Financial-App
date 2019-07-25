@@ -8,6 +8,7 @@ const SignupItem = ({type, placeholder, handler, className}:any)=>
   const [value, setValue] = useState("");
 
   return (
+    
     <div className={className} style={{width: "100%"}}>
 
         <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value));
