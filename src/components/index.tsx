@@ -5,5 +5,4 @@ import Pretest from './Pretest';
 import Posttest from './Posttest';
 import SettingItem from './SettingItem';
 import AccountPick from './AccountPick';
-import Results from './Results';
-export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results};
+export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick};

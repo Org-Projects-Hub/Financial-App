@@ -12,11 +12,11 @@ const Setting = ()=>{
                 ];
     return (
       <Wrapper>
-       <div className="container full-height" >
-       <Grid cols="1">
-          <button className="btn justify-end">Logout</button>
-      </Grid>
-      {fields.map((data,i)=><SettingItem {...data} key={i} />)}
+        <div className="container full-height" >
+          <Grid cols="1">
+            <button className="btn justify-end">Logout</button>
+          </Grid>
+          {fields.map((data,i)=><SettingItem {...data} key={i} />)}
         </div>
       </Wrapper>
     );

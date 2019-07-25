@@ -14,7 +14,6 @@ const Div = styled.div`
 const PretestExplanation: string = 'Pretest Explanation';
 
 const Pretest = ({setStage}: any)=> {
-    //states to have: intro, test, results
     const [begin, setBegin] = useState(false);
     const [testComplete, setTestComplete] = useState(false);
   
