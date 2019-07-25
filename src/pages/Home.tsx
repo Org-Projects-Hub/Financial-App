@@ -16,7 +16,8 @@ left:0;
 position:absolute;
 z-index:0;
 width:200%;
-height:25%;
+height:28%;
+border-bottom:
 `;
 
 const Logo = styled.img`
@@ -32,7 +33,7 @@ z-index:1;
 const Home = ({userName}:{userName: string})=>
   <Wrapper>
     <Banner src={banner} />
-    <Logo src={logo} />
+    <a href="http://www.unitedwaynela.org/"> <Logo src={logo} /></a>
   </Wrapper>;
 
 export default Home;
