@@ -27,6 +27,7 @@ const Badge = styled.div`
    display: grid;
    place-items: center;
    grid-gaps: 1em;
+   width: 50vh;
    grid-template-columns: repeat(${props => props.cols}, 1fr);
   `;
 

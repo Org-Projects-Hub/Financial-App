@@ -23,7 +23,7 @@ const AccountInfo= (props: any) =>{
                     {type: "text", placeholder : "Last Name", handler: nameTest},
                     {type: "text", placeholder : "Username", className:"full-row", handler:usernameTest},
                     {type: "text", placeholder : "Email",  className:"full-row", handler: emailTest},
-                    {type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest},
+                    {type: "password", placeholder : "Password",  className:"full-row", handler: passwordTest},
                     {type: "text", placeholder : "Phone Number",  className:"full-row", handler: numberTest}
                     ];
             return(
