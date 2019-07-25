@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import './Startpage.css';
 import Logo from '../assets/images/UnitedWayLogo.png';
@@ -12,8 +12,11 @@ const Wrapper = styled.div`
   place-items: center;
   `;
 
-const Startpage = ({login, onChange, createAccount}:{login: any, onChange: any,createAccount: any})=>
+const Startpage = ({login}:{login: any})=>
 {
+ const [email, setEmail] = useState("");
+ const [password, setPassword] = useState("");
+
 return(
                   <Wrapper>
                     <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
@@ -25,8 +28,8 @@ return(
                           <div className="">
                             <div className="row card-content">
                               <div className="input-field col s12">
-                                <input placeholder={"Username or Email"} onChange={onChange}/>
-                                <input placeholder={"Password"} type="password" onChange={onChange}/>
+                                <input placeholder={"Username or Email"} onChange={(e: any)=>{setEmail(e.target.value)}}/>
+                                <input placeholder={"Password"} type="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
                               </div>
                               <div className=" col s12 center">
                                 <p><a href="*">Forget Password ?</a></p>
@@ -39,7 +42,7 @@ return(
                             <div className="row">
                               <div className="col m12">
                                 <p className="center-align">
-                                  <button className="btn btn-small waves-effect waves-light" onClick={login}>Login</button>
+                                  <button className="btn btn-small waves-effect waves-light" onClick={()=>login({email, password})}>Login</button>
                                 </p>
                               </div>
                             </div>

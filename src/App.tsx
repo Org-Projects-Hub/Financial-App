@@ -3,20 +3,29 @@ import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom"
 import './App.css';
 import {Navbar} from './components';
 import {Home, Setting, Simulation, Startpage, Signup} from './pages';
-
+import api from './api';
 type Props = {
-  loggedin: boolean, tokenChecked: boolean, showNav: boolean, userName: string, newUser: boolean
+  loggedin: boolean, tokenChecked: boolean, showNav: boolean, userName: string, newUser: boolean, user: object
 }
 
 
 export default class App extends React.Component <{}, Props>{
   constructor(props: Props){
     super(props);
-    this.state = { loggedin: false, tokenChecked: false, showNav: true, userName: "", newUser: false};
+    this.state = { loggedin: false, tokenChecked: false, showNav: true, userName: "", newUser: false, user: {}};
   }
 
   componentWillMount() {}
+
   render(){
+    const login = (e: any) => {
+                                    api.login(e)
+                                    .then((res)=> {if(res.sucess){
+
+                                                    }} )
+                                    .catch((err)=>alert(err))
+                            };
+
     return(
         <Router>
             {this.state.loggedin ?
@@ -33,9 +42,7 @@ export default class App extends React.Component <{}, Props>{
 
             <Route path="/signup" render={() => <Signup />} />
 
-             <Route path="/" render={()=> <Startpage onChange={(e:any)=>{this.setState({userName: e.target.value})}}
-                                                    login={()=>{this.setState({loggedin: true})}}
-                                                    createAccount={()=> {this.setState({newUser: true})}}  />} />
+             <Route path="/" render={()=> <Startpage login={login}  />} />
             </Switch>
           }
 

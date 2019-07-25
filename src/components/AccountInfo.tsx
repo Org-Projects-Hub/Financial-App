@@ -4,8 +4,8 @@ import {Grid} from '../style/styled';
 import SignupItem from './SignupItem';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest, usernameTest , emailTest, passwordTest, numberTest} from '../utils/utils';
-
-        const Wrapper = styled.div`
+import api from '../api';
+const Wrapper = styled.div`
         background-color: #dde1ea;
         display: grid;
         height: 100vh;
@@ -19,12 +19,25 @@ import {nameTest, usernameTest , emailTest, passwordTest, numberTest} from '../u
         align-items: center;`;
 
 const AccountInfo= (props: any) =>{
-        const el = [{type: "text", placeholder : "First Name",  handler:nameTest},
-                    {type: "text", placeholder : "Last Name", handler: nameTest},
-                    {type: "text", placeholder : "Username", className:"full-row", handler:usernameTest},
-                    {type: "text", placeholder : "Email",  className:"full-row", handler: emailTest},
-                    {type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest},
-                    {type: "text", placeholder : "Phone Number",  className:"full-row", handler: numberTest}
+
+       const [firstName, setFirstName] = useState("");
+       const [lastName, setLastName] = useState("");
+       const [username, setUsername] = useState("");
+       const [email, setEmail] = useState("");
+       const [password, setPassword] = useState("");
+       const [phoneNumber, setPhoneNumber] = useState("");
+
+       const SignupAPI = ()=>{  const obj = {firstName :firstName, lastName: lastName, username: username, email: email, password: password};
+                                console.log(obj);
+                                api.signup(obj);
+                            };
+
+        const el = [{type: "text", placeholder : "First Name",  handler:nameTest, set: setFirstName, value: firstName},
+                    {type: "text", placeholder : "Last Name", handler: nameTest, set: setLastName, value: lastName},
+                    {type: "text", placeholder : "Username", className:"full-row", handler:usernameTest, set: setUsername, value: username},
+                    {type: "text", placeholder : "Email",  className:"full-row", handler: emailTest, set:setEmail, value: email},
+                    {type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password},
+                    {type: "text", placeholder : "Phone Number",  className:"full-row", handler: numberTest, set: setPhoneNumber, value: phoneNumber}
                     ];
             return(
             <Wrapper>
@@ -37,7 +50,7 @@ const AccountInfo= (props: any) =>{
                       {el.map((item ,i )=> <SignupItem {...item} key={i}/>)}
                     </Grid>
                     <div className="center-align">
-                        <button className="btn btn-small waves-effect waves-light" type='submit' >Create Account</button>
+                        <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>
                         <br/> <br/>Already have an account? <Link to='/'>Log In</Link>
                     </div>
                   </div>
