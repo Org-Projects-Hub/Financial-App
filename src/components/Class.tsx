@@ -23,21 +23,21 @@ const Div = styled.div`
 
 const Class = (props: any) => {
 
+
     return(
         <div>
-            {props.accountType == 'teacher' ?  
+            {props.accountType === 'teacher' ?  
                 <Div>
-                    <Link to={`/classDashboard/${props.id}`}>
-                        <p>this is a class component for a teacher</p>
-                        <p>{}</p>
+                    <Link to={`/classDashboard`}>
+                        <p>{props.classObj.className}</p>
+                        <p>Code: {props.classObj.classCode}</p>
                     </Link> 
                 </Div>
 
                 : 
-
                 
                 <Div>
-                    <p>this is a class component for a student</p>
+                    <p>{props.classObj.className}</p>
                     <Link to={'/Simulation'}>
                         <button>Start</button>
                     </Link>

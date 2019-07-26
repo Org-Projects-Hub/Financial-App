@@ -1,23 +1,34 @@
 import React from 'react';
 import { Class } from '../components';
-import { users } from '../fakeJson';
-
+import { classes, users } from '../fakeJson';
 
 
 const UserStartPage = ({userName}:{userName: string}) => {
 
-    userName = 'BJones';
+    //userName = 'BJones';
+    userName = 'JessieB';
 
     interface userObject {
+        username: string,
         accountType: string;
-        classes: Array<string>;
+        classIds: Array<string>;
     };
 
     let user: userObject;
+    let classObjs = [];
+
 
     for (let x = 0; x < users.length; x++) {
-        if (users[x].username == userName) {
+        if (users[x].username === userName) {
+            
             user = users[x];
+            
+            for (let y = 0; y < classes.length; y++) {
+                if (user.classIds.indexOf(classes[y].id) != -1) {
+                    classObjs.push(classes[y]);
+                }
+            }
+
             break;
         }
     }
@@ -27,11 +38,11 @@ const UserStartPage = ({userName}:{userName: string}) => {
         <div>
             <p>this is the user start page</p>
 
-            {user.classes.map((cla: string, index: number) => 
-                <div key={index} >
-                    <Class id={cla} accountType={user.accountType} />
+            {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) => 
+                <div key={index}>
+                    <Class classObj={cla} accountType={user.accountType} />
                 </div>
-            )}
+            ) : <div></div> }
         </div>
     );
 };

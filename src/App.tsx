@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
 import {Navbar} from './components';
 import {Home, Setting, Simulation, Startpage, Signup, TeamMembers, UserStartPage, ClassDashboard} from './pages';

@@ -112,13 +112,21 @@ user = ({
 const classes = [
   {
     id: 'lkjlkijlkj',
-    instructorId: '555ttt',
     classCode: 'ff55ts',
     className: 'Mrs. Bridges 7th Period Class',
     requests: [''],
     registered: [''],
     completed: [''],
     createdOn: '07/07/19'
+  },
+  {
+    id: 'bubsubdub',
+    classCode: 'fjjnts',
+    className: 'Mrs. Bridges 6th Period Class',
+    requests: [''],
+    registered: [''],
+    completed: [''],
+    createdOn: '07/09/19'
   }
 ];
 
@@ -130,7 +138,7 @@ const users = [
     firstName: 'Jessica',
     lastName: 'Bridges',
     accountType: 'teacher',
-    classes: ['lkjlkijlkj','bubsubdub']
+    classIds: ['lkjlkijlkj','bubsubdub']
   },
   {
     username: 'BJones',
@@ -138,7 +146,7 @@ const users = [
     firstName: 'Billy',
     lastName: 'Jones',
     accountType: 'student',
-    classes: ['lkjlkijlkj']
+    classIds: ['lkjlkijlkj']
   }
 ];
 
