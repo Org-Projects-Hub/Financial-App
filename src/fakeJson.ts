@@ -117,7 +117,8 @@ const classes = [
     requests: [''],
     registered: [''],
     completed: [''],
-    createdOn: '07/07/19'
+    createdOn: '07/07/19',
+    archiveOn: '11/07/19'
   },
   {
     id: 'bubsubdub',
@@ -126,7 +127,8 @@ const classes = [
     requests: [''],
     registered: [''],
     completed: [''],
-    createdOn: '07/09/19'
+    createdOn: '07/09/19',
+    archiveOn: '11/09/19'
   }
 ];
 
