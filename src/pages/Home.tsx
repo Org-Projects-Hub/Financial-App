@@ -41,6 +41,7 @@ align-self: stretch;
 `;
 
 const Home = ({userName}:{userName: string})=>
+
 <Wrapper>
     
       <Banner src={banner}/>

@@ -10,17 +10,31 @@ const Nav = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
-  transition: 300ms ease-out;`;
+  transition: 300ms ease-out;
+  @media (max-width: 600px) {
+     height: 50px;
+     width: 100vw;
+     top: calc(100% - 50px);
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr;
+  }
+
+  `;
 
 const FloatBtn = styled.button`
   position: fixed;
   bottom: 1em;
   left: 1em;
   border: 0;
-  border-radius: 50%;`;
+  border-radius: 50%;
+  @media (max-width: 600px) {
+      display: none;
+    }
+  `;
 
   const FloatBtn2 = styled(FloatBtn)`
-    left: 95%;`;
+    left: 95%;
+  `;
 
 const active = {textShadow: "2px 2px 4px #000000" , color: "white"};
 const Navbar = ({showNav, hide}: {showNav: any, hide: any})=> (
