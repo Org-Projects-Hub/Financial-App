@@ -79,5 +79,10 @@ const employees = [
   }
 ];
 
+const slidePics = [
+{
+
+}
+]
 
 export {projects, employees};

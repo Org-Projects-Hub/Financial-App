@@ -49,7 +49,6 @@ const AccountInfo= ({loggedin}: {loggedin: any}) =>{
                     {type: "text", placeholder : "Email",  className:"full-row", handler: emailTest, set:setEmail, value: email},
                     {type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password},
                     {type: "text", placeholder : "Phone Number",  className:"full-row", handler: numberTest, set: setPhoneNumber, value: phoneNumber}
->>>>>>> 62c2ddde268f2a11cc34a21092973aace8285c28
                     ];
             return(
             <Wrapper>

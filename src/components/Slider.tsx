@@ -15,9 +15,11 @@ grid-column: 1 / span 3;
 grid-row: 1 / span 3;
 justify-self: stretch;
 align-self: stretch;
+min-hieght:100vh;
 height:100%;
 width:100%;
 border-style: solid;
+border-width: 0vh 6vh
 `;
 
 const Left = styled.a`
@@ -26,6 +28,7 @@ grid-row: 2 / span 1;
 justify-self: start;
 align-self: center;
 font-size:25pt;
+padding-left:.3vh;
 `;
 
 const Right = styled.a`
@@ -34,6 +37,7 @@ grid-row: 2 / span 1;
 justify-self: end;
 align-self: center;
 font-size:25pt;
+padding-right:.3vh;
 `;
 
 
@@ -43,7 +47,7 @@ const Slider = ()=> {
 
         <Wrapper>
             <Pic>
-                <img style={{height:"100%", width:"100%"}}src="https://americasaves.org/images/article/Dollar%20Bills.jpg"/ >
+                <img style={{height:"100%", width:"100%"}}src="http://harvardecon.org/wp-content/uploads/Ryan-Leung-Financial-Literacy-1038x576.png"/ >
             </Pic>
             
             <Left>

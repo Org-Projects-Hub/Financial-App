@@ -26,7 +26,7 @@ align-self: stretch;
 `;
 
 const Logo = styled.a`
-grid-column: 3 / span 1;
+grid-column: 1 / span 1;
 grid-row: 1 / span 1;
 justify-self: stretch;
 align-self: stretch;
@@ -40,7 +40,13 @@ justify-self: stretch;
 align-self: stretch;
 `;
 
-const Home = ({userName}:{userName: string})=>
+const Desc = styled.div`
+grid-column: 1 / span 3;
+grid-row: 4 / span 2;
+`;
+
+
+const Home = ({user}:{user: any})=>
 
 <Wrapper>
     
@@ -51,6 +57,10 @@ const Home = ({userName}:{userName: string})=>
       <SlidePos>
         <Slider/>
       </SlidePos>
+
+      <Desc>
+
+      </Desc>
 
 </Wrapper>
 
