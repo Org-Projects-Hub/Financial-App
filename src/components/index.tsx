@@ -6,4 +6,6 @@ import Posttest from './Posttest';
 import SettingItem from './SettingItem';
 import AccountPick from './AccountPick';
 import Results from './Results';
-export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results};
+import Slider from './Slider';
+
+export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Slider};

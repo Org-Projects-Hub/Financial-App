@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Pretest, Posttest} from '../components'
+import {Pretest, Posttest} from '../components';
 const Wrapper = styled.div`
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100%;

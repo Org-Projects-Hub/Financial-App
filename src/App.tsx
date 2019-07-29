@@ -21,7 +21,6 @@ export default class App extends React.Component <{}, Props>{
         <Router>
             {this.state.loggedin ?
               <div className={this.state.showNav? "grid-main": ""}>
-            <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
             <Switch>
             <Route path="/Simulation" render={()=> <Simulation {...this.state} />} />
             <Route path="/setting" component={Setting} />
