@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Slider} from '../components';
+import {Card} from '../style/styled';
 
 
 const Wrapper = styled.div`
@@ -41,8 +42,10 @@ align-self: stretch;
 `;
 
 const Desc = styled.div`
-grid-column: 1 / span 3;
+grid-column: 2 / span 2;
 grid-row: 4 / span 2;
+align-self: stretch;
+justify-self: stretch;
 `;
 
 
@@ -59,7 +62,9 @@ const Home = ({user}:{user: any})=>
       </SlidePos>
 
       <Desc>
-
+        <Card style={{height: "90%", backgroundColor: "rgb(191, 31, 23)"}}>
+          Here is a description of Dollars and $ense, what this app is about, why it was created, and what you will learn.
+        </Card>
       </Desc>
 
 </Wrapper>
