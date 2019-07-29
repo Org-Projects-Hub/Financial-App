@@ -18,15 +18,6 @@ const Wrapper = styled.div`
         padding-bottom: 5%;
         align-items: center;`;
 
-<<<<<<< HEAD
-const AccountInfo= (props: any) =>{
-        const el = [{type: "text", placeholder : "First Name",  handler:nameTest},
-                    {type: "text", placeholder : "Last Name", handler: nameTest},
-                    {type: "text", placeholder : "Username", className:"full-row", handler:usernameTest},
-                    {type: "text", placeholder : "Email",  className:"full-row", handler: emailTest},
-                    {type: "password", placeholder : "Password",  className:"full-row", handler: passwordTest},
-                    {type: "text", placeholder : "Phone Number",  className:"full-row", handler: numberTest}
-=======
 const AccountInfo= ({loggedin}: {loggedin: any}) =>{
 
        const [firstName, setFirstName] = useState("");
