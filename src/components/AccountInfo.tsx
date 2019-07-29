@@ -18,7 +18,7 @@ const Wrapper = styled.div`
         padding-bottom: 5%;
         align-items: center;`;
 
-const AccountInfo= (props: any) =>{
+const AccountInfo= ({loggedin}: {loggedin: any}) =>{
 
        const [firstName, setFirstName] = useState("");
        const [lastName, setLastName] = useState("");
@@ -27,9 +27,19 @@ const AccountInfo= (props: any) =>{
        const [password, setPassword] = useState("");
        const [phoneNumber, setPhoneNumber] = useState("");
 
-       const SignupAPI = ()=>{  const obj = {firstName :firstName, lastName: lastName, username: username, email: email, password: password};
+       const SignupAPI = ()=>{  const obj = {firstName, lastName, username,email, password};
                                 console.log(obj);
-                                api.signup(obj);
+                                api.signup(obj)
+                                .then(res => {
+                                    if (res.success) {
+                                     alert(res.message);
+                                     loggedin({user : "ss"});
+                                    } else {
+                                      alert(res.message);
+                                    }
+                                  })
+                                  .catch(err => alert(err));
+
                             };
 
         const el = [{type: "text", placeholder : "First Name",  handler:nameTest, set: setFirstName, value: firstName},
@@ -44,7 +54,7 @@ const AccountInfo= (props: any) =>{
                 <div className="row card"  style={{ width:"90%", maxWidth: "550px" }}>
                   <div className="row card-content">
                     <div className="center-align">
-                      <Header> {props.job} SIGN UP</Header>
+                      <Header> SIGN UP</Header>
                     </div>
                     <Grid cols="2">
                       {el.map((item ,i )=> <SignupItem {...item} key={i}/>)}

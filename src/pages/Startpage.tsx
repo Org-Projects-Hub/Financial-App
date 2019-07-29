@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   place-items: center;
   `;
 
-const Startpage = ({login}:{login: any})=>
+const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
 {
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ const Startpage = ({login}:{login: any})=>
 return(
                   <Wrapper>
                     <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
-                      <div className="container center" >
+                      <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
                           <div className="row card full-on-mobile">
                           <div className="card-image " style={{padding:"2em"}}>
                               <img src={Logo} alt="LSBDC Logo"/>
@@ -48,7 +48,7 @@ return(
                             </div>
                           </div>
                           </div>
-                        </div>
+                        </form>
                     </div>
 
                     </Wrapper>);}

@@ -4,27 +4,53 @@ import './App.css';
 import {Navbar} from './components';
 import {Home, Setting, Simulation, Startpage, Signup} from './pages';
 import api from './api';
-type Props = {
-  loggedin: boolean, tokenChecked: boolean, showNav: boolean, userName: string, newUser: boolean, user: object
-}
+import {setLocalStorage } from './utils/utils';
 
+type Props = {
+  loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object
+}
 
 export default class App extends React.Component <{}, Props>{
   constructor(props: Props){
     super(props);
-    this.state = { loggedin: false, tokenChecked: false, showNav: true, userName: "", newUser: false, user: {}};
+    this.state = { loggedin: false, tokenChecked: false, showNav: true, user: {}};
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    if(!this.state.tokenChecked){
+      api.auth()
+      .then((res)=> {console.log(res);
+        if(res.success){
+
+                  this.setState({loggedin: true});
+
+                      }})
+      .catch((err)=>alert(err));
+    }
+
+    this.setState({tokenChecked: true});
+
+  }
 
   render(){
     const login = (e: any) => {
-                                    api.login(e)
-                                    .then((res)=> {if(res.sucess){
+      api.login(e)
+        .then(res => {
+          console.log(res)
+          if (res.success) {
+            this.setState({ loggedin: true });
+            setLocalStorage("token", res.token);
 
-                                                    }} )
-                                    .catch((err)=>alert(err))
-                            };
+          } else {
+            alert(res.message);
+          }
+        })
+        .catch(err => alert(err));
+     };
+
+    const loggedin = () => {
+        this.setState({ loggedin: true })
+    }
 
     return(
         <Router>
@@ -32,17 +58,17 @@ export default class App extends React.Component <{}, Props>{
               <div className={this.state.showNav? "grid-main": ""}>
             <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
             <Switch>
-            <Route path="/Simulation" render={()=> <Simulation {...this.state} />} />
+            <Route path="/Simulation" render={()=> <Simulation username={"aa"} />} />
             <Route path="/setting" component={Setting} />
-            <Route path="/" render={()=> <Home {...this.state}  />} />
+            <Route path="/" render={()=> <Home username={"aa"} />} />
 
             </Switch>
             </div>
            :<Switch>
 
-            <Route path="/signup" render={() => <Signup />} />
+            <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
 
-             <Route path="/" render={()=> <Startpage login={login}  />} />
+             <Route render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
             </Switch>
           }
 

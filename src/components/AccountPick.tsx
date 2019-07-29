@@ -24,7 +24,7 @@ padding-bottom: 5%;
 align-items: center;`;
 
 
-const AccountPick = () => {
+const AccountPick = ({loggedin}: {loggedin: any}) => {
 
 const [job, setJob] = useState("STUEDNT");
 const [flag, setFlag] = useState(false)
@@ -70,7 +70,7 @@ return(
     </Wrapper>
 
     :
-    <AccountInfo job={job}/>
+    <AccountInfo  loggedin={loggedin}/>
 
     }
   </div>
