@@ -6,7 +6,7 @@ import { getLocalStorage, setLocalStorage } from '../utils/utils';
  const API = {
    login: URL + "/login",
    signup: URL + "/signup",
-   auth: `${URL}/signup`
+   auth: `${URL}/auth`
  }
 
 function header() {
@@ -15,6 +15,7 @@ function header() {
 
 function authHeader() {
   let authtoken = getLocalStorage("token");
+  console.log(authtoken)
   return { "Content-Type": "application/json", token: authtoken };
 }
 

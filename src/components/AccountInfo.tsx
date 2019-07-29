@@ -33,7 +33,8 @@ const AccountInfo= ({loggedin}: {loggedin: any}) =>{
                                 .then(res => {
                                     if (res.success) {
                                      alert(res.message);
-                                     loggedin({user : "ss"});
+
+                                     loggedin(res.token, res.user);
                                     } else {
                                       alert(res.message);
                                     }

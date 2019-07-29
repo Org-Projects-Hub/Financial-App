@@ -28,8 +28,8 @@ return(
                           <div className="">
                             <div className="row card-content">
                               <div className="input-field col s12">
-                                <input placeholder={"Username or Email"} onChange={(e: any)=>{setEmail(e.target.value)}}/>
-                                <input placeholder={"Password"} type="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
+                                <input placeholder={"Username or Email"} name="email" onChange={(e: any)=>{setEmail(e.target.value)}}/>
+                                <input placeholder={"Password"} type="password" name="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
                               </div>
                               <div className=" col s12 center">
                                 <p><a href="*">Forget Password ?</a></p>

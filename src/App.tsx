@@ -19,11 +19,10 @@ export default class App extends React.Component <{}, Props>{
   componentWillMount() {
     if(!this.state.tokenChecked){
       api.auth()
-      .then((res)=> {console.log(res);
+      .then((res)=> {
         if(res.success){
-
-                  this.setState({loggedin: true});
-
+            this.setState({loggedin: true});
+            this.setState({user: res.user})
                       }})
       .catch((err)=>alert(err));
     }
@@ -40,7 +39,7 @@ export default class App extends React.Component <{}, Props>{
           if (res.success) {
             this.setState({ loggedin: true });
             setLocalStorage("token", res.token);
-
+            this.setState({user: res.user})
           } else {
             alert(res.message);
           }
@@ -48,8 +47,15 @@ export default class App extends React.Component <{}, Props>{
         .catch(err => alert(err));
      };
 
-    const loggedin = () => {
+    const loggedin = (token : string, user: object) => {
+        setLocalStorage("token", token);
+        this.setState({user: user})
         this.setState({ loggedin: true })
+    }
+
+    const logout = () => {
+        setLocalStorage("token", "");
+        this.setState({ loggedin: false })
     }
 
     return(
@@ -58,9 +64,9 @@ export default class App extends React.Component <{}, Props>{
               <div className={this.state.showNav? "grid-main": ""}>
             <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
             <Switch>
-            <Route path="/Simulation" render={()=> <Simulation username={"aa"} />} />
-            <Route path="/setting" component={Setting} />
-            <Route path="/" render={()=> <Home username={"aa"} />} />
+            <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
+            <Route path="/setting" render={()=> <Setting logout={logout} user = {this.state.user}/>} />
+            <Route path="/" render={()=> <Home user={this.state.user} />} />
 
             </Switch>
             </div>
