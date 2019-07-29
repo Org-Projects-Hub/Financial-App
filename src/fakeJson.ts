@@ -1,3 +1,5 @@
+import { register } from "./serviceWorker";
+
 const projects = [{
   title: "Cool Project",
   status: "Testing",
@@ -85,4 +87,76 @@ const slidePics = [
 }
 ]
 
-export {projects, employees};
+
+/*
+classCode = ({
+  id: String,
+  code: String,
+  school: String,
+  className: String,
+  studentsSignedUp: Number,
+  createdOn: Date
+});
+
+
+user = ({
+  id: String,
+  firstName: String,
+  lastName:  String,
+  userName: String,
+  email: { type: String, unique: true },
+  password: String,
+  gender: Boolean,
+  joinedOn: Date,
+  teacher: Boolean,
+  grade: String
+});
+
+*/
+
+const classes = [
+  {
+    id: 'lkjlkijlkj',
+    classCode: 'ff55ts',
+    className: 'Mrs. Bridges 7th Period Class',
+    requests: [''],
+    registered: [''],
+    completed: [''],
+    createdOn: '07/07/19',
+    archiveOn: '11/07/19'
+  },
+  {
+    id: 'bubsubdub',
+    classCode: 'fjjnts',
+    className: 'Mrs. Bridges 6th Period Class',
+    requests: ['BJones'],
+    registered: ['JMe'],
+    completed: ['KilUm'],
+    createdOn: '07/09/19',
+    archiveOn: '11/09/19'
+  }
+];
+
+
+const users = [
+  {
+    username: 'JessieB',
+    accountId: '555ttt',
+    firstName: 'Jessica',
+    lastName: 'Bridges',
+    accountType: 'teacher',
+    classIds: ['lkjlkijlkj','bubsubdub']
+  },
+  {
+    username: 'BJones',
+    accountId: 'ffsdff',
+    firstName: 'Billy',
+    lastName: 'Jones',
+    accountType: 'student',
+    classIds: ['lkjlkijlkj','bubsubdub']
+  }
+];
+
+
+
+export {projects, employees, users, classes};

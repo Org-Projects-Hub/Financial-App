@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
 import {Navbar} from './components';
-import {Home, Setting, Simulation, Startpage, Signup} from './pages';
+import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard} from './pages';
 import api from './api';
 import {setLocalStorage } from './utils/utils';
 
@@ -64,6 +64,9 @@ export default class App extends React.Component <{}, Props>{
               <div className={this.state.showNav? "grid-main": ""}>
               <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
             <Switch>
+            
+            <Route path="/classes" render={() => <UserStartPage user={this.state.user}/>} />
+            <Route path="/classDashboard" render={() => <ClassDashboard user={this.state.user}/>} />
             <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
             <Route path="/setting" render={()=> <Setting logout={logout} user = {this.state.user}/>} />
             <Route path="/" render={()=> <Home user={this.state.user} />} />
