@@ -23,12 +23,19 @@ const Badge = styled.div`
    border-radius: .5em;
   `;
 
-  const Grid = styled.div`
+  const Grid = styled.div<{cols: string}>`
    display: grid;
    place-items: center;
    grid-gaps: 1em;
-   grid-template-columns: repeat(${props => props.color}, 1fr);
+   grid-template-columns: repeat(${props => props.cols}, 1fr);
   `;
+
+
+    const GridRow = styled.div<{rows: string}>`
+    display: grid;
+    place-items: center;
+     grid-template-rows: repeat(${props => props.rows}, 1fr);
+    `;
 
   const Wrapper = styled.div`
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
@@ -44,4 +51,4 @@ const Badge = styled.div`
     `;
 
 
-  export {Card, Badge, Grid, Wrapper};
+  export {Card, Badge, Grid, GridRow, Wrapper};

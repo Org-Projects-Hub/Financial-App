@@ -86,19 +86,21 @@ const Class = (props: any) => {
             {
                 props.accountType === 'teacher' ?  
 
-                <Link to={`/classDashboard/${props.classObj.id}`}>
-                    <ClassDiv>
-                        <Item1>
-                            <p>{props.classObj.className}</p>
-                            <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
-                            <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
-                            <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
-                        </Item1>
+                    <Link to={`/classDashboard/${props.classObj.id}`}>
+                        <ClassDiv>
+                                <Item1>
+                                    <p>{props.classObj.className}</p>
+                                    <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
+                                    <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
+                                    <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
+                                </Item1>
 
-                        <Item2><p>Code: {props.classObj.classCode}</p></Item2>
-                        <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
-                    </ClassDiv>
-                </Link> 
+                                <Item2><p>Code: {props.classObj.classCode}</p></Item2>
+                                <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
+                            
+                        </ClassDiv>
+                    </Link> 
+                
 
                 : 
                 

@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 const Border = styled.div`
     margin: 0px;
     background-color: #f1f1f1;
-    
+    min-height: 100vh;
 `;
 
 const Container = styled.div`
     padding: 2% 0px;
     margin: 0px 15%;
     background-color: white;
-    min-height: 100%;
+    min-height: 100vh;
     text-align: center;
     box-shadow: 0px 0px 20px 5px gray;
 
@@ -78,10 +78,10 @@ const SettingsButton = styled.button`
 
 
 
-const UserStartPage = ({userName}:{userName: string}) => {
+const UserStartPage = (props: any) => {
 
-    //userName = 'BJones';
-    userName = 'JessieB';
+    //const userName = 'BJones';
+     const userName = 'JessieB';
 
     interface userObject {
         username: string,
