@@ -124,9 +124,9 @@ const classes = [
     id: 'bubsubdub',
     classCode: 'fjjnts',
     className: 'Mrs. Bridges 6th Period Class',
-    requests: [''],
-    registered: [''],
-    completed: [''],
+    requests: ['BJones'],
+    registered: ['JMe'],
+    completed: ['KilUm'],
     createdOn: '07/09/19',
     archiveOn: '11/09/19'
   }
@@ -148,7 +148,7 @@ const users = [
     firstName: 'Billy',
     lastName: 'Jones',
     accountType: 'student',
-    classIds: ['lkjlkijlkj']
+    classIds: ['lkjlkijlkj','bubsubdub']
   }
 ];
 

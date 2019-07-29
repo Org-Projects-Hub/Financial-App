@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Class } from '../components';
 import { classes, users } from '../fakeJson';
+import { Link } from 'react-router-dom';
 
 
 const Border = styled.div`
@@ -20,9 +21,61 @@ const Container = styled.div`
 
 `;
 
-const Button = styled.div`
+const HomeButton = styled.button`
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 120%;
+    width: 10%;
+    padding: 1%;
+    position: fixed;
+    top: 5%;
+    left: 6%;
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.25);
+    }
 
 `;
+
+/* const AnotherButton = styled(HomeButton)`
+    
+`; */
+
+const AddClass = styled.button`
+    color: white;
+    background-color: #d6a862;
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 120%;
+    width: 10%;
+    padding: 1%;
+    position: fixed;
+    bottom: 10%;
+    right: 2%;
+
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.25);
+    }
+
+`;
+
+
+const SettingsButton = styled.button`
+    border: 0;
+    position: fixed;
+    top: 5%;
+    right: 4.5%;
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.5);
+    }
+
+`;
+
 
 
 const UserStartPage = ({userName}:{userName: string}) => {
@@ -58,10 +111,18 @@ const UserStartPage = ({userName}:{userName: string}) => {
 
     return(
         <Border>
+                <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
+                <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
+                
+                {
+                    user.accountType === 'teacher' ? 
+                    
+                        <AddClass style={{backgroundColor: '#d6a862'}}>Add Class</AddClass> 
+                        : 
+                        <AddClass style={{backgroundColor: '#649d96'}}>Join Class</AddClass>
+                }
+
             <Container>
-                <Button> &lt; Home</Button>
-                <Button><img src="" alt="settings"/></Button>
-                <Button>Add Class</Button>
                 {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) => 
                     <div key={index}>
                         <Class classObj={cla} accountType={user.accountType} />
@@ -69,6 +130,7 @@ const UserStartPage = ({userName}:{userName: string}) => {
                 ) : <div></div> }
             </Container>
         </Border>
+
     );
 };
 

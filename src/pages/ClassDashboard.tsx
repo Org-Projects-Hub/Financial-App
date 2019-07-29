@@ -1,5 +1,81 @@
 import React from 'react';
+import styled from 'styled-components';
 import { classes } from '../fakeJson';
+import { Link } from 'react-router-dom';
+
+const BackButton = styled.button`
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 120%;
+    width: 10%;
+    padding: 1%;
+    position: fixed;
+    top: 5%;
+    left: 6%;
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.25);
+    }
+
+`;
+
+const AddStudent = styled.button`
+    color: white;
+    background-color: #d67762;
+    text-align: center;
+    border-radius: 0.5em;
+    font-size: 120%;
+    width: 10%;
+    padding: 1%;
+    position: fixed;
+    bottom: 10%;
+    right: 2%;
+
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.25);
+    }
+
+`;
+
+
+const SettingsButton = styled.button`
+    border: 0;
+    position: fixed;
+    top: 5%;
+    right: 4.5%;
+    transition: transform 750ms;
+
+    &:hover {
+        transform: scale(1.5);
+    }
+
+`;
+
+const Border = styled.div`
+    margin: 0px;
+    background-color: #f1f1f1;
+    
+`;
+
+const Container = styled.div`
+    padding: 2% 0px;
+    margin: 0px 15%;
+    background-color: white;
+    min-height: 100%;
+    text-align: center;
+    box-shadow: 0px 0px 20px 5px gray;
+
+`;
+
+const Title = styled.div`
+    text-align: center;
+    font-size: 200%;
+
+`;
+
 
 
 const ClassDashboard = (props : any) => {
@@ -32,10 +108,31 @@ const ClassDashboard = (props : any) => {
 
 
     return(
-        <div>
-            <p>this is a class' dashboard</p>
-            <p>Class Name: {classs.className}</p>
-        </div>
+        
+        <Border>
+            <Link to="/classes"><BackButton>&lt; Back</BackButton></Link>
+            <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
+            <AddStudent>Add Student</AddStudent>
+
+            <Container>
+                <Title>{classs.className}</Title>
+                <p style={{fontSize: '125%'}}>Code: {classs.classCode}</p>
+                <div>
+                    {/*  Needs Confirming   */}
+                    <Title>Needs Confirming: {classs.requests.length}</Title>
+                </div>
+
+                <div>
+                    <Title>Registered: {classs.registered.length}</Title>
+                    {/*  Registered   */}
+                </div>
+
+                <div>
+                    <Title>Completed: {classs.completed.length}</Title>
+                    {/*  Completed  */}
+                </div>
+            </Container>
+        </Border>
     );
 };
 
