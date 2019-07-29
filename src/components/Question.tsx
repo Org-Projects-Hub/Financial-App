@@ -16,8 +16,10 @@ const Div = styled.div`
 `;
 
 const Span = styled.div`
-  padding-bottom: 10px;
+  font-size: 16px;
+  padding-bottom: 12px;
   text-align: center;
+  border-bottom: 1px solid #d4d4d4;
 `;
 
 const Question = (props: any)=>{
@@ -29,7 +31,7 @@ const Question = (props: any)=>{
         <Span>{props.q}</Span>
         {console.log(props)}
       <Grid cols="1">
-        <div style={{width: "60%"}}  className="justify-end">
+        <div style={{width: "57%"}}  className="justify-end">
         <RadioGroup
           aria-label="answers"
           name={props.id.toString()}

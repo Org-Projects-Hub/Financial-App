@@ -27,7 +27,7 @@ const Posttest = ({setStage}: any) => {
             :
                 <div>
                     <Card><Results /></Card>
-                    <Div><button className="btn" /**onClick={(e) => setStage("posttest")}*/>Finish</button></Div>
+                    <Div><button className="btn" /**onClick={(e) => setStage()}*/>Finish</button></Div>
                 </div>
     );
 }
