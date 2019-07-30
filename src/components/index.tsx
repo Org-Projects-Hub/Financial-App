@@ -8,5 +8,5 @@ import SettingItem from './SettingItem';
 import AccountPick from './AccountPick';
 import Results from './Results';
 import Students from './Students';
-
-export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Class, Students};
+import Modal from './Modal'
+export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Class, Students, Modal};
