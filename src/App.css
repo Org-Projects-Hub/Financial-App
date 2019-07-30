@@ -20,6 +20,10 @@ txt-green {
   color: green;
 }
 
+.full{
+  width: 100%;
+}
+
 .full-row{
    grid-column: span 2;
 }

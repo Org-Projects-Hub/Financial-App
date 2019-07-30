@@ -1,19 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
-import {Navbar} from './components';
+import {Navbar, Modal} from './components';
 import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard} from './pages';
 import api from './api';
 import {setLocalStorage } from './utils/utils';
 
 type Props = {
-  loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object
+  loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object, modal: boolean
 }
 
 export default class App extends React.Component <{}, Props>{
   constructor(props: Props){
     super(props);
-    this.state = { loggedin: false, tokenChecked: false, showNav: true, user: {}};
+    this.state = { loggedin: false, tokenChecked: false, showNav: true, user: {}, modal: false};
   }
 
   componentWillMount() {
@@ -22,7 +22,8 @@ export default class App extends React.Component <{}, Props>{
       .then((res)=> {
         if(res.success){
             this.setState({loggedin: true});
-            this.setState({user: res.user})
+            this.setState({user: res.user});
+              this.setState({modal: true});
                       }})
       .catch((err)=>alert(err));
     }
@@ -58,13 +59,18 @@ export default class App extends React.Component <{}, Props>{
         this.setState({ loggedin: false })
     }
 
+    const close = ()=>{
+      this.setState({modal: false})
+    }
+
     return(
         <Router>
             {this.state.loggedin ?
               <div className={this.state.showNav? "grid-main": ""}>
-              <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
+            <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
+           
             <Switch>
-            
+
             <Route path="/classes" render={() => <UserStartPage user={this.state.user}/>} />
             <Route path="/classDashboard" render={() => <ClassDashboard user={this.state.user}/>} />
             <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
