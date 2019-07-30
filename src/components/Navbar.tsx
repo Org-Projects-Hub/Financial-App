@@ -15,7 +15,7 @@ const Nav = styled.div`
      height: 50px;
      width: 100vw;
      top: calc(100% - 50px);
-     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-columns: 1fr 1fr 1fr 1fr;
      grid-template-rows: 1fr;
   }
 
