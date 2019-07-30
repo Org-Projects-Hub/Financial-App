@@ -10,7 +10,7 @@ const SettingItem = ({name, value}:any)=>
     <Grid cols="3">
       <span className="bold text-md justify-start">{name}</span>
        {!edit?
-         <span className="bold text-md justify-center">{value}</span> :
+         <span className="bold text-md justify-start">{value}</span> :
          <input defaultValue={value}  name="email" onChange={()=>console.log("S")}/>}
        {!edit?
        <i  className="material-icons pointer justify-end" onClick={()=>{setEdit(true)}}>edit</i> :

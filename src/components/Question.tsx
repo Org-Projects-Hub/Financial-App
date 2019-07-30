@@ -24,10 +24,8 @@ const Div = styled.div`
 `;
 
 const Span = styled.div`
-  font-size: 16px;
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   text-align: center;
-  border-bottom: 1px solid #d4d4d4;
 `;
 
 const Question = (props: any)=>{
