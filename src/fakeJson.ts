@@ -119,8 +119,8 @@ const classes = [
     id: 'lkjlkijlkj',
     classCode: 'ff55ts',
     className: 'Mrs. Bridges 7th Period Class',
-    requests: [''],
-    registered: [''],
+    requests: ['BJones'],
+    registered: ['KilUm', 'JMe'],
     completed: [''],
     createdOn: '07/07/19',
     archiveOn: '11/07/19'
@@ -145,6 +145,9 @@ const users = [
     firstName: 'Jessica',
     lastName: 'Bridges',
     accountType: 'teacher',
+    age: '',
+    grade: '',
+    email: '',
     classIds: ['lkjlkijlkj','bubsubdub']
   },
   {
@@ -153,6 +156,31 @@ const users = [
     firstName: 'Billy',
     lastName: 'Jones',
     accountType: 'student',
+    age: '16',
+    grade: 'Sophomore',
+    email: 'BJones@MCSstudent.com',
+    classIds: ['']
+  },
+  {
+    username: 'JMe',
+    accountId: 'ffsdff',
+    firstName: 'Jamie',
+    lastName: 'Biggs',
+    accountType: 'student',
+    age: '17',
+    grade: 'Junior',
+    email: 'JMe@MCSstudent.com',
+    classIds: ['bubsubdub', 'lkjlkijlkj']
+  },
+  {
+    username: 'KilUm',
+    accountId: 'ffsdff',
+    firstName: 'Killean',
+    lastName: 'Malone',
+    accountType: 'student',
+    age: '15',
+    grade: 'Sophomore',
+    email: 'KilUm@MCSstudent.com',
     classIds: ['lkjlkijlkj','bubsubdub']
   }
 ];
