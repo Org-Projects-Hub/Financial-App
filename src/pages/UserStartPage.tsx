@@ -81,7 +81,7 @@ const SettingsButton = styled.button`
 const UserStartPage = (props: any) => {
 
     //const userName = 'BJones';
-     const userName = 'JessieB';
+    const userName = 'JessieB';
 
     interface userObject {
         username: string,

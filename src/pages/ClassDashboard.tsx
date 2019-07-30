@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '../fakeJson';
+import {Students} from '../components';
+import { users, classes } from '../fakeJson';
 import { Link } from 'react-router-dom';
 
 const BackButton = styled.button`
@@ -71,11 +72,12 @@ const Container = styled.div`
 
 `;
 
-const Title = styled.div`
+const ClassTitle = styled.div`
     text-align: center;
     font-size: 200%;
 
 `;
+
 
 
 
@@ -116,22 +118,13 @@ const ClassDashboard = (props : any) => {
             <AddStudent>Add Student</AddStudent>
 
             <Container>
-                <Title>{classs.className}</Title>
+                <ClassTitle>{classs.className}</ClassTitle>
                 <p style={{fontSize: '125%'}}>Code: {classs.classCode}</p>
-                <div>
-                    {/*  Needs Confirming   */}
-                    <Title>Needs Confirming: {classs.requests.length}</Title>
-                </div>
 
-                <div>
-                    <Title>Registered: {classs.registered.length}</Title>
-                    {/*  Registered   */}
-                </div>
-
-                <div>
-                    <Title>Completed: {classs.completed.length}</Title>
-                    {/*  Completed  */}
-                </div>
+                <Students array={classs.requests} title='Needs Confirming'></Students>
+                <Students array={classs.registered} title='Registered'></Students>
+                <Students array={classs.completed} title='Completed'></Students>
+                
             </Container>
         </Border>
     );

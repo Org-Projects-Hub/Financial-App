@@ -7,5 +7,6 @@ import Posttest from './Posttest';
 import SettingItem from './SettingItem';
 import AccountPick from './AccountPick';
 import Results from './Results';
+import Students from './Students';
 
-export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Class};
+export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Class, Students};
