@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 
+//REMOVED DISPLAY
 const Nav = styled.div`
   top: 0em;
   height: 100vh;
@@ -18,9 +19,10 @@ const Nav = styled.div`
      grid-template-columns: 1fr 1fr 1fr;
      grid-template-rows: 1fr;
   }
-
+display: none;
   `;
 
+  //REMOVED DISPLAY
 const FloatBtn = styled.button`
   position: fixed;
   bottom: 1em;
@@ -30,6 +32,7 @@ const FloatBtn = styled.button`
   @media (max-width: 600px) {
       display: none;
     }
+  display:none;
   `;
 
   const FloatBtn2 = styled(FloatBtn)`

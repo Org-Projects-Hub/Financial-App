@@ -52,18 +52,23 @@ align-self: stretch;
 justify-self: stretch;
 font-family: 'Capriola', sans-serif;
 font-weight:bolder;
-color: rgb(183, 191, 23);
+color: blue;
 `;
 
-const Button = styled.button`
-border-radius: 0.5em;
-font-size: 120%;
-height:7vh;
-width:18vh;
+const Login = styled.div`
 grid-column: 4 / span 1;
 grid-row: 4 / span 1;
 justify-self: end;
 align-self:end;
+`;
+
+const Button = styled.button`
+background-color:blue;
+text-size:1vw;
+
+&:hover{
+background-color: rgb(0, 40, 133);
+}
 `;
 
 const Home = ({user}:{user: any})=>
@@ -80,12 +85,18 @@ const Home = ({user}:{user: any})=>
       </SlidePos>
 
       <Desc>
-        <Card style={{height: "90%", backgroundColor: "rgb(191, 31, 23)"}}>
+        <Card style={{height: "90%"}}>
           Here is a description of Dollars and $ense, what this app is about, why it was created, and what you will learn.
         </Card>
       </Desc>
 
-      <Button><Link to="/">To Simulation</Link></Button>
+      <Login>
+        <Link to="/login">
+          <Button className="btn">
+            To Simulation
+          </Button>
+        </Link>
+      </Login>
 
 </Wrapper>
 
