@@ -1,5 +1,6 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css";
 @import "./style/normalize.css";
+@import url('https://fonts.googleapis.com/css?family=Capriola&display=swap');
 
 *, html, body, #root{
   padding: 0;
