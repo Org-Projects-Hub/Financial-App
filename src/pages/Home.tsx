@@ -77,8 +77,7 @@ background-color: rgb(0, 40, 133);
 const Border = styled.div`
     margin: 0px;
     min-height: 100vh;
-    background-color: #F1F1F1;
-    
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 `;
 
 

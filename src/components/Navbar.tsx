@@ -19,7 +19,6 @@ const Nav = styled.div`
      grid-template-columns: 1fr 1fr 1fr 1fr;
      grid-template-rows: 1fr;
   }
-display: none;
   `;
 
   //REMOVED DISPLAY
@@ -32,7 +31,6 @@ const FloatBtn = styled.button`
   @media (max-width: 600px) {
       display: none;
     }
-  display:none;
   `;
 
   const FloatBtn2 = styled(FloatBtn)`
