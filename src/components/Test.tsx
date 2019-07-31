@@ -12,7 +12,7 @@ import {Card} from '../style/styled';
  * @return TSX to be rendered.
  */
 
-const Test = ({props}: any)=>
+const Test = (props: any)=>
 {
   /** if testType is pre/posttest, different questions will be rendered with all the same answer choices */
   if(props.testType === 'pretest' || props.testType === 'posttest') {
