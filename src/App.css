@@ -14,16 +14,25 @@ a, a:visited {
 .full-height{
   min-height: 100vh;
 }
+
+.grid-center{
+place-items: center;
+}
 .icon-md{
   width: 10em;
   height: auto;
-  max-width: 50vw;
+  max-width: 30vw;
 }
 .txt-grey {
   color: grey;
 }
 
-
+.bg-green{
+    background: #066;
+}
+.bold{
+  font-weight: bolder;
+}
 .full{
   width: 100%;
 }
@@ -54,7 +63,7 @@ a, a:visited {
 }
 
 .txt-green{
-  color: green;
+  color: #066;
 }
 
 .txt-md{

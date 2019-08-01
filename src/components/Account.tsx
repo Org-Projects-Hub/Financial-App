@@ -5,6 +5,7 @@ import SignupItem from './SignupItem';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest, usernameTest , emailTest, passwordTest, numberTest} from '../utils/utils';
 import api from '../api';
+import {Modal} from './index';
 
         const Header = styled.div`
         font-size: 200%;
@@ -20,14 +21,15 @@ import api from '../api';
         padding: .8em;
         font-weight: bolder;
         color: white;
-        background: dodgerblue;`;
+        background: #00bfa5`;
 
         const MyGrid = styled(Grid)`
         grid-template-columns: auto auto`;
 
-const Account = ({loggedin}: {loggedin: any}) =>{
+const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
        const [state, setState] = useState(0);
-       const [verified, setVerified] = useState(true);
+       const [modal, setModal] = useState(false);
+       const [valid, setValid] = useState(false);
        const [firstName, setFirstName] = useState("");
        const [lastName, setLastName] = useState("");
        const [username, setUsername] = useState("");
@@ -58,22 +60,28 @@ const Account = ({loggedin}: {loggedin: any}) =>{
                     ];
             return(
             <Wrapper className="center">
-              <Card style={{minWidth: "400px"}}>
+              {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
+              <Card style={{minWidth: "400px"}} >
                       <Arrow  onClick={()=>{if(state > 0)
-                                            {setState(state - 1)}
+                                            {setState(state - 1)
+                                               setValid(el[state - 1].handler(el[state - 1].value))
+                                            }
                                             else{
-
+                                                clearAdmin();
                                             }
                                       }}>
                         <i className="fas fa-arrow-left"></i>
                       </Arrow>
 
                       <Header> {el[state].header} </Header>
-                       <SignupItem {...el[state]} />
+                       <SignupItem {...el[state]} valid={valid} setValid={setValid}/>
+                       <div className="center bold txt-green">{`${state + 1} of ${el.length}`}</div>
                     {state < (el.length - 1) ?<Arrow className="right" onClick={()=>{ if(el[state].handler(el[state].value)){
-                                                                                         setState(state + 1)}
+                                                                                         setState(state + 1);
+                                                                                         setValid(el[state + 1].handler(el[state + 1].value))
+                                                                                       }
                                                                                       else{
-                                                                                        alert("Not Valid")
+                                                                                        setModal(true);
                                                                                       }
                                                                                     }
                                                                                }>

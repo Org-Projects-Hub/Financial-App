@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SignupItem = ({type, placeholder, handler, className, set, value}:any)=>
+const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid}:any)=>
 {
 
-  const [valid, setValid] = useState(value);
 
   return (
 
     <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
-        <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{setValid(handler(e.target.value.trim()));
-                                                                                set(e.target.value.trim())
+        <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{
+                                                                                let temp = e.target.value.trim().toLowerCase();
+                                                                                setValid(handler(temp));
+                                                                                set(temp)
                                                                           }}
             />
 

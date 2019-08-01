@@ -70,7 +70,7 @@ height: 3em;`;
 // }
 //   };
 
-  const Modal = ({user, close}: {user: any, close: any}) =>
+  const Modal = ({text, close}: {text: any, close: any}) =>
       (<Wrapper>
                 <Modall>
                 <Header>
@@ -78,8 +78,7 @@ height: 3em;`;
                 </Header>
                   <div >
                   <div style={{minHeight: "5em", padding: "2em"}} className="blue-txt bold txt-md">
-                  <h5>Welcome to Fin App, {user.firstName}!</h5>
-                  <h5>Head on to the Simulation when you are ready</h5>
+                  <h5>{text}</h5>
                   </div>
                    <div>
                     <button className="btn hoverr full" onClick={close}>Cancel</button>
