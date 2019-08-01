@@ -9,4 +9,5 @@ import AccountPick from './AccountPick';
 import Results from './Results';
 import Students from './Students';
 import Modal from './Modal'
+
 export {Header, Loader, Navbar, Pretest, SettingItem, Posttest, AccountPick, Results, Class, Students, Modal};

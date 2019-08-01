@@ -11,12 +11,13 @@ const Setting = ({logout, user}: {logout: any, user: any})=>{
                   {name:"Email", value: user.email}
                 ];
     return (
-      <Wrapper>
-       <div className="container full-height" >
+      <Wrapper className="full-height">
+       <div className="container" >
        <Grid cols="1">
           <button className="btn justify-end" onClick={()=>{logout()}}>Logout</button>
       </Grid>
       {fields.map((data,i)=><SettingItem {...data} key={i} />)}
+      <div className="center bold txt-sm">Terms, Data Policy and Cookies Policy.</div>
         </div>
       </Wrapper>
     );

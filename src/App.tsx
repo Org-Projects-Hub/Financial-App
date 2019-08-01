@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
 import {Navbar, Modal} from './components';
-import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard} from './pages';
+import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPannel} from './pages';
 import api from './api';
-import {setLocalStorage } from './utils/utils';
+import { setLocalStorage } from './utils/utils';
 
 type Props = {
   loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object, modal: boolean
@@ -68,13 +68,14 @@ export default class App extends React.Component <{}, Props>{
             {this.state.loggedin ?
               <div className={this.state.showNav? "grid-main": ""}>
             <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
-            {this.state.modal && <Modal text={`Welcome to Fin App,  ${this.state.user}! Head on to the Simulation when you are ready`} close={close}/ >}
+            {this.state.modal && <Modal text={`Welcome to Fin App! Head on to the Simulation when you are ready`} close={close}/ >}
             <Switch>
 
             <Route path="/classes" render={() => <UserStartPage user={this.state.user}/>} />
             <Route path="/classDashboard" render={() => <ClassDashboard user={this.state.user}/>} />
             <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
             <Route path="/setting" render={()=> <Setting logout={logout} user = {this.state.user}/>} />
+            <Route path="/admin-pannel" render={()=> <AdminPannel />} />
             <Route path="/" render={()=> <Home user={this.state.user} />} />
 
             </Switch>
