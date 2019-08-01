@@ -10,8 +10,8 @@ const SignupItem = ({type, placeholder, handler, className, set, value}:any)=>
 
     <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
-        <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value));
-                                                                                set(e.target.value)
+        <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value.trim()));
+                                                                                set(e.target.value.trim())
                                                                           }}
             />
 

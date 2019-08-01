@@ -31,15 +31,13 @@ const HomeButton = styled.button`
     top: 5%;
     left: 6%;
     transition: transform 750ms;
-
     &:hover {
         transform: scale(1.25);
     }
-
 `;
 
 /* const AnotherButton = styled(HomeButton)`
-    
+
 `; */
 
 const AddClass = styled.button`
@@ -95,9 +93,9 @@ const UserStartPage = (props: any) => {
 
     for (let x = 0; x < users.length; x++) {
         if (users[x].username === userName) {
-            
+
             user = users[x];
-            
+
             for (let y = 0; y < classes.length; y++) {
                 if (user.classIds.indexOf(classes[y].id) != -1) {
                     classObjs.push(classes[y]);
@@ -113,17 +111,17 @@ const UserStartPage = (props: any) => {
         <Border>
                 <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
                 <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
-                
+
                 {
-                    user.accountType === 'teacher' ? 
-                    
-                        <AddClass style={{backgroundColor: '#d6a862'}}>Add Class</AddClass> 
-                        : 
+                    user.accountType === 'teacher' ?
+
+                        <AddClass style={{backgroundColor: '#d6a862'}}>Add Class</AddClass>
+                        :
                         <AddClass style={{backgroundColor: '#649d96'}}>Join Class</AddClass>
                 }
 
             <Container>
-                {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) => 
+                {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) =>
                     <div key={index}>
                         <Class classObj={cla} accountType={user.accountType} />
                     </div>

@@ -14,10 +14,15 @@ a, a:visited {
 .full-height{
   min-height: 100vh;
 }
-
-txt-green {
-  color: green;
+.icon-md{
+  width: 10em;
+  height: auto;
+  max-width: 50vw;
 }
+.txt-grey {
+  color: grey;
+}
+
 
 .full{
   width: 100%;
@@ -33,6 +38,8 @@ txt-green {
 .justify-start{
   justify-self: start;
 }
+
+
 
 .justify-end{
   justify-self: end;

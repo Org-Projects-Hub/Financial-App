@@ -50,6 +50,5 @@ return(
                           </div>
                         </form>
                     </div>
-
                     </Wrapper>);}
 export default Startpage;
