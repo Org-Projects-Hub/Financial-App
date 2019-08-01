@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid}:any)=>
+const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid, nextInput}:any)=>
 {
 
 
@@ -13,6 +13,9 @@ const SignupItem = ({type, placeholder, handler, className, set, value, setValid
                                                                                 setValid(handler(temp));
                                                                                 set(temp)
                                                                           }}
+                                                                   onKeyDown ={ (e)=>{ if(e.keyCode === 13){
+                                                                                nextInput();
+                                                                   }}}
             />
 
         {!valid && value !== "" && <span className="txt-red">

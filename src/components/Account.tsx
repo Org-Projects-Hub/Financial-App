@@ -64,6 +64,14 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                     {header: "Enter your Email", type: "text", placeholder : "Email",  className:"full-row", handler: emailTest, set:setEmail, value: email},
                     {header: "Enter your Password", type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password}
                     ];
+
+          const nextInput = ()=>{ if(el[state].handler(el[state].value)){
+                                      setState(state + 1);
+                                      setValid(el[state + 1].handler(el[state + 1].value))
+                                  }
+                                  else{setModal(true);
+                                 }
+                            }
             return(
             <MyWrapper className="center">
               {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
@@ -80,17 +88,9 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                       </Arrow>
 
                       <Header> {el[state].header} </Header>
-                       <SignupItem {...el[state]} valid={valid} setValid={setValid}/>
+                       <SignupItem {...el[state]} valid={valid} setValid={setValid} nextInput={nextInput}/>
                        <div className="center bold txt-green">{`${state + 1} of ${el.length}`}</div>
-                    {state < (el.length - 1) ?<Arrow className="right" onClick={()=>{ if(el[state].handler(el[state].value)){
-                                                                                         setState(state + 1);
-                                                                                         setValid(el[state + 1].handler(el[state + 1].value))
-                                                                                       }
-                                                                                      else{
-                                                                                        setModal(true);
-                                                                                      }
-                                                                                    }
-                                                                               }>
+                    {state < (el.length - 1) ?<Arrow className="right" onClick={nextInput}>
                         <i className="fas fa-arrow-right"></i>
                     </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
                 </Card>
