@@ -4,7 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import AccountInfo from './AccountInfo'
+import Account from './Account'
 import changeStatus from '../pages/Signup';
 import { Wrapper, Card, Grid } from '../style/styled';
 import Admin from '../assets/admin.png';
@@ -12,14 +12,17 @@ import User from '../assets/user.png';
 
 const Header = styled.div`
 font-size: 200%;
+color: #066;
 font-weight: bolder:
 text-align: center;
 align-items: center;`;
 
 
 const MyCard = styled(Card)`
+ cursor: pointer;
   &:hover {
       transform: scale(1.1);
+      filter: drop-shadow(1px 1px 4px #0093DD);
       transition: 200ms ease-out;
   }
 `;
@@ -47,7 +50,7 @@ return(
     </Wrapper>
 
     :
-    <AccountInfo  loggedin={loggedin}/>
+    <Account  loggedin={loggedin}/>
 
     }
   </div>

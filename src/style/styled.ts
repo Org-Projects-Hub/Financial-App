@@ -15,7 +15,7 @@ const Badge = styled.div`
   `;
 
   const Card = styled.div`
-  border-top: 1px solid #2B547E;
+
    margin: 1em 0.5em;
    padding: .8em 1em;
    background: white;

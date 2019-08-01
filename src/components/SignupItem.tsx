@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 const SignupItem = ({type, placeholder, handler, className, set, value}:any)=>
 {
 
-  const ref = React.createRef<HTMLInputElement>();
-  const [valid, setValid] = useState(false);
+  const [valid, setValid] = useState(value);
 
   return (
 
     <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
-        <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value.trim()));
+        <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{setValid(handler(e.target.value.trim()));
                                                                                 set(e.target.value.trim())
                                                                           }}
             />
