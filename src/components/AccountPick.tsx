@@ -32,7 +32,7 @@ return(
         <Grid cols="2">
           <MyCard className="justify-end" onClick={makeAdmin}>
             <img  className="icon-md" src={Admin} alt="user"/>
-            <h3 className="center">Amin</h3>
+            <h3 className="center">Admin</h3>
           </MyCard>
 
           <MyCard className="justify-start"  onClick={()=>setAdmin(false)}>
