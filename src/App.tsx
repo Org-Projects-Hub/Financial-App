@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
 import {Navbar, Modal} from './components';
-import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPannel} from './pages';
+import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';
 import api from './api';
 import { setLocalStorage } from './utils/utils';
 
@@ -75,7 +75,7 @@ export default class App extends React.Component <{}, Props>{
             <Route path="/classDashboard" render={() => <ClassDashboard user={this.state.user}/>} />
             <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
             <Route path="/setting" render={()=> <Setting logout={logout} user = {this.state.user}/>} />
-            <Route path="/admin-pannel" render={()=> <AdminPannel />} />
+            <Route path="/admin-pannel" render={()=> <AdminPanel />} />
             <Route path="/" render={()=> <Home user={this.state.user} />} />
 
             </Switch>

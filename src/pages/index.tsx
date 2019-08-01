@@ -5,6 +5,6 @@ import Simulation from './Simulation';
 import Signup from './Signup';
 import UserStartPage from './UserStartPage';
 import ClassDashboard from './ClassDashboard';
-import AdminPannel from './AdminPannel';
+import AdminPanel from './AdminPanel';
 
-export { Home, Startpage, Setting, Simulation, Signup, UserStartPage, ClassDashboard, AdminPannel };
+export { Home, Startpage, Setting, Simulation, Signup, UserStartPage, ClassDashboard, AdminPanel };

@@ -21,32 +21,21 @@ const Div = styled.div`
     padding: 15px;
 `;
 
-/** String containing explanation of simulation to appear before beginning pretest */
 const PretestExplanation: string = 'Pretest Explanation';
 
-/** Pretest Component */
 const Pretest = ({setStage}: any)=> {
-    /** Used to determine when test is to begin */
     const [begin, setBegin] = useState(false);
-    /** Used to determine when test has been completed */
     const [testComplete, setTestComplete] = useState(false);
   
     return (
-        /** 
-         * If begin is false, Pretest/Simulation Explanation and begin button will be returned.
-         * Button is clicked, setting begin to true, allowing test to begin.
-        */
+        /** If begin is false, Pretest/Simulation Explanation and begin button will be returned. */
         !begin?
             <GridRow rows="2">
                 <Card>{PretestExplanation}</Card>
                 <Div><button className="btn" onClick={(e) => setBegin(true)}>Begin Pretest</button></Div>
             </GridRow>
         :
-            /**
-             * If testComplete is false, [Test] component will be rendered, displaying questions to be answered.
-             * Once "submit" is clicked upon test completion, [Results] will be rendered.
-             * Once "begin simulation" is clicked, stage will be set to "simulation" and simulation will begin.
-             */
+            /** If testComplete is false, [Test] component will be rendered, displaying questions to be answered. */
             !testComplete?
                 <div className="container">
                     <Test testType="pretest"/>

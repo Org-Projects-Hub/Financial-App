@@ -5,13 +5,25 @@ import styled from 'styled-components';
 import { setLocalStorage } from '../utils/utils';
 import { Chart } from "react-google-charts";
 
-const AdminPannel = ()=>{
+const AdminPanel = ()=>{
 
     return (
       <Wrapper className="full-height">
        <div className="container" >
        <Grid cols="1" >
-        <button className="btn">User Types</button>
+        <div className="selection-menus">
+          <select className="btn">
+            <option value="all">All Users</option>
+            <option value="org">Organizations</option>
+            <option value="ind">Individuals</option>
+          </select>
+          <select className="btn">
+            <option value="all">All Demographics</option>
+            <option value="age">Age</option>
+            <option value="gen">Gender</option>
+            <option value="gra">Grade</option>
+          </select>
+        </div>
         <Card style={{width: "100%", maxWidth:"100%", minHeight: "10em"}} >
         <Chart
           width={'100%'}
@@ -80,4 +92,4 @@ const AdminPannel = ()=>{
       </Wrapper>
     );
   }
-export default AdminPannel;
+export default AdminPanel;

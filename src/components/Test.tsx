@@ -14,25 +14,17 @@ import {Card} from '../style/styled';
 
 const Test = (props: any)=>
 {
-  /** if testType is pre/posttest, different questions will be rendered with all the same answer choices */
   if(props.testType === 'pretest' || props.testType === 'posttest') {
-    /** retreive all questions of pre/post test, and save to "questions" var */
     const questions = props.testType === 'pretest'?  Tests.testType.pretest.questions : Tests.testType.posttest.questions;
-    /** retreive all answers of pre/post test, and save to "answers" var */
     const answers = props.testType === 'pretest'?  Tests.testType.pretest.answers : Tests.testType.posttest.answers;
 
     return(
-      /** 
-       * Map each question on "questions" var, and send each question with answers as props
-       * to [Question] to be formatted. 
-       */
       <>
           {questions.map((question, i) =>
           <Question {...question} answers={answers} key={i}/>)}
       </>
     );
   } 
-  /** else, different questions with corresponding answer choices will be rendered based on testType */
   else { 
 
   }

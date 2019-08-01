@@ -29,22 +29,16 @@ const Span = styled.div`
 `;
 
 const Question = (props: any)=>{
-  /** stores/updates answer selection for the question */
   const [answer, setAnswer] = useState('');
 
   return (
     <Card>
       <Wrapper>
-        {/** Displays question */}
         <Span>{props.q}</Span>
         {console.log(props)}
         
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
-            {/** 
-              * Contains all radio buttons for question 
-              * stores current answer choice when selection is made
-              */}
             <RadioGroup
               aria-label="answers"
               name={props.id.toString()}
