@@ -6,13 +6,13 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     margin: 2em 0;
+    text-align: center;
 `;
 
 
 const ClassDiv = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin: 0px 20%;
     padding: 2%;
     max-width: 600px;
     background: white;
@@ -87,38 +87,43 @@ const Class = (props: any) => {
 
     return(
         <Wrapper>
-            {console.log(props.accountType)}
             {
-                props.accountType === 'teacher' ?  
+                props.userObj.accountType === 'teacher' ?  
 
-                <Link to={`/classDashboard/${props.classObj.id}`}>
-                    <ClassDiv>
-                            <Item1>
-                                <p>{props.classObj.className}</p>
-                                <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
-                                <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
-                                <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
-                            </Item1>
+                <div style={{width: '58%', display: 'inline-block', borderRadius: '1em'}}>
+                    <Link to={`/classDashboard/${props.classObj.id}`}>
+                        <ClassDiv>
+                                <Item1>
+                                    <p>{props.classObj.className}</p>
+                                    <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
+                                    <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
+                                    <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
+                                </Item1>
 
-                            <Item2><p>Code: {props.classObj.classCode}</p></Item2>
-                            <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
-                        
-                    </ClassDiv>
-                </Link> 
+                                <Item2><p>Code: {props.classObj.classCode}</p></Item2>
+                                <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
+                            
+                        </ClassDiv>
+                    </Link> 
+                </div>
                 :
-                <ClassDiv>
-                    <Item4><p>{props.classObj.className}</p></Item4>
-                    {props.classObj.completed.indexOf(props.userObj.username) === -1 ? 
+                props.userObj.accountType === 'student' ? 
+                    <ClassDiv>
+                        <Item4><p>{props.classObj.className}</p></Item4>
+                        {props.classObj.completed.indexOf(props.userObj.username) === -1 ? 
                             <Item6>
                                 <Link to={'/Simulation'}>
                                     <div style={{textAlign: 'center'}}>Start</div>
                                 </Link> 
                             </Item6>
-                            
-                        :
-                        <Item5><div style={{textAlign: 'right', fontStyle: 'italic'}}>Completed</div></Item5>
-                    }
-                </ClassDiv>
+                            :
+                            <Item5><div style={{textAlign: 'right', fontStyle: 'italic'}}>Completed</div></Item5>
+                        }
+                    </ClassDiv>
+                    :
+                    <ClassDiv>
+                        <p>{props.key}</p>
+                    </ClassDiv>
 
             }  
         </Wrapper>

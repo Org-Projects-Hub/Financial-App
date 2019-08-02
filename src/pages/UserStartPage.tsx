@@ -19,6 +19,8 @@ const UserStartPage = (props: any) => {
 
     userName = 'JessieB'; //teacher
 
+    userName = 'WaynesWorld';
+
     interface userObject {
         username: string,
         accountType: string;
@@ -47,30 +49,36 @@ const UserStartPage = (props: any) => {
 
     let buttonBackgroundColor;
 
-    user.accountType !== 'teacher' ? buttonBackgroundColor = '#649d96' : buttonBackgroundColor = '#d6a862';
+    if (user.accountType === 'teacher') {
+        buttonBackgroundColor = '#649d96';
+    } else if(user.accountType === 'student') {
+        buttonBackgroundColor = '#d6a862';
+    } else {
+        buttonBackgroundColor = '#ffa51a';
+    }
 
 
 
     return(
         <Border>
-                <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
-                <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
-                <Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link>
+            <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
+            <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
+            <Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link>
+            
+            {
+                user.accountType === 'teacher' ?
 
-                {
-                    user.accountType === 'teacher' ?
-
-                        <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
-                        :
-                        <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass>
-                }
+                    <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
+                    : 
+                    user.accountType === 'student' ?
+                        <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass> 
+                        : 
+                        <div></div>
+            }
 
             <Container>
                 {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) =>
-                    <div key={index}>
-                        <Class classObj={cla} accountType={user.accountType} userObj={user} />
-                    </div>
-                    ) 
+                    <Class key={index} classObj={cla} accountType={user.accountType} userObj={user} />) 
                     : 
                     <div style={{textAlign: 'center', fontSize: '200%'}}>
                         <p>No classes registered</p>

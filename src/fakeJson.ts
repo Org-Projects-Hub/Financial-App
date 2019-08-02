@@ -21,6 +21,26 @@ const classes = [
     completed: ['KilUm'],
     createdOn: '07/09/19',
     archiveOn: '11/09/19'
+  }, 
+  {
+    id: 'efrf',
+    classCode: 'cccnnw',
+    className: '',
+    requests: [''],
+    registered: ['WaynesWorld'],
+    completed: [''],
+    createdOn: '10/10/19',
+    archiveOn: ''
+  }, 
+  {
+    id: 'hhhwww',
+    classCode: 'wwtyuf',
+    className: '',
+    requests: [''],
+    registered: ['WaynesWorld'],
+    completed: [''],
+    createdOn: '10/10/19',
+    archiveOn: ''
   }
 ];
 
@@ -32,9 +52,9 @@ const users = [
     firstName: 'Jessica',
     lastName: 'Bridges',
     accountType: 'teacher',
-    age: '',
+    age: '30',
     grade: '',
-    email: '',
+    email: 'JessieB@MCSTeacher.com',
     classIds: ['lkjlkijlkj','bubsubdub']
   },
   {
@@ -69,6 +89,17 @@ const users = [
     grade: 'Sophomore',
     email: 'KilUm@MCSstudent.com',
     classIds: ['lkjlkijlkj','bubsubdub']
+  },
+  {
+    username: 'WaynesWorld',
+    accountId: 'yojoijy',
+    firstName: 'Louis',
+    lastName: 'Wayne',
+    accountType: 'other',
+    age: '28',
+    grade: '',
+    email: 'www@icloud.com',
+    classIds: ['efrf','hhhwww']
   }
 ];
 
