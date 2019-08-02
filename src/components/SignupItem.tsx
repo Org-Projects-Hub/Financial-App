@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SignupItem = ({type, placeholder, handler, className}:any)=>
+const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid, nextInput}:any)=>
 {
 
-  const ref = React.createRef<HTMLInputElement>();
-  const [valid, setValid] = useState(false);
-  const [value, setValue] = useState("");
 
   return (
-    <div className={className} style={{width: "100%"}}>
 
-        <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value));
-                                                                                setValue(e.target.value)
+    <div className={className} style={{width: "100%", minHeight: "6em"}}>
+
+        <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{
+                                                                                let temp = e.target.value.trim().toLowerCase();
+                                                                                setValid(handler(temp));
+                                                                                set(temp)
                                                                           }}
+                                                                   onKeyDown ={ (e)=>{ if(e.keyCode === 13){
+                                                                                nextInput();
+                                                                   }}}
             />
 
-        {!valid && value !== "" && <i  className="material-icons justify-end txt-red" >close</i>}
-          {valid  &&   <i className="material-icons justify-end txt-green">done</i>}
+        {!valid && value !== "" && <span className="txt-red">
+                                      <i className="material-icons justify-end" >close</i>{`Invalid ${placeholder}`}
+                                    </span>}
+
+          {valid  && <span className="txt-green">
+                        <i className="material-icons justify-end">done</i>{`${placeholder} is Valid`}
+                      </span>}
     </div>
 
   )

@@ -1,50 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Test from './Test';
+import Results from './Results';
 import styled from 'styled-components';
 import {Card, GridRow} from '../style/styled';
+import { getThemeProps } from '@material-ui/styles';
 
+/**
+ * Pretest.tsx
+ *
+ * @desc: Called by [Simulation]. Fist component to load when beginning the simulation. 
+ *      Begins with Simulation explanation and button to being.
+ *      Loads list of questions to be answered. ([Pretest] > [Test] > [Question])
+ *      Displays results after test along with button to begin simulation. ([Result])
+ * @param {Function} setStage - used to set the stage to "simulation" when pretest is complete
+ * @return TSX to be rendered
+ */
 
 const Div = styled.div`
     text-align: center;
     padding: 15px;
 `;
 
-const PretestExplanation: string = 'Pretest explanation';
+const PretestExplanation: string = 'Pretest Explanation';
 
-type Props = {
-    begin: boolean,
-    setStage: Function
-};
-
-export default class Pretest extends React.Component<{setStage: Function}, Props> {
-
-    constructor(props: Props){
-        super(props);
-        this.state = {
-            begin: false,
-            setStage: props.setStage
-        };
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(event: any) {
-        this.setState({ begin: true });
-    }
-
-    render() {
-    let { begin } = this.state;
-    return(
-          !begin?
-                <GridRow rows="2">
-                    <Card>{PretestExplanation}</Card>
-                    <Div><button className="btn" onClick={this.onClick}>Begin Pretest</button></Div>
-                </GridRow>
-               :
+const Pretest = ({setStage}: any)=> {
+    const [begin, setBegin] = useState(false);
+    const [testComplete, setTestComplete] = useState(false);
+  
+    return (
+        /** If begin is false, Pretest/Simulation Explanation and begin button will be returned. */
+        !begin?
+            <GridRow rows="2">
+                <Card>{PretestExplanation}</Card>
+                <Div><button className="btn" onClick={(e) => setBegin(true)}>Begin Pretest</button></Div>
+            </GridRow>
+        :
+            /** If testComplete is false, [Test] component will be rendered, displaying questions to be answered. */
+            !testComplete?
                 <div className="container">
                     <Test testType="pretest"/>
-                    <Div><button className="btn" onClick={(e) => this.props.setStage("posttest")}>Submit</button></Div>
+                    <Div><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></Div>
                 </div>
-            );
-        }
-    }
+            :
+                <div>
+                    <Card><Results /></Card>
+                    <Div><button className="btn" onClick={(e) => setStage("posttest") } >Begin Simulation</button></Div>
+                </div>
+    );
+};
+
+export default Pretest;
