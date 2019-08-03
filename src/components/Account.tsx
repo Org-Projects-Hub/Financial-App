@@ -13,7 +13,14 @@ import {Modal} from './index';
         font-weight: bolder:
         text-align: center;
         padding-bottom: 5%;
-        align-items: center;`;
+        align-items: center;
+        background: -webkit-linear-gradient(-150deg, #4fc3f7, #006666);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        line-height: 0.75;
+        color: #a483c5;
+        `;
         const Arrow = styled.button`
         border: 0;
         display: inline-block;
