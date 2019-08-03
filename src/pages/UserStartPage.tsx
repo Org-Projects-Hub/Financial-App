@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { Class } from '../components';
 import { classes, users } from '../fakeJson';
 import { Link } from 'react-router-dom';
-import { Border, Container, HomeButton, AddClass, SettingsButton, ResourcesButton } from '../style/styled';
+import SettingsGear from '../assets/images/settingsGear.png';
+import { Border, Container, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim } from '../style/styled';
 
 
 const JoinClass = styled(AddClass)``;
@@ -17,7 +18,7 @@ const UserStartPage = (props: any) => {
     userName = 'JMe'; //registered
     userName = 'KilUm'; // registered and completed
 
-    userName = 'JessieB'; //teacher
+    //userName = 'JessieB'; //teacher
 
     userName = 'WaynesWorld';
 
@@ -58,27 +59,26 @@ const UserStartPage = (props: any) => {
     }
 
 
-
     return(
         <Border>
-            <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
-            <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
-            <Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link>
-            
-            {
-                user.accountType === 'teacher' ?
-
-                    <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
-                    : 
-                    user.accountType === 'student' ?
-                        <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass> 
-                        : 
-                        <div></div>
-            }
-
             <Container>
+                <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
+                <Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link>
+                <Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link>
+            
+                {
+                    user.accountType === 'teacher' ?
+
+                        <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
+                        : 
+                        user.accountType === 'student' ?
+                            <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass> 
+                            : 
+                            <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
+                }
+                
                 {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) =>
-                    <Class key={index} classObj={cla} accountType={user.accountType} userObj={user} />) 
+                    <Class num={index + 1} classObj={cla} accountType={user.accountType} userObj={user} />) 
                     : 
                     <div style={{textAlign: 'center', fontSize: '200%'}}>
                         <p>No classes registered</p>

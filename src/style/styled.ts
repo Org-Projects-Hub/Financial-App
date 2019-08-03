@@ -50,6 +50,8 @@ const Wrapper = styled.div`
 `;
 
 
+
+
 const Border = styled.div`
   margin: 0px;
   background-color: #f1f1f1;
@@ -57,7 +59,7 @@ const Border = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 2% 0px;
+  padding: 5% 0px;
   margin: 0px 15%;
   background-color: white;
   min-height: 100vh;
@@ -68,37 +70,36 @@ const Container = styled.div`
 
 const Button = styled.button`
   text-align: center;
+  border: 1px solid rgb(216, 216, 216);
   border-radius: 0.5em;
   font-size: 120%;
   width: 10%;
   padding: 1%;
   position: fixed;
   transition: transform 750ms;
-`;
-
-const HomeButton = styled(Button)`
-  top: 5%;
-  left: 6%;
-
+  
   &:hover {
     transform: scale(1.25);
   }
+`;
+
+const HomeButton = styled(Button)`
+  background-color: white;
+  top: 5%;
+  left: 6%;
 `;
 
 
 const AddClass = styled(Button)`
   color: white;
-  bottom: 10%;
+  bottom: 18%;
   right: 2%;
-
-  &:hover {
-    transform: scale(1.25);
-  }
 `;
 
 
-const SettingsButton = styled.button`
-  border: 0;
+const SettingsButton = styled.img`
+  width: 6%;
+  border: none;
   position: fixed;
   top: 5%;
   right: 4.5%;
@@ -110,11 +111,24 @@ const SettingsButton = styled.button`
 `;
 
 const ResourcesButton = styled(AddClass)`
-  bottom: 18%;
+  bottom: 10%;
+`;
+
+const TakeSim = styled(Button)`
+  position: relative;
+  color: white;
+  border: none;
+  width: 80%
+  transition: transform 750ms;
+  max-width: 600px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 
 
 
 
-export {Card, Badge, Grid, GridRow, Wrapper, Border, Container, Button, HomeButton, AddClass, SettingsButton, ResourcesButton};
+export {Card, Badge, Grid, GridRow, Wrapper, Border, Container, Button, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim};
