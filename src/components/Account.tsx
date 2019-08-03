@@ -32,6 +32,7 @@ import {Modal} from './index';
         `;
 const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
        const [state, setState] = useState(0);
+       const [clicked, setClicked] = useState(false)
        const [modal, setModal] = useState(false);
        const [valid, setValid] = useState(false);
        const [firstName, setFirstName] = useState("");
@@ -63,11 +64,13 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                     {header: "Enter your Password", type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password}
                     ];
 
-          const nextInput = ()=>{
+          const nextInput = () =>{
                               if(state < (el.length - 1)){
                                 if(el[state].handler(el[state].value)){
-                                      setState(state + 1);
-                                      setValid(el[state + 1].handler(el[state + 1].value))
+                                      setValid(el[state + 1].handler(el[state + 1].value));
+                                        setState(state + 1);
+                                      setClicked(true);
+                                        setTimeout(()=>setClicked(false), 700);
                                   }
                                   else{setModal(true);
                                  }
@@ -75,30 +78,32 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                 SignupAPI()
                               }
                             }
+
+        const prevInput = () => {
+                            if(state > 0){
+                                setValid(el[state - 1].handler(el[state - 1].value));
+                                setState(state - 1);
+                                setClicked(true);
+                                setTimeout(()=>setClicked(false), 700);
+                              }
+                              else{
+                                  clearAdmin();
+                              }
+                        }
             return(
             <MyWrapper className="center">
               {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
-              <Card style={{minWidth: "400px"}} >
-                      <Arrow  onClick={()=>{if(state > 0)
-                                            {setState(state - 1)
-                                               setValid(el[state - 1].handler(el[state - 1].value))
-                                            }
-                                            else{
-                                                clearAdmin();
-                                            }
-                                      }}>
+              <Card className={clicked? "flip": ""}   style={{minWidth: "400px"}} >
+                      <Arrow  onClick={prevInput}>
                         <i className="fas fa-arrow-left"></i>
                       </Arrow>
 
                       <Header> {el[state].header} </Header>
 
-
                        <SignupItem {...el[state]} valid={valid} setValid={setValid} nextInput={nextInput}/>
 
-
-
                        <div className="center bold txt-green">{`${state + 1} of ${el.length}`}</div>
-                    {state < (el.length - 1) ?<Arrow className="right" onClick={nextInput}>
+                    {state < (el.length - 1) ? <Arrow className="right" onClick={nextInput}>
                         <i className="fas fa-arrow-right"></i>
                     </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
                 </Card>
