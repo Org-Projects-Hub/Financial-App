@@ -65,7 +65,14 @@ const Container = styled.div`
   min-height: 100vh;
   text-align: center;
   box-shadow: 0px 0px 20px 5px gray;
+  transition: margin 800ms;
+
+  @media only screen and (max-width: 879px) {
+    margin: 0;
+  }
 `;
+
+
 
 
 const Button = styled.button`
@@ -77,9 +84,17 @@ const Button = styled.button`
   padding: 1%;
   position: fixed;
   transition: transform 750ms;
-  
+  min-width: 100px;
+  min-height: 50px;
+
   &:hover {
     transform: scale(1.25);
+  }
+  
+  @media screen and (max-width: 879px) {
+    position: static;
+    width: 60%;
+    margin: 1% 20%;
   }
 `;
 
@@ -87,6 +102,8 @@ const HomeButton = styled(Button)`
   background-color: white;
   top: 5%;
   left: 6%;
+
+  
 `;
 
 
@@ -104,23 +121,35 @@ const SettingsButton = styled.img`
   top: 5%;
   right: 4.5%;
   transition: transform 750ms;
+  min-width: 75px;
 
   &:hover {
-    transform: scale(1.5);
+    transform: scale(1.3);
+  }
+
+  @media screen and (max-width: 879px) {
+    position: relative;
+    margin: 1% 20%;
+    top: 0.5%;
+    right: auto;
+    left: 25%;
+    
   }
 `;
 
 const ResourcesButton = styled(AddClass)`
-  bottom: 10%;
+    bottom: 10%;
 `;
 
 const TakeSim = styled(Button)`
-  position: relative;
+  position: fixed;
+  top: 4%;
+  left: 25%;
   color: white;
   border: none;
-  width: 80%
+  width: 50%
   transition: transform 750ms;
-  max-width: 600px;
+  margin-bottom: 2%;
 
   &:hover {
     transform: scale(1.05);

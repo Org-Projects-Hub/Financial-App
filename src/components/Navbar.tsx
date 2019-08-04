@@ -10,8 +10,8 @@ const Nav = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
-  transition: 300ms ease-out;
-  @media (max-width: 600px) {
+  
+  @media (max-width: 879px) {
      height: 50px;
      width: 100vw;
      top: calc(100% - 50px);
@@ -27,7 +27,7 @@ const FloatBtn = styled.button`
   left: 1em;
   border: 0;
   border-radius: 50%;
-  @media (max-width: 600px) {
+  @media (max-width: 879px) {
       display: none;
     }
   `;

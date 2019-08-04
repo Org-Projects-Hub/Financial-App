@@ -11,10 +11,10 @@ const Wrapper = styled.div`
 
 
 const ClassDiv = styled.div`
+    margin: 0px 20%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 2%;
-    max-width: 600px;
     background: white;
     cursor: pointer;
     border: 2px solid blue;
@@ -29,7 +29,7 @@ const ClassDiv = styled.div`
 const Item1 = styled.div`
     text-align: left;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
 
 `;
 
@@ -41,8 +41,9 @@ const Item2 = styled.div`
 
 const Item3 = styled.div`
     text-align: right;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-column-end: 6;
+    grid-row-start: 3;
     font-style: italic;
     color: green;
 `;
@@ -86,7 +87,7 @@ const Class = (props: any) => {
 
     return(
         <Wrapper>
-            <div style={{width: '53%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
+            <div style={{width: '100%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
             {
                 props.userObj.accountType === 'teacher' ?  
 
@@ -121,6 +122,12 @@ const Class = (props: any) => {
                     :
                     <ClassDiv>
                         <Item4>Simulation #{props.num}</Item4>
+                        <Item1>
+                            <p>Pre-Test: #/#</p>
+                            <p>Simulation: #/#</p>
+                            <p>Post-Test: #/#</p>
+                        </Item1>
+                        <Item3>This simulation was completed on </Item3>
 
                     </ClassDiv>
 
