@@ -5,7 +5,7 @@ import SignupItem from './SignupItem';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest, usernameTest , emailTest, passwordTest, numberTest} from '../utils/utils';
 import api from '../api';
-import {Modal} from './index';
+import {Modal, Hints} from './index';
 
         const Header = styled.div`
         font-size: 200%;
@@ -100,7 +100,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
             return(
             <MyWrapper className="center">
               {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
-              <Card className={clicked? "flip": ""}   style={{minWidth: "400px"}} >
+              <Card className={clicked? "flip": ""}   style={{minWidth: "320px", maxWidth: "98vw"}} >
                       <Arrow  onClick={prevInput}>
                         <i className="fas fa-arrow-left"></i>
                       </Arrow>
@@ -114,6 +114,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                         <i className="fas fa-arrow-right"></i>
                     </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
                 </Card>
+                <Hints />
               </MyWrapper>
             )
 };

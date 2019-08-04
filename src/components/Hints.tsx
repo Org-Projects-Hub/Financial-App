@@ -4,26 +4,52 @@ import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom"
 import Avatar from '../assets/helper.png';
 
 
-const FloatBtn = styled.button`
+
+  const Float = styled.div`
   position: fixed;
   bottom: 1em;
-  
-  left: 1em;
-  border: 0;
-  border-radius: 50%;
-  @media (max-width: 600px) {
-      display: none;
-    }
+  right: 10px;
+    display: grid;
+      grid-template-columns: auto auto;
   `;
 
-  const FloatBtn2 = styled(FloatBtn)`
-    left: 95%;
+  const Message = styled.div`
+    background: white;
+    max-width: 15em;
+    padding: .3em .8em;
+    border-radius: 8px;
+  `;
+
+  const Img = styled.img`
+    border-radius: 50%;
+    border: 1px solid white;
+    width: 5em;
+    margin-left: 2px;
+    height: auto;
+  `;
+
+  const Notification = styled.div`
+    background: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    text-align: center;
+    position: relative;
+    top: 5px;
   `;
 
 const Hints = ()=> (
-  <div>
-      <FloatBtn2><img src={Avatar} className="icon-sm"/></FloatBtn2>
-  </div>
+      <Float>
+        <Message>Hello! Please enter all your information correctly to access the app.</Message>
+        <div>
+        {//<Notification>1</Notification>
+        }
+        <Img src={Avatar} className="icon-sm"/>
+        </div>
+      </Float>
   );
 
 export default Hints;
