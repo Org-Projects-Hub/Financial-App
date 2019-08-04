@@ -28,6 +28,7 @@ import {Modal, Hints} from './index';
         padding: .8em;
         font-weight: bolder;
         color: white;
+        margin: .5em 0;
         background: #00bfa5`;
 
         const MyWrapper = styled(Wrapper)`
