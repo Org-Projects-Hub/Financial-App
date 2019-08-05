@@ -7,7 +7,8 @@ import { getLocalStorage, setLocalStorage } from '../utils/utils';
    login: URL + "/login",
    signup: URL + "/signup",
    auth: `${URL}/auth`,
-   answer: `${URL}/answer`
+   answer: `${URL}/answer`,
+   edit: `${URL}/edit`
  }
 
 function header() {

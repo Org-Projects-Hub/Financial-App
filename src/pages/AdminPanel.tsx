@@ -1,10 +1,10 @@
 import React from 'react';
 import {Wrapper, Card, Grid} from '../style/styled';
-import {SettingItem} from '../components';
+import { SelectInput} from '../components';
 import styled from 'styled-components';
 import { setLocalStorage } from '../utils/utils';
 import { Chart } from "react-google-charts";
-
+import Loader from '../components/Loader';
 const AdminPanel = ()=>{
 
     return (
@@ -24,13 +24,17 @@ const AdminPanel = ()=>{
             <option value="gra">Grade</option>
           </select>
         </div>
+        <SelectInput style={{width: "50%"}} name={"name"} arr={["1"]} required={true} action={()=>{console.log()}} />
+
+
+
         <Card style={{width: "100%", maxWidth:"100%", minHeight: "10em"}} >
         <Chart
           width={'100%'}
           style={{maxWidth:"80vw"}}
           height={'300px'}
           chartType="BarChart"
-          loader={<div>Loading Chart</div>}
+          loader={<Loader />}
           data={[
             ['Demographics', 'Pretest', 'PostTest'],
             ['Freshmen', 80, 35],
