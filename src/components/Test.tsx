@@ -17,15 +17,14 @@ const Test = (props: any)=>
   if(props.testType === 'pretest' || props.testType === 'posttest') {
     const questions = props.testType === 'pretest'?  Tests.testType.pretest.questions : Tests.testType.posttest.questions;
     const answers = props.testType === 'pretest'?  Tests.testType.pretest.answers : Tests.testType.posttest.answers;
-
     return(
       <>
           {questions.map((question, i) =>
           <Question {...question} answers={answers} key={i}/>)}
       </>
     );
-  } 
-  else { 
+  }
+  else {
 
   }
 };

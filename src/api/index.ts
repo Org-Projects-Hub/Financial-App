@@ -6,7 +6,8 @@ import { getLocalStorage, setLocalStorage } from '../utils/utils';
  const API = {
    login: URL + "/login",
    signup: URL + "/signup",
-   auth: `${URL}/auth`
+   auth: `${URL}/auth`,
+   answer: `${URL}/answer`
  }
 
 function header() {
@@ -42,10 +43,10 @@ function post(url: string, body: object) {
 //       .then(response => response.json());
 // }
 //
-// function authPost(url, body) {
-//   return fetch(url, { method: 'POST', headers: authHeader(), body: JSON.stringify(body) })
-//   .then(response => response.json());
-// }
+function authPost(url : string, body : any) {
+  return fetch(url, { method: 'POST', headers: authHeader(), body: JSON.stringify(body) })
+  .then(response => response.json());
+}
 //
 // function put(url, body) {
 //   //todo
@@ -68,5 +69,8 @@ export default {
 
   auth: function(){
     return authGet(API.auth);
+  },
+  answer: function({q_id, answer} : any){
+    return authPost(API.answer, {q_id, answer});
   }
 };

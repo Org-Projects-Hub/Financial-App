@@ -55,8 +55,6 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                 api.signup(obj)
                                 .then(res => {
                                     if (res.success) {
-                                     alert(res.message);
-
                                      loggedin(res.token, res.user);
                                     } else {
                                       alert(res.message);
