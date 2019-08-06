@@ -36,15 +36,28 @@ const Students = (props: any) => {
     studentArray = [];
 
     // Loop through the array that's passed in, for every student user name, loop through the users array and get the users object and add it to the array.
-    props.array.map((student: string) => 
-        {
-            for (let x = 0; x < users.length; x++) {
+    for (let x = 0; x < props.array.length; x++) {
+        for (let y = 0; y < users.length; y++) {
+            if (users[y].username === props.array[x]) {
+                studentArray.push(users[y]);
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+   /*  props.array.map((student: string) => 
+    {
+        for (let x = 0; x < users.length; x++) {
                 if (users[x].username === student) {
                     studentArray.push(users[x]);
                 }
             }
         }
-    );
+    ); */
     
 
 

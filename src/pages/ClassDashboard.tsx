@@ -13,7 +13,7 @@ const ClassTitle = styled.div`
     font-size: 200%;
 `;
 
-
+//ghjkh
 
 // This component is strcitly for the teachers to control whats going on with each class, when a teacher clicks on a class this is what pops up.
 const ClassDashboard = (props : any) => {
