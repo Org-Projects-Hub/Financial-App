@@ -58,9 +58,9 @@ const Class = (props: any) => {
 
                         <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
                             <p>{props.classObj.className}</p>
-                            <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
-                            <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
-                            <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
+                            <p>Requests: {props.classObj.requests.indexOf('') !== -1 ? 0 : props.classObj.requests.length}</p>
+                            <p>Registered: {props.classObj.registered.indexOf('') !== -1 ? 0 : props.classObj.registered.length}</p>
+                            <p>Completed: {props.classObj.completed.indexOf('') !== -1 ? 0 : props.classObj.completed.length}</p>
                         </GridColItem>
 
                         <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>

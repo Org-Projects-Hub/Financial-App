@@ -17,7 +17,7 @@ const UserStartPage = (props: any) => {
     userName = 'BJones'; //requests
     userName = 'JMe'; //registered
     userName = 'KilUm'; // registered and completed
-    //userName = 'JessieB'; //teacher
+    userName = 'JessieB'; //teacher
     //userName = 'WaynesWorld'; //other
 
     // this interface is to avoid type errors with mapping elements from the user array
@@ -39,7 +39,7 @@ const UserStartPage = (props: any) => {
             user = users[x];
 
             for (let y = 0; y < classes.length; y++) {
-                if (user.classIds.indexOf(classes[y].id) != -1) {
+                if (user.classIds.indexOf(classes[y].id) !== -1) {
                     classObjs.push(classes[y]);
                 }
             }
