@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import {GridColItem, Button} from '../style/styled';
 
 
 
@@ -26,60 +27,17 @@ const ClassDiv = styled.div`
     }
 `;
 
-const Item1 = styled.div`
-    text-align: left;
-    grid-column-start: 1;
-    grid-column-end: 4;
 
-`;
-
-const Item2 = styled.div`
-    text-align: right;
-    grid-column-start: 3;
-    grid-column-end: 6;
-`;
-
-const Item3 = styled.div`
-    text-align: right;
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-row-start: 3;
-    font-style: italic;
-    color: green;
-`;
-
-const Item4 = styled.div`
-    font-size: 125%;
-    text-align: center;
-    grid-column-start: 2;
-    grid-column-end: 5;
-`;
-
-const Item5 = styled.div`
-    padding: 0;
-    margin-top: 5%;
-    text-align: right;
-    grid-row-start: 2;
-    grid-column-start: 4;
-    grid-column-end: 6;
-    font-size: 125%;
-`;
-
-const Item6 = styled(Item5) `
+const StartButton = styled(Button) `
+    position: relative;
+    top: 12%;
+    min-height: 35px;
+    width: 5%;
     grid-column-start: 3;
     grid-column-end: 4;
-    text-align: center;
-    border-radius: 0.5em;
     color: white;
     background-color: #36c459;
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.2);
-    }
 `;
-
-
 
 
 
@@ -87,55 +45,87 @@ const Class = (props: any) => {
 
     return(
         <Wrapper>
+
+            {/* No matter what the account type, we want anything that is rendered to be centered */}
             <div style={{width: '100%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
-            {
+
+            {   
+                // if the user is a teacher display this class information
                 props.userObj.accountType === 'teacher' ?  
 
                 <Link to={`/classDashboard/${props.classObj.id}`}>
                     <ClassDiv>
-                        <Item1>
+
+                        <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
                             <p>{props.classObj.className}</p>
                             <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
                             <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
                             <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
-                        </Item1>
+                        </GridColItem>
 
-                        <Item2><p>Code: {props.classObj.classCode}</p></Item2>
-                        <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
-                        
+                        <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
+                            <p>Code: {props.classObj.classCode}</p>
+                        </GridColItem>
+
+                        <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
+                            <p>This class will archive on {props.classObj.archiveOn}</p>
+                        </GridColItem>
+
                     </ClassDiv>
                 </Link> 
+
                 :
+
+                // if the user is a student display this class information
                 props.userObj.accountType === 'student' ? 
-                    <ClassDiv>
-                        <Item4><p>{props.classObj.className}</p></Item4>
+
+                    <ClassDiv style={{cursor: "initial"}}>
+
+                        <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
+                            <p>{props.classObj.className}</p>
+                        </GridColItem>
+
+                        {/* If the class/simulation is not completed display the Start button, if it is display 'Completed' instead */}
                         {props.classObj.completed.indexOf(props.userObj.username) === -1 ? 
-                            <Item6>
+
+                            <StartButton>
                                 <Link to={'/Simulation'}>
-                                    <div style={{textAlign: 'center'}}>Start</div>
+                                    <div style={{cursor: "pointer"}} className="ta-center">Start</div>
                                 </Link> 
-                            </Item6>
+                            </StartButton>
+
                             :
-                            <Item5><div style={{textAlign: 'right', fontStyle: 'italic'}}>Completed</div></Item5>
+
+                            <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "125%"}}>
+                                <div className="ta-right txt-italic">Completed</div>
+                            </GridColItem>
                         }
                     </ClassDiv>
+
                     :
-                    <ClassDiv>
-                        <Item4>Simulation #{props.num}</Item4>
-                        <Item1>
+                    
+                    // if the user is neither a teacher or student display this class information
+                    <ClassDiv style={{cursor: "initial"}}>
+
+                        <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
+                            <p>Simulation #{props.num}</p>
+                        </GridColItem>
+
+                        <GridColItem colStart="1" colEnd="4" align="left">
                             <p>Pre-Test: #/#</p>
                             <p>Simulation: #/#</p>
                             <p>Post-Test: #/#</p>
-                        </Item1>
-                        <Item3>This simulation was completed on </Item3>
+                        </GridColItem>
+
+                        <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
+                            <p>This simulation was completed on</p>
+                        </GridColItem>
 
                     </ClassDiv>
-
             }  
             </div>
         </Wrapper>
 
-        
     );
 };
 

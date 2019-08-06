@@ -10,6 +10,7 @@ const Nav = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
+  z-index: 1;
   
   @media (max-width: 879px) {
      height: 50px;

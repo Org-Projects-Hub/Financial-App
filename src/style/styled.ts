@@ -29,6 +29,11 @@ const Grid = styled.div<{cols: string}>`
   grid-template-columns: repeat(${props => props.cols}, 1fr);
 `;
 
+const GridColItem = styled.div<{colStart: string, colEnd: string, align: string}>`
+  grid-column-start: ${props => props.colStart};
+  grid-column-end: ${props => props.colEnd};
+  text-align: ${props => props.align};
+`;
 
 const GridRow = styled.div<{rows: string}>`
   display: grid;
@@ -54,12 +59,13 @@ const Wrapper = styled.div`
 
 const Border = styled.div`
   margin: 0px;
-  background-color: #f1f1f1;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   min-height: 100vh;
 `;
 
 const Container = styled.div`
   padding: 5% 0px;
+  padding-top: 75px;
   margin: 0px 15%;
   background-color: white;
   min-height: 100vh;
@@ -76,6 +82,7 @@ const Container = styled.div`
 
 
 const Button = styled.button`
+  cursor: pointer;
   text-align: center;
   border: 1px solid rgb(216, 216, 216);
   border-radius: 0.5em;
@@ -84,17 +91,18 @@ const Button = styled.button`
   padding: 1%;
   position: fixed;
   transition: transform 750ms;
-  min-width: 100px;
+  min-width: 110px;
   min-height: 50px;
 
   &:hover {
     transform: scale(1.25);
   }
   
+
   @media screen and (max-width: 879px) {
     position: static;
     width: 60%;
-    margin: 1% 20%;
+    margin: 0.5% 20%;
   }
 `;
 
@@ -102,9 +110,9 @@ const HomeButton = styled(Button)`
   background-color: white;
   top: 5%;
   left: 6%;
-
-  
 `;
+
+const BackButton = styled(HomeButton)``;
 
 
 const AddClass = styled(Button)`
@@ -115,6 +123,7 @@ const AddClass = styled(Button)`
 
 
 const SettingsButton = styled.img`
+  text-align: center;
   width: 6%;
   border: none;
   position: fixed;
@@ -122,6 +131,7 @@ const SettingsButton = styled.img`
   right: 4.5%;
   transition: transform 750ms;
   min-width: 75px;
+  z-index: 0;
 
   &:hover {
     transform: scale(1.3);
@@ -130,15 +140,16 @@ const SettingsButton = styled.img`
   @media screen and (max-width: 879px) {
     position: relative;
     margin: 1% 20%;
-    top: 0.5%;
-    right: auto;
-    left: 25%;
-    
+    left: 24.5%;
   }
 `;
 
 const ResourcesButton = styled(AddClass)`
     bottom: 10%;
+`;
+
+const AddStudent = styled(ResourcesButton)`
+  background-color: #d67762;
 `;
 
 const TakeSim = styled(Button)`
@@ -160,4 +171,4 @@ const TakeSim = styled(Button)`
 
 
 
-export {Card, Badge, Grid, GridRow, Wrapper, Border, Container, Button, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim};
+export {Card, Badge, Grid, GridColItem, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim};
