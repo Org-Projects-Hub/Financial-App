@@ -46,12 +46,10 @@ const Question = (props: any)=>{
 
                        };
 
-
   return (
     <Card>
       <Wrapper>
         <Span>{props.q}</Span>
-
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
@@ -60,7 +58,7 @@ const Question = (props: any)=>{
               value={answer || ''}
               onChange={(e: any)=>{setAnswer(e.target.value)
                         // Fetch to backend here
-                                   SubmitAnswer(e.target.value, props.id);
+                        SubmitAnswer(e.target.value, props.id);
 
               }}
             >

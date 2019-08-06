@@ -73,7 +73,18 @@ const Container = styled.div`
 `;
 
 
-
+const Notification = styled.div`
+  background: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  text-align: center;
+  position: relative;
+  top: 5px;
+`;
 
 const Button = styled.button`
   text-align: center;
@@ -90,7 +101,7 @@ const Button = styled.button`
   &:hover {
     transform: scale(1.25);
   }
-  
+
   @media screen and (max-width: 879px) {
     position: static;
     width: 60%;
@@ -103,7 +114,7 @@ const HomeButton = styled(Button)`
   top: 5%;
   left: 6%;
 
-  
+
 `;
 
 
@@ -133,7 +144,7 @@ const SettingsButton = styled.img`
     top: 0.5%;
     right: auto;
     left: 25%;
-    
+
   }
 `;
 
@@ -155,9 +166,5 @@ const TakeSim = styled(Button)`
     transform: scale(1.05);
   }
 `;
-
-
-
-
 
 export {Card, Badge, Grid, GridRow, Wrapper, Border, Container, Button, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim};

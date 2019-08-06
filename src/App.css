@@ -36,6 +36,10 @@ a, a:visited {
   min-height: 100vh;
 }
 
+.full-width{
+  width: 100%;
+   max-width: 100%;
+}
 .grid-center{
 place-items: center;
 }
@@ -120,6 +124,11 @@ place-items: center;
   vertical-align: middle;
 }
 
+.centered{
+  display: block;
+  margin: auto;
+}
+
 .selected{
   color: red!important;
 }
@@ -130,6 +139,10 @@ place-items: center;
 }
 .capitalize{
    text-transform: capitalize;
+}
+
+.active-tab {
+  border-bottom: .2em solid green;
 }
 
 .gradient-heading{

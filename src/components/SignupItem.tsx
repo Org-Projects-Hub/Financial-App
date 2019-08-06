@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid, nextInput}:any)=>
 {
 
-
   return (
-
     <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
         <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{
@@ -26,7 +24,6 @@ const SignupItem = ({type, placeholder, handler, className, set, value, setValid
                         <i className="material-icons justify-end">done</i>{`${placeholder} is Valid`}
                       </span>}
     </div>
-
   )
 }
 

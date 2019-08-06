@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Avatar from '../assets/helper.png';
-
-
 
   const Float = styled.div`
   position: fixed;
@@ -18,6 +16,9 @@ import Avatar from '../assets/helper.png';
     max-width: 15em;
     padding: .3em .8em;
     border-radius: 8px;
+    vertical-align: middle;
+    display: grid;
+    align-items: center;
   `;
 
   const Img = styled.img`
@@ -28,28 +29,23 @@ import Avatar from '../assets/helper.png';
     height: auto;
   `;
 
-  const Notification = styled.div`
-    background: red;
-    color: white;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
-    text-align: center;
-    position: relative;
-    top: 5px;
-  `;
+const Hints = ({msg} : any)=> {
+  const [pointer, setPointer ]  = useState(0);
 
-const Hints = ()=> (
-      <Float>
-        <Message>Hello! Please enter all your information correctly to access the app.</Message>
+  const increasePointer = () =>{
+    if(pointer < msg.length - 1){
+      setPointer(pointer + 1);
+    }
+  }
+
+ return(
+      <Float onClick = {increasePointer} className="pointer">
+        <Message>{msg[pointer]}</Message>
         <div>
-        {//<Notification>1</Notification>
-        }
         <Img src={Avatar} className="icon-sm"/>
         </div>
       </Float>
   );
+}
 
 export default Hints;

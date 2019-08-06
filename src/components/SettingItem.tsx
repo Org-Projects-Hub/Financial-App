@@ -17,8 +17,7 @@ const SettingItem = ({name, value}:any)=>
        <i className="material-icons pointer txt-green justify-end" onClick={()=>{setEdit(false)}}>done</i>}
     </Grid>
     </Card>
-
-  )
+  );
 }
 
 export default SettingItem;

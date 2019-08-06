@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-
+import {Hints} from './index';
 const Nav = styled.div`
   top: 0em;
   height: 100vh;
@@ -10,7 +10,7 @@ const Nav = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   place-items: center;
   background: dodgerblue;
-  
+
   @media (max-width: 879px) {
      height: 50px;
      width: 100vw;
@@ -46,7 +46,7 @@ const Navbar = ({showNav, hide}: {showNav: any, hide: any})=> (
       <NavLink activeStyle={active}  className="nav-item txt-md" to="/classes"><i className="fas fa-school"></i></NavLink>
     </Nav>
       <FloatBtn onClick={hide}><i className={ showNav? "fa fa-angle-left txt-md" : "fa fa-angle-right txt-md"}></i></FloatBtn>
-      <FloatBtn2><a href="mailto:help@finapp.com"><i className="fas fa-question-circle  txt-md"></i></a></FloatBtn2>
+      <Hints msg={["Welcome to FinApp!","Take the Simulation when you are ready"]}/>
   </div>
   );
 

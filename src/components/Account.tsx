@@ -113,7 +113,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                         <i className="fas fa-arrow-right"></i>
                     </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
                 </Card>
-                <Hints />
+                <Hints msg={["Welcome to FinApp!","Please enter all your information correctly to access the app."]}/>
               </MyWrapper>
             )
 };
