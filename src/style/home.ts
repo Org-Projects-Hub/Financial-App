@@ -40,7 +40,7 @@ box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 
 const Desc = styled.div`
 grid-column: 2 / span 1;
-grid-row: 4 / span 1;
+grid-row: 3 / span 1;
 align-self: stretch;
 justify-self: stretch;
 font-family: 'Capriola', sans-serif;

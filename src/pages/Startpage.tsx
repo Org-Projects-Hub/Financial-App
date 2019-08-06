@@ -16,6 +16,8 @@ const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
  const [password, setPassword] = useState("");
 
 return(
+              
+              <Background>
               <Wrapper>
 
                 <Banner>TEST</Banner>
@@ -62,6 +64,7 @@ return(
                     </div>
                     </Login>
                   </Wrapper>
+                  </Background>
                   
                   
                   
