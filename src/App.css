@@ -17,18 +17,6 @@ background-position: bottom right;
 }
 
 
-.flip {
-  animation-name: flip;
-  animation-duration: .7s;
-  animation-iteration-count: 1;
-}
-
-
-@keyframes flip {
-  0%   { }
-  100%  {  transform: rotateY(360deg);}
-}
-
 a, a:visited {
   color: inherit;
 }
@@ -36,6 +24,10 @@ a, a:visited {
   min-height: 100vh;
 }
 
+.full-width{
+  width: 100%;
+   max-width: 100%;
+}
 .grid-center{
 place-items: center;
 }
@@ -132,6 +124,11 @@ place-items: center;
   text-align: left;
 }
 
+.centered{
+  display: block;
+  margin: auto;
+}
+
 .selected{
   color: red!important;
 }
@@ -146,6 +143,10 @@ place-items: center;
 
 .txt-italic {
   font-style: italic;
+}
+
+.active-tab {
+  border-bottom: .2em solid green;
 }
 
 .gradient-heading{

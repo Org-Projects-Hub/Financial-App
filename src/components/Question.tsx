@@ -32,7 +32,7 @@ const Question = (props: any)=>{
   const [answer, setAnswer] = useState(null);
 
   const SubmitAnswer = (answer : string, id: string)=>{
-                  const obj = {answer, q_id: id};
+                  const obj = {answer: answer, q_id: id};
                            console.log(obj);
                            api.answer(obj)
                            .then(res => {
@@ -46,29 +46,25 @@ const Question = (props: any)=>{
 
                        };
 
-
   return (
     <Card>
       <Wrapper>
         <Span>{props.q}</Span>
-        {console.log(props)}
-
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
               aria-label="answers"
               name={props.id.toString()}
-              value={answer}
+              value={answer || ''}
               onChange={(e: any)=>{setAnswer(e.target.value)
                         // Fetch to backend here
-                                   SubmitAnswer(answer, props.id);
+                        SubmitAnswer(e.target.value, props.id);
 
-                        console.log(`answer is ${e.target.value}`)
               }}
             >
               {/** Map each answer to radio button */}
               {props.answers.map((answer: string, i: any) =>
-                    <Div>
+                    <Div key ={i}>
                       <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
                     </Div>
               )}

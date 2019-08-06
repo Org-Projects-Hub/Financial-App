@@ -45,12 +45,15 @@ const Wrapper = styled.div`
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   min-height: 100vh;
   width: 100%;
+  min-width: 320px;
+  max-width: 100vw;
   text-align: center;
   padding: .3em 1em;
   padding-left: 55px;
   background: ${props => props.color};
-  @media(max-width: 600px){
+  @media(max-width: 879px){
   width: 100%;
+  padding-bottom: 5em;
   padding-left: 1em;}
 `;
 
@@ -79,7 +82,18 @@ const Container = styled.div`
 `;
 
 
-
+const Notification = styled.div`
+  background: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  text-align: center;
+  position: relative;
+  top: 5px;
+`;
 
 const Button = styled.button`
   cursor: pointer;
@@ -98,7 +112,6 @@ const Button = styled.button`
     transform: scale(1.25);
   }
   
-
   @media screen and (max-width: 879px) {
     position: static;
     width: 60%;
@@ -166,9 +179,5 @@ const TakeSim = styled(Button)`
     transform: scale(1.05);
   }
 `;
-
-
-
-
 
 export {Card, Badge, Grid, GridColItem, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim};

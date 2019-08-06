@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
+import './style/animations.css';
 import {Navbar, Modal} from './components';
 import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';
 import api from './api';
@@ -81,7 +82,6 @@ export default class App extends React.Component <{}, Props>{
             </Switch>
             </div>
            :<Switch>
-
             <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
 
              <Route render={()=> <Startpage login={login}  loggedin={loggedin}/>} />

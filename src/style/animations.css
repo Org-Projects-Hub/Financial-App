@@ -1,0 +1,41 @@
+.pop-appear {
+  transform: scale(0);
+}
+
+.pop-appear.pop-appear-active {
+  transform: scale(1);
+  transition: transform .5s ease-in;
+}
+
+.opacity-appear {
+  opacity: 0.5;
+}
+
+.opacity-appear.opacity-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+  }
+
+  .slide-appear {
+    opacity: 0;
+   transform: translate3d(0, 100%, 0);
+  }
+
+  .slide-appear.slide-appear-active {
+    opacity: 1;
+     transform: translate3d(0, 0, 0);
+    transition: transform  .8s ease-in,  opacity  .8s ease-in;
+  }
+
+
+
+
+.flip {
+  animation-name: flip;
+  animation-duration: .7s;
+  animation-iteration-count: 1;
+}
+@keyframes flip {
+  0%   { }
+  100%  {  transform: rotateY(360deg);}
+}

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Wrapper, Card, Grid} from '../style/styled';
-import {SettingItem} from '../components';
+import { SelectInput} from '../components';
 import styled from 'styled-components';
 import { setLocalStorage } from '../utils/utils';
 import { Chart } from "react-google-charts";
-
+import Loader from '../components/Loader';
 const AdminPanel = ()=>{
-
+ const options = ["All Users", "Age", "Gender", "Grade"];
     return (
       <Wrapper className="full-height">
        <div className="container" >
@@ -17,20 +17,25 @@ const AdminPanel = ()=>{
             <option value="org">Organizations</option>
             <option value="ind">Individuals</option>
           </select>
-          <select className="btn">
-            <option value="all">All Demographics</option>
-            <option value="age">Age</option>
-            <option value="gen">Gender</option>
-            <option value="gra">Grade</option>
-          </select>
         </div>
-        <Card style={{width: "100%", maxWidth:"100%", minHeight: "10em"}} >
+        <SelectInput style={{width: "50%"}} name={"name"} arr={options} required={true} action={()=>{console.log()}} />
+
+        <Card className="full-width" >
+          <Grid cols="3" >
+            <span className="pointer bold active-tab" >Test Scores</span>
+            <span className="pointer bold">Debt</span>
+            <span className="pointer bold">Test Question</span>
+          </Grid>
+        </Card>
+
+
+        <Card className="full-width" style={{minHeight: "10em"}} >
         <Chart
           width={'100%'}
           style={{maxWidth:"80vw"}}
           height={'300px'}
           chartType="BarChart"
-          loader={<div>Loading Chart</div>}
+          loader={<Loader />}
           data={[
             ['Demographics', 'Pretest', 'PostTest'],
             ['Freshmen', 80, 35],
@@ -56,7 +61,7 @@ const AdminPanel = ()=>{
 
         </Card>
 
-        <Card style={{width: "100%", maxWidth:"100%", minHeight: "10em"}} >
+        <Card className="full-width" style={{minHeight: "10em"}} >
         <Chart
           width={'100%'}
           style={{maxWidth:"80vw"}}
