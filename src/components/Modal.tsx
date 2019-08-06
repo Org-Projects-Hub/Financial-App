@@ -48,7 +48,7 @@ height: 3em;`;
   const Modal = ({text, close}: {text: any, close: any}) =>
       (
         <Wrapper><ReactCSSTransitionGroup
-        transitionName="example"
+        transitionName="pop"
         transitionAppear={true}
         transitionAppearTimeout={500}
          transitionLeaveTimeout={300}
