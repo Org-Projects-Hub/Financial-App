@@ -11,15 +11,14 @@ const Wrapper = styled.div`
 
 
 const ClassDiv = styled.div`
+    margin: 0px 20%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 2%;
-    max-width: 600px;
     background: white;
     cursor: pointer;
     border: 2px solid blue;
     border-radius: 1em;
-    overflow: hidden;
     transition: box-shadow 500ms;
 
     &:hover {
@@ -30,7 +29,7 @@ const ClassDiv = styled.div`
 const Item1 = styled.div`
     text-align: left;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
 
 `;
 
@@ -42,8 +41,9 @@ const Item2 = styled.div`
 
 const Item3 = styled.div`
     text-align: right;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-column-end: 6;
+    grid-row-start: 3;
     font-style: italic;
     color: green;
 `;
@@ -66,18 +66,18 @@ const Item5 = styled.div`
 `;
 
 const Item6 = styled(Item5) `
-            grid-column-start: 3;
-            grid-column-end: 4;
-            text-align: center;
-            border-radius: 0.5em;
-            color: white;
-            background-color: #36c459;
-            transition: transform 750ms;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: center;
+    border-radius: 0.5em;
+    color: white;
+    background-color: #36c459;
+    transition: transform 750ms;
 
-            &:hover {
-                transform: scale(1.2);
-            }
-        `;
+    &:hover {
+        transform: scale(1.2);
+    }
+`;
 
 
 
@@ -87,25 +87,24 @@ const Class = (props: any) => {
 
     return(
         <Wrapper>
+            <div style={{width: '100%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
             {
                 props.userObj.accountType === 'teacher' ?  
 
-                <div style={{width: '58%', display: 'inline-block', borderRadius: '1em'}}>
-                    <Link to={`/classDashboard/${props.classObj.id}`}>
-                        <ClassDiv>
-                                <Item1>
-                                    <p>{props.classObj.className}</p>
-                                    <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
-                                    <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
-                                    <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
-                                </Item1>
+                <Link to={`/classDashboard/${props.classObj.id}`}>
+                    <ClassDiv>
+                        <Item1>
+                            <p>{props.classObj.className}</p>
+                            <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
+                            <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
+                            <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
+                        </Item1>
 
-                                <Item2><p>Code: {props.classObj.classCode}</p></Item2>
-                                <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
-                            
-                        </ClassDiv>
-                    </Link> 
-                </div>
+                        <Item2><p>Code: {props.classObj.classCode}</p></Item2>
+                        <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
+                        
+                    </ClassDiv>
+                </Link> 
                 :
                 props.userObj.accountType === 'student' ? 
                     <ClassDiv>
@@ -122,10 +121,18 @@ const Class = (props: any) => {
                     </ClassDiv>
                     :
                     <ClassDiv>
-                        <p>{props.key}</p>
+                        <Item4>Simulation #{props.num}</Item4>
+                        <Item1>
+                            <p>Pre-Test: #/#</p>
+                            <p>Simulation: #/#</p>
+                            <p>Post-Test: #/#</p>
+                        </Item1>
+                        <Item3>This simulation was completed on </Item3>
+
                     </ClassDiv>
 
             }  
+            </div>
         </Wrapper>
 
         

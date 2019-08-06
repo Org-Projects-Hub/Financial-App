@@ -5,7 +5,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Account from './Account'
-import changeStatus from '../pages/Signup';
 import { Wrapper, Card, Grid, GridRow } from '../style/styled';
 import Admin from '../assets/admin.png';
 import User from '../assets/user.png';
@@ -17,6 +16,16 @@ const MyCard = styled(Card)`
       filter: drop-shadow(1px 1px 4px #0093DD);
       transition: 200ms ease-out;
   }`;
+
+  const Header = styled.h3`
+  background: -webkit-linear-gradient(-150deg, #4fc3f7, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  line-height: 0.75;
+  text-transform: uppercase;
+  color: #a483c5;
+  `;
 
 const MyWrapper = styled(Wrapper)`
 background-color: #ffffff;
@@ -34,7 +43,7 @@ return(
   {admin == null ?
   <MyWrapper color="radial-gradient(to bottom, #733DEB, #24F195)" >
    <GridRow rows="3" style={{maxHeight: "98vh"}}>
-        <h3 className="center txt-green">Choose your Account Type:</h3>
+        <Header className="center txt-green">Choose your Account Type:</Header>
         <Grid cols="2">
           <MyCard className="justify-end" onClick={makeAdmin}>
             <img  className="icon-md" src={Admin} alt="user"/>

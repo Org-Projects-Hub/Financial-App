@@ -5,7 +5,7 @@ import SignupItem from './SignupItem';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {nameTest, usernameTest , emailTest, passwordTest, numberTest} from '../utils/utils';
 import api from '../api';
-import {Modal} from './index';
+import {Modal, Hints} from './index';
 
         const Header = styled.div`
         font-size: 200%;
@@ -13,7 +13,14 @@ import {Modal} from './index';
         font-weight: bolder:
         text-align: center;
         padding-bottom: 5%;
-        align-items: center;`;
+        align-items: center;
+        background: -webkit-linear-gradient(-150deg, #4fc3f7, #006666);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        line-height: 0.75;
+        color: #a483c5;
+        `;
         const Arrow = styled.button`
         border: 0;
         display: inline-block;
@@ -21,6 +28,7 @@ import {Modal} from './index';
         padding: .8em;
         font-weight: bolder;
         color: white;
+        margin: .5em 0;
         background: #00bfa5`;
 
         const MyWrapper = styled(Wrapper)`
@@ -32,6 +40,7 @@ import {Modal} from './index';
         `;
 const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
        const [state, setState] = useState(0);
+       const [clicked, setClicked] = useState(false)
        const [modal, setModal] = useState(false);
        const [valid, setValid] = useState(false);
        const [firstName, setFirstName] = useState("");
@@ -46,8 +55,6 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                 api.signup(obj)
                                 .then(res => {
                                     if (res.success) {
-                                     alert(res.message);
-
                                      loggedin(res.token, res.user);
                                     } else {
                                       alert(res.message);
@@ -63,11 +70,13 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                     {header: "Enter your Password", type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password}
                     ];
 
-          const nextInput = ()=>{
+          const nextInput = () =>{
                               if(state < (el.length - 1)){
                                 if(el[state].handler(el[state].value)){
-                                      setState(state + 1);
-                                      setValid(el[state + 1].handler(el[state + 1].value))
+                                      setValid(el[state + 1].handler(el[state + 1].value));
+                                        setState(state + 1);
+                                      setClicked(true);
+                                        setTimeout(()=>setClicked(false), 700);
                                   }
                                   else{setModal(true);
                                  }
@@ -75,33 +84,36 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                 SignupAPI()
                               }
                             }
+
+        const prevInput = () => {
+                            if(state > 0){
+                                setValid(el[state - 1].handler(el[state - 1].value));
+                                setState(state - 1);
+                                setClicked(true);
+                                setTimeout(()=>setClicked(false), 700);
+                              }
+                              else{
+                                  clearAdmin();
+                              }
+                        }
             return(
             <MyWrapper className="center">
               {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
-              <Card style={{minWidth: "400px"}} >
-                      <Arrow  onClick={()=>{if(state > 0)
-                                            {setState(state - 1)
-                                               setValid(el[state - 1].handler(el[state - 1].value))
-                                            }
-                                            else{
-                                                clearAdmin();
-                                            }
-                                      }}>
+              <Card className={clicked? "flip": ""}   style={{minWidth: "320px", maxWidth: "98vw"}} >
+                      <Arrow  onClick={prevInput}>
                         <i className="fas fa-arrow-left"></i>
                       </Arrow>
 
                       <Header> {el[state].header} </Header>
 
-
                        <SignupItem {...el[state]} valid={valid} setValid={setValid} nextInput={nextInput}/>
 
-
-
                        <div className="center bold txt-green">{`${state + 1} of ${el.length}`}</div>
-                    {state < (el.length - 1) ?<Arrow className="right" onClick={nextInput}>
+                    {state < (el.length - 1) ? <Arrow className="right" onClick={nextInput}>
                         <i className="fas fa-arrow-right"></i>
                     </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
                 </Card>
+                <Hints msg={["Welcome to FinApp!","Please enter all your information correctly to access the app."]}/>
               </MyWrapper>
             )
 };

@@ -5,7 +5,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import {Card, Grid} from '../style/styled';
-
+import api from '../api';
 /**
  * Question.tsx
  *
@@ -29,23 +29,37 @@ const Span = styled.div`
 `;
 
 const Question = (props: any)=>{
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState(null);
+
+  const SubmitAnswer = (answer : string, id: string)=>{
+                  const obj = {answer: answer, q_id: id};
+                           console.log(obj);
+                           api.answer(obj)
+                           .then(res => {
+                               if (res.success) {
+                                  console.log("success")
+                               } else {
+                              //   alert(res.message);
+                               }
+                             })
+                             .catch(err => console.log(err));
+
+                       };
 
   return (
     <Card>
       <Wrapper>
         <Span>{props.q}</Span>
-        {console.log(props)}
-        
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
               aria-label="answers"
               name={props.id.toString()}
-              value={answer}
+              value={answer || ''}
               onChange={(e: any)=>{setAnswer(e.target.value)
                         // Fetch to backend here
-                        console.log(`answer is ${e.target.value}`)
+                        SubmitAnswer(e.target.value, props.id);
+
               }}
             >
               {/** Map each answer to radio button */}
