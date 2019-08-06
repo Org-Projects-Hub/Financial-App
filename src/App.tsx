@@ -84,9 +84,8 @@ export default class App extends React.Component <{}, Props>{
            :<Switch>
             <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
 
-            <Route path="/login" render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
+            <Route render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
             
-            <Route render={() => <Home user={this.state.user}/>}/>
 
             </Switch>
           }

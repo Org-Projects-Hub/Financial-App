@@ -9,7 +9,8 @@ import Results from './Results';
 import Students from './Students';
 import Modal from './Modal'
 import Hints from './Hints';
-import SelectInput from './SelectInput'
-import Slider from './Slider'
+import SelectInput from './SelectInput';
+import Slider from './Slider';
+import Login from './Login';
 
-export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students, Modal, Hints, SelectInput, PrePostTest, Slider};
+export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students, Modal, Hints, SelectInput, PrePostTest, Slider, Login};

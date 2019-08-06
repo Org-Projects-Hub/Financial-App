@@ -1,39 +1,53 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import './Startpage.css';
-import LoginLogo from '../assets/images/UnitedWayLogo.png';
+import '../pages/Startpage.css';
+import Logo from '../assets/images/UnitedWayLogo.png';
 import HomePageBackgroundImage from '../assets/images/homepage-background.jpg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import {Wrapper, Banner, Logo, Desc, Login, Button, Background} from '../style/home';
-import {Card} from '../style/styled';
-import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
+
+
+const Wrapper = styled.div`
+  //  background-color: #dde1ea;
+  display: grid;
+  height: 100vh;
+  grid-template-columns:1fr;
+  place-items: center;
+  justify-items: center;
+
+
+  `;
+
+
+  const HomePageWithBgImg = styled(Wrapper)`
+  background: url(${HomePageBackgroundImage});
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  background-attachment:fixed;
+
+`;
 
 
 
-const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
+
+const HomeWrapper = styled(Wrapper)`
+margin:0;
+background-color:none;
+`;
+
+
+const Login = ({login, loggedin}:{login: any, loggedin: any})=>
 {
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
 
 return(
-              <Wrapper>
-
-                <Banner>TEST</Banner>
-
-                <Logo href="http://www.unitedwaynela.org/"> <img style={{height:"90%", objectFit: "contain"}} src={bannerlogo} /></Logo>
-
-                <Desc>
-                <Card style={{height: "90%", backgroundColor: "#84CEFA"}}>
-                  Here is a description of Dollars and $ense, what this app is about, why it was created, and what you will learn.
-                </Card>
-                </Desc>
-
-                <Login>
+              <HomePageWithBgImg>
+                  <HomeWrapper>
                     <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
                       <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
                           <div className="row card full-on-mobile">
                           <div className="card-image " style={{padding:"2em"}}>
-                              <img src={LoginLogo} alt="Origin Logo"/>
+                              <img src={Logo} alt="Origin Logo"/>
                         </div>
                           <div className="">
                             <div className="row card-content">
@@ -60,10 +74,7 @@ return(
                           </div>
                         </form>
                     </div>
-                    </Login>
-                  </Wrapper>
+                    </HomeWrapper>
                   
-                  
-                  
-                  );}
-export default Startpage;
+                </HomePageWithBgImg>);}
+export default Login;
