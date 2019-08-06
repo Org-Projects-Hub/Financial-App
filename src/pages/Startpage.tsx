@@ -25,7 +25,7 @@ return(
                       <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
                           <div className="row card full-on-mobile">
                           <div className="card-image " style={{padding:"2em"}}>
-                              <img src={Logo} alt="LSBDC Logo"/>
+                              <img src={Logo} alt="Origin Logo"/>
                         </div>
                           <div className="">
                             <div className="row card-content">
