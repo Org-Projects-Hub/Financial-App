@@ -40,12 +40,15 @@ const Wrapper = styled.div`
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   min-height: 100vh;
   width: 100%;
+  min-width: 320px;
+  max-width: 100vw;
   text-align: center;
   padding: .3em 1em;
   padding-left: 55px;
   background: ${props => props.color};
-  @media(max-width: 600px){
+  @media(max-width: 879px){
   width: 100%;
+  padding-bottom: 5em;
   padding-left: 1em;}
 `;
 

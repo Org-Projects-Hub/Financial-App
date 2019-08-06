@@ -3,7 +3,7 @@ import Tests from './Tests.json';
 import Question from './Question';
 import { getThemeProps } from '@material-ui/styles';
 import {Card} from '../style/styled';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 /**
  * Test.tsx
  *
@@ -18,9 +18,17 @@ const Test = (props: any)=>
     const questions = props.testType === 'pretest'?  Tests.testType.pretest.questions : Tests.testType.posttest.questions;
     const answers = props.testType === 'pretest'?  Tests.testType.pretest.answers : Tests.testType.posttest.answers;
     return(
-      <>
+      <>   <ReactCSSTransitionGroup
+         transitionName="slide"
+         transitionAppear={true}
+         transitionAppearTimeout={8000}
+         transitionEnterTimeout={800}
+         transitionLeaveTimeout={300}
+         transitionEnter={true}
+         transitionLeave={false}>
           {questions.map((question, i) =>
           <Question {...question} answers={answers} key={i}/>)}
+           </ReactCSSTransitionGroup>
       </>
     );
   }
