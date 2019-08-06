@@ -7,7 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 /**
  * Test.tsx
  *
- * @desc: Called by [Pretest].  Determines which test will be loaded based on testType prop.
+ * @desc: Called by [PrePostTest].  Determines which test will be loaded based on testType prop.
  * @param {any} props - contains prop(s): testType - determines which test questions/answers to render.
  * @return TSX to be rendered.
  */
