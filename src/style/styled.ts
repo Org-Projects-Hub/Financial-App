@@ -12,49 +12,6 @@ const Badge = styled.div`
   text-align: center;
   font-weight: bolder
   background: ${props => props.color};
-<<<<<<< HEAD
-  `;
-
-  const Card = styled.div`
-  border-top: 1px solid #2B547E;
-   margin: 1em 0.5em;
-   padding: .8em 1em;
-   background: white;
-   box-shadow: 0 .25em .5em rgba(0,0,0,.5);
-   border-radius: .5em;
-  `;
-
-  const Grid = styled.div<{cols: string}>`
-   display: grid;
-   place-items: center;
-   grid-gaps: 1em;
-   width: 50vh;
-   grid-template-columns: repeat(${props => props.cols}, 1fr);
-  `;
-
-
-    const GridRow = styled.div<{rows: string}>`
-    display: grid;
-    place-items: center;
-     grid-template-rows: repeat(${props => props.rows}, 1fr);
-    `;
-
-  const Wrapper = styled.div`
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-    min-height: 100vh;
-    width: 100%;
-    text-align: center;
-    padding: .3em 1em;
-    padding-left: 55px;
-    background: ${props => props.color};
-    @media(max-width: 600px){
-    width: 100%;
-    padding-left: 1em;}
-    `;
-
-
-  export {Card, Badge, Grid, GridRow, Wrapper};
-=======
 `;
 
 const Card = styled.div`
@@ -211,4 +168,3 @@ const TakeSim = styled(Button)`
 `;
 
 export {Card, Badge, Grid, GridRow, Wrapper, Border, Container, Button, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim};
->>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4

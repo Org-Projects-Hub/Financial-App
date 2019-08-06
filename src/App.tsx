@@ -68,11 +68,7 @@ export default class App extends React.Component <{}, Props>{
             {this.state.loggedin ?
               <div className={this.state.showNav? "grid-main": ""}>
             <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
-<<<<<<< HEAD
-           
-=======
             {this.state.modal && <Modal text={`Welcome to Fin App! Head on to the Simulation when you are ready`} close={close}/ >}
->>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4
             <Switch>
 
             <Route path="/classes" render={() => <UserStartPage user={this.state.user}/>} />

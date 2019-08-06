@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-<<<<<<< HEAD
-
-//REMOVED DISPLAY
-=======
 import {Hints} from './index';
->>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4
 const Nav = styled.div`
   top: 0em;
   height: 100vh;

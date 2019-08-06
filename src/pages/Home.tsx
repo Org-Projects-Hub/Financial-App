@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
 import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Slider} from '../components';
@@ -18,14 +17,12 @@ const Wrapper = styled.div`
   grid-template-rows: 15% repeat(4, 1fr);
   align-items: stretch;
   place-items: stretch;
-  box-shadow: 0px 0px 20px 5px gray;
   margin: 0 15%;
-  background-color: #f1f1f1;
   `;
 
 
 const Banner = styled.img`
-grid-column: 2 / span 3;
+grid-column: 1 / span 5;
 grid-row: 1 / span 1;
 justify-self: stretch;
 align-self: stretch;
@@ -75,18 +72,13 @@ background-color: rgb(0, 40, 133);
 }
 `;
 
-const Border = styled.div`
-    margin: 0px;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+const Background = styled.div`
+background: linear-gradient(to right, #1e5799 0%,#207cca 50%,#7db9e8 100%);
 `;
 
-
 const Home = ({user}:{user: any})=>
-<Border>
+<Background>
 <Wrapper>
-
-    
       <Banner src={banner}/>
 
       <Logo href="http://www.unitedwaynela.org/"> <img style={{height:"90%", objectFit: "contain"}} src={logo} /></Logo>
@@ -110,20 +102,6 @@ const Home = ({user}:{user: any})=>
       </Login>
 
 </Wrapper>
-</Border>
-=======
-import { Header } from '../components';
-import {Wrapper} from '../style/styled';
-import { Link } from 'react-router-dom';
-
-const Home = ({user}:{user: any} )=>
-
-  <Wrapper color="linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)" ><Header />
-    <div className="top">Hello, {user.firstName}</div>
-    <i className="fas fa-igloo txt-xl"></i>
-    <h1>Home</h1>
-    <Link to="/admin-pannel"><button className="btn">Go to Admin Page</button></Link>
-  </Wrapper>;
->>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4
+</Background>
 
 export default Home;

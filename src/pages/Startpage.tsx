@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 100vh;
   grid-template-columns:1fr;
   place-items: center;
-  justify-items: end;
+  justify-items: center;
 
   `;
 
