@@ -1,92 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Students} from '../components';
-import { users, classes } from '../fakeJson';
+import { classes } from '../fakeJson';
 import { Link } from 'react-router-dom';
-
-const BackButton = styled.button`
-    text-align: center;
-    border-radius: 0.5em;
-    font-size: 120%;
-    width: 10%;
-    padding: 1%;
-    position: fixed;
-    top: 5%;
-    left: 6%;
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.25);
-    }
-
-`;
-
-const AddStudent = styled.button`
-    color: white;
-    background-color: #d67762;
-    text-align: center;
-    border-radius: 0.5em;
-    font-size: 120%;
-    width: 10%;
-    padding: 1%;
-    position: fixed;
-    bottom: 10%;
-    right: 2%;
-
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.25);
-    }
-
-`;
+import SettingsGear from '../assets/images/settingsGear.png';
+import { Border, Container, SettingsButton, AddStudent, BackButton} from '../style/styled';
 
 
-const SettingsButton = styled.button`
-    border: 0;
-    position: fixed;
-    top: 5%;
-    right: 4.5%;
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.5);
-    }
-
-`;
-
-const Border = styled.div`
-    margin: 0px;
-    background-color: #f1f1f1;
-    min-height: 100vh;
-
-`;
-
-const Container = styled.div`
-    padding: 2% 0px;
-    margin: 0px 15%;
-    background-color: white;
-    min-height: 100vh;
-    text-align: center;
-    box-shadow: 0px 0px 20px 5px gray;
-
-`;
 
 const ClassTitle = styled.div`
     text-align: center;
     font-size: 200%;
-
 `;
 
 
 
-
+// This component is strcitly for the teachers to control whats going on with each class, when a teacher clicks on a class this is what pops up.
 const ClassDashboard = (props : any) => {
 
-
+    // Getting the class id from the URL
     const url = window.location.href;
     const slash = url.lastIndexOf("/");
 
+    // Loops through the classes array and returns the data associated with that class. If the class doesn't exist, throw an error.
     function getUser(classID: any)
     {
         for (let x = 0; x < classes.length; x++)
@@ -102,7 +38,6 @@ const ClassDashboard = (props : any) => {
 
     const classs = getUser(url.substring(slash+1));
 
-
     if (classs === -1)
     {
         throw new Error("Class Not Found");
@@ -113,18 +48,20 @@ const ClassDashboard = (props : any) => {
     return(
 
         <Border>
-            <Link to="/classes"><BackButton>&lt; Back</BackButton></Link>
-            <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
-            <AddStudent>Add Student</AddStudent>
-
             <Container>
                 <ClassTitle>{classs.className}</ClassTitle>
                 <p style={{fontSize: '125%'}}>Code: {classs.classCode}</p>
 
+                {/* Passes the appropriate array of student username's to the Students component */}
                 <Students array={classs.requests} title='Needs Confirming'></Students>
                 <Students array={classs.registered} title='Registered'></Students>
                 <Students array={classs.completed} title='Completed'></Students>
 
+                {/* Buttons for navigation */}
+                <AddStudent>Add Student</AddStudent>
+                <div style={{width: "100%"}}><Link to="/classes"><BackButton>&lt; Back</BackButton></Link></div>
+                <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div>
+                
             </Container>
         </Border>
     );

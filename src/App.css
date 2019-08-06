@@ -18,7 +18,6 @@ background-position: bottom right;
 }
 
 
-
 a, a:visited {
   color: inherit;
 }
@@ -114,6 +113,18 @@ place-items: center;
   vertical-align: middle;
 }
 
+.ta-right {
+  text-align: right;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.ta-left {
+  text-align: left;
+}
+
 .centered{
   display: block;
   margin: auto;
@@ -129,6 +140,10 @@ place-items: center;
 }
 .capitalize{
    text-transform: capitalize;
+}
+
+.txt-italic {
+  font-style: italic;
 }
 
 .active-tab {

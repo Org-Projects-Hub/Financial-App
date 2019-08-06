@@ -64,7 +64,7 @@ const Question = (props: any)=>{
             >
               {/** Map each answer to radio button */}
               {props.answers.map((answer: string, i: any) =>
-                    <Div>
+                    <Div key ={i}>
                       <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
                     </Div>
               )}
