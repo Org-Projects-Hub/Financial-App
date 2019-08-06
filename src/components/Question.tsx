@@ -5,6 +5,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import {Card, Grid} from '../style/styled';
+import api from '../api';
+/**
+ * Question.tsx
+ *
+ * @desc: Called by [Test]. Takes the question and answers from props.
+ * @param {any} props - contains prop(s): id - question number, q - question string
+ * @return TSX to be rendered.
+ */
 
 const Wrapper = styled.div`
   display: block;
@@ -21,32 +29,48 @@ const Span = styled.div`
 `;
 
 const Question = (props: any)=>{
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState(null);
+
+  const SubmitAnswer = (answer : string, id: string)=>{
+                  const obj = {answer: answer, q_id: id};
+                           console.log(obj);
+                           api.answer(obj)
+                           .then(res => {
+                               if (res.success) {
+                                  console.log("success")
+                               } else {
+                              //   alert(res.message);
+                               }
+                             })
+                             .catch(err => console.log(err));
+
+                       };
 
   return (
     <Card>
       <Wrapper>
         <Span>{props.q}</Span>
-        {console.log(props)}
-      <Grid cols="1">
-        <div style={{width: "60%"}}  className="justify-end">
-        <RadioGroup
-          aria-label="answers"
-          name={props.id.toString()}
-          value={answer}
-          onChange={(e: any)=>{setAnswer(e.target.value)
-                    // Fetch to backend here
-                    console.log(`answer is ${e.target.value}`)
-          }}
-        >
-          {props.answers.map((answer: string, i: any) =>
-                <Div>
-                  <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
-                </Div>
-          )}
-        </RadioGroup>
-        </div>
-      </Grid>
+        <Grid cols="1">
+          <div style={{width: "57%"}}  className="justify-end">
+            <RadioGroup
+              aria-label="answers"
+              name={props.id.toString()}
+              value={answer || ''}
+              onChange={(e: any)=>{setAnswer(e.target.value)
+                        // Fetch to backend here
+                        SubmitAnswer(e.target.value, props.id);
+
+              }}
+            >
+              {/** Map each answer to radio button */}
+              {props.answers.map((answer: string, i: any) =>
+                    <Div>
+                      <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
+                    </Div>
+              )}
+            </RadioGroup>
+          </div>
+        </Grid>
       </Wrapper>
     </Card>
   )

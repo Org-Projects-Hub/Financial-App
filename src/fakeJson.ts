@@ -1,5 +1,6 @@
 import { register } from "./serviceWorker";
 
+<<<<<<< HEAD
 const projects = [{
   title: "Cool Project",
   status: "Testing",
@@ -113,6 +114,8 @@ user = ({
 });
 
 */
+=======
+>>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4
 
 const classes = [
   {
@@ -134,6 +137,26 @@ const classes = [
     completed: ['KilUm'],
     createdOn: '07/09/19',
     archiveOn: '11/09/19'
+  }, 
+  {
+    id: 'efrf',
+    classCode: 'cccnnw',
+    className: '',
+    requests: [''],
+    registered: ['WaynesWorld'],
+    completed: [''],
+    createdOn: '10/10/19',
+    archiveOn: ''
+  }, 
+  {
+    id: 'hhhwww',
+    classCode: 'wwtyuf',
+    className: '',
+    requests: [''],
+    registered: ['WaynesWorld'],
+    completed: [''],
+    createdOn: '10/10/19',
+    archiveOn: ''
   }
 ];
 
@@ -145,9 +168,9 @@ const users = [
     firstName: 'Jessica',
     lastName: 'Bridges',
     accountType: 'teacher',
-    age: '',
+    age: '30',
     grade: '',
-    email: '',
+    email: 'JessieB@MCSTeacher.com',
     classIds: ['lkjlkijlkj','bubsubdub']
   },
   {
@@ -182,9 +205,20 @@ const users = [
     grade: 'Sophomore',
     email: 'KilUm@MCSstudent.com',
     classIds: ['lkjlkijlkj','bubsubdub']
+  },
+  {
+    username: 'WaynesWorld',
+    accountId: 'yojoijy',
+    firstName: 'Louis',
+    lastName: 'Wayne',
+    accountType: 'other',
+    age: '28',
+    grade: '',
+    email: 'www@icloud.com',
+    classIds: ['efrf','hhhwww']
   }
 ];
 
 
 
-export {projects, employees, users, classes};
+export {users, classes};

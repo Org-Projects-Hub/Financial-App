@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SignupItem = ({type, placeholder, handler, className, set, value}:any)=>
+const SignupItem = ({type, placeholder, handler, className, set, value, setValid, valid, nextInput}:any)=>
 {
 
-  const ref = React.createRef<HTMLInputElement>();
-  const [valid, setValid] = useState(false);
-
   return (
-
     <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
-        <input  type={type} ref={ref} placeholder={placeholder} onChange={(e)=>{setValid(handler(e.target.value));
-                                                                                set(e.target.value)
+        <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{
+                                                                                let temp = e.target.value.trim().toLowerCase();
+                                                                                setValid(handler(temp));
+                                                                                set(temp)
                                                                           }}
+                                                                   onKeyDown ={ (e)=>{ if(e.keyCode === 13){
+                                                                                nextInput();
+                                                                   }}}
             />
 
         {!valid && value !== "" && <span className="txt-red">
@@ -23,7 +24,6 @@ const SignupItem = ({type, placeholder, handler, className, set, value}:any)=>
                         <i className="material-icons justify-end">done</i>{`${placeholder} is Valid`}
                       </span>}
     </div>
-
   )
 }
 

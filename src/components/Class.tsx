@@ -1,27 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { classes } from '../fakeJson';
-
 
 
 
 const Wrapper = styled.div`
     margin: 2em 0;
+    text-align: center;
 `;
 
 
 const ClassDiv = styled.div`
+    margin: 0px 20%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin: 0px 20%;
     padding: 2%;
-    max-width: 600px;
     background: white;
     cursor: pointer;
     border: 2px solid blue;
     border-radius: 1em;
-    overflow: hidden;
     transition: box-shadow 500ms;
 
     &:hover {
@@ -32,7 +29,7 @@ const ClassDiv = styled.div`
 const Item1 = styled.div`
     text-align: left;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
 
 `;
 
@@ -44,8 +41,9 @@ const Item2 = styled.div`
 
 const Item3 = styled.div`
     text-align: right;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-column-end: 6;
+    grid-row-start: 3;
     font-style: italic;
     color: green;
 `;
@@ -60,14 +58,20 @@ const Item4 = styled.div`
 const Item5 = styled.div`
     padding: 0;
     margin-top: 5%;
-    text-align: center;
+    text-align: right;
     grid-row-start: 2;
+    grid-column-start: 4;
+    grid-column-end: 6;
+    font-size: 125%;
+`;
+
+const Item6 = styled(Item5) `
     grid-column-start: 3;
     grid-column-end: 4;
+    text-align: center;
     border-radius: 0.5em;
-    font-size: 125%;
-    background-color: #36c459;
     color: white;
+    background-color: #36c459;
     transition: transform 750ms;
 
     &:hover {
@@ -83,38 +87,55 @@ const Class = (props: any) => {
 
     return(
         <Wrapper>
+            <div style={{width: '100%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
             {
-                props.accountType === 'teacher' ?  
+                props.userObj.accountType === 'teacher' ?  
 
-                    <Link to={`/classDashboard/${props.classObj.id}`}>
-                        <ClassDiv>
-                                <Item1>
-                                    <p>{props.classObj.className}</p>
-                                    <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
-                                    <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
-                                    <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
-                                </Item1>
+                <Link to={`/classDashboard/${props.classObj.id}`}>
+                    <ClassDiv>
+                        <Item1>
+                            <p>{props.classObj.className}</p>
+                            <p>Requests: {props.classObj.requests.indexOf('') != -1 ? 0 : props.classObj.requests.length}</p>
+                            <p>Registered: {props.classObj.registered.indexOf('') != -1 ? 0 : props.classObj.registered.length}</p>
+                            <p>Completed: {props.classObj.completed.indexOf('') != -1 ? 0 : props.classObj.completed.length}</p>
+                        </Item1>
 
-                                <Item2><p>Code: {props.classObj.classCode}</p></Item2>
-                                <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
-                            
-                        </ClassDiv>
-                    </Link> 
-                
+                        <Item2><p>Code: {props.classObj.classCode}</p></Item2>
+                        <Item3><p>This class will archive on {props.classObj.archiveOn}</p></Item3>
+                        
+                    </ClassDiv>
+                </Link> 
+                :
+                props.userObj.accountType === 'student' ? 
+                    <ClassDiv>
+                        <Item4><p>{props.classObj.className}</p></Item4>
+                        {props.classObj.completed.indexOf(props.userObj.username) === -1 ? 
+                            <Item6>
+                                <Link to={'/Simulation'}>
+                                    <div style={{textAlign: 'center'}}>Start</div>
+                                </Link> 
+                            </Item6>
+                            :
+                            <Item5><div style={{textAlign: 'right', fontStyle: 'italic'}}>Completed</div></Item5>
+                        }
+                    </ClassDiv>
+                    :
+                    <ClassDiv>
+                        <Item4>Simulation #{props.num}</Item4>
+                        <Item1>
+                            <p>Pre-Test: #/#</p>
+                            <p>Simulation: #/#</p>
+                            <p>Post-Test: #/#</p>
+                        </Item1>
+                        <Item3>This simulation was completed on </Item3>
 
-                : 
-                
-                <ClassDiv>
-                    <Item4><p>{props.classObj.className}</p></Item4>
-                    <Item5>
-                        <Link to={'/Simulation'}>
-                            <div style={{textAlign: 'center'}}>Start</div>
-                        </Link>
-                    </Item5>
-                </ClassDiv>
+                    </ClassDiv>
 
             }  
+            </div>
         </Wrapper>
+
+        
     );
 };
 

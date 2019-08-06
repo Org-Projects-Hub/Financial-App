@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * Results.tsx
+ *
+ * @desc: Called by [Pretest]/[Posttest]. Displays results of test.
+ * @return TSX to be rendered.
+ */
+
 const Wrapper = styled.div`
 
 `;

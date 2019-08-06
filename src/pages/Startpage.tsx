@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   height: 100vh;
   grid-template-columns:1fr;
   place-items: center;
+  justify-items: end;
+
   `;
 
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
@@ -50,6 +52,5 @@ return(
                           </div>
                         </form>
                     </div>
-
                     </Wrapper>);}
 export default Startpage;

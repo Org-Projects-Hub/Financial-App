@@ -59,7 +59,7 @@ const Border = styled.div`
     margin: 0px;
     background-color: #f1f1f1;
     min-height: 100vh;
-    
+
 `;
 
 const Container = styled.div`
@@ -86,7 +86,7 @@ const ClassDashboard = (props : any) => {
 
     const url = window.location.href;
     const slash = url.lastIndexOf("/");
-    
+
     function getUser(classID: any)
     {
         for (let x = 0; x < classes.length; x++)
@@ -99,7 +99,7 @@ const ClassDashboard = (props : any) => {
 
         return -1;
     }
-    
+
     const classs = getUser(url.substring(slash+1));
 
 
@@ -107,11 +107,11 @@ const ClassDashboard = (props : any) => {
     {
         throw new Error("Class Not Found");
     }
-            
+
 
 
     return(
-        
+
         <Border>
             <Link to="/classes"><BackButton>&lt; Back</BackButton></Link>
             <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
@@ -124,11 +124,10 @@ const ClassDashboard = (props : any) => {
                 <Students array={classs.requests} title='Needs Confirming'></Students>
                 <Students array={classs.registered} title='Registered'></Students>
                 <Students array={classs.completed} title='Completed'></Students>
-                
+
             </Container>
         </Border>
     );
 };
 
 export default ClassDashboard;
-

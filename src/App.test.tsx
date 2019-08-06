@@ -17,7 +17,7 @@ it('App renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-type Page = { name: string, jsx: object}; 
+type Page = { name: string, jsx: object};
 const pages: array = [{name:"Startpage", jsx: <Startpage />},
                       {name:"Home", jsx: <Home />},
                       {name: "Setting", jsx:<Setting />},

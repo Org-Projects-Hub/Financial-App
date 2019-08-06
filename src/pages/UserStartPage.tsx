@@ -3,85 +3,24 @@ import styled from 'styled-components';
 import { Class } from '../components';
 import { classes, users } from '../fakeJson';
 import { Link } from 'react-router-dom';
+import SettingsGear from '../assets/images/settingsGear.png';
+import { Border, Container, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim } from '../style/styled';
 
 
-const Border = styled.div`
-    margin: 0px;
-    background-color: #f1f1f1;
-    min-height: 100vh;
-`;
-
-const Container = styled.div`
-    padding: 2% 0px;
-    margin: 0px 15%;
-    background-color: white;
-    min-height: 100vh;
-    text-align: center;
-    box-shadow: 0px 0px 20px 5px gray;
-
-`;
-
-const HomeButton = styled.button`
-    text-align: center;
-    border-radius: 0.5em;
-    font-size: 120%;
-    width: 10%;
-    padding: 1%;
-    position: fixed;
-    top: 5%;
-    left: 6%;
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.25);
-    }
-
-`;
-
-/* const AnotherButton = styled(HomeButton)`
-    
-`; */
-
-const AddClass = styled.button`
-    color: white;
-    background-color: #d6a862;
-    text-align: center;
-    border-radius: 0.5em;
-    font-size: 120%;
-    width: 10%;
-    padding: 1%;
-    position: fixed;
-    bottom: 10%;
-    right: 2%;
-
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.25);
-    }
-
-`;
-
-
-const SettingsButton = styled.button`
-    border: 0;
-    position: fixed;
-    top: 5%;
-    right: 4.5%;
-    transition: transform 750ms;
-
-    &:hover {
-        transform: scale(1.5);
-    }
-
-`;
-
+const JoinClass = styled(AddClass)``;
 
 
 const UserStartPage = (props: any) => {
 
-    //const userName = 'BJones';
-    const userName = 'JessieB';
+    let userName;
+
+    userName = 'BJones'; //requests
+    userName = 'JMe'; //registered
+    userName = 'KilUm'; // registered and completed
+
+    userName = 'JessieB'; //teacher
+
+    userName = 'WaynesWorld'; //other
 
     interface userObject {
         username: string,
@@ -95,9 +34,9 @@ const UserStartPage = (props: any) => {
 
     for (let x = 0; x < users.length; x++) {
         if (users[x].username === userName) {
-            
+
             user = users[x];
-            
+
             for (let y = 0; y < classes.length; y++) {
                 if (user.classIds.indexOf(classes[y].id) != -1) {
                     classObjs.push(classes[y]);
@@ -109,27 +48,51 @@ const UserStartPage = (props: any) => {
     }
 
 
+    let buttonBackgroundColor;
+
+    if (user.accountType === 'teacher') {
+        buttonBackgroundColor = '#649d96';
+    } else if(user.accountType === 'student') {
+        buttonBackgroundColor = '#d6a862';
+    } else {
+        buttonBackgroundColor = '#ffa51a';
+    }
+
+
     return(
         <Border>
-                <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
-                <Link to="/setting"><SettingsButton><i style={{fontSize: '400%', backgroundColor: '#f1f1f1'}} className="fas fa-cog"></i></SettingsButton></Link>
+            <Container>
                 
-                {
-                    user.accountType === 'teacher' ? 
-                    
-                        <AddClass style={{backgroundColor: '#d6a862'}}>Add Class</AddClass> 
-                        : 
-                        <AddClass style={{backgroundColor: '#649d96'}}>Join Class</AddClass>
+                
+                
+                {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) =>
+                    <Class num={index + 1} classObj={cla} accountType={user.accountType} userObj={user} />) 
+                    : 
+                    <div style={{textAlign: 'center', fontSize: '200%'}}>
+                        <p>No classes registered</p>
+                    </div> 
                 }
 
-            <Container>
-                {classObjs.length >= 1 ? classObjs.map((cla: object, index: number) => 
-                    <div key={index}>
-                        <Class classObj={cla} accountType={user.accountType} />
-                    </div>
-                ) : <div></div> }
+
+                <div style={{display: "grid"}}>
+                    {
+                        user.accountType === 'teacher' ?
+
+                            <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
+                            : 
+                            user.accountType === 'student' ?
+                                <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass> 
+                                : 
+                                <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
+                    }
+                    <Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link>
+                    <Link to="/home"><HomeButton>&lt; Home</HomeButton></Link>
+                    <Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link>
+                </div>
+
             </Container>
         </Border>
+
 
     );
 };

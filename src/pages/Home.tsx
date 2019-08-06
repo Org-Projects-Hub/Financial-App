@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Slider} from '../components';
@@ -110,5 +111,19 @@ const Home = ({user}:{user: any})=>
 
 </Wrapper>
 </Border>
+=======
+import { Header } from '../components';
+import {Wrapper} from '../style/styled';
+import { Link } from 'react-router-dom';
+
+const Home = ({user}:{user: any} )=>
+
+  <Wrapper color="linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)" ><Header />
+    <div className="top">Hello, {user.firstName}</div>
+    <i className="fas fa-igloo txt-xl"></i>
+    <h1>Home</h1>
+    <Link to="/admin-pannel"><button className="btn">Go to Admin Page</button></Link>
+  </Wrapper>;
+>>>>>>> 607b11c5a26f3ba0aebb669a16e456168cd74eb4
 
 export default Home;
