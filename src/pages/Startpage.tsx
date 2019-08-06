@@ -13,30 +13,25 @@ const Wrapper = styled.div`
   grid-template-columns:1fr;
   place-items: center;
   justify-items: end;
-  
+
 
   `;
 
 
   const HomePageWithBgImg = styled(Wrapper)`
   background: url(${HomePageBackgroundImage});
-  opacity: 0.6;
-  z-index:-5000;
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  background-attachment:fixed;
+
 `;
 
-const HomePageBgOverlay = styled(Wrapper)`
-position:fixed;
-background-color:green;
-z-index:-2000;
-width:100%;
-opacity:0.5;
-`;
+
 
 
 const HomeWrapper = styled(Wrapper)`
 margin:0;
 background-color:none;
-z-index:2000;
 `;
 
 
@@ -47,7 +42,6 @@ const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
 
 return(
               <HomePageWithBgImg>
-                <HomePageBgOverlay></HomePageBgOverlay>
                   <HomeWrapper>
                     <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
                       <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
