@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Avatar from '../assets/helper.png';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
   const Float = styled.div`
   position: fixed;
   bottom: 1em;
   right: 10px;
-    display: grid;
-      grid-template-columns: auto auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  @media (max-height: 600px) {
+         display: none;
+      }
+  @media (max-width: 879px) {
+       display: none;
+    }
   `;
 
   const Message = styled.div`
@@ -39,12 +45,21 @@ const Hints = ({msg} : any)=> {
   }
 
  return(
-      <Float onClick = {increasePointer} className="pointer">
+   <ReactCSSTransitionGroup
+   transitionName="example"
+   transitionAppear={true}
+   transitionAppearTimeout={500}
+   transitionEnterTimeout={500}
+  transitionLeaveTimeout={300}
+   transitionEnter={true}
+   transitionLeave={true}>
+       <Float onClick = {increasePointer} className="pointer">
         <Message>{msg[pointer]}</Message>
         <div>
         <Img src={Avatar} className="icon-sm"/>
         </div>
       </Float>
+ </ReactCSSTransitionGroup>
   );
 }
 
