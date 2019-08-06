@@ -16,19 +16,7 @@ background-position: bottom right;
   color: inherit;
 }
 
-.example-appear {
-  transform: scale(0);
-}
 
-.example-appear.example-appear-active {
-  transform: scale(1);
-  transition: transform .5s ease-in;
-}
-
-@keyframes flip {
-  0%   { }
-  100%  {  transform: rotateY(360deg);}
-}
 
 a, a:visited {
   color: inherit;

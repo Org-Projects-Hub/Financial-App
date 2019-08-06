@@ -46,7 +46,7 @@ const Hints = ({msg} : any)=> {
 
  return(
    <ReactCSSTransitionGroup
-   transitionName="example"
+   transitionName="pop"
    transitionAppear={true}
    transitionAppearTimeout={500}
    transitionEnterTimeout={500}
