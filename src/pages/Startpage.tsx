@@ -2,17 +2,43 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import './Startpage.css';
 import Logo from '../assets/images/UnitedWayLogo.png';
+import HomePageBackgroundImage from '../assets/images/homepage-background.jpg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 
+
 const Wrapper = styled.div`
-  background-color: #dde1ea;
+  //  background-color: #dde1ea;
   display: grid;
   height: 100vh;
   grid-template-columns:1fr;
   place-items: center;
   justify-items: end;
+  
 
   `;
+
+
+  const HomePageWithBgImg = styled(Wrapper)`
+  background: url(${HomePageBackgroundImage});
+  opacity: 0.6;
+  z-index:-5000;
+`;
+
+const HomePageBgOverlay = styled(Wrapper)`
+position:fixed;
+background-color:green;
+z-index:-2000;
+width:100%;
+opacity:0.5;
+`;
+
+
+const HomeWrapper = styled(Wrapper)`
+margin:0;
+background-color:none;
+z-index:2000;
+`;
+
 
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
 {
@@ -20,7 +46,9 @@ const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>
  const [password, setPassword] = useState("");
 
 return(
-                  <Wrapper>
+              <HomePageWithBgImg>
+                <HomePageBgOverlay></HomePageBgOverlay>
+                  <HomeWrapper>
                     <div className="wrapper-item-center"  style={{ width:"100%", maxWidth: "600px" }}>
                       <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
                           <div className="row card full-on-mobile">
@@ -52,5 +80,7 @@ return(
                           </div>
                         </form>
                     </div>
-                    </Wrapper>);}
+                    </HomeWrapper>
+                  
+                </HomePageWithBgImg>);}
 export default Startpage;
