@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom"
 import {Wrapper, Banner, Logo, Desc, Button, Background, LoginPOS} from '../style/home';
 import {Card} from '../style/styled';
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
-import { Login } from '../components'
+import { Login2 } from '../components';
 
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>{
 return(
             <Background>
               <Wrapper>
 
-                <Banner>TEST</Banner>
+                <Banner></Banner>
 
                 <Logo href="http://www.unitedwaynela.org/"> <img style={{height:"90%", objectFit: "contain"}} src={bannerlogo} /></Logo>
 
@@ -23,7 +23,7 @@ return(
                 </Desc>
                 
                 <LoginPOS>
-                  <Login login={login} loggedin={loggedin}/>
+                  <Login2 login={login} loggedin={loggedin}/>
                 </LoginPOS>
 
               </Wrapper>
