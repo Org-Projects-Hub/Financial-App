@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import LoginLogo from '../assets/images/UnitedWayLogo.png';
 import {Card} from '../style/styled';
- 
+ //
 
 const Login = ({login, loggedin}:{login: any, loggedin: any})=>{
  const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ const Login = ({login, loggedin}:{login: any, loggedin: any})=>{
   return(<Wrapper>
           <div className="wrapper-item-center row card" style={{margin: "0"}}>
             <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
-            <div >
+            <div>
                 <div className="card-image ">
                     <img src={LoginLogo} alt="Origin Logo"/>
               </div>
