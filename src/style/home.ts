@@ -48,17 +48,18 @@ font-weight:bolder;
 color: FAB084;
 `;
 
-const Login = styled.div`
+const LoginPOS = styled.div`
 grid-column: 3 / span 1;
-grid-row: 4 / span 1;
-justify-self: center;
+grid-row: 3 / span 1;
 align-self: stretch;
+justify-self: stretch;
+place-self: stretch;
+object-fit: contain;
 `;
 
 const Button = styled.button`
 background-color:blue;
 text-size:1vw;
-
 &:hover{
 background-color: rgb(0, 40, 133);
 }
@@ -68,4 +69,4 @@ const Background = styled.div`
 background: linear-gradient(to right, #1e5799 0%,#207cca 50%,#7db9e8 100%);
 `;
 
-export {Wrapper, Banner, Logo, Desc, Login, Button, Background};
+export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background};
