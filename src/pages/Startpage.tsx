@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom"
 import {Wrapper, Banner, Logo, Desc, Button, Background, LoginPOS} from '../style/home';
 import {Card} from '../style/styled';
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
-import { Login } from '../components'
+import { Login, LoginNumberTwo } from '../components'
 
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>{
 return(
@@ -23,7 +23,8 @@ return(
                 </Desc>
                 
                 <LoginPOS>
-                  <Login login={login} loggedin={loggedin}/>
+                  {/* <Login login={login} loggedin={loggedin}/> */}
+                  <LoginNumberTwo login={login} loggedin={loggedin} />
                 </LoginPOS>
 
               </Wrapper>

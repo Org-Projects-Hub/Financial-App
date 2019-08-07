@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   height: 100vh;
-  text-align: center
+  text-align: center;
   display: grid;
-  min-height:100vh;
+  min-height: 100vh;
   grid-template-columns: 16vw 42vw 42vw;
   grid-template-rows: 10vh 15vh 60vh 5vh auto;
   align-items: stretch;
   place-items: stretch;
-  `;
+`;
 
 
 const Banner = styled.div`
@@ -49,12 +49,9 @@ color: FAB084;
 `;
 
 const LoginPOS = styled.div`
-grid-column: 3 / span 1;
-grid-row: 3 / span 1;
-align-self: stretch;
-justify-self: stretch;
-place-self: stretch;
-object-fit: contain;
+grid-column-start: 3;
+grid-row-start: 3;
+grid-row-end: 5;
 `;
 
 const Button = styled.button`

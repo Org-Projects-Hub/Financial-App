@@ -168,3 +168,19 @@ font-family: arial;
   right: 1em;
   font-weight: bold;
 }
+
+
+.login-form {
+  height: 95%;
+  width: 95%;
+  margin: 2%;
+  text-align: center;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 .25em .5em rgba(0,0,0,.5);
+  border-radius: .5em;
+}
+
+.login-input {
+  width: 90% !important;
+}
