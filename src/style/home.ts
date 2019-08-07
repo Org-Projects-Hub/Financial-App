@@ -52,7 +52,7 @@ const Login = styled.div`
 grid-column: 3 / span 1;
 grid-row: 4 / span 1;
 justify-self: center;
-align-self: end;
+align-self: stretch;
 `;
 
 const Button = styled.button`

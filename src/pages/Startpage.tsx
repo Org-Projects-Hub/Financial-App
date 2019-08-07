@@ -65,8 +65,6 @@ return(
                     </Login>
                   </Wrapper>
                   </Background>
-                  
-                  
-                  
+                
                   );}
 export default Startpage;
