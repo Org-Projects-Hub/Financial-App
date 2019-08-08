@@ -13,6 +13,7 @@ grid-row: 4 / span 1;
 `;
 
 const Home = ({user}:{user: any})=>
+
 <Wrapper>
   <Banner>TEST</Banner>
 
