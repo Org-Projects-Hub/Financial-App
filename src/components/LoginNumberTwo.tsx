@@ -10,10 +10,17 @@ const LoginNumberTwo = ({login, loggedin}:{login: any, loggedin: any})=> {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const Img = styled.img`
+    borderRadius: "1em";
+    padding: "1%";
+    overflow: "hidden";
+    width:auto;
+    width:75%;
+    `;
 
     return (
         <form className="login-form" onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} >
-            <img style={{borderRadius: "1em", padding: "1%"}} src={LoginLogo} alt="Origin Logo"/>
+            <Img src={LoginLogo} alt="Origin Logo"/>
             <input className="login-input" placeholder={"Username or Email"} name="email" onChange={(e: any)=>{setEmail(e.target.value)}}/>
             <input className="login-input" placeholder={"Password"} type="password" name="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
 

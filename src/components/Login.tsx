@@ -11,8 +11,6 @@ const Login = ({login, loggedin}:{login: any, loggedin: any})=>{
 
 
  const Wrapper = styled.div`
- height: 100%;
- width: 100%;
  background: white;
  box-shadow: 0 .25em .5em rgba(0,0,0,.5);
  border-radius: .5em;

@@ -1,23 +1,19 @@
 import React from 'react';
-import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Card} from '../style/styled';
-import {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background} from '../style/home';
+import {Wrapper, Banner, Logo, Desc, LoginPOS, Button} from '../style/home';
 
 
 
 
 const Home = ({user}:{user: any})=>
-<Background>
 <Wrapper>
   <Banner>TEST</Banner>
 
        <Logo href="http://www.unitedwaynela.org/"> <img style={{height:"90%", objectFit: "contain"}} src={logo} /></Logo>
 
       <Desc>
-        <Card style={{height: "90%", backgroundColor: "#84CEFA"}}>
           Here is a description of Dollars and $ense, what this app is about, why it was created, and what you will learn.
-        </Card>
       </Desc>
 
       <LoginPOS>
@@ -25,6 +21,5 @@ const Home = ({user}:{user: any})=>
       </LoginPOS>
 
 </Wrapper>
-</Background>
 
 export default Home;
