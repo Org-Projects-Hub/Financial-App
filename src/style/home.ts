@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import backgroundimg from "../assets/images/velvet-texture.jpg";
+
 
 const Wrapper = styled.div`
   height: 100vh;
   text-align: center;
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 16vw 42vw 42vw;
+  grid-template-columns: 16vw 36vw 36vw 12vw;
   grid-template-rows: 10vh 15vh 60vh 5vh auto;
   align-items: stretch;
   place-items: stretch;
@@ -13,7 +15,7 @@ const Wrapper = styled.div`
 
 
 const Banner = styled.div`
-grid-column: 1 / span 3;
+grid-column: 1 / span 4;
 grid-row: 1 / span 1;
 background-color: rgb(28, 42, 105);
 align-self: stretch;
@@ -63,7 +65,7 @@ background-color: rgb(0, 40, 133);
 `;
 
 const Background = styled.div`
-background: linear-gradient(to right, #1e5799 0%,#207cca 50%,#7db9e8 100%);
+background-image: url(${backgroundimg});
 `;
 
 export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background};
