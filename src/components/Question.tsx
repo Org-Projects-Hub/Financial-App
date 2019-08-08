@@ -32,7 +32,7 @@ const Question = (props: any)=>{
   const [answer, setAnswer] = useState(null);
 
   const SubmitAnswer = (answer : string, id: string)=>{
-                  const obj = {answer: answer, q_id: id};
+                  const obj = {answer: answer, typesType:"preTest", q_id: id};
                            console.log(obj);
                            api.answer(obj)
                            .then(res => {

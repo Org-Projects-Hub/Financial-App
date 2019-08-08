@@ -42,14 +42,13 @@ padding-right:.3vh;
 
 
 const Slider = ()=> {
-
     return(
 
         <Wrapper>
             <Pic>
                 <img style={{height:"100%", width:"100%"}}src="http://harvardecon.org/wp-content/uploads/Ryan-Leung-Financial-Literacy-1038x576.png"/ >
             </Pic>
-            
+
             <Left>
                 <i className="fas fa-arrow-left fa-lg"></i>
             </Left>
