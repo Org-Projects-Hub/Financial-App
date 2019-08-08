@@ -38,7 +38,11 @@ import {Modal, Hints} from './index';
         background-repeat: no-repeat;
         background-position: bottom right;
         `;
+
+// The Account component is used for collecting all the user information, for login, validation, and data analytic purposes
 const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
+    
+       //Hook used for keeping track of what number question the user is on
        const [state, setState] = useState(0);
        const [clicked, setClicked] = useState(false)
        const [modal, setModal] = useState(false);
@@ -63,15 +67,18 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                   .catch(err => alert(err));
 
                             };
-
+        //Array that holds all of the questions, checks the input using the tests in /utils and sets the respective variable values
         const el = [{header: "Enter your First Name", type: "text", placeholder : "First Name",  handler:nameTest, set: setFirstName, value: firstName},
                     {header: "Enter your Last Name", type: "text", placeholder : "Last Name", handler: nameTest, set: setLastName, value: lastName},
                     {header: "Enter your Email", type: "text", placeholder : "Email",  className:"full-row", handler: emailTest, set:setEmail, value: email},
                     {header: "Enter your Password", type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password}
                     ];
 
+          //Function used for switching to the next question
           const nextInput = () =>{
+                              //If state does not exceed length of el
                               if(state < (el.length - 1)){
+                                // 
                                 if(el[state].handler(el[state].value)){
                                       setValid(el[state + 1].handler(el[state + 1].value));
                                         setState(state + 1);

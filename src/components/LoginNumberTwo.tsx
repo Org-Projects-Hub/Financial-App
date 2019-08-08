@@ -19,6 +19,11 @@ const LoginNumberTwo = ({login, loggedin}:{login: any, loggedin: any})=> {
     `;
 
     return (
+        
+        /* for for entire login card 
+        @function onSubmit preventDefault prevents blank data,
+             login is the api function that sets the users email and password
+        */
         <form className="login-form" onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} >
             <Img src={LoginLogo} alt="Origin Logo"/>
             <input className="login-input" placeholder={"Username or Email"} name="email" onChange={(e: any)=>{setEmail(e.target.value)}}/>

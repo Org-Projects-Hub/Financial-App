@@ -10,7 +10,6 @@ import Students from './Students';
 import Modal from './Modal'
 import Hints from './Hints';
 import SelectInput from './SelectInput';
-import Login from './Login';
 import LoginNumberTwo from './LoginNumberTwo';
 
-export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students, Modal, Hints, SelectInput, PrePostTest, Login, LoginNumberTwo};
+export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students, Modal, Hints, SelectInput, PrePostTest, LoginNumberTwo};

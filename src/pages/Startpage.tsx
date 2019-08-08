@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
+//Styling components for the home page in hom.ts
 import {Wrapper, Banner, Logo, Desc, NextBanner,LoginPOS} from '../style/home';
-import {Card} from '../style/styled';
+//logo for the "site identity"
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
+//component for the login card and functionality
 import {LoginNumberTwo } from '../components'
 
+
+
+/*
+* Start page of the entire site, where users will get an overview of what this app is about, and where they will
+* login or creat their accounts
+*/
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>{
 return(
             <div>
@@ -18,11 +26,14 @@ return(
                 </Desc>
                 
                 <LoginPOS>
-                  {/* <Login login={login} loggedin={loggedin}/> */}
+                  
+                  {/* Calling the LoginNumberTwo component with two props
+                    @prop login an APi function for logging a user in
+                    @prop loggedin a boolean to check if a user is logged in or not*/}
                   <LoginNumberTwo login={login} loggedin={loggedin} />
+
                 </LoginPOS>
 
-                <NextBanner></NextBanner>
 
               </Wrapper>
               
