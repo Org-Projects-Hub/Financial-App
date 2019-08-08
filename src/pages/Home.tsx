@@ -2,8 +2,7 @@ import React from 'react';
 import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Card} from '../style/styled';
-import {Link} from "react-router-dom"; 
-import {Wrapper, Banner, Logo, Desc, Login, Button, Background} from '../style/home';
+import {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background} from '../style/home';
 
 
 
@@ -21,9 +20,9 @@ const Home = ({user}:{user: any})=>
         </Card>
       </Desc>
 
-      <Login>
+      <LoginPOS>
         <Button>TO SIMULATION</Button>
-      </Login>
+      </LoginPOS>
 
 </Wrapper>
 </Background>

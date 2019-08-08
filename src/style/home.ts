@@ -1,19 +1,21 @@
 import styled from 'styled-components';
+import backgroundimg from "../assets/images/velvet-texture.jpg";
+
 
 const Wrapper = styled.div`
   height: 100vh;
-  text-align: center
+  text-align: center;
   display: grid;
-  min-height:100vh;
-  grid-template-columns: 16vw 42vw 42vw;
+  min-height: 100vh;
+  grid-template-columns: 16vw 36vw 36vw 12vw;
   grid-template-rows: 10vh 15vh 60vh 5vh auto;
   align-items: stretch;
   place-items: stretch;
-  `;
+`;
 
 
 const Banner = styled.div`
-grid-column: 1 / span 3;
+grid-column: 1 / span 4;
 grid-row: 1 / span 1;
 background-color: rgb(28, 42, 105);
 align-self: stretch;
@@ -48,24 +50,22 @@ font-weight:bolder;
 color: FAB084;
 `;
 
-const Login = styled.div`
-grid-column: 3 / span 1;
-grid-row: 4 / span 1;
-justify-self: center;
-align-self: end;
+const LoginPOS = styled.div`
+grid-column-start: 3;
+grid-row-start: 3;
+grid-row-end: 5;
 `;
 
 const Button = styled.button`
 background-color:blue;
 text-size:1vw;
-
 &:hover{
 background-color: rgb(0, 40, 133);
 }
 `;
 
 const Background = styled.div`
-background: linear-gradient(to right, #1e5799 0%,#207cca 50%,#7db9e8 100%);
+background-image: url(${backgroundimg});
 `;
 
-export {Wrapper, Banner, Logo, Desc, Login, Button, Background};
+export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background};
