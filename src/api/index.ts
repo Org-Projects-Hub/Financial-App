@@ -48,16 +48,16 @@ function authPost(url : string, body : any) {
   return fetch(url, { method: 'POST', headers: authHeader(), body: JSON.stringify(body) })
   .then(response => response.json());
 }
-//
+
 // function put(url, body) {
 //   //todo
 // }
 //
-// function authPut(url, body) {
-//   return fetch(url, { method: 'PUT', headers: authHeader(), body: JSON.stringify(body) })
-//   .then(response => response.json());
-// }
-//
+function authPut(url : string, body : any) {
+  return fetch(url, { method: 'PUT', headers: authHeader(), body: JSON.stringify(body) })
+  .then(response => response.json());
+}
+
 //
 export default {
   login: function({email, password}: any) {
@@ -71,7 +71,7 @@ export default {
   auth: function(){
     return authGet(API.auth);
   },
-  answer: function({q_id, answer} : any){
-    return authPost(API.answer, {q_id, answer});
+  answer: function({q_id, typesType, answer} : any){
+    return authPut(API.answer, {q_id, typesType, answer});
   }
 };
