@@ -41,7 +41,7 @@ const LoginNumberTwo = ({login, loggedin}:{login: any, loggedin: any})=> {
                 <NavLink to="/signup">Sign Up</NavLink>
 
             </div>
-            {/*Button for submit, sends the users email and password to the login function to be verifies  */}
+            {/*Button for submit, sends the users email and password to the login function declared in App.tsx to be verified  */}
             <div className="ta-center" style={{padding: "5%"}}>
                 <button className="btn btn-small waves-effect waves-light" onClick={()=>login({email, password})}>Login</button>
             </div>
