@@ -1,0 +1,39 @@
+{
+    "category":{
+
+        "furniture":{
+            
+            "Options":[
+            {"id":0,"name": "DEPARTMENT STORES & HIGH END BOUTIQUES",
+             "desc":["Belk", "Haddad’s", "Haneline’s Men’s Wear","Dillard’s", 
+                    "Stein Mart","Talbots","Chico’s","Ron Alexander", 
+                    "Signatures by Linda Reeves","Joseph A Bank","Her Toggery",
+                    "The Toggery","The Cotton Patch" ],
+             "costbreakdown":["Clothing Allowance: $400/month", "Moderate Dry Cleaning: $100/month"],
+             "price":500
+            },
+            {"id":1,"name": "MALL & OUTLET STORES",
+                "desc":["Abercrombie & Fitch", "Aeropostale", "American Eagle", "Lane Bryant",
+                        "Burlington", "Charlotte Russe", "Express", "Hollister", "Buckle", "Old Navy",
+                        "Maurice’s", "New York & Company", "K-Sera", "Herringstones", "Kohl’s" ],
+                "costbreakdown":["Clothing Allowance - $250", "Light Dry Cleaning - $50"],
+                "price":300
+            },
+            {"id":3,"name": "DISCOUNT STORES",
+                "desc":["Cato", "Citi-Trends", "Burke’s Outlet", "Rainbow", "Ross Dress for Less", 
+                        "Rue 21", "Simply Fashions", "Dirt Cheap", "Target", "Wal-Mart", "Fashion Cents",
+                        "Forever 21" ],
+                "costbreakdown":["Clothing Allowance - $85","DIY Laundry - $15"],
+                "price":100
+            },
+
+            {"id":4,"name": "Thrift/Consignment Stores",
+                "desc":["Cato", "Citi-Trends", "Burke’s Outlet", "Rainbow", "Ross Dress for Less", 
+                        "Rue 21", "Simply Fashions", "Dirt Cheap", "Target", "Wal-Mart", "Fashion Cents",
+                        "Forever 21" ],
+                "costbreakdown":["Clothing Allowance - $15","DIY Laundry - $15"],
+                "price":30
+            }]
+        }
+    }
+    }
