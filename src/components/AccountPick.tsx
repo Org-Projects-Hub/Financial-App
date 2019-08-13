@@ -34,26 +34,41 @@ background-attachment: fixed;
 background-repeat: no-repeat;
 background-position: bottom right;
 `;
+
+// AccountPick componenet is so the user can choose what kind of account they have (Administrator or User),
+
 const AccountPick = ({loggedin}: {loggedin: any}) => {
+
+// Hook for storing the admin state
 const [admin, setAdmin] = useState(null);
+//function for setting admin to true
 const makeAdmin = ()=>{ setAdmin(true) }
+//function to reset admin
 const clearAdmin = ()=>{ setAdmin(null) }
+
 return(
   <div>
+  {/*If the user has not made a choice on user or admin */}
   {admin == null ?
+
   <MyWrapper color="radial-gradient(to bottom, #733DEB, #24F195)" >
    <GridRow rows="3" style={{maxHeight: "98vh"}}>
         <Header className="center txt-green">Choose your Account Type:</Header>
         <Grid cols="2">
+          {/**Card for admin account type
+                onClick sets admin to true (User is an admin) */}
           <MyCard className="justify-end" onClick={makeAdmin}>
             <img  className="icon-md" src={Admin} alt="user"/>
             <h3 className="center">Admin</h3>
           </MyCard>
 
+          {/**Card for User account type
+                onClick sets admin to false (User is an User) */}
           <MyCard className="justify-start"  onClick={()=>setAdmin(false)}>
             <img  style={{paddingBottom: "1em"}} className="icon-md" src={User} alt="user"/>
             <h3 className="center">Users</h3>
           </MyCard>
+
                </Grid>
             <div className="txt-green bold">Already have an account? <Link to='/'>Log In</Link></div>
         </GridRow>

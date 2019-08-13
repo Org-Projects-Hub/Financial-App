@@ -8,7 +8,11 @@ import { getLocalStorage, setLocalStorage } from '../utils/utils';
    signup: URL + "/signup",
    auth: `${URL}/auth`,
    answer: `${URL}/answer`,
-   edit: `${URL}/edit`
+   edit: `${URL}/edit`,
+   addClass: `${URL}/add-class`,
+   getClass: `${URL}/class`,
+   getStudent: `${URL}/students`,
+   createClass: `${URL}/create-class`
  }
 
 function header() {
@@ -77,7 +81,13 @@ export default {
   addClass: function({code} : any){
     return authPost(API.addClass, {code});
   },
-  getClass: function({code} : any){
-    return authPost(API.getClass, {code});
+  getClass: function(){
+    return authGet(API.getClass);
+  },
+  getStudent: function(){
+    return authGet(API.getStudent);
+  },
+  createClass : function ({  className, school} : any){
+    return authPost(API.createClass, { className, school });
   }
 };

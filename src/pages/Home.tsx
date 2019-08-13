@@ -1,14 +1,19 @@
 import React from 'react';
-import banner from '../assets/images/web banner.png';
 import logo from '../assets/images/unitedWayLogoShadow.png';
 import {Card} from '../style/styled';
-import {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Background} from '../style/home';
+import styled from 'styled-components'
+import {Wrapper, Banner, Logo, Desc, LoginPOS, Button} from '../style/home';
+import {NavLink} from 'react-router-dom';
 
 
 
+const Admin = styled.div`
+grid-column: 3 / span 1;
+grid-row: 4 / span 1;
+`;
 
 const Home = ({user}:{user: any})=>
-<Background>
+
 <Wrapper>
   <Banner>TEST</Banner>
 
@@ -23,8 +28,12 @@ const Home = ({user}:{user: any})=>
       <LoginPOS>
         <Button>TO SIMULATION</Button>
       </LoginPOS>
+      <Admin>
+        <button className="btn">
+        <NavLink to='/admin-pannel'>ADMIN PANEL</NavLink>
+        </button>
+      </Admin>
 
 </Wrapper>
-</Background>
 
 export default Home;

@@ -94,7 +94,7 @@ const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin :
                                 setTimeout(()=>setClicked(false), 700);
                               }
                               else{
-                                  clearAdmin();
+                                clearAdmin();
                               }
                         }
             return(
