@@ -73,5 +73,11 @@ export default {
   },
   answer: function({q_id, typesType, answer} : any){
     return authPut(API.answer, {q_id, typesType, answer});
+  },
+  addClass: function({code} : any){
+    return authPost(API.addClass, {code});
+  },
+  getClass: function({code} : any){
+    return authPost(API.getClass, {code});
   }
 };

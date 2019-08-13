@@ -76,7 +76,8 @@ const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin :
                                     setState(state + 1);
                                     setClicked(true);
                                     setTimeout(()=>setClicked(false), 700);
-                                    }else{
+                                    }
+                                  else{
                                     SignupAPI()
                                     }
                                   }
