@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
-import HomePageBackgroundImage from '../assets/images/homepage-background.jpg';
-import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import {Wrapper, Banner, Logo, Desc, Button, Background, LoginPOS} from '../style/home';
-import {Card} from '../style/styled';
+//Styling components for the home page in hom.ts
+import {Wrapper, Banner, Logo, Desc, NextBanner,LoginPOS} from '../style/home';
+//logo for the "site identity"
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
-import { Login, LoginNumberTwo } from '../components'
+//component for the login card and functionality
+import {LoginNumberTwo } from '../components'
 
+
+
+/*
+* Start page of the entire site, where users will get an overview of what this app is about, and where they will
+* login or creat their accounts
+*/
 const Startpage = ({login, loggedin}:{login: any, loggedin: any})=>{
 return(
-            <Background>
+            <div>
               <Wrapper>
 
                 <Banner></Banner>
@@ -17,17 +22,22 @@ return(
                 <Logo href="http://www.unitedwaynela.org/"> <img style={{height:"90%", objectFit: "contain"}} src={bannerlogo} /></Logo>
 
                 <Desc>
-                  <Card style={{height: "90%", backgroundColor: "#84CEFA"}}>
                     Here is a description of Dollars and $ense, what this app is about, why it was created, and what you will learn.
-                  </Card>
                 </Desc>
                 
                 <LoginPOS>
-                  {/* <Login login={login} loggedin={loggedin}/> */}
+                  
+                  {/* Calling the LoginNumberTwo component with two props
+                    @prop login an APi function for logging a user in
+                    @prop loggedin a boolean to check if a user is logged in or not*/}
                   <LoginNumberTwo login={login} loggedin={loggedin} />
+
                 </LoginPOS>
 
+
               </Wrapper>
-            </Background>);}
+              
+              </div>
+              );}
 
 export default Startpage;
