@@ -60,7 +60,7 @@ return(
     </MyWrapper>
 
     :
-    <Account  loggedin={loggedin}  clearAdmin={clearAdmin}/>
+    <Account  loggedin={loggedin}  clearAdmin={clearAdmin} isStudent={(admin !== true)}/>
 
     }
   </div>
