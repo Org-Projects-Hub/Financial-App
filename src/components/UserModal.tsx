@@ -67,6 +67,10 @@ const UserModal = (props: any) =>{
                         <div className="ta-left" style={{borderRadius: '0.1em'}}>
                             <input className="add-input" placeholder={props.inputText}></input>
                         </div>
+                        <div className="ta-left" style={{borderRadius: '0.1em'}}>
+                            <input className="add-input" placeholder='School Name'></input>
+                        </div>
+
                         <AddClass style={{
                             position: "relative", 
                             left: "40%", 

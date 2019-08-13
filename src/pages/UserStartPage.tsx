@@ -20,7 +20,7 @@ const UserStartPage = (props: any) => {
     userName = 'BJones'; //requests
     userName = 'JMe'; //registered
     userName = 'KilUm'; // registered and completed
-    //userName = 'JessieB'; //teacher
+    userName = 'JessieB'; //teacher
     //userName = 'WaynesWorld'; //other
 
     // this interface is to avoid type errors with mapping elements from the user array
@@ -40,10 +40,10 @@ const UserStartPage = (props: any) => {
         if (users[x].username === userName) {
 
             user = users[x];
-
-            for (let y = 0; y < classes.length; y++) {
-                if (user.classIds.indexOf(classes[y].id) !== -1) {
-                    classObjs.push(classes[y]);
+            /* could redo this, for each class id in the user class id array, check if the class exists, if it does, return the class object, if not return null or false or something  */
+            for (let y = 0; y < /* need to get total amount of classes */ classes.length; y++) {
+                if (user.classIds.indexOf( /* need to see if current class id is in the users class id array */classes[y].id) !== -1) {
+                    classObjs.push(/* need to push entire class object into arrray for .mapping() */ classes[y]);
                 }
             }
 
