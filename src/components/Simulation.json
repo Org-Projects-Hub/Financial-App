@@ -35,5 +35,44 @@
                 "price":30
             }]
         }
+    },
+
+    "education":[
+        {"id":0, "edlevel":"High School Diploma"},
+        {"id":1, "edlevel":"Bachelors Degree"},
+        {"id":2, "edlevel":"Masters Degree"},
+        {"id":3, "edlevel":"PhD"},
+        {"id":4, "edlevel":"GED/HSET"},
+        {"id":5, "edlevel":"Asscoiates Degree"}
+    ],
+
+    "calculationInfo":[{"totalhoursworked":2080}],
+
+    "jobs":{
+        "reqed": 
+        {
+            "HighSchool Diploma":[
+                {"id":0, "position":"Welder", "grossmonthly":3234.40},
+                {"id":1, "position":"Plumber", "grossmonthly":3731.87},
+                {"id":2, "position":"Truck Driver", "grossmonthly":3194.53},
+                {"id":3, "position":"Carpenter", "grossmonthly":2594.80}
+            ],
+
+            "Bachelors Degree":[
+                {"id":0, "position":"Accountant", "grossmonthly":5395.87},
+                {"id":1,"position":"Electrical Engineer", "grossmonthly":4943.47},
+                {"id":2, "position":"Social Worker", "grossmonthly":3156.40},
+                {"id":3, "position":"Toxocologist", "grossmonthly":4745.53}
+            ],
+
+            "Associates Degree":[],
+
+            "Masters Degree":[],
+
+            "PhD":[],
+
+            "GED/HSET":[]
+        }
+        
     }
-    }
+}

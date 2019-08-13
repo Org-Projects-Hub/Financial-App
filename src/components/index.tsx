@@ -11,8 +11,7 @@ import Modal from './Modal'
 import Hints from './Hints';
 import SelectInput from './SelectInput';
 import LoginNumberTwo from './LoginNumberTwo';
-import Wheel from './Wheel';
-
+import SimulationStart from './SimulationStart';
 
 export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students,
-     Modal, Hints, SelectInput, PrePostTest, LoginNumberTwo, Wheel};
+     Modal, Hints, SelectInput, PrePostTest, LoginNumberTwo, SimulationStart};
