@@ -35,7 +35,7 @@ background-repeat: no-repeat;
 background-position: bottom right;
 `;
 
-// AccountPick componenet is so the user can choose what kind of account they have (Administrator or User), 
+// AccountPick componenet is so the user can choose what kind of account they have (Administrator or User),
 
 const AccountPick = ({loggedin}: {loggedin: any}) => {
 
@@ -43,14 +43,14 @@ const AccountPick = ({loggedin}: {loggedin: any}) => {
 const [admin, setAdmin] = useState(null);
 //function for setting admin to true
 const makeAdmin = ()=>{ setAdmin(true) }
-//function to reset admin 
+//function to reset admin
 const clearAdmin = ()=>{ setAdmin(null) }
 
 return(
   <div>
   {/*If the user has not made a choice on user or admin */}
   {admin == null ?
-  
+
   <MyWrapper color="radial-gradient(to bottom, #733DEB, #24F195)" >
    <GridRow rows="3" style={{maxHeight: "98vh"}}>
         <Header className="center txt-green">Choose your Account Type:</Header>
@@ -75,11 +75,7 @@ return(
     </MyWrapper>
 
     :
-    /*else if the user has made a choice between admin and user, load Account component
-    * @prop loggedin boolean if the user is logged in or not
-    * @prop clearAdmin sets admin back to null incase the user needs to reselect their accountype
-    */
-    <Account  loggedin={loggedin}  clearAdmin={clearAdmin}/>
+    <Account  loggedin={loggedin}  clearAdmin={clearAdmin} isStudent={(admin !== true)}/>
 
     }
   </div>

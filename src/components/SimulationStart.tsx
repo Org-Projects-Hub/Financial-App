@@ -1,6 +1,7 @@
 import React from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
+import * as data from './Simulation.json'; 
 
 const SimulationStart = ({stage, setStage}:any) => {
     
