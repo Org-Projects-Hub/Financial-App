@@ -6,13 +6,15 @@ import {GridColItem, Button} from '../style/styled';
 
 
 const Wrapper = styled.div`
-    margin: 2em 0;
+    margin: 1em 0;
+    width: 80%;
     text-align: center;
+    display: inline-block;
 `;
 
 
 const ClassDiv = styled.div`
-    margin: 0px 20%;
+    margin: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 2%;
@@ -44,16 +46,16 @@ const StartButton = styled(Button) `
 const Class = (props: any) => {
 
     return(
-        <Wrapper>
+        <Wrapper id="wrap">
 
             {/* No matter what the account type, we want anything that is rendered to be centered */}
-            <div style={{width: '100%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
+            <div id="other div" style={{width: '70%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
 
             {   
                 // if the user is a teacher display this class information
                 props.userObj.accountType === 'teacher' ?  
 
-                <Link to={`/classDashboard/${props.classObj.id}`}>
+                <Link style={{backgroundColor: "black"}} to={`/classDashboard/${props.classObj.id}`}>
                     <ClassDiv>
 
                         <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>

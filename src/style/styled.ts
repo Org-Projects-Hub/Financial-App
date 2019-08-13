@@ -180,4 +180,20 @@ const TakeSim = styled(Button)`
   }
 `;
 
-export {Card, Badge, Grid, GridColItem, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim};
+const ClassDiv = styled.div`
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 2%;
+    background: white;
+    cursor: pointer;
+    border: 2px solid blue;
+    border-radius: 1em;
+    transition: box-shadow 500ms;
+
+    &:hover {
+        box-shadow: 5px 5px 15px 1px gray;
+    }
+`;
+
+export {Card, Badge, Grid, GridColItem, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim, ClassDiv};

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Students} from '../components';
+import { Students, UserModal } from '../components';
 import { classes } from '../fakeJson';
 import { Link } from 'react-router-dom';
 import SettingsGear from '../assets/images/settingsGear.png';
@@ -17,6 +17,8 @@ const ClassTitle = styled.div`
 
 // This component is strcitly for the teachers to control whats going on with each class, when a teacher clicks on a class this is what pops up.
 const ClassDashboard = (props : any) => {
+
+    const [modal, setModal] = React.useState(false);
 
     // Getting the class id from the URL
     const url = window.location.href;
@@ -58,10 +60,11 @@ const ClassDashboard = (props : any) => {
                 <Students array={classs.completed} title='Completed'></Students>
 
                 {/* Buttons for navigation */}
-                <AddStudent>Add Student</AddStudent>
+                <AddStudent onClick={()=>setModal(true)}> Add Student</AddStudent>
                 <div style={{width: "100%"}}><Link to="/classes"><BackButton>&lt; Back</BackButton></Link></div>
                 <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div>
-                
+
+                <UserModal backgroundColor='#d67762' modalTitle='Enter Student Username' inputText='Student Username' buttonText='Add' show={modal} onClose={()=>setModal(false)}></UserModal>
             </Container>
         </Border>
     );

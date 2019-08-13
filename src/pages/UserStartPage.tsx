@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Class } from '../components';
+import { Class, UserModal } from '../components';
 import { classes, users } from '../fakeJson';
 import { Link } from 'react-router-dom';
 import SettingsGear from '../assets/images/settingsGear.png';
 import { Border, Container, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim, Grid } from '../style/styled';
+//import console = require('console');
 
 
 const JoinClass = styled(AddClass)``;
@@ -12,12 +13,14 @@ const JoinClass = styled(AddClass)``;
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
 const UserStartPage = (props: any) => {
 
+    const [modal, setModal] = useState(false);
+
     let userName;
 
     userName = 'BJones'; //requests
     userName = 'JMe'; //registered
     userName = 'KilUm'; // registered and completed
-    userName = 'JessieB'; //teacher
+    //userName = 'JessieB'; //teacher
     //userName = 'WaynesWorld'; //other
 
     // this interface is to avoid type errors with mapping elements from the user array
@@ -88,26 +91,32 @@ const UserStartPage = (props: any) => {
                 <Grid cols="1">
                     {   // if the user is a teacher, display the AddClass Component
                         user.accountType === 'teacher' ?
-
-                            <AddClass style={{backgroundColor: buttonBackgroundColor}}>Add Class</AddClass>
-
+                            
+                            <div>
+                                <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Add Class</AddClass>
+                                <UserModal backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
+                            </div>
                             : 
 
                             // if the user is a student, display the JoinClass Component
                             user.accountType === 'student' ?
-
-                                <JoinClass style={{backgroundColor: buttonBackgroundColor}}>Join Class</JoinClass> 
-
+                                <div>
+                                    <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass> 
+                                    <UserModal backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                </div>
                                 : 
 
                                 // if the user is neither a teacher or student, then display the TakeSimulation Component for the 'Other' account type
-                                <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
+                                <Link to='/simulation'>
+                                    <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
+                                </Link>
                     }
 
                     
                     <div style={{width: "100%"}}><Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link></div>
                     <div style={{width: "100%"}}><Link to="/home"><HomeButton>&lt; Home</HomeButton></Link></div>
                     <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div>
+                    
                 </Grid>
             </Container>
         </Border>
