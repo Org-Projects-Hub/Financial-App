@@ -4,8 +4,9 @@ const SignupItem = ({type, placeholder, handler, className, set, value, setValid
 {
 
   return (
-    <div className={className} style={{width: "100%", minHeight: "6em"}}>
 
+    <div className={className} style={{width: "100%", minHeight: "6em"}}>
+      
         <input  type={type} placeholder={placeholder} value={value} onChange={(e)=>{
                                                                                 let temp = e.target.value.trim().toLowerCase();
                                                                                 setValid(handler(temp));

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Avatar from '../assets/helper.png';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-  const Float = styled.div`
+  
+
+const Float = styled.div`
   position: fixed;
   bottom: 1em;
   right: 10px;
@@ -59,6 +61,7 @@ const Hints = ({msg} : any)=> {
         <Img src={Avatar} className="icon-sm"/>
         </div>
       </Float>
+      
  </ReactCSSTransitionGroup>
   );
 }

@@ -4,7 +4,6 @@ import {Card} from '../style/styled';
 import styled from 'styled-components'
 import {Wrapper, Banner, Logo, Desc, LoginPOS, Button} from '../style/home';
 import {NavLink} from 'react-router-dom';
-import Wheel from '../components';
 
 
 
@@ -39,9 +38,6 @@ const Home = ({user}:{user: any})=>
         </button>
       </Admin>
 
-      <Position>
-        <Wheel/>
-      </Position>
 </Wrapper>
 
 export default Home;

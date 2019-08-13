@@ -3,6 +3,7 @@ import Test from './Test';
 import Results from './Results';
 import styled from 'styled-components';
 import {Card, GridRow} from '../style/styled';
+import {Wheel} from './';
 
 /**
  * PrePostTest.tsx
@@ -35,6 +36,8 @@ const PrePostTest = ({stage, setStage}: any)=> {
                     <Card>{SimulationIntro}</Card>
                     <Div><button className="btn" onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</button></Div>
                 </GridRow>
+            : stage === 'simulation' ? <Wheel/>
+
             :
                 <GridRow rows="2">
                     <Div><button className="btn" onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</button></Div>
@@ -53,7 +56,9 @@ const PrePostTest = ({stage, setStage}: any)=> {
                         {/** set stage onClick based on current stage */}
                         <button className="btn" 
                                 onClick={ stage==='pretest'? 
-                                            (e) => setStage("posttest") 
+                                            (e) => setStage("simulation") 
+                                            : stage === 'simulation' ?  
+                                            (e) => setStage('posttest') 
                                             :
                                             (e) => setStage("pretest") }>
                             {/** set button text based on current stage */}
