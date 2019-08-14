@@ -5,7 +5,7 @@
             "questions": [
                 { "id": 0, "q": "I understand what basic living expenses are."},
                 { "id": 1, "q": "I think buying a used car for my first car is a good idea." },
-                { "id": 1, "q": "I know salary ranges for occupations I'm interested in." },
+                { "id": 2, "q": "I know salary ranges for occupations I'm interested in." },
                 { "id": 3, "q": "I understand that credit card companies charge interest when I use my card." },
                 { "id": 4, "q": "I understand savings and retirement funds increase in value and provide a future source of money." },
                 { "id": 5, "q": "I think it is important to work hard and save up my money when I want to buy something that is expensive." },
@@ -28,7 +28,7 @@
             "questions": [
                 { "id": 0, "q": "I understand what basic living expenses are." },
                 { "id": 1, "q": "I think buying a used car for my first car is a good idea." },
-                { "id": 1, "q": "I know salary ranges for occupations I'm interested in." },
+                { "id": 2, "q": "I know salary ranges for occupations I'm interested in." },
                 { "id": 3, "q": "I understand that credit card companies charge interest when I use my card." },
                 { "id": 4, "q": "I understand savings and retirement funds increase in value and provide a future source of money." },
                 { "id": 5, "q": "I think it is important to work hard and save up my money when I want to buy something that is expensive." },
