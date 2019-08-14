@@ -183,3 +183,18 @@ font-family: arial;
 .login-input {
   width: 90% !important;
 }
+
+.add-input {
+  width: 90% !important;
+  margin: 1% 0 !important;
+  padding-left: 1% !important;
+  background: white !important;
+  border: 2px solid rgb(121, 121, 219) !important;
+  border-radius: 0.5em !important;
+  transition: box-shadow 500ms !important;
+  font-size: 125% !important;
+}
+
+.add-input:hover {
+  box-shadow: 2px 2px 5px 1px gray !important;
+}

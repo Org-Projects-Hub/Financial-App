@@ -38,11 +38,7 @@ import {Modal, Hints} from './index';
         background-repeat: no-repeat;
         background-position: bottom right;
         `;
-
-// The Account component is used for collecting all the user information, for login, validation, and data analytic purposes
-const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
-    
-       //Hook used for keeping track of what number question the user is on
+const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin : any, isStudent: any}) => {
        const [state, setState] = useState(0);
        const [clicked, setClicked] = useState(false)
        const [modal, setModal] = useState(false);
@@ -54,7 +50,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
        const [password, setPassword] = useState("");
        const [phoneNumber, setPhoneNumber] = useState("");
 
-       const SignupAPI = ()=>{  const obj = {firstName, lastName, username,email, password};
+       const SignupAPI = ()=>{  const obj = {firstName, lastName, username,email, password, isStudent};
                                 console.log(obj);
                                 api.signup(obj)
                                 .then(res => {
@@ -65,31 +61,29 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                     }
                                   })
                                   .catch(err => alert(err));
-
                             };
-        //Array that holds all of the questions, checks the input using the tests in /utils and sets the respective variable values
+
         const el = [{header: "Enter your First Name", type: "text", placeholder : "First Name",  handler:nameTest, set: setFirstName, value: firstName},
                     {header: "Enter your Last Name", type: "text", placeholder : "Last Name", handler: nameTest, set: setLastName, value: lastName},
                     {header: "Enter your Email", type: "text", placeholder : "Email",  className:"full-row", handler: emailTest, set:setEmail, value: email},
                     {header: "Enter your Password", type: "password", placeholder : "Password",  className:"full-row", handler: usernameTest, set: setPassword, value: password}
                     ];
 
-          //Function used for switching to the next question
           const nextInput = () =>{
-                              //If state does not exceed length of el
-                              if(state < (el.length - 1)){
-                                // 
                                 if(el[state].handler(el[state].value)){
-                                      setValid(el[state + 1].handler(el[state + 1].value));
-                                        setState(state + 1);
-                                      setClicked(true);
-                                        setTimeout(()=>setClicked(false), 700);
+                                  if(state < (el.length - 1)){
+                                    setValid(el[state + 1].handler(el[state + 1].value));
+                                    setState(state + 1);
+                                    setClicked(true);
+                                    setTimeout(()=>setClicked(false), 700);
+                                    }
+                                  else{
+                                    SignupAPI()
+                                    }
                                   }
-                                  else{setModal(true);
+                                  else{
+                                    setModal(true);
                                  }
-                              }else{
-                                SignupAPI()
-                              }
                             }
 
         const prevInput = () => {
@@ -100,7 +94,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                                 setTimeout(()=>setClicked(false), 700);
                               }
                               else{
-                                  clearAdmin();
+                                clearAdmin();
                               }
                         }
             return(
@@ -118,7 +112,7 @@ const Account =({loggedin , clearAdmin}: {loggedin: any, clearAdmin : any}) => {
                        <div className="center bold txt-green">{`${state + 1} of ${el.length}`}</div>
                     {state < (el.length - 1) ? <Arrow className="right" onClick={nextInput}>
                         <i className="fas fa-arrow-right"></i>
-                    </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={SignupAPI}>Create Account</button>}
+                    </Arrow> :   <button className="btn btn-small waves-effect waves-light"  onClick={nextInput}>Create Account</button>}
                 </Card>
                 <Hints msg={["Welcome to FinApp!","Please enter all your information correctly to access the app."]}/>
               </MyWrapper>

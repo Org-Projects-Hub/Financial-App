@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+
 const Wrapper = styled.div`
 position: fixed;
 z-index: 1;
@@ -20,6 +22,7 @@ width: 80%;
 padding: 0;
 max-width: 800px;
 color: black;
+
 @media(max-width: 600px){
   position: absolute;
   bottom: 0;
@@ -47,26 +50,33 @@ height: 3em;`;
 
   const Modal = ({text, close}: {text: any, close: any}) =>
       (
-        <Wrapper><ReactCSSTransitionGroup
-        transitionName="pop"
-        transitionAppear={true}
-        transitionAppearTimeout={500}
-         transitionLeaveTimeout={300}
-        transitionEnter={true}
-        transitionLeave={true}>
-                <Modall>
+        <Wrapper>
+          <ReactCSSTransitionGroup
+            transitionName="pop"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionLeaveTimeout={300}
+            transitionEnter={true}
+            transitionLeave={true}>
+              <Modall>
+
                 <Header>
                   <Btn style={{float: "right"}} className="bt right-corner"  onClick={close}> &nbsp;X&nbsp; </Btn>
                 </Header>
-                  <div >
+
+                <div >
+
                   <div style={{minHeight: "5em", padding: "2em"}} className="blue-txt bold txt-md">
-                  <h5>{text}</h5>
+                    <h5>{text}</h5>
                   </div>
-                   <div>
+
+                  <div>
                     <button className="btn hoverr full" onClick={close}>Cancel</button>
                   </div>
+
                 </div>
-                </Modall></ReactCSSTransitionGroup>
-            </Wrapper> );
+              </Modall>
+          </ReactCSSTransitionGroup>
+        </Wrapper> );
 
   export default Modal;
