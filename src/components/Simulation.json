@@ -37,12 +37,8 @@
         }
         }],
 
-    "education":[
-        {"id":0,"edulevel":"High School Diploma"},
-        {"id":1,"edulevel":"Bachelors Degree"},
-        {"id":2,"edulevel":"Masters Degree"},
-        {"id":3,"edulevel":"GED/HSET"},
-        {"id":4,"edulevel":"Asscoiates Degree"}],
+    "education":["High School Diploma","Bachelors Degree","Masters Degree","GED/HSET","Asscoiates Degree"],
+
 
     "calculationInfo":[{"totalhoursworked":2080}],
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
-import data from './Simulation.json'; 
 
 const Wrapper = styled.div`
 display: grid;
@@ -20,16 +19,12 @@ grid-row: 3 / span 1;
 
 const SimulationStart = ({stage, setStage}:any) => {
 
-    const education = data.education
-    
-    console.log(education);
 
     return(
         <Wrapper>
 
             <WheelPlace>
-                {education.map((education, i)=> <Wheel />)}
-                
+                <Wheel />
             </WheelPlace>
 
             <Button>

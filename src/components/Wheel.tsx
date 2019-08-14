@@ -16,7 +16,7 @@ text-align: center;
         {"id":2,"edulevel":"Masters Degree"},
         {"id":3,"edulevel":"GED/HSET"},
         {"id":4,"edulevel":"Asscoiates Degree"}], */
-        
+
 const Wheel = () => {
     
     let education: object = [];
@@ -24,7 +24,7 @@ const Wheel = () => {
     const props = data.education;
 
     for(let i = 0; i > props.length; i++){
-        education[i].push(props[i])
+        //education[i].push(props[i])
     }
     
 
