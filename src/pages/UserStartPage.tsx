@@ -46,7 +46,6 @@ const UserStartPage = (props: any) => {
                     classObjs.push(/* need to push entire class object into arrray for .mapping() */ classes[y]);
                 }
             }
-
             break;
         }
     }

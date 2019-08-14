@@ -1,10 +1,8 @@
 import React from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
-import * as data from './Simulation.json'; 
+import data from './Simulation.json'; 
 
-const SimulationStart = ({stage, setStage}:any) => {
-    
 const Wrapper = styled.div`
 display: grid;
 grid-template-rows: auto 50vh 20vh auto;
@@ -19,11 +17,19 @@ grid-row: 2 / span 1;
 const Button = styled.div`
 grid-row: 3 / span 1;
 `;
+
+const SimulationStart = ({stage, setStage}:any) => {
+
+    const education = data.education
+    
+    console.log(education);
+
     return(
         <Wrapper>
 
             <WheelPlace>
-                <Wheel/>
+                {education.map((education, i)=> <Wheel />)}
+                
             </WheelPlace>
 
             <Button>
