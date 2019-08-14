@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import data from './Simulation.json'; 
 
@@ -17,21 +17,95 @@ text-align: center;
         {"id":3,"edulevel":"GED/HSET"},
         {"id":4,"edulevel":"Asscoiates Degree"}], */
 
+
 const Wheel = () => {
     
-    let education: object = [];
+    
+    const [index, setindex] = useState(0);
+    const [selection, setSelect] = useState(null);
+    let [spinning, setSpin] = useState(false);
+    const [counter, setCount] = useState(0);
+
+
+    let countdown:number = null; 
+
 
     const props = data.education;
 
-    for(let i = 0; i > props.length; i++){
-        //education[i].push(props[i])
-    }
+
     
+    function spin(){
+        
+        countdown = setInterval(() => {
 
+            if(index < props.length){
+                let temp = index + 1;
+                setSelect(props[index]);
+                setindex(temp);
+                console.log(index);
+            } else {
+                setindex(0);
+                console.log('at else')
+            }
+            
+
+        }, 1000);
+
+    }
+
+  /*   function timer():void{
+    
+        if(index < props.length){
+            setSelect(props[index]);
+            setIndex(index+1);
+        }
+        else{
+            clearInterval(countdown);
+            setSpin(false)
+            setCount(2);
+        }
+
+        setSelect(props[index]);
+    } */
+
+    
     return(
+        spinning ?
+            counter < 1 ? 
+        
+            <div>
+                {spin()}
+                {selection}
+                {setCount(2)}
+                
+                <button onClick={()=>clearInterval(countdown)}>STOP</button>
+            </div>
+            :
+            <div>{selection}</div>
 
-        <Circle></Circle>
+        
+
+        :
+
+        <div>
+            <Circle>
+                {selection}
+            </Circle>
+            <button onClick={()=>{setSpin(true)}}>SPIN</button>
+        </div>
+
     );
 }
+
+
+/*class Wheel extends React.Component{
+    constructor(props:any){
+        super(props)
+
+        this.state ={
+            spinning: null
+        }
+    }
+}*/
 
 export default Wheel;
