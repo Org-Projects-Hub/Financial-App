@@ -21,7 +21,7 @@ text-align: center;
 const Wheel = () => {
     
     
-    const [index, setindex] = useState(0);
+    const [index, setIndex] = useState(0);
     const [selection, setSelect] = useState(null);
     let [spinning, setSpin] = useState(false);
     const [counter, setCount] = useState(0);
@@ -35,29 +35,18 @@ const Wheel = () => {
 
     
     function spin(){
-        
-        countdown = setInterval(() => {
-
-            if(index < props.length){
-                let temp = index + 1;
-                setSelect(props[index]);
-                setindex(temp);
-                console.log(index);
-            } else {
-                setindex(0);
-                console.log('at else')
-            }
-            
-
-        }, 1000);
+        console.log('spin')
+        setIndex( index + 1 );
+        setInterval(() => {timer()}, 1000);
 
     }
 
-  /*   function timer():void{
+       function timer():void{
     
         if(index < props.length){
             setSelect(props[index]);
             setIndex(index+1);
+            console.log(index);
         }
         else{
             clearInterval(countdown);
@@ -66,7 +55,7 @@ const Wheel = () => {
         }
 
         setSelect(props[index]);
-    } */
+    } 
 
     
     return(
@@ -74,11 +63,10 @@ const Wheel = () => {
             counter < 1 ? 
         
             <div>
-                {spin()}
+    
+                <button onClick={()=>{spin()}}>STOP</button>
                 {selection}
-                {setCount(2)}
-                
-                <button onClick={()=>clearInterval(countdown)}>STOP</button>
+              
             </div>
             :
             <div>{selection}</div>
