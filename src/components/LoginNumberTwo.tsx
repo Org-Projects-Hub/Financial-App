@@ -12,7 +12,6 @@ const LoginNumberTwo = ({login, loggedin}:{login: any, loggedin: any})=> {
 
     const Img = styled.img`
     borderRadius: "1em";
-    padding: "1%";
     overflow: "hidden";
     width:auto;
     width:75%;

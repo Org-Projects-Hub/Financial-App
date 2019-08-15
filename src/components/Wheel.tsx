@@ -32,26 +32,24 @@ const Wheel = () => {
 
     const props = data.education;
 
+    function updateIndex(){
+        setIndex(index + 1);
+    }
 
     
     function spin(){
-        console.log('spin')
-        setIndex( index + 1 );
-        setInterval(() => {timer()}, 1000);
-
+        countdown = setInterval(() => {timer()}, 1000);
     }
 
        function timer():void{
     
         if(index < props.length){
             setSelect(props[index]);
-            setIndex(index+1);
-            console.log(index);
+            setIndex(index + 1);
         }
         else{
             clearInterval(countdown);
             setSpin(false)
-            setCount(2);
         }
 
         setSelect(props[index]);
@@ -64,7 +62,7 @@ const Wheel = () => {
         
             <div>
     
-                <button onClick={()=>{spin()}}>STOP</button>
+                <button onClick={()=>spin()}>STOP</button>
                 {selection}
               
             </div>

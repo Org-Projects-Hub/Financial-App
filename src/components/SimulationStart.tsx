@@ -22,6 +22,7 @@ const SimulationStart = ({stage, setStage}:any) => {
 
     return(
         <Wrapper>
+            
 
             <WheelPlace>
                 <Wheel />
