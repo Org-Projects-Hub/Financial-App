@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
-import { Card, Grid } from '../style/styled';
+import { Card, Grid, GridColItem } from '../style/styled';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
@@ -64,10 +64,12 @@ const Test = ({testType, setTestComplete}: Props)=> {
             question={questions[qNum].q} 
             answers={answers} 
             value={selections[qNum] === undefined? null : selections[qNum].value} 
-            nextQuestion={nextQuestion} />
-
-          {qNum > 0 && <button className="btn" onClick={(e) => prevQuestion()}>Previous</button>} {/** if there is a previous question, display back button */}
-          {selections[qNum] !== undefined && <button className="btn" onClick={(e) => setQNum(qNum => qNum+1)}>Next</button>} {/** if current question has answer, show next button */}
+            nextQuestion={nextQuestion} 
+            total={questions.length} />
+          <Grid cols="2">
+            <GridColItem colStart="1" colEnd="2" align="start">{qNum > 0 && <button className="btn" onClick={(e) => prevQuestion()}>Previous</button>} {/** if there is a previous question, display back button */}</GridColItem>
+            <GridColItem colStart="2" colEnd="3" align="end">{selections[qNum] !== undefined && <button className="btn" onClick={(e) => setQNum(qNum => qNum+1)}>Next</button>} {/** if current question has answer, show next button */}</GridColItem>
+          </Grid>
           {console.log(qNum)}
         </div>
       );
@@ -75,8 +77,15 @@ const Test = ({testType, setTestComplete}: Props)=> {
 
     return (
       <Grid cols="1">
-        <Card>{testType.charAt(0).toUpperCase() + testType.slice(1)} complete.</Card>
-        <button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button>
+        <GridColItem colStart="1" colEnd="3" align="center">
+          <Card>
+            {testType.charAt(0).toUpperCase() + testType.slice(1)} complete.
+          </Card>
+        </GridColItem>
+        <Grid cols="2">
+          <GridColItem colStart="1" colEnd="2" align="center"><button className="btn" onClick={(e) => prevQuestion()}>Back</button></GridColItem>
+          <GridColItem colStart="2" colEnd="3" align="center"><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></GridColItem>
+        </Grid>
       </Grid>
     );
   }

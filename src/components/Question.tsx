@@ -26,9 +26,17 @@ const Div = styled.div`
   text-align: left;
 `;
 
-const Span = styled.div`
+const QuestionStr = styled.div`
+  padding-bottom: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const NumberStr = styled.div`
   padding-bottom: 10px;
   text-align: center;
+  font-size: 12px;
 `;
 
 type Props = {
@@ -36,10 +44,11 @@ type Props = {
   question: string,
   answers: string[],
   value: string,
-  nextQuestion: Function
+  nextQuestion: Function,
+  total: Number
 }
 
-const Question = ({id, question, answers, value, nextQuestion}: Props)=>{
+const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
 
   const SubmitAnswer = (answer : string, id: string)=>{
                   const obj = {answer: answer, typesType:"preTest", q_id: id};
@@ -59,7 +68,8 @@ const Question = ({id, question, answers, value, nextQuestion}: Props)=>{
   return (
     <Card>
       <Wrapper>
-        <Span>{question}</Span>
+        <NumberStr>Question {parseInt(id, 10) + 1}/{total}</NumberStr>
+        <QuestionStr>{question}</QuestionStr>
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
