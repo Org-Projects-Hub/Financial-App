@@ -37,7 +37,7 @@
         }
         }],
 
-    "education":["High School Diploma","Bachelors Degree","Masters Degree","GED/HSET","Asscoiates Degree"],
+    "education":["High School Diploma","Bachelors Degree","Masters Degree","GED/HSET","Asscoiates Degree", "PhD"],
 
 
     "calculationInfo":[{"totalhoursworked":2080}],
