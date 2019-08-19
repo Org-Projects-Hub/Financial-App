@@ -45,8 +45,7 @@ const PrePostTest = ({stage, setStage}: any)=> {
             /** If testComplete is false, [Test] component will be rendered, displaying questions to be answered. Else, results */
             !testComplete?
                 <div className="container">
-                    <Test testType={stage}/>
-                    <Div><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></Div>
+                    <Test testType={stage} setTestComplete={setTestComplete} />
                 </div>
             :
                 <div>

@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import {Card, Grid} from '../style/styled';
 import api from '../api';
 /**
  * Question.tsx
  *
- * @desc: Called by [Test]. Takes the question and answers from props.
- * @param {any} props - contains prop(s): id - question number, q - question string
+ * @desc: Called by [Test]. Displays question to be answered + answer choices.
+ * @param {string}   id           question number
+ * @param {string}   question     question to be answered
+ * @param {string[]} answers      array of answer options
+ * @param {string}   value        answer for current question
+ * @param {Function} nextQuestion loads next question
  * @return TSX to be rendered.
  */
 
@@ -28,8 +31,15 @@ const Span = styled.div`
   text-align: center;
 `;
 
-const Question = (props: any)=>{
-  const [answer, setAnswer] = useState(null);
+type Props = {
+  id: string,
+  question: string,
+  answers: string[],
+  value: string,
+  nextQuestion: Function
+}
+
+const Question = ({id, question, answers, value, nextQuestion}: Props)=>{
 
   const SubmitAnswer = (answer : string, id: string)=>{
                   const obj = {answer: answer, typesType:"preTest", q_id: id};
@@ -49,21 +59,21 @@ const Question = (props: any)=>{
   return (
     <Card>
       <Wrapper>
-        <Span>{props.q}</Span>
+        <Span>{question}</Span>
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
               aria-label="answers"
-              name={props.id.toString()}
-              value={answer || ''}
-              onChange={(e: any)=>{setAnswer(e.target.value)
+              name={id}
+              value={value || ''}
+              onChange={(e: any)=>{
                         // Fetch to backend here
-                        SubmitAnswer(e.target.value, props.id);
-
+                        SubmitAnswer(e.target.value, id);
+                        nextQuestion(e.target.name, e.target.value);
               }}
             >
               {/** Map each answer to radio button */}
-              {props.answers.map((answer: string, i: any) =>
+              {answers.map((answer: string, i: any) =>
                     <Div key ={i}>
                       <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
                     </Div>
