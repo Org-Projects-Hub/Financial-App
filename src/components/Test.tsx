@@ -49,15 +49,13 @@ const Test = ({testType, setTestComplete}: Props)=> {
     const nextQuestion = () => {
       setAnswered("fade-out active");
       setTimeout(() =>setAnswered("fade-out"), 500);
-      if(selections.length <= questions.length){
-        setQNum(qNum+1)
-      }
+      setTimeout(() =>setQNum(qNum+1), 500);
     }
 
     const prevQuestion = () => {
       setAnswered("fade-out active");
       setTimeout(() =>setAnswered("fade-out"), 500);
-      setQNum(qNum-1);
+      setTimeout(() =>setQNum(qNum-1), 500);
     }
     
     while(qNum < questions.length){ /** render questions until all have been answered */
