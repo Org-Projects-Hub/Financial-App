@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {Card, Grid} from '../style/styled';
 import api from '../api';
+
 /**
  * Question.tsx
  *
@@ -34,7 +35,7 @@ const QuestionStr = styled.div`
 `;
 
 const NumberStr = styled.div`
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   text-align: center;
   font-size: 12px;
 `;
@@ -44,11 +45,11 @@ type Props = {
   question: string,
   answers: string[],
   value: string,
-  nextQuestion: Function,
+  storeSelection: Function,
   total: Number
 }
 
-const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
+const Question = ({id, question, answers, value, storeSelection, total}: Props)=>{
 
   const SubmitAnswer = (answer : string, id: string)=>{
                   const obj = {answer: answer, typesType:"preTest", q_id: id};
@@ -68,7 +69,7 @@ const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
   return (
     <Card>
       <Wrapper>
-        <NumberStr>Question {parseInt(id, 10) + 1}/{total}</NumberStr>
+        <NumberStr>Question {parseInt(id, 10) + 1} of {total}</NumberStr>
         <QuestionStr>{question}</QuestionStr>
         <Grid cols="1">
           <div style={{width: "57%"}}  className="justify-end">
@@ -77,9 +78,9 @@ const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
               name={id}
               value={value || ''}
               onChange={(e: any)=>{
-                        // Fetch to backend here
-                        SubmitAnswer(e.target.value, id);
-                        nextQuestion(e.target.name, e.target.value);
+                // Fetch to backend here
+                SubmitAnswer(e.target.value, id);
+                storeSelection(e.target.name, e.target.value);
               }}
             >
               {/** Map each answer to radio button */}

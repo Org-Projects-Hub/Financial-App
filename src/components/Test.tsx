@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
 import { Card, Grid, GridColItem } from '../style/styled';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 /**
@@ -22,8 +21,7 @@ type Props = {
 const Test = ({testType, setTestComplete}: Props)=> {
   const [qNum, setQNum] = useState(0);
   const [selections, setSelections] = useState([]);
-  const [answered, setAnsered] = useState(false);
-  const [clicked, setClicked] = useState(false)
+  const [answered, setAnswered] = useState("fade-out");
   
   if(testType === 'pretest' || testType === 'posttest') {
     const questions = testType === 'pretest'?  Tests.testType.pretest.questions : Tests.testType.posttest.questions;
@@ -34,7 +32,7 @@ const Test = ({testType, setTestComplete}: Props)=> {
      * @param id    question # associated w question
      * @param value user's selection
      */
-    const nextQuestion = (id: string, value: string) => {
+    const storeSelection = (id: string, value: string) => {
       if(selections[qNum] === undefined) { /** if there is no answer for current question, add answer to selections array */
         setSelections([...selections, {
           id: id,
@@ -46,31 +44,36 @@ const Test = ({testType, setTestComplete}: Props)=> {
         tempArray[qNum].value = value;
         setSelections(tempArray);
       }
+    }
 
-      if(selections.length < questions.length) { /** increment question number */
-        setQNum(qNum => qNum+1);
+    const nextQuestion = () => {
+      setAnswered("fade-out active");
+      setTimeout(() =>setAnswered("fade-out"), 500);
+      if(selections.length <= questions.length){
+        setQNum(qNum+1)
       }
     }
 
     const prevQuestion = () => {
-      setQNum(qNum => qNum-1);
+      setAnswered("fade-out active");
+      setTimeout(() =>setAnswered("fade-out"), 500);
+      setQNum(qNum-1);
     }
     
     while(qNum < questions.length){ /** render questions until all have been answered */
       return(
-        <div>
+        <div className={answered} >
           <Question 
             id={questions[qNum].id.toString()} 
             question={questions[qNum].q} 
             answers={answers} 
-            value={selections[qNum] === undefined? null : selections[qNum].value} 
-            nextQuestion={nextQuestion} 
+            value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
+            storeSelection={storeSelection} 
             total={questions.length} />
           <Grid cols="2">
-            <GridColItem colStart="1" colEnd="2" align="start">{qNum > 0 && <button className="btn" onClick={(e) => prevQuestion()}>Previous</button>} {/** if there is a previous question, display back button */}</GridColItem>
-            <GridColItem colStart="2" colEnd="3" align="end">{selections[qNum] !== undefined && <button className="btn" onClick={(e) => setQNum(qNum => qNum+1)}>Next</button>} {/** if current question has answer, show next button */}</GridColItem>
+            <GridColItem colStart="1" colEnd="2" align="start"><button className="btn" disabled={qNum <= 0} onClick={(e) => prevQuestion()}>Prev</button> {/** if there is a previous question, display back button */}</GridColItem>
+            <GridColItem colStart="2" colEnd="3" align="end">{<button className="btn" disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>Next</button>} {/** if current question has answer, show next button */}</GridColItem>
           </Grid>
-          {console.log(qNum)}
         </div>
       );
     }
