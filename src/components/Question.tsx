@@ -35,9 +35,30 @@ const QuestionStr = styled.div`
 `;
 
 const NumberStr = styled.div`
+  color: #666666;
   padding-bottom: 8px;
   text-align: center;
   font-size: 12px;
+`;
+
+const Button = styled.button`
+  background-color: #2491ff;
+  color: white;
+  margin: 5px;
+  min-width: 300px;
+  min-height: 30px;
+  border: 2px solid #636363;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #007fff;
+    color: white;
+  }
+
+  &:disabled {
+    background-color: #70b8ff;
+    color: white;
+  }
 `;
 
 type Props = {
@@ -72,7 +93,30 @@ const Question = ({id, question, answers, value, storeSelection, total}: Props)=
         <NumberStr>Question {parseInt(id, 10) + 1} of {total}</NumberStr>
         <QuestionStr>{question}</QuestionStr>
         <Grid cols="1">
-          <div style={{width: "57%"}}  className="justify-end">
+          <ul className="answer-options">
+            {answers.map((answer: string, i: any) =>
+              <li>
+                <Button 
+                  className="option" 
+                  onClick={(e: any) => {storeSelection(e.target.name, e.target.value)}} 
+                  key={i} 
+                  value={answer}
+                  disabled={value === answer} >
+                    {answer}
+                </Button>
+              </li>
+            )}
+          </ul>
+        </Grid>
+      </Wrapper>
+    </Card>
+  )
+};
+
+export default Question;
+
+/**
+ * <div style={{width: "57%"}}  className="justify-end">
             <RadioGroup
               aria-label="answers"
               name={id}
@@ -83,18 +127,11 @@ const Question = ({id, question, answers, value, storeSelection, total}: Props)=
                 storeSelection(e.target.name, e.target.value);
               }}
             >
-              {/** Map each answer to radio button */}
               {answers.map((answer: string, i: any) =>
-                    <Div key ={i}>
-                      <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
-                    </Div>
-              )}
-            </RadioGroup>
-          </div>
-        </Grid>
-      </Wrapper>
-    </Card>
-  )
-};
-
-export default Question;
+                <Div key ={i}>
+                  <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
+                </Div>
+          )}
+        </RadioGroup>
+      </div>
+ */
