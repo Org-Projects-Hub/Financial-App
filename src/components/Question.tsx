@@ -21,6 +21,7 @@ import api from '../api';
 const Wrapper = styled.div`
   display: block;
   padding: 15px;
+  
 `;
 
 const Div = styled.div`
@@ -35,29 +36,33 @@ const QuestionStr = styled.div`
 `;
 
 const NumberStr = styled.div`
-  color: #666666;
+  color: #8c8c8c;
   padding-bottom: 8px;
   text-align: center;
   font-size: 12px;
+  font-weight: bold;
 `;
 
 const Button = styled.button`
-  background-color: #2491ff;
-  color: white;
+  background-color: #007fff;
+  color: #ffffff;
   margin: 5px;
   min-width: 300px;
   min-height: 30px;
-  border: 2px solid #636363;
+  border: 2px solid #1f3d7d;
   border-radius: 4px;
+  font-weight: bold;
 
   &:hover {
-    background-color: #007fff;
-    color: white;
+    background-color: #1f3d7d;
+    cursor: pointer;
+    border-color: #f8b332;
   }
 
   &:disabled {
-    background-color: #70b8ff;
-    color: white;
+    background-color: #7da2d6;
+    color: #ffffff;
+    border-color: #1f3d7d;
   }
 `;
 

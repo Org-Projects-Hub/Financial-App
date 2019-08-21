@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
+import styled from 'styled-components';
 import { Card, Grid, GridColItem } from '../style/styled';
 
 
@@ -12,6 +13,35 @@ import { Card, Grid, GridColItem } from '../style/styled';
  * @param {Function} setTestComplete sets testComplete boolean true in PrePostTest on test submission
  * @return TSX to be rendered.
  */
+
+const NavButton = styled.button`
+  background-color: #007fff;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 5px;
+  min-width: 150px;
+  min-height: 40px;
+  border: 2px solid #1f3d7d;
+  border-radius: 4px;
+
+  &:focus {
+    background-color: #007fff;
+    border-color: #f8b332;
+  }
+
+  &:hover {
+    background-color: #1f3d7d;
+    cursor: pointer;
+    border-color: #f8b332;
+  }
+
+  &:disabled {
+    background-color: #7da2d6;
+    color: #ffffff;
+    border-color: #1f3d7d;
+    cursor: not-allowed;
+  }
+`;
 
 type Props = {
   testType: string,
@@ -48,14 +78,14 @@ const Test = ({testType, setTestComplete}: Props)=> {
 
     const nextQuestion = () => {
       setAnswered("fade-out active");
-      setTimeout(() =>setAnswered("fade-out"), 500);
-      setTimeout(() =>setQNum(qNum+1), 500);
+      setTimeout(() =>setAnswered("fade-out"), 300);
+      setTimeout(() =>setQNum(qNum+1), 300);
     }
 
     const prevQuestion = () => {
       setAnswered("fade-out active");
-      setTimeout(() =>setAnswered("fade-out"), 500);
-      setTimeout(() =>setQNum(qNum-1), 500);
+      setTimeout(() =>setAnswered("fade-out"), 300);
+      setTimeout(() =>setQNum(qNum-1), 300);
     }
     
     while(qNum < questions.length){ /** render questions until all have been answered */
@@ -69,8 +99,8 @@ const Test = ({testType, setTestComplete}: Props)=> {
             storeSelection={storeSelection} 
             total={questions.length} />
           <Grid cols="2">
-            <GridColItem colStart="1" colEnd="2" align="start"><button className="btn" disabled={qNum <= 0} onClick={(e) => prevQuestion()}>Prev</button> {/** if there is a previous question, display back button */}</GridColItem>
-            <GridColItem colStart="2" colEnd="3" align="end">{<button className="btn" disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>Next</button>} {/** if current question has answer, show next button */}</GridColItem>
+            <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
+            <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
           </Grid>
         </div>
       );
