@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
-import styled from 'styled-components';
+import { NavButton } from '../style/preposttest';
 import { Card, Grid, GridColItem } from '../style/styled';
 
 
@@ -13,35 +13,6 @@ import { Card, Grid, GridColItem } from '../style/styled';
  * @param {Function} setTestComplete sets testComplete boolean true in PrePostTest on test submission
  * @return TSX to be rendered.
  */
-
-const NavButton = styled.button`
-  background-color: #007fff;
-  color: #ffffff;
-  font-weight: bold;
-  margin: 5px;
-  min-width: 150px;
-  min-height: 40px;
-  border: 2px solid #1f3d7d;
-  border-radius: 4px;
-
-  &:focus {
-    background-color: #007fff;
-    border-color: #f8b332;
-  }
-
-  &:hover {
-    background-color: #1f3d7d;
-    cursor: pointer;
-    border-color: #f8b332;
-  }
-
-  &:disabled {
-    background-color: #7da2d6;
-    color: #ffffff;
-    border-color: #1f3d7d;
-    cursor: not-allowed;
-  }
-`;
 
 type Props = {
   testType: string,
@@ -114,8 +85,8 @@ const Test = ({testType, setTestComplete}: Props)=> {
           </Card>
         </GridColItem>
         <Grid cols="2">
-          <GridColItem colStart="1" colEnd="2" align="center"><button className="btn" onClick={(e) => prevQuestion()}>Back</button></GridColItem>
-          <GridColItem colStart="2" colEnd="3" align="center"><button className="btn" onClick={(e) => setTestComplete(true)}>Submit</button></GridColItem>
+          <GridColItem colStart="1" colEnd="2" align="center"><NavButton onClick={(e) => prevQuestion()}>BACK</NavButton></GridColItem>
+          <GridColItem colStart="2" colEnd="3" align="center"><NavButton onClick={(e) => setTestComplete(true)}>SUBMIT</NavButton></GridColItem>
         </Grid>
       </Grid>
     );
