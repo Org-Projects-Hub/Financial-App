@@ -12,7 +12,7 @@ const Simulation =({user}:{user: any})=>
       <Wrapper color="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" className="center">
         <div className="top">Hello, {user.firstName}</div>
         {stage === "pretest" && <PrePostTest stage={stage} setStage={setStage} />}
-        {stage === "simulation" && <SimulationStart stage={stage} setStage={setStage}/>}
+        {stage === "simulation" && <SimulationStart stage={stage} setStage={setStage}/> }
         {stage === "posttest" && <PrePostTest stage={stage} setStage={setStage} />}
       </Wrapper>)
     };

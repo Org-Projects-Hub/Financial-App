@@ -10,7 +10,7 @@ animation-timing-function: ease-in;
 @keyframes spin{
 
 from {padding-top:2vh;}
-to {padding-top:40vh;}
+to {padding-top:30vh;}
 
 }
 
