@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
+import data from './Simulation.json'; 
+
 
 const Wrapper = styled.div`
 display: grid;
@@ -19,13 +21,13 @@ grid-row: 3 / span 1;
 
 const SimulationStart = ({stage, setStage}:any) => {
 
+const { education } = data;
 
-    return(
+    
+return(
         <Wrapper>
-            
-
             <WheelPlace>
-                <Wheel />
+               <Wheel education={education} stage={stage} />
             </WheelPlace>
 
             <Button>

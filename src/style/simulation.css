@@ -1,11 +1,4 @@
 .wheel-animate{
-background: yellow;
-border-radius: 25%;
-border-width: 10vh 2vw 10vh 2vw ;
-border-style:solid;
-border-color: black;
-height: 40vh;
-width: 20vw;
 text-align: center;
 animation-name:spin;
 animation-duration:100ms;
@@ -16,8 +9,8 @@ animation-timing-function: ease-in;
 
 @keyframes spin{
 
-from {padding-top:5vh;}
-to {padding-top:25vh;}
+from {padding-top:2vh;}
+to {padding-top:40vh;}
 
 }
 
@@ -27,5 +20,9 @@ border-radius: 25%;
 height: 50vh;
 width: 30vw;
 text-align: center;
+border-radius: 25%;
+border-width: 10vh 2vw 10vh 2vw ;
+border-style:solid;
+border-color: black;
 
 }
