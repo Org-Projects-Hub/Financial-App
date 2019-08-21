@@ -8,9 +8,14 @@ import '../style/simulation.css';
 /**
  * Wheel.tsx
  *
- * @desc: Called by [SimulationStart]. Switches between the different stages of the simulation
- * @param {string}   stage             The current stage of the entire simulation (preTest, simulation, postTest)
- * @param {Function} setStage          Sets the overal stage of the simulation (preTest, simulation, postTest)
+ * @author: Nicholas Salter
+ * @desc: Called by [SimulationStart]. Creates a spinning wheel where users can randomly select parts of their "life"
+ * @param {string[]}   input           The data to be randomly selected 
+ * @param {string}     stage           The stage of the simulation (Declared in [SimulationStart.tsx]) should only be job or education
+ * @param {Function}   setChoice       Sets the corresponding variable in [SimulationStart.tsx], used for passing 
+ *                                     the selection chosen in Wheel.tsx
+ * @param {Function}   setStage        Changes the simulation stage (Declared in [SimulationStart.tsx]); how users progress 
+ *                                     through the simulation
  * @return TSX to be rendered.
  */
 const Wheel = ({ input, stage, setChoice, setStage}: any) => {
@@ -20,12 +25,11 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
     const [selection, setSelect] = useState(null); //the users selection, the data the user selects
     let [spinning, setSpin] = useState(false); //switches views to allow the data to change
     const [spinTime, setTime] = useState(100); //selects how fast you want the data to change
-    const [color, setColor] = useState('rgb(0,0,0)') //used for changing the color of the input
-    const [text, setText] = useState(null);
+    const [color, setColor] = useState('rgb(0,0,0)') //TODO: used for changing the color of the input
+    const [text, setText] = useState(null); //hook for changing the text displayed after the spinner
 
-    console.log("INPUT: " + input);
     
-    useInterval(() => {timer()}, spinTime)
+    useInterval(() => {timer()}, spinTime) //setting the interval to run the timer() function
     
 
     /*TODO change color randomly every input */
@@ -64,18 +68,21 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
                 //go back to the first index
                 setIndex(0);
 
-                //displa the second index, because of the  displaying twice error
+                //display the second index, because of the  displaying twice error
                 setSelect(input[1])
-                console.log("INDEX: " + index + ' ' + input[index]);
             }
         }
 
     } 
     /** Function Next is used for switching the stage, it is how the user progresses through the simulation*/
     function next(){
+       
+        //switch to job if the user just selected their education
         if(stage === "education"){
             setStage("job");
         }
+
+        //switch to the booths if the user selected their job
         else if(stage === "job"){
             setStage("booths");
         }
@@ -85,10 +92,12 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
     //Changes the spin function, used by the wheel buttons
     function change(){
 
+        //If the wheel is currently spinning
         if(spinning === true){
-            setSpin(false);
-            setChoice(selection);
+            setSpin(false); //stop the spinner
+            setChoice(selection); //setChoice to selection (declared in [SimulationStart.tsx])
             
+            //Declare the ending text based on the current simStage
             if(stage === "education"){
                 setText("You graduated with your " + selection + "!");
             }
