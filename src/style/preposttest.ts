@@ -11,6 +11,10 @@ const NumberStr = styled.div`
   text-align: center;
   font-size: 12px;
   font-weight: bold;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 const QuestionStr = styled.div`
@@ -21,53 +25,60 @@ const QuestionStr = styled.div`
 `;
 
 const OptionButton = styled.button`
-  background-color: #007fff;
-  color: #ffffff;
+  background-color: white;
+  color: #5c5c5c;
   margin: 5px;
-  min-width: 300px;
+  min-width: 200px;
   min-height: 30px;
-  border: 2px solid #1f3d7d;
+  border: 1px solid #969696;
   border-radius: 4px;
-  font-weight: bold;
+
+  &:focus {
+    background-color: white;
+  }
 
   &:hover {
-    background-color: #1f3d7d;
     cursor: pointer;
+    color: #f8b332;
     border-color: #f8b332;
   }
 
   &:disabled {
-    background-color: #7da2d6;
-    color: #ffffff;
-    border-color: #1f3d7d;
+    color: #1f3d7d;
+    border: 2px solid #1f3d7d;
+    font-weight: bold;
+    &:hover {
+      cursor: default;
+    }
   }
 `;
 
 const NavButton = styled.button`
-  background-color: #007fff;
-  color: #ffffff;
-  font-weight: bold;
+  background-color: white;
+  color: #1f3d7d;
   margin: 5px;
   min-width: 150px;
   min-height: 40px;
   border: 2px solid #1f3d7d;
   border-radius: 4px;
+  font-weight: bold;
 
   &:focus {
-    background-color: #007fff;
+    background-color: white;
+    color: #f8b332;
     border-color: #f8b332;
   }
 
   &:hover {
-    background-color: #1f3d7d;
     cursor: pointer;
+    color: #f8b332;
     border-color: #f8b332;
   }
 
   &:disabled {
-    background-color: #7da2d6;
-    color: #ffffff;
-    border-color: #1f3d7d;
+    background-color: white;
+    color: #7da2d6;
+    border-color: #7da2d6;
     cursor: not-allowed;
   }
 `;

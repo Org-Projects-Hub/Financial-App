@@ -50,7 +50,6 @@ const Question = ({id, question, answers, value, storeSelection, total}: Props)=
             {answers.map((answer: string, i: any) =>
               <li>
                 <OptionButton 
-                  className="option" 
                   onClick={(e: any) => storeSelection(e.target.name, e.target.value)} 
                   key={i} 
                   value={answer}
