@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Test from './Test';
 import Results from './Results';
 import styled from 'styled-components';
+import { Container, NavButton } from '../style/preposttest';
 import {Card, GridRow} from '../style/styled';
 
 /**
@@ -33,31 +34,31 @@ const PrePostTest = ({stage, setStage}: any)=> {
             stage === 'pretest'?
                 <GridRow rows="2">
                     <Card>{SimulationIntro}</Card>
-                    <Div><button className="btn" onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</button></Div>
+                    <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
                 </GridRow>
             :
                 <GridRow rows="2">
-                    <Div><button className="btn" onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</button></Div>
+                    <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
                 </GridRow>
         :
             /** If testComplete is false, [Test] component will be rendered, displaying questions to be answered. Else, results */
             !testComplete?
-                <div className="container">
+                <Container>
                     <Test testType={stage} setTestComplete={setTestComplete} />
-                </div>
+                </Container>
             :
                 <div>
-                    <Card><Results /></Card>
+                    <Card ><Results /></Card>
                     <Div>
                         {/** set stage onClick based on current stage */}
-                        <button className="btn" 
+                        <NavButton 
                                 onClick={ stage==='pretest'? 
                                             (e) => setStage("posttest") 
                                             :
                                             (e) => setStage("pretest") }>
                             {/** set button text based on current stage */}
-                            { stage === 'pretest'? 'Begin Simulation': 'Finish' }
-                        </button>
+                            { stage === 'pretest'? 'BEGIN SIMULATION': 'FINISH' }
+                        </NavButton>
                     </Div>
                 </div>
     );

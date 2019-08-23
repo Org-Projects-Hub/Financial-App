@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React from 'react';
+import { NumberStr, QuestionStr, OptionButton } from '../style/preposttest';
 import {Card, Grid} from '../style/styled';
 import api from '../api';
+
 /**
  * Question.tsx
  *
@@ -17,38 +15,16 @@ import api from '../api';
  * @return TSX to be rendered.
  */
 
-const Wrapper = styled.div`
-  display: block;
-  padding: 15px;
-`;
-
-const Div = styled.div`
-  text-align: left;
-`;
-
-const QuestionStr = styled.div`
-  padding-bottom: 15px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-`;
-
-const NumberStr = styled.div`
-  padding-bottom: 10px;
-  text-align: center;
-  font-size: 12px;
-`;
-
 type Props = {
   id: string,
   question: string,
   answers: string[],
   value: string,
-  nextQuestion: Function,
+  storeSelection: Function,
   total: Number
 }
 
-const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
+const Question = ({id, question, answers, value, storeSelection, total}: Props)=>{
 
   const SubmitAnswer = (answer : string, id: string)=>{
                   const obj = {answer: answer, typesType:"preTest", q_id: id};
@@ -67,31 +43,23 @@ const Question = ({id, question, answers, value, nextQuestion, total}: Props)=>{
 
   return (
     <Card>
-      <Wrapper>
-        <NumberStr>Question {parseInt(id, 10) + 1}/{total}</NumberStr>
+        <NumberStr>Question {parseInt(id, 10) + 1} of {total}</NumberStr> 
         <QuestionStr>{question}</QuestionStr>
         <Grid cols="1">
-          <div style={{width: "57%"}}  className="justify-end">
-            <RadioGroup
-              aria-label="answers"
-              name={id}
-              value={value || ''}
-              onChange={(e: any)=>{
-                        // Fetch to backend here
-                        SubmitAnswer(e.target.value, id);
-                        nextQuestion(e.target.name, e.target.value);
-              }}
-            >
-              {/** Map each answer to radio button */}
-              {answers.map((answer: string, i: any) =>
-                    <Div key ={i}>
-                      <FormControlLabel value={answer} control={<Radio />} label={answer} key={i} />
-                    </Div>
-              )}
-            </RadioGroup>
-          </div>
+          <ul className="answer-options">
+            {answers.map((answer: string, i: any) =>
+              <li>
+                <OptionButton 
+                  onClick={(e: any) => storeSelection(e.target.name, e.target.value)} 
+                  key={i} 
+                  value={answer}
+                  disabled={value === answer} >
+                    {answer}
+                </OptionButton>
+              </li>
+            )}
+          </ul>
         </Grid>
-      </Wrapper>
     </Card>
   )
 };
