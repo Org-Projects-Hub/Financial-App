@@ -94,7 +94,7 @@ const UserStartPage = (props: any) => {
                             
                             <div>
                                 <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Add Class</AddClass>
-                                <UserModal backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                <UserModal accountType={user.accountType} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
                             </div>
                             : 
 
@@ -102,7 +102,7 @@ const UserStartPage = (props: any) => {
                             user.accountType === 'student' ?
                                 <div>
                                     <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass> 
-                                    <UserModal backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                    <UserModal accountType={user.accountType} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
                                 </div>
                                 : 
 

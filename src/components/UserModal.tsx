@@ -66,9 +66,7 @@ const UserModal = (props: any) =>{
                         <p className="ta-left" style={{fontSize: "175%", margin: "1% 1% 2% 1%"}}>{props.modalTitle}: </p>
                         <div className="ta-left" style={{borderRadius: '0.1em'}}>
                             <input className="add-input" placeholder={props.inputText}></input>
-                        </div>
-                        <div className="ta-left" style={{borderRadius: '0.1em'}}>
-                            <input className="add-input" placeholder='School Name'></input>
+                            {props.accountType === "teacher" ? <input className="add-input" placeholder='School Name'></input> : null}
                         </div>
 
                         <AddClass style={{
