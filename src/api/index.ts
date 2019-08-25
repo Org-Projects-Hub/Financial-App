@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from '../utils/utils';
 
- const URL: any = "http://35.192.177.69";
+ const URL: any = "https://finapp.aayushh.com";
 //
 //
  const API = {
