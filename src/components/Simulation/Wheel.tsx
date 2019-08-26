@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import useInterval from '@use-it/interval';
 
-import '../style/simulation.css';
+import './simulation.css';
 
 
 /**
@@ -94,6 +94,7 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
         //If the wheel is currently spinning
         if(spinning === true){
+            
             setSpin(false); //stop the spinner
             setChoice(selection); //setChoice to selection (declared in [SimulationStart.tsx])
             

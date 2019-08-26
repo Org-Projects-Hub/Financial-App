@@ -12,7 +12,7 @@ import UserModal from './UserModal'
 import Hints from './Hints';
 import SelectInput from './SelectInput';
 import LoginNumberTwo from './LoginNumberTwo';
-import SimulationStart from './SimulationStart';
+import SimulationStart from './Simulation/SimulationStart';
 
 export {Header, Loader, Navbar, SettingItem, AccountPick, Results, Class, Students,
      Modal, Hints, SelectInput, PrePostTest, LoginNumberTwo, SimulationStart, UserModal};
