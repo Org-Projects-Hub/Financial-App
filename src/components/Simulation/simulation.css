@@ -4,25 +4,49 @@ animation-name:spin;
 animation-duration:100ms;
 animation-iteration-count: infinite;
 animation-timing-function: ease-in;
+
 }
+
+
+/**Sizing for ipad and mobile*/
+@media only screen and (max-width : 1024px) {
+
+    .wheel{
+    
+        height: 50vh;
+        min-width: 50vw;
+        border-width: 8vh 2vw 8vh 2vw ;
+        
+        }
+
+}
+
+/*Sizing for laptop and Desktop*/
+@media only screen  and (min-width : 1024px) {
+
+
+    .wheel{
+        height: 50vh;
+        width: 30vw;
+        border-width: 10vh 2vw 10vh 2vw ;
+        
+        }
+}
+
+
+.wheel{
+    border-radius: 20%;
+    background: yellow;
+    text-align: center;
+    border-style:solid;
+    border-color: black;
+    
+    }
 
 
 @keyframes spin{
 
 from {padding-top:2vh;}
 to {padding-top:30vh;}
-
-}
-
-.wheel{
-background: yellow;
-border-radius: 25%;
-height: 50vh;
-width: 30vw;
-text-align: center;
-border-radius: 25%;
-border-width: 10vh 2vw 10vh 2vw ;
-border-style:solid;
-border-color: black;
 
 }

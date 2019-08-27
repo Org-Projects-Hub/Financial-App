@@ -31,13 +31,7 @@ object-fit: contain;
 z-index:1;
 `;
 
-{/*const SlidePos = styled.div`
-grid-column: 2 / span 1;
-grid-row: 3 / span 1;
-justify-self: stretch;
-align-self: stretch;
-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-`; */}
+
 
 //Sets the desc centered to the left of the login card, also sets the text color and font
 //  contains media queries so that it will be stacked above the login card on smaller screens

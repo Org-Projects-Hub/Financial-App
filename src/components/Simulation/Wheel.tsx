@@ -18,6 +18,19 @@ import './simulation.css';
  *                                     through the simulation
  * @return TSX to be rendered.
  */
+
+const SpinText = styled.div`
+font-size:2vh;
+font-weight: bolder;
+
+`;
+
+const StarterText = styled.div`
+font-size:20pt;
+font-style: 
+`;
+
+
 const Wheel = ({ input, stage, setChoice, setStage}: any) => {
     
     
@@ -84,7 +97,7 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
         //switch to the booths if the user selected their job
         else if(stage === "job"){
-            setStage("booths");
+            setStage("boothSelect");
         }
         
     }
@@ -137,9 +150,9 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
             <div>
                 {/**Display the selection*/}
                 <div className="wheel">
-                    <div className="wheel-animate">
+                    <SpinText className="wheel-animate">
                     {selection}
-                    </div>
+                    </SpinText>
                 </div>
 
                 <div>

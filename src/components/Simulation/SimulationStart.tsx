@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
 import data from './Simulation.json'; 
+import BoothSelect from './BoothSelect'
 
 
 const Wrapper = styled.div`
@@ -36,11 +37,20 @@ const SimulationStart = ({stage, setStage}:any) => {
 
     const { education } = data; //string array of the education options
 
-    const { reqed } = data.jobs //TODO: get the array of jobs based on the users education
 
     //Setting the simStage to education at the begging of the simuatlion 
     if(stage==="simulation" && simStage === null){ 
-        setSimStage("education");
+        
+        
+        
+        
+        
+        setSimStage("boothSelect"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
+
+
+
+
+        
     }
 
     console.log("STAGE: " + simStage);
@@ -52,6 +62,7 @@ return(
             <WheelPlace>
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" && <Wheel input={education} stage={simStage} setChoice={setJob} setStage={setSimStage}/>}
+                {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage}/>}
             </WheelPlace>
             
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
