@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const Booth = ( {currentBooth}:any) => {
+const Booth = ( {setSimStage, currentBooth}:any) => {
 
     return(
         <div>

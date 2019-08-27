@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import data from './Simulation.json'
-import Booth from './Booth'
 
 const Wrapper = styled.div`
     
@@ -17,17 +16,17 @@ margin: .5vh
 `;
 
 
-const BoothSelect = ({setSimStage}:any) =>{
+const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     const [boothSelection, setBooth] = useState(null);
     
 
-    // function goToBooth(booth: string){
+    function goToBooth(){
 
-    //     setBooth(booth);
-
-    //     <Booth currentBooth={boothSelection} />
-    // }
+        console.log("HERE");
+        setSimStage("booth");
+        setCurrentBooth(boothSelection);
+    }
 
 
     const info = data.booths
@@ -40,14 +39,15 @@ const BoothSelect = ({setSimStage}:any) =>{
 
             {info.map((info:any, i: any )=> 
             
-            <Booths key={i} onClick={()=> <Booth currentBooth= {info.category}/>}>
+            <Booths key={i} onClick={()=> setBooth(info.category)}>
                     {info.category}
-                </Booths>)
+            </Booths>)
             }
 
             {boothSelection}
 
             
+            <button onClick={()=> goToBooth()}>GO!</button>
         </Wrapper>
     )
 

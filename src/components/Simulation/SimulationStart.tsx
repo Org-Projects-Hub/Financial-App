@@ -33,7 +33,9 @@ const SimulationStart = ({stage, setStage}:any) => {
 
     const [edlevel, setEd] = useState(null); //Sets the users education level (Used in Wheel.tsx)
     const [job, setJob] = useState(null); //Sets the users job (Used in Wheel.tsx)
+    
     const [simStage, setSimStage] = useState(null) //Used for switching between the stages of the simulation
+    const [currentBooth, setCurrentBooth] = useState(null)
 
     const { education } = data; //string array of the education options
 
@@ -62,7 +64,8 @@ return(
             <WheelPlace>
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" && <Wheel input={education} stage={simStage} setChoice={setJob} setStage={setSimStage}/>}
-                {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage}/>}
+                {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>}
+                {simStage == "booth" && <BoothSelect setSimStage={setSimStage} currentBooth={currentBooth}/>}
             </WheelPlace>
             
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
