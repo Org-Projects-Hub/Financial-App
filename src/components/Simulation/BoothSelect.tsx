@@ -23,9 +23,10 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     function goToBooth(){
 
-        console.log("HERE");
         setSimStage("booth");
         setCurrentBooth(boothSelection);
+
+        
     }
 
 
@@ -46,8 +47,8 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
             {boothSelection}
 
-            
-            <button onClick={()=> goToBooth()}>GO!</button>
+            {console.log(boothSelection)}
+            <button className="btn" onClick={()=> goToBooth()}>GO!</button>
         </Wrapper>
     )
 

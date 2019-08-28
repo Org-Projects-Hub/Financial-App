@@ -3,6 +3,7 @@ import Wheel from './Wheel';
 import styled from 'styled-components';
 import data from './Simulation.json'; 
 import BoothSelect from './BoothSelect'
+import Booth from './Booth'
 
 
 const Wrapper = styled.div`
@@ -37,7 +38,8 @@ const SimulationStart = ({stage, setStage}:any) => {
     const [simStage, setSimStage] = useState(null) //Used for switching between the stages of the simulation
     const [currentBooth, setCurrentBooth] = useState(null)
 
-    const { education } = data; //string array of the education options
+    const { education} = data; //string array of the education options
+
 
 
     //Setting the simStage to education at the begging of the simuatlion 
@@ -47,7 +49,7 @@ const SimulationStart = ({stage, setStage}:any) => {
         
         
         
-        setSimStage("education"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
+        setSimStage("boothSelect"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
 
 
 
@@ -65,7 +67,7 @@ return(
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" && <Wheel input={education} stage={simStage} setChoice={setJob} setStage={setSimStage}/>}
                 {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>}
-                {simStage == "booth" && <BoothSelect setSimStage={setSimStage} currentBooth={currentBooth}/>}
+                {simStage == "booth" && <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data}/>}
             </WheelPlace>
             
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
