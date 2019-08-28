@@ -33,7 +33,7 @@ function get(url: string) {
 }
 
 function authGet(url: string) {
-  return fetch(url, { method: 'POST', headers: authHeader() })
+  return fetch(url, { method: 'GET', headers: authHeader() })
     .then(response => response.json());
 }
 
@@ -73,7 +73,7 @@ export default {
   },
 
   auth: function(){
-    return authGet(API.auth);
+    return authPost(API.auth,{});
   },
   answer: function({q_id, typesType, answer} : any){
     return authPut(API.answer, {q_id, typesType, answer});

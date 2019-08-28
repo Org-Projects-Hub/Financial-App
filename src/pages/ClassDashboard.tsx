@@ -5,7 +5,7 @@ import { classes } from '../fakeJson';
 import { Link } from 'react-router-dom';
 import SettingsGear from '../assets/images/settingsGear.png';
 import { Border, Container, SettingsButton, AddStudent, BackButton} from '../style/styled';
-
+import api from '../api';
 
 
 const ClassTitle = styled.div`
@@ -23,6 +23,14 @@ const ClassDashboard = (props : any) => {
     // Getting the class id from the URL
     const url = window.location.href;
     const slash = url.lastIndexOf("/");
+
+
+
+    api.getClass()
+    .then((res)=>{console.log(res)})
+    .catch((err) =>{console.log(err)});
+
+
 
     // Loops through the classes array and returns the data associated with that class. If the class doesn't exist, throw an error.
     function getUser(classID: any)
