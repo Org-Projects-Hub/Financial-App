@@ -62,8 +62,7 @@ const ClassDashboard = (props : any) => {
                 {/* Buttons for navigation */}
                 <AddStudent onClick={()=>setModal(true)}> Add Student</AddStudent>
                 <div style={{width: "100%"}}><Link to="/classes"><BackButton>&lt; Back</BackButton></Link></div>
-                <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div>
-
+                {/* <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div>*/}
                 <UserModal backgroundColor='#d67762' modalTitle='Enter Student Username' inputText='Student Username' buttonText='Add' show={modal} onClose={()=>setModal(false)}></UserModal>
             </Container>
         </Border>

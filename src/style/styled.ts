@@ -115,7 +115,7 @@ const Button = styled.button`
   @media screen and (max-width: 879px) {
     position: static;
     width: 60%;
-    margin: 0.5% 20%;
+    margin: 1% 20% 8% 20%;
   }
 `;
 
@@ -132,6 +132,13 @@ const AddClass = styled(Button)`
   color: white;
   bottom: 18%;
   right: 2%;
+
+  @media screen and (max-width: 879px) {
+    position: relative;
+    width: 50vw;
+    margin: 2% 3%;
+  }
+  
 `;
 
 
@@ -171,12 +178,20 @@ const TakeSim = styled(Button)`
   left: 25%;
   color: white;
   border: none;
-  width: 50%
+  width: 50%;
   transition: transform 750ms;
   margin-bottom: 2%;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 879px) {
+    position: fixed;
+    width: 50%;
+    margin-bottom: 10em;
+    top: 4%;
+    left: 5%;
   }
 `;
 

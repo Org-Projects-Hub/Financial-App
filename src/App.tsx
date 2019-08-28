@@ -66,7 +66,7 @@ export default class App extends React.Component <{}, Props>{
 
     return(
         <Router>
-            {this.state.loggedin ?
+            {!this.state.loggedin ?
               <div className={this.state.showNav? "grid-main": ""}>
             <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
             {/* this.state.modal && <Modal text={`Welcome to Fin App! Head on to the Simulation when you are ready`} close={close} /> */}

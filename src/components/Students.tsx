@@ -32,6 +32,11 @@ const StudentDiv = styled.div`
     &:hover {
         box-shadow: 5px 5px 15px 1px gray;
     }
+
+
+    @media(max-width: 600px){
+        display: inline-block;
+    }
 `;
 
 const Btn = styled.i`

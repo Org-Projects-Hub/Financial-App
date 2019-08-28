@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { AddClass } from '../style/styled'
+import { Button } from '../style/styled'
 import RedX from '../assets/images/red_x.png';
 
 const Wrapper = styled.div`
@@ -51,6 +51,14 @@ const XButton = styled.img`
     }
 `;
 
+const CreateClass = styled(Button)`
+    position: relative;
+    background-color: ${props => props.color};
+    color: white;
+    width: 55%;
+    margin: 0.5% 20%;
+`;
+
 
 
 
@@ -69,13 +77,7 @@ const UserModal = (props: any) =>{
                             {props.accountType === "teacher" ? <input className="add-input" placeholder='School Name'></input> : null}
                         </div>
 
-                        <AddClass style={{
-                            position: "relative", 
-                            left: "40%", 
-                            marginTop: '3%', 
-                            backgroundColor: props.backgroundColor
-                            }} 
-                            onClick={props.onConfirm}>{props.buttonText}</AddClass>
+                        <CreateClass color={props.backgroundColor} onClick={props.onConfirm}>{props.buttonText}</CreateClass>
                     </div>
                 </Modall>
             </Wrapper>);
