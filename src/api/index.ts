@@ -3,6 +3,7 @@ import { get, authGet, post, authPost, authPut } from './request';
 
 const URL : string = "https://finapp.aayushh.com";
 const API : any = {
+  //User
   login: URL + "/login",
   signup: URL + "/signup",
   auth: `${URL}/auth`,
@@ -12,6 +13,7 @@ const API : any = {
    //teacher
    createClass: `${URL}/create-class`,
    getStudent: `${URL}/students`,
+   //validation
 
    //Students
    addClass: `${URL}/add-class`,
@@ -42,6 +44,6 @@ export default {
     return authGet(API.getStudent);
   },
   createClass : function ({ className, school } : any){
-    return authPost(API.createClass, { className, school });
+    return authPut(API.createClass, { className, school });
   }
 };
