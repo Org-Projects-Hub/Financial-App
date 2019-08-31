@@ -21,14 +21,17 @@ export default class App extends React.Component <{}, Props>{
     if(!this.state.tokenChecked){
       api.auth()
       .then((res)=> {
-        if(res.success) this.setState({loggedin : true, user : res.user});
+        if(res.success){ this.setState({loggedin : true, user : res.user});}
         this.setState({tokenChecked: true});
+
         })
       .catch((err)=>{
         alert(err);
-        this.setState({tokenChecked: true});
+
       }
-      );
+    ).finally(()=>{this.setState({tokenChecked: true})})
+
+
     }
   }
 

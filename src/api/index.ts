@@ -1,7 +1,8 @@
 import { getLocalStorage, setLocalStorage } from '../utils/utils';
 import { get, authGet, post, authPost, authPut } from './request';
 
-const URL : string = "https://finapp.aayushh.com";
+let URL  = "https://finapp.aayushh.com";
+URL  = "http://localhost:8080";;
 const API : any = {
   //User
   login: URL + "/login",
