@@ -1,8 +1,9 @@
 import { authGet, post, authPost, authPut } from './request';
 import { API } from './routes';
+import { tsRestType } from '@babel/types';
 
 export default {
-//User
+  //User Route
   login: function({ email, password }: any) {
     return post(API.login, { email, password });
   },
@@ -12,21 +13,29 @@ export default {
   auth: function(){
     return authPost(API.auth,{});
   },
-
-  //Students
-  answer: function({ q_id, typesType, answer } : any){
-    return authPut(API.answer, {q_id, typesType, answer});
+  updateInfo: function({ field, value} : any){
+    return authPost(API.updateInfo , {field, value});
   },
+  getClass: function(){
+    return authGet(API.getClass, '');
+  },
+
+
+  //Students Route
   addClass: function({code} : any){
     return authPost(API.addClass, {code});
   },
-  getClass: function(){
-    return authGet(API.getClass);
+  answer: function({ q_id, typesType, answer } : any){
+    return authPut(API.answer, {q_id, typesType, answer});
+  },
+  submitAnswer: function(testType : string){
+    return authGet(API.getClass, ('/' + testType));
   },
 
-//Teacher
-  getStudent: function(){
-    return authGet(API.getStudent);
+
+  //Teacher Route
+  getStudent: function( code : string){
+    return authGet(API.getStudent, ('/' + code));
   },
   createClass : function ({ className, school } : any){
     return authPut(API.createClass, { className, school });

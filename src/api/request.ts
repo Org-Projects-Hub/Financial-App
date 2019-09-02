@@ -5,8 +5,8 @@ function get(url: string) {
     .then(response => response.json());
 }
 
-function authGet(url: string) {
-  return fetch(url, { method: 'GET', headers: authHeader() })
+function authGet(url: string, param : string) {
+  return fetch(url + param, { method: 'GET', headers: authHeader() })
     .then(response => response.json());
 }
 

@@ -6,7 +6,7 @@ const API : any = {
   login: URL + "/login",
   signup: URL + "/signup",
   auth: `${URL}/auth`,
-  edit: `${URL}/edit`,
+  updateInfo: `${URL}/update-info`,
   getClass: `${URL}/class`,
 
    //teacher
@@ -18,6 +18,7 @@ const API : any = {
    //Students
    addClass: `${URL}/add-class`,
    answer: `${URL}/answer`,
+   submitAnswers: `${URL}/answer`,
    getAnswers: `${URL}/answer`
  }
 
