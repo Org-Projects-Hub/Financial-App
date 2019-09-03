@@ -32,6 +32,8 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     const info = data.booths
 
+    // JSON.parse(info)
+
     console.log(info.length)
 
     return(
@@ -44,8 +46,6 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
                     {info.category}
             </Booths>)
             }
-
-            {boothSelection}
 
             {console.log(boothSelection)}
             <button className="btn" onClick={()=> goToBooth()}>GO!</button>

@@ -25,7 +25,7 @@ const booths = [
                     "Rue 21", "Simply Fashions", "Dirt Cheap", "Target", "Wal-Mart", "Fashion Cents",
                     "Forever 21" ],
             costbreakdown:["Clothing Allowance - $85","DIY Laundry - $15"],
-            prices:100
+            price:100
         },
 
         {id:4,name: "Thrift/Consignment Stores",
@@ -38,9 +38,44 @@ const booths = [
 
     },
 
-        {id:1, category:"Household Expenses", options:[]},
-        {id:2, category:"Furniture", options:[]},
-        {id:3, category:"Charity", options:[]}
+        {id:1, category:"Household Expenses", options:[
+            
+            {id:0,name: "DEPARTMENT STORES & HIGH END BOUTIQUES",
+            desc:["Belk", "Haddad’s", "Haneline’s Men’s Wear","Dillard’s", 
+                "Stein Mart","Talbots","Chico’s","Ron Alexander", 
+                "Signatures by Linda Reeves","Joseph A Bank","Her Toggery",
+                "The Toggery","The Cotton Patch" ],
+            costbreakdown:["Clothing Allowance: $400/month", "Moderate Dry Cleaning: $100/month"],
+            price:500
+            }]
+         },
+
+
+        {id:2, category:"Furniture", options:[
+            
+            {id:0,name: "DEPARTMENT STORES & HIGH END BOUTIQUES",
+            desc:["Belk", "Haddad’s", "Haneline’s Men’s Wear","Dillard’s", 
+                "Stein Mart","Talbots","Chico’s","Ron Alexander", 
+                "Signatures by Linda Reeves","Joseph A Bank","Her Toggery",
+                "The Toggery","The Cotton Patch" ],
+            costbreakdown:["Clothing Allowance: $400/month", "Moderate Dry Cleaning: $100/month"],
+            price:500
+
+            }]
+        },
+
+
+        {id:3, category:"Charity", options:[
+            
+            {id:0,name: "DEPARTMENT STORES & HIGH END BOUTIQUES",
+             desc:["Belk", "Haddad’s", "Haneline’s Men’s Wear","Dillard’s", 
+            "Stein Mart","Talbots","Chico’s","Ron Alexander", 
+            "Signatures by Linda Reeves","Joseph A Bank","Her Toggery",
+            "The Toggery","The Cotton Patch" ],
+            costbreakdown:["Clothing Allowance: $400/month", "Moderate Dry Cleaning: $100/month"],
+            price:500
+            }]
+        }
 
 ]
         

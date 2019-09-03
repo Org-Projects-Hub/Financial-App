@@ -49,7 +49,7 @@ const SimulationStart = ({stage, setStage}:any) => {
         
         
         
-        setSimStage("boothSelect"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
+        setSimStage("education"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
 
 
 
