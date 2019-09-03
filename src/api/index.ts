@@ -1,93 +1,46 @@
-import { getLocalStorage, setLocalStorage } from '../utils/utils';
+import { authGet, post, authPost, authPut } from './request';
+import { API } from './routes';
+import { tsRestType } from '@babel/types';
 
- const URL: any = "http://35.192.177.69";
-//
-//
- const API = {
-   login: URL + "/login",
-   signup: URL + "/signup",
-   auth: `${URL}/auth`,
-   answer: `${URL}/answer`,
-   edit: `${URL}/edit`,
-   addClass: `${URL}/add-class`,
-   getClass: `${URL}/class`,
-   getStudent: `${URL}/students`,
-   createClass: `${URL}/create-class`
- }
-
-function header() {
-  return { "Content-Type": "application/json" };
-}
-
-function authHeader() {
-  let authtoken = getLocalStorage("token");
-  console.log(authtoken)
-  return { "Content-Type": "application/json", token: authtoken };
-}
-
-
-
-function get(url: string) {
-  return fetch(url, { method: 'GET', headers: header() })
-    .then(response => response.json());
-}
-
-function authGet(url: string) {
-  return fetch(url, { method: 'POST', headers: authHeader() })
-    .then(response => response.json());
-}
-
-
-function post(url: string, body: object) {
-    return fetch(url, { method: 'POST', headers: header(), body: JSON.stringify(body) })
-      .then(response => response.json());
-}
-//
-// function headerPost(url, body, header) {
-//     return fetch(url, { method: 'POST', headers: { "Content-Type": "application/json", header }})
-//       .then(response => response.json());
-// }
-//
-function authPost(url : string, body : any) {
-  return fetch(url, { method: 'POST', headers: authHeader(), body: JSON.stringify(body) })
-  .then(response => response.json());
-}
-
-// function put(url, body) {
-//   //todo
-// }
-//
-function authPut(url : string, body : any) {
-  return fetch(url, { method: 'PUT', headers: authHeader(), body: JSON.stringify(body) })
-  .then(response => response.json());
-}
-
-//
 export default {
-  login: function({email, password}: any) {
-    return post(API.login, {email, password });
+  //User Route
+  login: function({ email, password }: any) {
+    return post(API.login, { email, password });
   },
-
   signup: function({email, password, firstName, lastName, username}: any) {
     return post(API.signup, {email, password, firstName, lastName, username});
   },
-
   auth: function(){
-    return authGet(API.auth);
+    return authPost(API.auth,{});
   },
-  answer: function({q_id, typesType, answer} : any){
-    return authPut(API.answer, {q_id, typesType, answer});
+  updateInfo: function({ field, value} : any){
+    return authPost(API.updateInfo , {field, value});
   },
+  getClass: function(){
+    return authGet(API.getClass, '');
+  },
+
+
+  //Students Route
   addClass: function({code} : any){
     return authPost(API.addClass, {code});
   },
-  getClass: function(){
-    return authGet(API.getClass);
+  answer: function({ q_id, typesType, answer } : any){
+    return authPut(API.answer, {q_id, typesType, answer});
   },
-  getStudent: function(){
-    return authGet(API.getStudent);
+  submitAnswer: function(testType : string){
+    return authGet(API.getClass, ('/' + testType));
   },
-  createClass : function ({  className, school} : any){
-    return authPost(API.createClass, { className, school });
+
+
+  //Teacher Route
+  getStudent: function( code : string){
+    return authGet(API.getStudent, ('/' + code));
+  },
+  createClass : function ({ className, school } : any){
+    return authPut(API.createClass, { className, school });
+  },
+  verifyStudent : function ({ code, s_id } : any){
+    return authPost(API.verifyStudent, { code, s_id });
   }
 };

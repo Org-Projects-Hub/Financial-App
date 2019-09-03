@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
-import { AddClass } from '../style/styled'
+import { Button } from '../style/styled'
 import RedX from '../assets/images/red_x.png';
 
 const Wrapper = styled.div`
@@ -51,10 +51,21 @@ const XButton = styled.img`
     }
 `;
 
+const CreateClass = styled(Button)`
+    position: relative;
+    background-color: ${props => props.color};
+    color: white;
+    width: 55%;
+    margin: 0.5% 20%;
+`;
 
 
 
-const UserModal = (props: any) =>{
+
+const UserModal = (props: any) => {
+
+    const [className, setClassName] = useState('');
+    const [schoolName, setSchoolName] = useState('');
 
     console.log(props.buttonBackgroundColor);
     if(props.show){
@@ -65,19 +76,11 @@ const UserModal = (props: any) =>{
                     <div style={{margin: "5% 0 5% 5%"}}>
                         <p className="ta-left" style={{fontSize: "175%", margin: "1% 1% 2% 1%"}}>{props.modalTitle}: </p>
                         <div className="ta-left" style={{borderRadius: '0.1em'}}>
-                            <input className="add-input" placeholder={props.inputText}></input>
-                        </div>
-                        <div className="ta-left" style={{borderRadius: '0.1em'}}>
-                            <input className="add-input" placeholder='School Name'></input>
+                            <input onChange={(e: any) => setClassName(e.target.value)} className="add-input" placeholder={props.inputText}></input>
+                            {props.accountType === "teacher" ? <input onChange={(e) => setSchoolName(e.target.value)} className="add-input" placeholder='School Name'></input> : null}
                         </div>
 
-                        <AddClass style={{
-                            position: "relative", 
-                            left: "40%", 
-                            marginTop: '3%', 
-                            backgroundColor: props.backgroundColor
-                            }} 
-                            onClick={props.onConfirm}>{props.buttonText}</AddClass>
+                        <CreateClass onClick={props.createNewClass({className, schoolName})} color={props.backgroundColor} >{props.buttonText}</CreateClass>
                     </div>
                 </Modall>
             </Wrapper>);

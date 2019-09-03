@@ -28,7 +28,7 @@
   }
 
 .fade-out {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
   opacity: 1;
 }
 .fade-out.active {

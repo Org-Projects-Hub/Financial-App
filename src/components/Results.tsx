@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container } from '../style/preposttest';
 
 /**
  * Results.tsx
@@ -8,17 +9,13 @@ import styled from 'styled-components';
  * @return TSX to be rendered.
  */
 
-const Wrapper = styled.div`
-
-`;
-
 const Div = styled.div`
     padding: 10px;
 `;
 
 const Results = () => {
     return(
-        <Wrapper>
+        <Container>
             <Div>
                 <div style={{fontSize: 20, padding: "5px", fontWeight: "bold" }}>Proficient</div>
                 <ul>
@@ -35,7 +32,7 @@ const Results = () => {
                     <li>This needs improvement</li>
                 </ul>
             </Div>
-        </Wrapper>
+        </Container>
     );
 };
 

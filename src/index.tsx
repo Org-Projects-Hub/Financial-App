@@ -5,5 +5,5 @@ import * as serviceWorker from './serviceWorker';
 import Loader from './components/Loader';
 
 ReactDOM.render(<Loader />, document.getElementById('root'));
-setTimeout(()=>{ReactDOM.render(<App />, document.getElementById('root'))}, 500);
+setTimeout(()=>{ReactDOM.render(<App />, document.getElementById('root'))}, 1000);
 serviceWorker.unregister();

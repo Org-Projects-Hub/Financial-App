@@ -9,4 +9,4 @@ npm start
 
 [Link to the App](https://lsbdc-finapp.netlify.com/)
 
-[Read the API Docs](http://35.192.177.69/)
+[Read the API Docs](https://finapp.aayushh.com/)
