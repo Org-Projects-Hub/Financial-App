@@ -65,9 +65,10 @@ const CreateClass = styled(Button)`
 const UserModal = (props: any) => {
 
     const [className, setClassName] = useState('');
-    const [schoolName, setSchoolName] = useState('');
+    const [school, setSchool] = useState('');
+    const [code, setCode] = useState('');
+    const [student, setStudent] = useState('');
 
-    console.log(props.buttonBackgroundColor);
     if(props.show){
         return (
             <Wrapper>
@@ -76,11 +77,29 @@ const UserModal = (props: any) => {
                     <div style={{margin: "5% 0 5% 5%"}}>
                         <p className="ta-left" style={{fontSize: "175%", margin: "1% 1% 2% 1%"}}>{props.modalTitle}: </p>
                         <div className="ta-left" style={{borderRadius: '0.1em'}}>
-                            <input onChange={(e: any) => setClassName(e.target.value)} className="add-input" placeholder={props.inputText}></input>
-                            {props.accountType === "teacher" ? <input onChange={(e) => setSchoolName(e.target.value)} className="add-input" placeholder='School Name'></input> : null}
+
+                            {props.buttonText === 'Create' ?
+                                <>
+                                    <input onChange={(e: any) => setSchool(e.target.value)} className="add-input" placeholder='School Name'></input>
+                                    <input onChange={(e: any) => setClassName(e.target.value)} className="add-input" placeholder={props.inputText}></input>
+                                </>
+                                :
+                                props.buttonText === 'Add' ?
+                                    <input onChange={(e: any) => setStudent(e.target.value)} className="add-input" placeholder={props.inputText}></input>
+                                    : 
+                                    <input onChange={(e: any) => setCode(e.target.value)} className="add-input" placeholder={props.inputText}></input>
+                            }
+                            
                         </div>
 
-                        <CreateClass onClick={props.createNewClass({className, schoolName})} color={props.backgroundColor} >{props.buttonText}</CreateClass>
+                        {props.buttonText === 'Create' ?
+                            <CreateClass onClick={()=> props.createNewClass({className, school})} color={props.backgroundColor} >{props.buttonText}</CreateClass>
+                            :
+                            props.buttonText === 'Add' ?
+                                <CreateClass onClick={()=> props.addStudent({student})} color={props.backgroundColor} >{props.buttonText}</CreateClass> 
+                                : 
+                                <CreateClass onClick={()=> props.joinClass({code})} color={props.backgroundColor} >{props.buttonText}</CreateClass>
+                        }
                     </div>
                 </Modall>
             </Wrapper>);

@@ -45,6 +45,7 @@ const StartButton = styled(Button) `
 
 const Class = (props: any) => {
 
+
     return(
         <Wrapper id="wrap">
 
@@ -53,24 +54,24 @@ const Class = (props: any) => {
 
             {   
                 // if the user is a teacher display this class information
-                props.userObj.accountType === 'teacher' ?  
+                props.userObj.account === 'teacher' ?  
 
-                <Link style={{backgroundColor: "black"}} to={`/classDashboard/${props.classObj.id}`}>
+                <Link style={{backgroundColor: "black"}} to={`/classDashboard/${props.classObj.code}`}>
                     <ClassDiv>
 
                         <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
                             <p>{props.classObj.className}</p>
-                            <p>Requests: {props.classObj.requests.indexOf('') !== -1 ? 0 : props.classObj.requests.length}</p>
-                            <p>Registered: {props.classObj.registered.indexOf('') !== -1 ? 0 : props.classObj.registered.length}</p>
-                            <p>Completed: {props.classObj.completed.indexOf('') !== -1 ? 0 : props.classObj.completed.length}</p>
+                            <p>Requests: {props.classObj.signedUp}</p>
+                            <p>Registered: {props.classObj.verified}</p>
+                            <p>Completed: {props.classObj.completed}</p>
                         </GridColItem>
 
                         <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
-                            <p>Code: {props.classObj.classCode}</p>
+                            <p>Code: {props.classObj.code}</p>
                         </GridColItem>
 
                         <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
-                            <p>This class will archive on {props.classObj.archiveOn}</p>
+                            <p>This class will archive on ####{/* props.classObj.archiveOn */}</p>
                         </GridColItem>
 
                     </ClassDiv>
@@ -79,7 +80,7 @@ const Class = (props: any) => {
                 :
 
                 // if the user is a student display this class information
-                props.userObj.accountType === 'student' ? 
+                props.userObj.account === 'student' ? 
 
                     <ClassDiv style={{cursor: "initial"}}>
 
@@ -88,7 +89,7 @@ const Class = (props: any) => {
                         </GridColItem>
 
                         {/* If the class/simulation is not completed display the Start button, if it is display 'Completed' instead */}
-                        {props.classObj.completed.indexOf(props.userObj.username) === -1 ? 
+                        {/* props.classObj.completed.indexOf(props.userObj.username) */ -1 === -1 ? 
 
                             <StartButton>
                                 <Link to={'/Simulation'}>

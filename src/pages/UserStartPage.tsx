@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Class, UserModal, Loader } from '../components';
-import { classes, users } from '../fakeJson';
 import { Link } from 'react-router-dom';
-import SettingsGear from '../assets/images/settingsGear.png';
-import { Border, Container, HomeButton, AddClass, SettingsButton, ResourcesButton, TakeSim, Grid } from '../style/styled';
+import { Border, Container, AddClass, TakeSim, Grid } from '../style/styled';
 import api from '../api/index';
-//import console = require('console');
-
 
 const JoinClass = styled(AddClass)``;
 
@@ -16,50 +12,18 @@ const UserStartPage = (props: any) => {
 
     const [modal, setModal] = useState(false);
     const [contentLoaded, setContentLoaded] = useState(false);
-    let userName;
-
-  /*   userName = 'BJones'; //requests
-    userName = 'JMe'; //registered
-    userName = 'KilUm'; // registered and completed*/
-    userName = 'JessieB'; //teacher
-    //userName = 'WaynesWorld'; //other
-
-    // this interface is to avoid type errors with mapping elements from the user array
-    interface userObject {
-        username: string,
-        accountType: string;
-        classIds: Array<string>;
-    };
-
-    let user: userObject;
-    let classObjs = [];
+    const [resClass, setResClass] = useState([]);
 
 
-    // for each user in the user array, check for the current users' object/data, once you
-        // find it, loop through their class ids and add the class' data to the classObjs array
-    for (let x = 0; x < users.length; x++) {
-        if (users[x].username === userName) {
-
-            user = users[x];
-            /* could redo this, for each class id in the user class id array, check if the class exists, if it does, return the class object, if not return null or false or something  */
-            for (let y = 0; y < /* need to get total amount of classes */ classes.length; y++) {
-                if (user.classIds.indexOf( /* need to see if current class id is in the users class id array */classes[y].id) !== -1) {
-                    classObjs.push(/* need to push entire class object into arrray for .mapping() */ classes[y]);
-                }
-            }
-
-            break;
-        }
-    }
-
+    let user = props.user;
 
     let buttonBackgroundColor;
 
     // determines button color depending on account type
-    if (user.accountType === 'teacher') {
+    if (user.account === 'teacher') {
         buttonBackgroundColor = '#d6a862';
 
-    } else if(user.accountType === 'student') {
+    } else if(user.account === 'student') {
         buttonBackgroundColor = '#649d96';
 
     } else {
@@ -68,32 +32,55 @@ const UserStartPage = (props: any) => {
 
 
    let getInitClasses = () => {
-        if(!contentLoaded){
-            api.getClass()
-                .then((res)=> {
-                    classObjs.push(res);
-                    console.log(res);
-                    setContentLoaded(true);
+        api.getClass()
+            .then((res)=> {
+                if(res.success){
+                    alert(res.message);
+                    setResClass(res.class);
+                }
+                
+                setContentLoaded(true);
+            })
+            .catch((err)=>{
+                alert(err);
+                setContentLoaded(true);
+            });
 
-                })
-                .catch((err)=>{
-                    alert(err);
-                    setContentLoaded(true);
-                });
-            }
+        
     }
 
-    let createNewClass = ({className, schoolName} : any) => {
+    let createNewClass = ({className, school} : any) => {
         setContentLoaded(false);
 
-        api.createClass({className, schoolName})
-            .then(() => {
-                getInitClasses();
+        api.createClass({className, school})
+            .then((res) => {
+                if(res.success){
+                    alert(res.message);
+                    setResClass([...resClass, res.class]);
+                }
+                getInitClasses()
             })
             .catch((err) => {alert(err)})
+            .finally(() => setModal(false))
+    }
+
+
+
+    let joinClass = ({code}: any) => {
+        setContentLoaded(false);
+
+        api.addClass({code})
+            .then((res) => {
+                alert(res.message);
+                getInitClasses()
+            })
+            .catch((err) => {alert(err)})
+            .finally(() => setModal(false))
     }
 
     useEffect(() => {getInitClasses()}, []);
+
+    console.log(user.account);
 
     return(
 
@@ -103,12 +90,12 @@ const UserStartPage = (props: any) => {
 
                 <Container>
                     {/* if there are classes in the classObjs array, loop over each element, if not display <p> tag */}
-                    {classObjs.length >= 1 ?
+                    {resClass.length >= 1 ?
 
-                        classObjs.map((cla: object, index: number) =>
+                        resClass.map((cla: any, index: number) =>
 
                             // for every element in the classObjs array, display a class component while also passing the index, the classObj, and the current user to props
-                            <Class num={index + 1} classObj={cla} userObj={user} />)
+                            <Class num={index + 1} classObj={cla.c_id} userObj={user} key={index} />)
 
                         :
 
@@ -123,11 +110,11 @@ const UserStartPage = (props: any) => {
 
                     <Grid cols="1">
                         {   // if the user is a teacher, display the AddClass Component
-                            user.accountType === 'teacher' ?
+                            user.account === 'teacher' ?
 
                                 <div>
                                     <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Add Class</AddClass>
-                                    <UserModal createNewClass={createNewClass}  accountType={user.accountType} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                    <UserModal createNewClass={createNewClass}  accountType={user.account} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
                                 </div>
                                 :
 
@@ -135,7 +122,7 @@ const UserStartPage = (props: any) => {
                                 user.accountType === 'student' ?
                                     <div>
                                         <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
-                                        <UserModal accountType={user.accountType} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                        <UserModal joinClass={joinClass} accountType={user.account} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
                                     </div>
                                     :
 

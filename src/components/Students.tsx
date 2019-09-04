@@ -56,33 +56,22 @@ const Btn = styled.i`
 // This component is made to condense the repetition of code on the ClassDashboard component since the only difference would be the Title and the array that's being used.
 const Students = (props: any) => {
 
-    let studentArray: any;
-    studentArray = [];
-
-    // Loop through the array that's passed in, for every student user name, loop through the users array and get the users object and add it to the array.
-    for (let x = 0; x < props.array.length; x++) {
-        for (let y = 0; y < users.length; y++) {
-            if (users[y].username === props.array[x]) {
-                studentArray.push(users[y]);
-            }
-        }
-    }
-    
+ 
   
 
     return (
         <div>
-            <InfoTitle>{props.title}: {studentArray.length}</InfoTitle>
+            <InfoTitle>{props.title}: {props.array.length}</InfoTitle>
 
             {/* For every student that was found, display a StudentDiv for each one */}
-            {studentArray.map((student: any) => 
+            {props.array.map((student: any, index: number) => 
                 <Grid cols="16" >
                     <GridColItem colStart="2" colEnd="13" align="" >
                         <StudentDiv>
                             <GridColItem colStart="1" colEnd="1" align="center">{student.firstName + ' ' + student.lastName}</GridColItem>
-                            <GridColItem colStart="2" colEnd="3" align="center">{student.age}</GridColItem>
+                            {/* <GridColItem colStart="2" colEnd="3" align="center">{student.age}</GridColItem>
                             <GridColItem colStart="3" colEnd="5" align="center">{student.grade}</GridColItem>
-                            <GridColItem colStart="6" colEnd="8" align="center">{student.email}</GridColItem>
+                            <GridColItem colStart="6" colEnd="8" align="center">{student.email}</GridColItem> */}
                         </StudentDiv>
                     </GridColItem>
                     <GridColItem colStart="14" colEnd="15" align="">

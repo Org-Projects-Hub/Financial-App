@@ -11,6 +11,8 @@ type Props = {
   loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object, modal: boolean
 };
 
+
+
 const GetInfoContext = createContext(()=>{console.log("No Context")});
 
 
@@ -63,6 +65,10 @@ export default class App extends React.Component <{}, Props>{
     const close = ()=>{
       this.setState({modal: false})
     }
+
+
+      console.log(this.state.user);
+
 
     return(
           <>{this.state.tokenChecked?
