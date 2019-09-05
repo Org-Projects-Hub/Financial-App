@@ -68,14 +68,14 @@ const Test = ({testType, setTestComplete}: Props)=> {
     
     while(qNum < questions.length){ /** render questions until all have been answered */
       return(
-        <Grid cols="3">
+        <Grid cols="3" style={{width : "100%"}}>
           <QuestionList 
             answerList={selections} 
             questions={questions}
             current={qNum} 
             setQuestion={setQuestion} />
 
-          <div className={answered} >
+          <div style={{width: "100%", minWidth: "100%"}} className={answered} >
             <Question 
               id={questions[qNum].id.toString()} 
               question={questions[qNum].q} 
