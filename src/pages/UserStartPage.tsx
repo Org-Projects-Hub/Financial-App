@@ -73,7 +73,6 @@ const UserStartPage = (props: any) => {
 
     useEffect(() => {getInitClasses()}, []);
 
-    console.log(user.account);
 
     return(
 
