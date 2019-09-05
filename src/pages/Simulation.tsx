@@ -6,7 +6,7 @@ import {Wrapper} from '../style/styled';
 const Simulation =({user}:{user: any})=>
 {
   //const [stage, setStage] = useState("pretest");
-  const [stage, setStage] = useState("simulation");
+  const [stage, setStage] = useState("pretest");
 
   return (
       <Wrapper color="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" className="center">
