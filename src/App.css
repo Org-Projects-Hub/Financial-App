@@ -112,7 +112,12 @@ place-items: center;
 
 .show{
 }
-
+.flex-center {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
 .hide{
   position: absolute;
   left: -230px;
@@ -122,11 +127,11 @@ place-items: center;
 .full{
 
 }
+
+
 .center{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
+  display: block;
+  margin: auto
 }
 
 .ta-right {

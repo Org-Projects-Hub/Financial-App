@@ -4,13 +4,10 @@ import styled from 'styled-components';
 import { SettingItem, InfoModal } from '../components';
 import settingSvg from '../assets/settings.svg';
 
-const Wrap = styled.div`
+const Wrap = styled(Wrapper)`
 text-align: center;
-min-height: 100vh;
-background: white;
 display: grid;
 grid-template-columns: 70% auto;
-background-repeat:no-repeat;
 background-position:left center;
 @media only screen and (max-width : 690px) {
   grid-template-columns: 1fr;
@@ -20,7 +17,6 @@ const ImgContainer = styled.div`
 text-align: center;
 display: grid;
 min-width: 100%;
-background: white;
 background-image : url(${settingSvg});
 background-repeat:no-repeat;
 background-size: contain;
@@ -42,10 +38,10 @@ const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUse
     <Wrap>
         <ImgContainer>
         </ImgContainer>
-        <Card>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+        <Card style={{maxHeight: "400px", alignSelf: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
           incididunt ut labore et dolore magna aliqua
 
-          <button className="btn" onClick={()=>setInfo(false)}>Go to Settings</button>
+         <button className="btn center" onClick={()=>setInfo(false)}>Go to Settings</button>
         </Card>
     </Wrap> :
       <Wrapper className="full-height">
