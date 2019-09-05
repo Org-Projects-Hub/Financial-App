@@ -64,7 +64,7 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
     return(
 
         <div>
-            The current booth is {currentBooth}
+            The current booth is <a onClick={()=>setSimStage("education")}>{currentBooth}</a>
 
             {/*optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
             

@@ -4,7 +4,7 @@ animation-name:spin;
 animation-duration:100ms;
 animation-iteration-count: infinite;
 animation-timing-function: ease-in;
-
+z-index:0;
 }
 
 
@@ -40,13 +40,128 @@ animation-timing-function: ease-in;
     text-align: center;
     border-style:solid;
     border-color: black;
+    z-index:0;
+    position:relative; 
     
+}
+
+.white-stripe{
+    border-radius:75%;
+    opacity: 50%;
+    height: 10vh;
+    width: 10vh;
+    left:100px;
+    background:white;
+    z-index:2;
+    position:relative;
+}
+
+
+.red-light{
+    border-radius:50%;
+    background: rgb(121, 8, 8);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;
+    box-shadow: 1vh 1vh 5px black;  
+}
+
+.red-light-glow{
+    border-radius:50%;
+    background: rgb(121, 8, 8);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;
+    animation: red-glow 3s infinite;
+    
+}
+
+@keyframes red-glow{
+
+    0%, 33%{
+        background: rgb(255, 0, 0);
+        box-shadow: 0px 0px .5vh .2vh yellow;  
+
+    }
+    33%, 100%{
+        background: rgb(121, 8, 8);
+        box-shadow: 0px 0px .5vh .2vh black; 
     }
 
+}
+
+.green-light{
+    border-radius:50%;
+    background-color: rgb(1, 82, 1);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;  
+}
+
+
+
+.blue-light-glow{
+    border-radius:50%;
+    background: rgb(0, 0, 121);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;  
+}
+
+.blue-light{
+    border-radius:50%;
+    background: rgb(0, 0, 121);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;  
+}
+
+@keyframes blue-glow{
+
+    0%, 33%{
+        background: rgb(0, 0, 121);
+        box-shadow: 0px 0px .5vh .2vh yellow;  
+
+    }
+    33%, 100%{
+        background: rgb(121, 8, 8);
+        box-shadow: 0px 0px .5vh .2vh black; 
+    }
+
+}
 
 @keyframes spin{
 
 from {padding-top:2vh;}
 to {padding-top:30vh;}
 
+}
+
+.button-slide{
+    margin-left: 12.5vw;
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import data from './Simulation.json'
+import './simulation.css';
 
 const Wrapper = styled.div`
     
@@ -13,6 +14,10 @@ text-align:center;
 background-color:yellow;
 padding:2vh;
 margin: .5vh
+
+&:active{
+    background: blue;
+}
 `;
 
 
@@ -32,8 +37,6 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     const info = data.booths
 
-    // JSON.parse(info)
-
     console.log(info.length)
 
     return(
@@ -42,7 +45,7 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
             {info.map((info:any, i: any )=> 
             
-            <Booths key={i} onClick={()=> setBooth(info.category)}>
+            <Booths key={i} onClick={()=>setBooth(info.category)}>
                     {info.category}
             </Booths>)
             }

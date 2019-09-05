@@ -149,6 +149,11 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
         
             <div>
                 {/**Display the selection*/}
+                
+                <a className="red-light-glow"></a>
+                <a className="green-light"></a><a className="white-stripe"></a>
+                <a className="blue-light"></a>
+
                 <div className="wheel">
                     <SpinText className="wheel-animate">
                     {selection}
@@ -164,15 +169,22 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
         : //Else if the wheel is not spinning
             /** Prevents the user from spinning the wheel twice */
             selection === null ?
-                <div className="wheel">
-                    {/**Stage is where the user is in the simulation (will either be job or education) */}
-                    Click Spin to choose your {stage}! <br/>
+                <div>
+                    <a className="red-light"></a>
+                    <a className="green-light"></a>
+                    <a className="blue-light"></a>
+                    <div className="wheel">
+                        {/**Stage is where the user is in the simulation (will either be job or education) */}
+                        Click Spin to choose your {stage}! <br/>
 
-                {/**Button to start the wheel*/}
-                <button className="btn" onClick={()=>change()}>SPIN</button>
+                    </div>
+
+                    {/**Button to start the wheel*/}
+                    <div>
+                        <button className="btn button-slide" onClick={()=>change()}>SPIN</button>
+                    </div>
 
                 </div>
-
                 : // if the user has made their selection
 
                 <div>
