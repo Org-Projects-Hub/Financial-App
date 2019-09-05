@@ -25,9 +25,9 @@ font-weight: bolder;
 
 `;
 
-const StarterText = styled.div`
-font-size:20pt;
-font-style: 
+const WheelButton = styled.button`
+margin-right:-4vw;
+margin-left:5vw;
 `;
 
 
@@ -162,7 +162,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
                 <div>
                     {/**Button used to stop the data from spinning */}
-                    <button className="btn" onClick={()=>change()}>STOP</button>
+                    <WheelButton className="spin-button" onClick={()=>change()}>STOP</WheelButton>
+                    <button className="button-slide spin-button">SPIN</button>
                 </div>
             </div>
 
@@ -181,7 +182,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
                     {/**Button to start the wheel*/}
                     <div>
-                        <button className="btn button-slide" onClick={()=>change()}>SPIN</button>
+                        <WheelButton className="spin-button">STOP</WheelButton>
+                        <button className="button-slide spin-button" onClick={()=>change()}>SPIN</button>
                     </div>
 
                 </div>

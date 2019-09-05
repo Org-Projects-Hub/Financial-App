@@ -50,7 +50,7 @@ ${{/*Sizing for ipad and mobile */}}
   
 ${{/*Sizing for laptop and desktop */}}  
 @media only screen  and (min-width : 1024px) {
-  grid-column: 2 / span 1;
+  grid-column: 3/ span 1;
   grid-row: 3 / span 1;
   padding: 10%;
 }
