@@ -4,7 +4,15 @@ import Results from './Results';
 import styled from 'styled-components';
 import { NavButton } from '../style/preposttest';
 import {Card, GridRow} from '../style/styled';
+import backgroundimg from "../assets/select.svg";
 
+//Contains the entire Startpage, sets the gridarea and the background
+const Container = styled.div`
+  background-image : url(${backgroundimg});
+  background-repeat:no-repeat;
+  background-position: center;
+
+`;
 /**
  * PrePostTest.tsx
  *
@@ -33,13 +41,13 @@ const PrePostTest = ({stage, setStage}: any)=> {
         !begin?
             /** Load with SimInt if stage is "pretest" */
             stage === 'pretest'?
-            <div className="flex-center">
+            <Container className="flex-center">
                 <GridRow rows="2">
                     <Card>{SimIntro}</Card>
                     <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
                     <button onClick={()=>setStage("simulation")}>To Sim</button>
                 </GridRow>
-            </div>
+            </Container>
 
         
                 //: stage === 'simulation' ? <Wheel/>
