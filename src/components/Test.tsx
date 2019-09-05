@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
-import { NavButton } from '../style/preposttest';
+import QuestionList from './QuestionList';
+import { Container, NavButton } from '../style/preposttest';
 import { Card, Grid, GridColItem } from '../style/styled';
 
 
@@ -58,22 +59,36 @@ const Test = ({testType, setTestComplete}: Props)=> {
       setTimeout(() =>setAnswered("fade-out"), 300);
       setTimeout(() =>setQNum(qNum-1), 300);
     }
+
+    const setQuestion = (selected: number) => {
+      setAnswered("fade-out active");
+      setTimeout(() =>setAnswered("fade-out"), 300);
+      setTimeout(() => setQNum(selected));
+    }
     
     while(qNum < questions.length){ /** render questions until all have been answered */
       return(
-        <div className={answered} >
-          <Question 
-            id={questions[qNum].id.toString()} 
-            question={questions[qNum].q} 
-            answers={answers} 
-            value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
-            storeSelection={storeSelection} 
-            total={questions.length} />
-          <Grid cols="2">
-            <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
-            <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
-          </Grid>
-        </div>
+        <Grid cols="3">
+          <QuestionList 
+            answerList={selections} 
+            questions={questions}
+            current={qNum} 
+            setQuestion={setQuestion} />
+
+          <div className={answered} >
+            <Question 
+              id={questions[qNum].id.toString()} 
+              question={questions[qNum].q} 
+              answers={answers} 
+              value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
+              storeSelection={storeSelection} 
+              total={questions.length} />
+            <Grid cols="2">
+              <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
+              <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
+            </Grid>
+          </div>
+        </Grid>
       );
     }
 
