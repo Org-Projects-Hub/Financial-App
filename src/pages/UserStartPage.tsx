@@ -4,7 +4,7 @@ import { Class, UserModal, Loader } from '../components';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../style/styled';
 import api from '../api/index';
-import noData from '../assets/no-data.svg';
+
 const JoinClass = styled(AddClass)``;
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
@@ -12,40 +12,8 @@ const UserStartPage = (props: any) => {
 
     const [modal, setModal] = useState(false);
     const [contentLoaded, setContentLoaded] = useState(false);
-    let userName;
+    const [resClass, setResClass] = useState([]);
 
-  /*   userName = 'BJones'; //requests
-    userName = 'JMe'; //registered
-    userName = 'KilUm'; // registered and completed*/
-    userName = 'JessieB'; //teacher
-    //userName = 'WaynesWorld'; //other
-
-    // this interface is to avoid type errors with mapping elements from the user array
-    interface userObject {
-        username: string,
-        accountType: string;
-        classIds: Array<string>;
-    };
-
-    let user: userObject;
-    let classObjs = [];
-
-
-    // for each user in the user array, check for the current users' object/data, once you
-        // find it, loop through their class ids and add the class' data to the classObjs array
-    for (let x = 0; x < users.length; x++) {
-        if (users[x].username === userName) {
-
-            user = users[x];
-            /* could redo this, for each class id in the user class id array, check if the class exists, if it does, return the class object, if not return null or false or something  */
-            for (let y = 0; y < /* need to get total amount of classes */ classes.length; y++) {
-                if (user.classIds.indexOf( /* need to see if current class id is in the users class id array */classes[y].id) !== -1) {
-                    classObjs.push(/* need to push entire class object into arrray for .mapping() */ classes[y]);
-                }
-            }
-            break;
-        }
-    }
 
     let user = props.user;
 
@@ -67,8 +35,10 @@ const UserStartPage = (props: any) => {
         api.getClass()
             .then((res)=> {
                 if(res.success){
+                    alert(res.message);
                     setResClass(res.class);
                 }
+                
                 setContentLoaded(true);
             })
             .catch((err)=>{
@@ -76,7 +46,7 @@ const UserStartPage = (props: any) => {
                 setContentLoaded(true);
             });
 
-
+        
     }
 
     let createNewClass = ({className, school} : any) => {
@@ -130,10 +100,7 @@ const UserStartPage = (props: any) => {
                         :
 
                         <div style={{textAlign: 'center', fontSize: '200%'}}>
-                          <div  className="centered-img">
-                            <img alt ="no data"  className="img-md" src={noData} />
-                            <div className="center bold">No Classes</div>
-                          </div>
+                            <p>No classes registered</p>
                         </div>
                     }
 
