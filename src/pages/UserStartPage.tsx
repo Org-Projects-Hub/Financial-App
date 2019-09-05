@@ -4,7 +4,7 @@ import { Class, UserModal, Loader } from '../components';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../style/styled';
 import api from '../api/index';
-
+import noData from '../assets/no-data.svg';
 const JoinClass = styled(AddClass)``;
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
@@ -35,10 +35,8 @@ const UserStartPage = (props: any) => {
         api.getClass()
             .then((res)=> {
                 if(res.success){
-                    alert(res.message);
                     setResClass(res.class);
                 }
-                
                 setContentLoaded(true);
             })
             .catch((err)=>{
@@ -46,7 +44,7 @@ const UserStartPage = (props: any) => {
                 setContentLoaded(true);
             });
 
-        
+
     }
 
     let createNewClass = ({className, school} : any) => {
@@ -100,7 +98,10 @@ const UserStartPage = (props: any) => {
                         :
 
                         <div style={{textAlign: 'center', fontSize: '200%'}}>
-                            <p>No classes registered</p>
+                          <div  className="centered-img">
+                            <img alt ="no data"  className="img-md" src={noData} />
+                            <div className="center bold">No Classes</div>
+                          </div>
                         </div>
                     }
 

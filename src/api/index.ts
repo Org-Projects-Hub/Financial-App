@@ -7,8 +7,8 @@ export default {
   login: function({ email, password }: any) {
     return post(API.login, { email, password });
   },
-  signup: function({email, password, firstName, lastName, username}: any) {
-    return post(API.signup, {email, password, firstName, lastName, username});
+  signup: function({email, password, firstName, lastName, username, isStudent}: any) {
+    return post(API.signup, {email, password, firstName, lastName, username, isStudent});
   },
   auth: function(){
     return authPost(API.auth,{});

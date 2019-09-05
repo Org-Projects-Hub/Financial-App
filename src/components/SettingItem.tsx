@@ -10,7 +10,7 @@ const SettingItem = (props: any) => {
   const iconClass = "material-icons pointer justify-end";
   return (
 
-    <Card style={{ minHeight: "5em" }}>
+    <Card style={{ minHeight: "5em" }} >
       <Grid cols="3">
         <span className="bold text-md justify-start">{name}</span>
         {!edit ?
@@ -26,10 +26,10 @@ const SettingItem = (props: any) => {
                   .then((res) => {
                     //call rerender
                     if (res.success) getUserInfo();
-                    else setValue(defaultValue) 
+                    else setValue(defaultValue)
                     })
                   .catch((err) => {
-                    alert(err);  
+                    alert(err);
                     setValue(defaultValue);})
                   .finally(()=>{
                     setEdit(false);}
@@ -39,7 +39,7 @@ const SettingItem = (props: any) => {
           </span>}
       </Grid>
     </Card>
-   
+
   );
 }
 

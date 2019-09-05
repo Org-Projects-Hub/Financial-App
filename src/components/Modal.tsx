@@ -79,4 +79,23 @@ height: 3em;`;
           </ReactCSSTransitionGroup>
         </Wrapper> );
 
-  export default Modal;
+const InfoModal = ({text, close, img}: any) =>
+            (
+              <Wrapper>
+                    <Modall>
+                      <Header>
+                        <Btn style={{float: "right"}} className="bt right-corner"  onClick={close}> &nbsp;X&nbsp; </Btn>
+                      </Header>
+                      <div >
+                        <div style={{minHeight: "5em", padding: "2em"}} className="blue-txt bold txt-md">
+                        <img src={img} className="img-lg"/>
+                          <h5>{text}</h5>
+                        </div>
+                        <div>
+                          <button className="btn hoverr full" onClick={close}>Okay, Got it!</button>
+                        </div>
+
+                      </div>
+                    </Modall>
+              </Wrapper> );
+  export { Modal, InfoModal };
