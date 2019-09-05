@@ -12,6 +12,10 @@ grid-column: 3 / span 1;
 grid-row: 4 / span 1;
 `;
 
+const Position = styled.div`
+grid-column: 3 / span 1;
+gird-row: 3 span 1;
+`;
 const Home = ({user}:{user: any})=>
 
 <Wrapper>

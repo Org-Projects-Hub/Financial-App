@@ -36,6 +36,8 @@ const PrePostTest = ({stage, setStage}: any)=> {
                     <Card>{SimulationIntro}</Card>
                     <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
                 </GridRow>
+            //: stage === 'simulation' ? <Wheel/>
+
             :
                 <GridRow rows="2">
                     <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
@@ -53,8 +55,10 @@ const PrePostTest = ({stage, setStage}: any)=> {
                         {/** set stage onClick based on current stage */}
                         <NavButton 
                                 onClick={ stage==='pretest'? 
-                                            (e) => setStage("posttest") 
-                                            :
+                                            (e) => setStage("simulation") 
+                                            : stage === 'simulation' ?
+                                                (e) => setStage("posttest")
+                                                :
                                             (e) => setStage("pretest") }>
                             {/** set button text based on current stage */}
                             { stage === 'pretest'? 'BEGIN SIMULATION': 'FINISH' }
