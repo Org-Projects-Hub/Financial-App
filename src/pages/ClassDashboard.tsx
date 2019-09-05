@@ -64,8 +64,8 @@ const ClassDashboard = (props : any) => {
                     <p style={{fontSize: '125%'}}>Code: {classCode}</p>
 
                     {/* Passes the appropriate array of student username's to the Students component */}
-                    <Students array={students.verifiedstudents} title='Needs Confirming'></Students>
-                    <Students array={students.unVerifiedstudents} title='Registered'></Students>
+                    <Students array={students.unVerifiedstudents} title='Needs Confirming'></Students>
+                    <Students array={students.verifiedstudents} title='Registered'></Students>
                     <Students array={students.completedStudents} title='Completed'></Students>
 
                     {/* Buttons for navigation */}

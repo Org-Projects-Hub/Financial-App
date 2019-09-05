@@ -68,7 +68,8 @@ const Students = (props: any) => {
                 <Grid cols="16" >
                     <GridColItem colStart="2" colEnd="13" align="" >
                         <StudentDiv>
-                            <GridColItem colStart="1" colEnd="1" align="center">{student.firstName + ' ' + student.lastName}</GridColItem>
+                            {console.log(student.u_id)}
+                            <GridColItem colStart="1" colEnd="1" align="center">{student.u_id.firstName + ' ' + student.u_id.lastName}</GridColItem>
                             {/* <GridColItem colStart="2" colEnd="3" align="center">{student.age}</GridColItem>
                             <GridColItem colStart="3" colEnd="5" align="center">{student.grade}</GridColItem>
                             <GridColItem colStart="6" colEnd="8" align="center">{student.email}</GridColItem> */}
