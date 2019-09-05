@@ -23,7 +23,7 @@ export default {
 
   //Students Route
   addClass: function({code} : any){
-    return authPost(API.addClass, {code});
+    return authPut(API.addClass, {code});
   },
   answer: function({ q_id, typesType, answer } : any){
     return authPut(API.answer, {q_id, typesType, answer});

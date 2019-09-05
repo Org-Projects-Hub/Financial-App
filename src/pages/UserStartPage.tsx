@@ -4,7 +4,7 @@ import { Class, UserModal, Loader } from '../components';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../style/styled';
 import api from '../api/index';
-
+import noData from '../assets/no-data.svg'
 const JoinClass = styled(AddClass)``;
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
@@ -34,11 +34,8 @@ const UserStartPage = (props: any) => {
    let getInitClasses = () => {
         api.getClass()
             .then((res)=> {
-                if(res.success){
-                    alert(res.message);
-                    setResClass(res.class);
-                }
-                
+                if(res.success)setResClass(res.class);
+                else alert(res.message);
                 setContentLoaded(true);
             })
             .catch((err)=>{
@@ -54,10 +51,8 @@ const UserStartPage = (props: any) => {
 
         api.createClass({className, school})
             .then((res) => {
-                if(res.success){
-                    alert(res.message);
-                    setResClass([...resClass, res.class]);
-                }
+                if(res.success)setResClass([...resClass, res.class]);
+                else alert(res.message);
                 getInitClasses()
             })
             .catch((err) => {alert(err)})
@@ -68,14 +63,12 @@ const UserStartPage = (props: any) => {
 
     let joinClass = ({code}: any) => {
         setContentLoaded(false);
-
         api.addClass({code})
             .then((res) => {
-                alert(res.message);
-                getInitClasses()
+                if(!res.success) alert(res.message);
+                else getInitClasses();
             })
             .catch((err) => {alert(err)})
-            .finally(() => setModal(false))
     }
 
     useEffect(() => {getInitClasses()}, []);
@@ -100,7 +93,10 @@ const UserStartPage = (props: any) => {
                         :
 
                         <div style={{textAlign: 'center', fontSize: '200%'}}>
-                            <p>No classes registered</p>
+                            <div className="centered-img">
+                                <img className="img-lg" src={noData} alt="No Data" />
+                            <p className="center bold">No classes registered</p>
+                            </div>
                         </div>
                     }
 
