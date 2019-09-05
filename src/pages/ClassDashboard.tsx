@@ -33,8 +33,9 @@ const ClassDashboard = (props : any) => {
         api.getStudent(classCode)
         .then((res) => {
             if (res.success) {
-                alert(res.message);
                 setStudents(res.students);
+            } else {
+                alert(res.message);
             }
             
             setContentLoaded(true);
