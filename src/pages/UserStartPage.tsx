@@ -114,15 +114,33 @@ const UserStartPage = (props: any) => {
 
                                 <div>
                                     <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Add Class</AddClass>
-                                    <UserModal createNewClass={createNewClass}  accountType={user.account} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Name' inputText='Class Name' buttonText='Create' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                    <UserModal 
+                                        createNewClass={createNewClass}  
+                                        accountType={user.account} 
+                                        backgroundColor={buttonBackgroundColor} 
+                                        modalTitle='Enter Class Name' 
+                                        inputText='Class Name' 
+                                        buttonText='Create' 
+                                        show={modal} 
+                                        onClose={()=>setModal(false)}>
+                                    </UserModal>
                                 </div>
                                 :
 
                                 // if the user is a student, display the JoinClass Component
-                                user.accountType === 'student' ?
+                                user.account === 'student' ?
                                     <div>
                                         <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
-                                        <UserModal joinClass={joinClass} accountType={user.account} backgroundColor={buttonBackgroundColor} modalTitle='Enter Class Code' inputText='Class Code' buttonText='Join' show={modal} onClose={()=>setModal(false)}></UserModal>
+                                        <UserModal 
+                                            joinClass={joinClass} 
+                                            accountType={user.account} 
+                                            backgroundColor={buttonBackgroundColor} 
+                                            modalTitle='Enter Class Code' 
+                                            inputText='Class Code' 
+                                            buttonText='Join' 
+                                            show={modal} 
+                                            onClose={()=>setModal(false)}>
+                                        </UserModal>
                                     </div>
                                     :
 
