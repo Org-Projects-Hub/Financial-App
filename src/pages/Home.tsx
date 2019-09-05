@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import {Wrapper, Banner, Logo, Desc, LoginPOS, Button} from '../style/home';
 import {NavLink} from 'react-router-dom';
 
-
-
 const Admin = styled.div`
 grid-column: 3 / span 1;
 grid-row: 4 / span 1;

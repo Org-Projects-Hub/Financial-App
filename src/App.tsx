@@ -11,10 +11,7 @@ type Props = {
   loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object, modal: boolean
 };
 
-
-
 const GetInfoContext = createContext(()=>{console.log("No Context")});
-
 
 export default class App extends React.Component <{}, Props>{
   constructor(props: Props){
@@ -23,7 +20,6 @@ export default class App extends React.Component <{}, Props>{
   }
 
   getUserInfo = () : boolean=>{
-    console.log("getInfo Ran");
     api.auth()
     .then((res)=> {
       if(res.success){ this.setState({loggedin : true, user : res.user});}
@@ -66,14 +62,9 @@ export default class App extends React.Component <{}, Props>{
       this.setState({modal: false})
     }
 
-
-      console.log(this.state.user);
-
-
     return(
           <>{this.state.tokenChecked?
                 <Router>
-                 
                     {this.state.loggedin ?
                       <div className={this.state.showNav? "grid-main": ""}>
                          <GetInfoContext.Provider value={this.getUserInfo}>
@@ -84,15 +75,14 @@ export default class App extends React.Component <{}, Props>{
                           <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
                           <Route path="/setting" render={()=> <Setting logout={logout} getUserInfo={this.getUserInfo} user = {this.state.user}/>} />
                           <Route path="/admin-pannel" render={()=> <AdminPanel />} />
-                          <Route path="/" render={()=> <Home user={this.state.user} />} />
+                          <Route path="*" render={()=> <Home user={this.state.user} />} />
                         </Switch>
                         </GetInfoContext.Provider>
                     </div>
-                  
                    :
                    <Switch>
                       <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
-                      <Route render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
+                      <Route path="*" render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
                     </Switch>
                   }
               </Router>
@@ -100,7 +90,7 @@ export default class App extends React.Component <{}, Props>{
               <Loader />
           }
         </>
-      
+
       );
     }
 }

@@ -12,7 +12,7 @@ const API : any = {
    //teacher
    createClass: `${URL}/create-class`,
    getStudent: `${URL}/students`,
-   verifyStudent: `${URL}/verify-students`,
+   verifyStudent: `${URL}/verify-student`,
    //validation
 
    //Students
