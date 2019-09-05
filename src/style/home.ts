@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundimg from "../assets/images/velvet-texture.jpg";
+import backgroundimg from "../assets/finance.svg";
 
 //Contains the entire Startpage, sets the gridarea and the background
 const Wrapper = styled.div`
@@ -8,7 +8,11 @@ const Wrapper = styled.div`
   min-height: 100vh;
   grid-template-columns: 16vw 36vw 36vw 12vw;
   grid-template-rows: 10vh 15vh 60vh 5vh auto;
-  background-image: url(${backgroundimg});
+  background: white;
+  background-image : url(${backgroundimg});
+  background-repeat:no-repeat;
+  background-position:left center;
+
 `;
 
 //Sets the top banner, z-index is 0 so it will go underneath the logo
