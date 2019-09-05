@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {PrePostTest, SimulationStart} from '../components'
 import {Wrapper} from '../style/styled';
 
+
+//Sets the
 const Simulation =({user}:{user: any})=>
 {
   //const [stage, setStage] = useState("pretest");
