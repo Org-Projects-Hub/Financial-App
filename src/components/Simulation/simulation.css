@@ -83,6 +83,7 @@ z-index:0;
     left:3vw;
     margin: .5vw;
     animation: red-glow 3s infinite;
+    animation-delay: 0s;
     
 }
 
@@ -113,11 +114,9 @@ z-index:0;
     margin: .5vw;  
 }
 
-
-
-.blue-light-glow{
+.green-light-glow{
     border-radius:50%;
-    background: rgb(0, 0, 121);
+    background: rgb(1, 82, 1);
     height: 10vh;
     width: 10vh;
     padding: 1vh 2.2vh 1vh 2.2vh;
@@ -125,8 +124,28 @@ z-index:0;
     position:relative;
     top:6vh;
     left:3vw;
-    margin: .5vw;  
+    margin: .5vw;
+    animation: green-glow 3s infinite;
+    animation-delay: 1s;
+    
 }
+
+@keyframes green-glow{
+
+    0%, 33%{
+        background: green;
+        box-shadow: 0px 0px .5vh .2vh yellow;  
+
+    }
+    33%, 100%{
+        background: rgb(1, 82, 1);
+        box-shadow: 0px 0px .5vh .2vh black; 
+    }
+
+}
+
+
+
 
 .blue-light{
     border-radius:50%;
@@ -141,15 +160,30 @@ z-index:0;
     margin: .5vw;  
 }
 
+.blue-light-glow{
+    border-radius:50%;
+    background: rgb(0, 0, 121);
+    height: 10vh;
+    width: 10vh;
+    padding: 1vh 2.2vh 1vh 2.2vh;
+    z-index:1;
+    position:relative;
+    top:6vh;
+    left:3vw;
+    margin: .5vw;
+    animation: blue-glow 3s infinite;
+    animation-delay: 2s;
+}
+
 @keyframes blue-glow{
 
     0%, 33%{
-        background: rgb(0, 0, 121);
+        background: blue;
         box-shadow: 0px 0px .5vh .2vh yellow;  
 
     }
     33%, 100%{
-        background: rgb(121, 8, 8);
+        background: rgb(0, 0, 121);
         box-shadow: 0px 0px .5vh .2vh black; 
     }
 

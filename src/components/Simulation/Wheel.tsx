@@ -151,8 +151,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
                 {/**Display the selection*/}
                 
                 <a className="red-light-glow"></a>
-                <a className="green-light"></a><a className="white-stripe"></a>
-                <a className="blue-light"></a>
+                <a className="green-light-glow"></a>
+                <a className="blue-light-glow"></a>
 
                 <div className="wheel">
                     <SpinText className="wheel-animate">
