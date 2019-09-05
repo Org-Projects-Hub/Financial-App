@@ -1,3 +1,4 @@
+/*When the wheel is spinning*/
 .wheel-animate{
 text-align: center;
 animation-name:spin;
@@ -33,7 +34,7 @@ z-index:0;
         }
 }
 
-
+/*When the wheel is not spinning*/
 .wheel{
     border-radius: 25%;
     background: rgb(224, 224, 136);
@@ -45,6 +46,7 @@ z-index:0;
     
 }
 
+/*TODO (white stripe for the button)*/
 .white-stripe{
     border-radius:75%;
     opacity: 50%;
@@ -56,6 +58,8 @@ z-index:0;
     position:relative;
 }
 
+
+/*SPIN/STOP button underneath the spinner*/
 .spin-button{
     background: rgb(43, 145, 43);;
     border: none;
@@ -67,13 +71,14 @@ z-index:0;
     bottom:8vh;
 }
 
+/*When the spin/stop button is pressed*/
 .spin-button:active{
     background-color: #3e8e41;
     box-shadow: 0 -1px #666;
     transform: translateY(-4px);
 }
 
-
+/*Styling for the red light (OFF)*/
 .red-light{
     border-radius:50%;
     background: rgb(121, 8, 8);
@@ -88,6 +93,7 @@ z-index:0;
     box-shadow: 1vh 1vh 5px black;  
 }
 
+/*Styling for the red light (ON)*/
 .red-light-glow{
     border-radius:50%;
     background: rgb(121, 8, 8);
@@ -104,6 +110,7 @@ z-index:0;
     
 }
 
+/*Animating the red light (On for 1 second, off for 2)*/
 @keyframes red-glow{
 
     0%, 33%{
@@ -118,6 +125,7 @@ z-index:0;
 
 }
 
+/*Animating the red light (On for 1 second, off for 2)*/
 .green-light{
     border-radius:50%;
     background-color: rgb(1, 82, 1);

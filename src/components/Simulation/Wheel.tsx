@@ -30,6 +30,12 @@ margin-right:-4vw;
 margin-left:5vw;
 `;
 
+const Text = styled.div`
+font-size: 16pt;
+font-weight: bolder;
+color:yellow;
+`;
+
 
 const Wheel = ({ input, stage, setChoice, setStage}: any) => {
     
@@ -113,7 +119,7 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
             
             //Declare the ending text based on the current simStage
             if(stage === "education"){
-                setText("You graduated with your " + selection + "!");
+                setText("You received your " + selection + "!");
             }
             else if(stage === "job"){
                 setText("You were hired as a " + selection + "!");
@@ -191,9 +197,16 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
                 <div>
                     {/**Display the selection (Blank if wheel hasnt spun, if it has it displays what they chose) */}
-                    {text}
+                    <div>
+                        <Text>{text}</Text>
+
+                        <br/>
+                        Click next to pick your {stage}
+                    </div>
                     <br/>
-                    <button className="btn" onClick={()=>next()}>NEXT</button>
+                    <div>
+                        <button className="btn" onClick={()=>next()}>NEXT</button>
+                    </div>
 
                 </div>
         
