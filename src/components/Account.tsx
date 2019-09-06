@@ -98,9 +98,9 @@ const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin :
                               }
                         }
             return(
-            <MyWrapper className="center">
+            <MyWrapper className="flex-center" style={{alignItems: "center"}}>
               {modal && <Modal text={`Invalid ${el[state].placeholder}! Enter it Again.`} close={()=>{setModal(false)}}/ >}
-              <Card className={clicked? "flip": ""}   style={{minWidth: "320px", maxWidth: "98vw"}} >
+              <Card className={clicked? "flip": ""}   style={{minWidth: "320px", width: "400px", maxWidth: "98vw"}} >
                       <Arrow  onClick={prevInput}>
                         <i className="fas fa-arrow-left"></i>
                       </Arrow>
