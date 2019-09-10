@@ -58,8 +58,10 @@ const ClassDashboard = (props : any) => {
 
         api.verifyStudent({code, s_id})
             .then((res) => {
-                alert(res.message);
+                if (res.success) {
+                alert(res.message);}
                 setContentLoaded(true);
+                getClassStudents();
             })
             .catch((err) => {
                 alert(err);
@@ -78,7 +80,8 @@ const ClassDashboard = (props : any) => {
             
             <Border>
                 <Container>
-                    <ClassTitle>{/* class name*/}</ClassTitle>
+                    {console.log()}
+                    <ClassTitle>{}</ClassTitle>
                     <p style={{fontSize: '125%'}}>Code: {code}</p>
 
                     {/* Passes the appropriate array of student username's to the Students component */}

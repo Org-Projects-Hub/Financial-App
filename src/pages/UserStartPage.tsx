@@ -41,7 +41,8 @@ const UserStartPage = (props: any) => {
             .catch((err)=>{
                 alert(err);
                 setContentLoaded(true);
-            });
+            })
+            .finally(() => {setModal(false)});
 
         
     }
@@ -54,6 +55,7 @@ const UserStartPage = (props: any) => {
                 if(res.success)setResClass([...resClass, res.class]);
                 else alert(res.message);
                 getInitClasses()
+
             })
             .catch((err) => {alert(err)})
             .finally(() => setModal(false))
@@ -65,10 +67,14 @@ const UserStartPage = (props: any) => {
         setContentLoaded(false);
         api.addClass({code})
             .then((res) => {
-                if(!res.success) alert(res.message);
+                if(!res.success) {
+                    alert(res.message);
+                    setContentLoaded(true);
+                }
                 else getInitClasses();
             })
             .catch((err) => {alert(err)})
+            .finally(() => {setModal(false)});
     }
 
     useEffect(() => {getInitClasses()}, []);

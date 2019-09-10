@@ -70,6 +70,7 @@ const Students = (props: any) => {
                 
                 <Grid cols="16" >
                     <GridColItem colStart="2" colEnd="13" align="" >
+                        {console.log(student)}
                         <StudentDiv>
                             <GridColItem colStart="1" colEnd="1" align="center">{student.u_id.firstName + ' ' + student.u_id.lastName}</GridColItem>
                             {/* <GridColItem colStart="2" colEnd="3" align="center">{student.age}</GridColItem>
@@ -83,7 +84,7 @@ const Students = (props: any) => {
 
                             <Btn style={{color: "green", fontSize: "320%"}} className="material-icons" 
                             onClick={() => {
-                                let s_id = student.u_id._id;
+                                let s_id = student._id;
                                 props.verifyStudentRequest({code, s_id});
                             }}>check_circle</Btn> 
                             :
