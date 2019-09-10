@@ -23,18 +23,19 @@ const ClassDashboard = (props : any) => {
     // Getting the class id from the URL
     const url = window.location.href;
     const slash = url.lastIndexOf("/");
-    const classCode = url.substring(slash+1);
+    const code = url.substring(slash+1);
 
 
     
 
 
     let getClassStudents = () => {
-        api.getStudent(classCode)
+        api.getStudent(code)
         .then((res) => {
             if (res.success) {
-                alert(res.message);
                 setStudents(res.students);
+            } else {
+                alert(res.message);
             }
             
             setContentLoaded(true);
@@ -50,6 +51,26 @@ const ClassDashboard = (props : any) => {
     }
 
 
+
+    let verifyStudentRequest = ({code, s_id} : any) => {
+
+        setContentLoaded(false);
+
+        api.verifyStudent({code, s_id})
+            .then((res) => {
+                if (res.success) {
+                alert(res.message);}
+                setContentLoaded(true);
+                getClassStudents();
+            })
+            .catch((err) => {
+                alert(err);
+                setContentLoaded(true);
+            })
+    }
+
+
+
     React.useEffect(() => {getClassStudents()}, []);
 
 
@@ -59,13 +80,14 @@ const ClassDashboard = (props : any) => {
             
             <Border>
                 <Container>
-                    <ClassTitle>{/* class name*/}</ClassTitle>
-                    <p style={{fontSize: '125%'}}>Code: {classCode}</p>
+                    {console.log()}
+                    <ClassTitle>{}</ClassTitle>
+                    <p style={{fontSize: '125%'}}>Code: {code}</p>
 
                     {/* Passes the appropriate array of student username's to the Students component */}
-                    <Students array={students.verifiedstudents} title='Needs Confirming'></Students>
-                    <Students array={students.unVerifiedstudents} title='Registered'></Students>
-                    <Students array={students.completedStudents} title='Completed'></Students>
+                    <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.unVerifiedstudents} title='Needs Confirming'></Students>
+                    <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.verifiedstudents} title='Registered'></Students>
+                    <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.completedStudents} title='Completed'></Students>
 
                     {/* Buttons for navigation */}
                     <AddStudent onClick={()=>setModal(true)}> Add Student</AddStudent>

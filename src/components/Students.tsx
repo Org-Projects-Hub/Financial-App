@@ -56,6 +56,8 @@ const Btn = styled.i`
 // This component is made to condense the repetition of code on the ClassDashboard component since the only difference would be the Title and the array that's being used.
 const Students = (props: any) => {
 
+
+    const [code, setCode] = React.useState(props.code);
  
   
 
@@ -65,10 +67,12 @@ const Students = (props: any) => {
 
             {/* For every student that was found, display a StudentDiv for each one */}
             {props.array.map((student: any, index: number) => 
+                
                 <Grid cols="16" >
                     <GridColItem colStart="2" colEnd="13" align="" >
+                        {console.log(student)}
                         <StudentDiv>
-                            <GridColItem colStart="1" colEnd="1" align="center">{student.firstName + ' ' + student.lastName}</GridColItem>
+                            <GridColItem colStart="1" colEnd="1" align="center">{student.u_id.firstName + ' ' + student.u_id.lastName}</GridColItem>
                             {/* <GridColItem colStart="2" colEnd="3" align="center">{student.age}</GridColItem>
                             <GridColItem colStart="3" colEnd="5" align="center">{student.grade}</GridColItem>
                             <GridColItem colStart="6" colEnd="8" align="center">{student.email}</GridColItem> */}
@@ -78,7 +82,11 @@ const Students = (props: any) => {
                         { 
                             props.title === "Needs Confirming" ? 
 
-                            <Btn style={{color: "green", fontSize: "320%"}} className="material-icons" onClick={() => console.log('button clicked')}>check_circle</Btn> 
+                            <Btn style={{color: "green", fontSize: "320%"}} className="material-icons" 
+                            onClick={() => {
+                                let s_id = student._id;
+                                props.verifyStudentRequest({code, s_id});
+                            }}>check_circle</Btn> 
                             :
                             null 
                         }
