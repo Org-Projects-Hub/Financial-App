@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {booths} from './SimJSON'
 
@@ -19,7 +19,7 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
 
     console.log(booths[0].options[0].price);
 
-
+    var array = new Array();
 
     //Reading through the SimJSON booth data to find the currentbooth
     for(var i = 0; i < booths.length; i++){
@@ -28,8 +28,6 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
             
 
             var booth = booths[i] //used for readability
-
-            var array = new Array(); //creating an array
             
 
             for(var j = 0; j < booth.options.length; j++){ //read through the options array of the current booth
@@ -46,8 +44,7 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
                  * Save the current option data into the array (where array index = the boothOptions id)
                  * passing an object with the name, desc, costbreakdown, and price
                  */
-                //setOptionsArray([... optionsArray, x])
-
+                array[j] = x;
 
             }
 
@@ -58,6 +55,13 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
         }
     }
 
+    useEffect(() => {
+        // Should not ever set state during rendering, so do this in useEffect instead.
+        setOptionsArray(array);
+      }, []);
+
+
+      console.log(optionsArray);
 
     
 
@@ -66,13 +70,13 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
         <div>
             The current booth is <a onClick={()=>setSimStage("education")}>{currentBooth}</a>
 
-            {/*optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
+            {optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
             
             <li key={i}>
                 {optionsArray.name}
             </li>
             
-            )*/}
+            )}
         </div>
         
     )

@@ -8,13 +8,16 @@ import Booth from './Booth'
 
 const Wrapper = styled.div`
 display: grid;
-grid-template-rows: auto 50vh 20vh auto;
+grid-template-rows: auto; 
+min-height: 100vh;
+grid-template-columns: 25% 50% 25%;
 place-items: center;
 justify-items: center;
 `;
 
 const WheelPlace = styled.div`
 grid-row: 2 / span 1;
+grid-column: 2 / span 1
 `;
 
 const Button = styled.div`
@@ -49,7 +52,7 @@ const SimulationStart = ({stage, setStage}:any) => {
         
         
         
-        setSimStage("education"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
+        setSimStage("boothSelect"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
 
 
 
@@ -63,7 +66,7 @@ return(
         <Wrapper>
 
             {/**Displaying the spinner based on which stage the user is on */}
-            <WheelPlace>
+            <WheelPlace style={{top:'10vh'}}>
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" && <Wheel input={education} stage={simStage} setChoice={setJob} setStage={setSimStage}/>}
                 {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>}
