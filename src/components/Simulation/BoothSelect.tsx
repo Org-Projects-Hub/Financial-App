@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import data from './Simulation.json'
 import './simulation.css';
+import {Grid} from '../../style/styled';
 
 const Wrapper = styled.div`
     
@@ -40,19 +41,24 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
     console.log(info.length)
 
     return(
-        <Wrapper>
+        <Grid cols="1">
             
 
             {info.map((info:any, i: any )=> 
-            
-            <Booths key={i} onClick={()=>setBooth(info.category)}>
-                    {info.category}
-            </Booths>)
+                <div>
+                    <button 
+                    style={{margin: "5px"}}
+                    disabled={boothSelection === info.category}>
+                        <Booths key={i} onClick={()=>setBooth(info.category)}>
+                            {info.category}
+                        </Booths>
+                    </button>
+                </div>)
             }
 
             {console.log(boothSelection)}
             <button className="btn" onClick={()=> goToBooth()}>GO!</button>
-        </Wrapper>
+        </Grid>
     )
 
 }
