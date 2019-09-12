@@ -55,15 +55,10 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
         }
     }
 
-    useEffect(() => {
-        // Should not ever set state during rendering, so do this in useEffect instead.
-        setOptionsArray(array);
-      }, []);
 
+    /**Setting the javaSCript array to the options array react hook*/
+    useEffect(() => { setOptionsArray(array);}, []);
 
-      console.log(optionsArray);
-
-    
 
     return(
 

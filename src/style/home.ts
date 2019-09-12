@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   min-height: 100vh;
   grid-template-columns: 16vw 36vw 36vw 12vw;
   grid-template-rows: 10vh 15vh 60vh 5vh auto;
-  background: white;
+  background: rgb(14, 21, 53);
   background-image : url(${backgroundimg});
   background-repeat:no-repeat;
   background-position:left center;
@@ -87,10 +87,14 @@ background-color: rgb(0, 40, 133);
 `;
 
 //Sets the bottom banner
-const NextBanner = styled.div`
-grid-column: 1 / span 4;
-grid-row: 5 / span 1;
-background: rgb(83,158,208);
+const Logoutbutton = styled.div`
+grid-column: 3 / span 1;
+grid-row: 1 / span 1;
+position: relative;
+z-index: 5;
+align-self: end;
+justify-self: end;
+color:white
 `;
 
-export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, NextBanner};
+export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Logoutbutton};

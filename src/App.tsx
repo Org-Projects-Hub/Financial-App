@@ -3,7 +3,7 @@ import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
 import './App.css';
 import './style/animations.css';
 import {Navbar, Modal , Loader} from './components';
-import {Home, Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';
+import { Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';
 import api from './api';
 import { setLocalStorage } from './utils/utils';
 
@@ -75,14 +75,14 @@ export default class App extends React.Component <{}, Props>{
                           <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
                           <Route path="/setting" render={()=> <Setting logout={logout} getUserInfo={this.getUserInfo} user = {this.state.user}/>} />
                           <Route path="/admin-pannel" render={()=> <AdminPanel />} />
-                          <Route path="*" render={()=> <Home user={this.state.user} />} />
+                          <Route path="*" render={()=> <Startpage login={login} loggedin={true} logout={logout}/>} />
                         </Switch>
                         </GetInfoContext.Provider>
                     </div>
                    :
                    <Switch>
                       <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
-                      <Route path="*" render={()=> <Startpage login={login}  loggedin={loggedin}/>} />
+                      <Route path="*" render={()=> <Startpage login={login} loggedin={loggedin} logout={logout}/>} />
                     </Switch>
                   }
               </Router>
