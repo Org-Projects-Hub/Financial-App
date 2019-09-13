@@ -64,7 +64,7 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
     return(
 
         <div>
-            The current booth is <a onClick={()=>setSimStage("education")}>{currentBooth}</a>
+            The current booth is <a onClick={()=>setSimStage("boothSelect")}>{currentBooth}</a>
             
             {optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
                 <BoothOption 
@@ -73,10 +73,6 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
                     costBreakdown={optionsArray.costbreakdown}
                     price={optionsArray.price}
                     key={i} />
-                /**
-                <li key={i}>
-                    {optionsArray.name}
-                </li> */
             )}
         </div>
         
