@@ -9,7 +9,7 @@ import styled from 'styled-components';
 * Start page of the entire site, where users will get an overview of what this app is about, and where they will
 * login or creat their accounts
 */
-const Startpage = ({login, loggedin, logout}:{login: any, loggedin: any, logout: any})=>{
+const Startpage = ({login, loggedin, logout}:{login: any, loggedin: boolean, logout: any})=>{
 return(
             <div>
               <Wrapper>
@@ -25,7 +25,6 @@ return(
                 {loggedin !== true ? 
 
                   <LoginPOS>
-                    
                     {/* Calling the LoginNumberTwo component with two props
                       @prop login an APi function for logging a user in
                       @prop loggedin a boolean to check if a user is logged in or not*/}

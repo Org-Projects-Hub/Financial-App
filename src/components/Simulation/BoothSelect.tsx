@@ -24,6 +24,7 @@ margin: .5vh
 const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     const [boothSelection, setBooth] = useState(null);
+    const [text, setText] = useState(null)
     
 
     function goToBooth(){
@@ -34,10 +35,14 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
         
     }
 
+    function warning(){
+
+        setText("You must select a booth to continue");
+
+    }
+
 
     const info = data.booths
-
-    console.log(info.length)
 
     return(
         <Wrapper>
@@ -49,9 +54,18 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
                     {info.category}
             </Booths>)
             }
-
-            {console.log(boothSelection)}
-            <button className="btn" onClick={()=> goToBooth()}>GO!</button>
+            {boothSelection === null ?
+                
+                <button className="btn" onClick={()=>warning()}>GO!</button>
+            : 
+                <button className="btn" onClick={()=> goToBooth()}>GO!</button>
+            }
+            
+            <div>
+                {text}
+            </div>
+            
+            
         </Wrapper>
     )
 

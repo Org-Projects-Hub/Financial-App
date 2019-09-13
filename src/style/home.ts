@@ -45,6 +45,8 @@ font-weight:bolder;
 align-self: center;
 justify-self: center;
 color: white;
+position:relative;
+z-index: 4;
 
 ${{/*Sizing for ipad and mobile */}}
 @media only screen and (max-width : 1024px) {
@@ -54,7 +56,7 @@ ${{/*Sizing for ipad and mobile */}}
   
 ${{/*Sizing for laptop and desktop */}}  
 @media only screen  and (min-width : 1024px) {
-  grid-column: 3/ span 1;
+  grid-column: 2/ span 1;
   grid-row: 3 / span 1;
   padding: 10%;
 }
@@ -95,6 +97,7 @@ z-index: 5;
 align-self: end;
 justify-self: end;
 color:white
+font-family: 'Capriola', sans-serif;
 `;
 
 export {Wrapper, Banner, Logo, Desc, LoginPOS, Button, Logoutbutton};

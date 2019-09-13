@@ -75,14 +75,14 @@ export default class App extends React.Component <{}, Props>{
                           <Route path="/Simulation" render={()=> <Simulation user={this.state.user} />} />
                           <Route path="/setting" render={()=> <Setting logout={logout} getUserInfo={this.getUserInfo} user = {this.state.user}/>} />
                           <Route path="/admin-pannel" render={()=> <AdminPanel />} />
-                          <Route path="*" render={()=> <Startpage login={login} loggedin={true} logout={logout}/>} />
+                          <Route path="*" render={()=> <Startpage login={login} loggedin={this.state.loggedin} logout={logout}/>} />
                         </Switch>
                         </GetInfoContext.Provider>
                     </div>
                    :
                    <Switch>
                       <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
-                      <Route path="*" render={()=> <Startpage login={login} loggedin={loggedin} logout={logout}/>} />
+                      <Route path="*" render={()=> <Startpage login={login} loggedin={this.state.loggedin} logout={logout}/>} />
                     </Switch>
                   }
               </Router>
