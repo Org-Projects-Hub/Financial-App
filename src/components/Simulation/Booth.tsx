@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {booths} from './SimJSON'
+import BoothOption from './BoothOption';
 
 interface boothOptions{
 
@@ -63,14 +64,19 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
     return(
 
         <div>
-            The current booth is <a onClick={()=>setSimStage("boothSelect")}>{currentBooth}</a>
-
+            The current booth is <a onClick={()=>setSimStage("education")}>{currentBooth}</a>
+            
             {optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
-            
-            <li key={i}>
-                {optionsArray.name}
-            </li>
-            
+                <BoothOption 
+                    name={optionsArray.name} 
+                    desc={optionsArray.desc} 
+                    costBreakdown={optionsArray.costbreakdown}
+                    price={optionsArray.price}
+                    key={i} />
+                /**
+                <li key={i}>
+                    {optionsArray.name}
+                </li> */
             )}
         </div>
         
