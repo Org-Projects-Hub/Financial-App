@@ -19,23 +19,15 @@ min-width: 20vw;
 const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     const [boothSelection, setBooth] = useState(null);
-    const [text, setText] = useState(null)
-    
+    const [text, setText] = useState(null);  
 
     function goToBooth(){
-
         setSimStage("booth");
-        setCurrentBooth(boothSelection);
-
-        
+        setCurrentBooth(boothSelection);  
     }
-
     function warning(){
-
         setText("You must select a booth to continue");
-
     }
-
 
     const info = data.booths
 

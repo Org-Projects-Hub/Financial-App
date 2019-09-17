@@ -2,14 +2,12 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {booths} from './SimJSON'
 import BoothOption from './BoothOption';
-
+import { Grid } from '../../style/styled';
 interface boothOptions{
-
     name: string,
     desc: string[],
     costbreakdown: string[],
     price: number
-
 }
 
 
@@ -68,7 +66,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
         <div>
             The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
-            
+            < Grid cols={optionsArray.length == 1? "1" : "2"}>
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
                     name={optionsArray.name} 
@@ -80,6 +78,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     setSimStage={setStage}
                     key={i} />
             )}
+            </Grid>
         </div>
         
     )
