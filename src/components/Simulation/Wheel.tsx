@@ -49,6 +49,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
 
     
     useInterval(() => {timer()}, spinTime) //setting the interval to run the timer() function
+
+    console.log("INPUT: " + input)
     
 
     /*TODO change color randomly every input */
@@ -201,7 +203,7 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
                         <Text>{text}</Text>
 
                         <br/>
-                        Click next to pick your {stage}
+                        Click next to continue
                     </div>
                     <br/>
                     <div>

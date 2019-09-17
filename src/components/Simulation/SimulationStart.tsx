@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
 import data from './Simulation.json'; 
 import BoothSelect from './BoothSelect'
 import Booth from './Booth'
+import { SelectInput } from '..';
 
 
 const Wrapper = styled.div`
@@ -22,6 +23,12 @@ grid-column: 2 / span 1
 
 const Button = styled.div`
 grid-row: 3 / span 1;
+`;
+
+const UserInfo = styled.div`
+backgorund: grey;
+grid-row: 2 / span 1;
+grid-column: 1 / span 1;
 `;
 
 /**
@@ -43,6 +50,10 @@ const SimulationStart = ({stage, setStage}:any) => {
 
     const { education} = data; //string array of the education options
 
+    const [currentIncome, setIncome] = useState(null);
+
+    const [jobOptions, setJobOptions] = useState(null);
+
 
 
     //Setting the simStage to education at the begging of the simuatlion 
@@ -62,15 +73,83 @@ const SimulationStart = ({stage, setStage}:any) => {
 
     console.log("STAGE: " + simStage);
 
+    const {jobs} = data
+    let x  = new Array();
+    let counter = 0;
+
+    if( job == null || currentIncome == null){
+
+        for(var i = 0; i < jobs.length; i++){
+            for(var j = 0; j < jobs[i].occupations.length;j++)
+            {
+                
+                if(job == null && currentIncome == null){
+
+                    x[counter] = jobs[i].occupations[j].position;
+
+                    counter++;
+
+                }
+                else if(job != null && currentIncome == null)
+                {
+                    if(jobs[i].occupations[j].position == job){
+                        setIncome(jobs[i].occupations[j].grossmonthly);
+                    }
+                }
+            }
+        }
+    }
+
+    useEffect(() => { setJobOptions(x);}, []);
+
+
+
+
 return(
         <Wrapper>
+
+    
 
             {/**Displaying the spinner based on which stage the user is on */}
             <WheelPlace style={{top:'10vh'}}>
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
-                {simStage === "job" && <Wheel input={education} stage={simStage} setChoice={setJob} setStage={setSimStage}/>}
-                {simStage == "boothSelect" && <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>}
-                {simStage == "booth" && <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data}/>}
+                {simStage === "job" ?
+                <>
+                    <Wheel input={jobOptions} stage={simStage} setChoice={setJob} setStage={setSimStage}/>
+                </>
+                :
+                    <></>
+                }
+                
+                
+                {simStage == "boothSelect" ?
+                    <div>
+                        <UserInfo>
+                            Current Income: {currentIncome}
+                        </UserInfo>
+                        <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>
+                    </div>
+            
+                :
+                    <></>
+                }
+                
+                
+                {simStage == "booth" ?
+                
+                    <div>
+                        <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data} 
+                                currentIncome={currentIncome} setIncome={setIncome}/>
+                                
+                        <UserInfo>
+                            Current Income: {currentIncome}
+                        </UserInfo>
+
+                    </div>
+                :
+                    <></>
+                }
+
             </WheelPlace>
             
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}

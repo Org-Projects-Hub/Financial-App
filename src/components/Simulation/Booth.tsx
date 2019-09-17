@@ -13,7 +13,7 @@ interface boothOptions{
 }
 
 
-const Booth = ( {setSimStage, currentBooth, data}:any) => {
+const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any) => {
 
     const [userOptions, setOptions]  = useState(null);
     const [optionsArray, setOptionsArray] = useState([]);
@@ -61,17 +61,23 @@ const Booth = ( {setSimStage, currentBooth, data}:any) => {
     useEffect(() => { setOptionsArray(array);}, []);
 
 
+    function setStage(){
+        setSimStage("boothSelect")
+    }
     return(
 
         <div>
-            The current booth is <a onClick={()=>setSimStage("education")}>{currentBooth}</a>
+            The current booth is <a onClick={()=>setSimStage("boothSelect")}>{currentBooth}</a>
             
-            {optionsArray.map((optionsArray:any, i:any)=> //throws an error for some reason
+            {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
                     name={optionsArray.name} 
                     desc={optionsArray.desc} 
                     costBreakdown={optionsArray.costbreakdown}
                     price={optionsArray.price}
+                    setIncome={setIncome}
+                    currentIncome={currentIncome}
+                    setSimStage={setStage}
                     key={i} />
                 /**
                 <li key={i}>

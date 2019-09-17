@@ -62,12 +62,12 @@
                 {"id":3, "position":"Toxocologist", "grossmonthly":4745.53}
             ]},
 
-         {"reqed":"Associates Degree","occupations":[]},
+         {"reqed":"Associates Degree","occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
 
-         {"reqed":"Masters Degree", "occupations":[]},
+         {"reqed":"Masters Degree", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
 
-         {"reqed":"PhD", "occupations":[]},
+         {"reqed":"PhD", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
 
-         {"reqed":"GED/HSET", "occupations":[]}
+         {"reqed":"GED/HSET", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]}
     ]
 }

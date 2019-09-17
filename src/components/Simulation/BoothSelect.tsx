@@ -4,9 +4,6 @@ import data from './Simulation.json'
 import './simulation.css';
 import {Grid} from '../../style/styled';
 
-const Wrapper = styled.div`
-    
-`;
 
 const Booths = styled.div`
 font-size: 20pt;
@@ -15,10 +12,7 @@ text-align:center;
 background-color:yellow;
 padding:2vh;
 margin: .5vh
-
-&:active{
-    background: blue;
-}
+min-width: 20vw;
 `;
 
 

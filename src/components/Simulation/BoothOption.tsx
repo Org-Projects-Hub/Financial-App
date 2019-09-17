@@ -69,8 +69,15 @@ const NavButton = styled.button`
     }
   }
 `;
-const BoothOption = ({name, desc, costBreakdown, price}: Props) => {
+
+
+const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage}: any) => {
     
+
+    function buy(){
+        setIncome(currentIncome - price);
+        setSimStage();
+    }
     return(
         <Card>
             <Name>{name}</Name>
@@ -94,7 +101,7 @@ const BoothOption = ({name, desc, costBreakdown, price}: Props) => {
             <Price>${price}</Price>
 
             <HorLine />
-            <Grid cols="1"><NavButton className="btn">Purchase</NavButton></Grid>
+            <Grid cols="1"><NavButton onClick={()=>buy()}className="btn">Purchase</NavButton></Grid>
             
         </Card>
     );
