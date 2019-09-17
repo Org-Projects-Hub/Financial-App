@@ -1,7 +1,6 @@
 import React from 'react';
 import { NumberStr, QuestionStr, OptionButton } from '../style/preposttest';
 import {Card, Grid} from '../style/styled';
-import api from '../api';
 
 /**
  * Question.tsx
@@ -20,26 +19,11 @@ type Props = {
   question: string,
   answers: string[],
   value: string,
-  storeSelection: Function,
+  Save: Function,
   total: Number
 }
 
-const Question = ({id, question, answers, value, storeSelection, total}: Props)=>{
-
-  const SubmitAnswer = (answer : string, id: string)=>{
-                  const obj = {answer: answer, typesType:"preTest", q_id: id};
-                           console.log(obj);
-                           api.answer(obj)
-                           .then(res => {
-                               if (res.success) {
-                                  console.log("success")
-                               } else {
-                              //   alert(res.message);
-                               }
-                             })
-                             .catch(err => console.log(err));
-
-                       };
+const Question = ({id, question, answers, value, Save, total}: Props)=>{
 
   return (
     <Card>
@@ -50,7 +34,7 @@ const Question = ({id, question, answers, value, storeSelection, total}: Props)=
             {answers.map((answer: string, i: any) =>
               <li>
                 <OptionButton 
-                  onClick={(e: any) => storeSelection(e.target.name, e.target.value)} 
+                  onClick={(e: any) => Save((parseInt(id, 10) + 1).toString(), e.target.value)} 
                   key={i} 
                   value={answer}
                   disabled={value === answer} >

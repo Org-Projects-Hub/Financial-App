@@ -3,16 +3,9 @@ import Test from './Test';
 import Results from './Results';
 import styled from 'styled-components';
 import { NavButton } from '../style/preposttest';
-import {Card, GridRow} from '../style/styled';
+import {Card, GridRow, Grid, GridColItem} from '../style/styled';
 import backgroundimg from "../assets/select.svg";
 
-//Contains the entire Startpage, sets the gridarea and the background
-const Container = styled.div`
-  background-image : url(${backgroundimg});
-  background-repeat:no-repeat;
-  background-position: center;
-
-`;
 /**
  * PrePostTest.tsx
  *
@@ -23,6 +16,14 @@ const Container = styled.div`
  * @param {Function} setStage - used to set the stage to (simulation) or (complete) when test is complete
  * @return TSX to be rendered
  */
+
+//Contains the entire Startpage, sets the gridarea and the background
+const Container = styled.div`
+  background-image : url(${backgroundimg});
+  background-repeat:no-repeat;
+  background-position: center;
+
+`;
 
 const Div = styled.div`
     text-align: center;
@@ -35,7 +36,11 @@ const CompleteSim: string = 'Simulation Complete';
 const PrePostTest = ({stage, setStage}: any)=> {
     const [begin, setBegin] = useState(false);
     const [testComplete, setTestComplete] = useState(false);
-  
+    
+    const CompleteTest = () => {
+        setTestComplete(!testComplete);
+    }
+
     return (
         /** If begin is false, SimulationIntro and/or begin button will be returned. */
         !begin?
@@ -51,7 +56,8 @@ const PrePostTest = ({stage, setStage}: any)=> {
 
         
                 //: stage === 'simulation' ? <Wheel/>
-            : <div className="flex-center">
+            : 
+            <div className="flex-center">
                 <GridRow rows="2">
                     <Card>{CompleteSim}</Card>
                     <NavButton onClick={(e) => setBegin(true)}>BEGIN {stage.toUpperCase()}</NavButton>
@@ -60,7 +66,9 @@ const PrePostTest = ({stage, setStage}: any)=> {
         :
             /** If testComplete is false, [Test] component will be rendered, displaying questions to be answered. Else, results */
             !testComplete?
-            <div className="flex-center"><Test testType={stage} setTestComplete={setTestComplete} /></div>
+                <div className="flex-center">
+                    <Test testType={stage} CompleteTest={CompleteTest} />
+                </div>
             :
                 <div  className="flex-center">
                     <Card ><Results /></Card>
@@ -69,10 +77,8 @@ const PrePostTest = ({stage, setStage}: any)=> {
                         <NavButton 
                                 onClick={ stage==='pretest'? 
                                             (e) => setStage("simulation") 
-                                            : stage === 'simulation' ?                                                
-                                                (e) => setStage("posttest") 
-                                            :
-                                            (e) => setStage("pretest") }>
+                                            :                                              
+                                            (e) => setStage("posttest") }>
                             {/** set button text based on current stage */}
                             { stage === 'pretest'? 'BEGIN SIMULATION': 'FINISH' }
                         </NavButton>
