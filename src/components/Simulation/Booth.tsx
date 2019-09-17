@@ -79,10 +79,6 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     currentIncome={currentIncome}
                     setSimStage={setStage}
                     key={i} />
-                /**
-                <li key={i}>
-                    {optionsArray.name}
-                </li> */
             )}
         </div>
         
