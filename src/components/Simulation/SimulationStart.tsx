@@ -68,7 +68,7 @@ const SimulationStart = ({stage, setStage}:any) => {
 
 
 
-        
+         
     }
 
     console.log("STAGE: " + simStage);
