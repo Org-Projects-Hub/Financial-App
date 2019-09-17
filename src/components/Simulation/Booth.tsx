@@ -67,7 +67,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
     return(
 
         <div>
-            The current booth is <a onClick={()=>setSimStage("boothSelect")}>{currentBooth}</a>
+            The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
             
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 

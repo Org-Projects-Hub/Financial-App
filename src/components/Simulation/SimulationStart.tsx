@@ -93,7 +93,10 @@ const SimulationStart = ({stage, setStage}:any) => {
                 else if(job != null && currentIncome == null)
                 {
                     if(jobs[i].occupations[j].position == job){
+                        
                         setIncome(jobs[i].occupations[j].grossmonthly);
+                        
+                        console.log("SETINCOME");
                     }
                 }
             }

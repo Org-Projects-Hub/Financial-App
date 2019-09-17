@@ -78,6 +78,7 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
         setIncome(currentIncome - price);
         setSimStage();
     }
+    
     return(
         <Card>
             <Name>{name}</Name>
