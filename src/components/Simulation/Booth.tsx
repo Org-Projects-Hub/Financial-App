@@ -10,7 +10,11 @@ interface boothOptions{
     price: number
 }
 
-
+const MyGrid = styled(Grid)`
+    @media(max-width: 770px){
+        grid-template-columns: 1fr;
+    }
+`;
 const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any) => {
 
     const [userOptions, setOptions]  = useState(null);
@@ -66,7 +70,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
         <div>
             The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
-            < Grid cols={optionsArray.length == 1? "1" : "2"}>
+            < MyGrid cols={optionsArray.length == 1? "1" : "2"}>
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
                     name={optionsArray.name} 
@@ -78,7 +82,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     setSimStage={setStage}
                     key={i} />
             )}
-            </Grid>
+            </MyGrid>
         </div>
         
     )

@@ -78,7 +78,7 @@ const SimulationStart = ({stage, setStage}:any) => {
     useEffect(() => { setJobOptions(x);}, []);
 
 return(
-        <Wrapper className="flex-center">
+        <Wrapper>
             {/**Displaying the spinner based on which stage the user is on */}
             <WheelPlace style={{top:'10vh'}}>
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}

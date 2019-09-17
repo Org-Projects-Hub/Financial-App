@@ -12,9 +12,7 @@ text-align:center;
 background-color:yellow;
 padding:2vh;
 margin: .5vh
-min-width: 20vw;
-`;
-
+min-width: 20vw;`;
 
 const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
@@ -33,8 +31,6 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
     return(
         <Grid cols="1">
-            
-
             {info.map((info:any, i: any )=> 
                 <div>
                     <button 
@@ -46,8 +42,7 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
                     </button>
                 </div>)
             }
-            {boothSelection === null ?
-                
+            {boothSelection === null ?         
                 <button className="btn" onClick={()=>warning()}>GO!</button>
             : 
                 <button className="btn" onClick={()=> goToBooth()}>GO!</button>
@@ -55,9 +50,7 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
             
             <div>
                 {text}
-            </div>
-            
-            
+            </div>     
         </Grid>
     )
 
