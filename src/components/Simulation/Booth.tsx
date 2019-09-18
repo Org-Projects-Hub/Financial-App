@@ -11,6 +11,7 @@ interface boothOptions{
 }
 
 const MyGrid = styled(Grid)`
+grid-grap: 1em;
     @media(max-width: 770px){
         grid-template-columns: 1fr;
     }
@@ -28,11 +29,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
     for(var i = 0; i < booths.length; i++){
 
         if(booths[i].category === currentBooth){ //when currentbooth is found
-            
-
-            var booth = booths[i] //used for readability
-            
-
+            var booth = booths[i] //used for readability  
             for(var j = 0; j < booth.options.length; j++){ //read through the options array of the current booth
 
                 var boothOption = booth.options[j] //used for readability
@@ -48,9 +45,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                  * passing an object with the name, desc, costbreakdown, and price
                  */
                 array[j] = x;
-
             }
-
             i = booths.length + 1; // break statement
         }
         else{
@@ -58,10 +53,8 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
         }
     }
 
-
     /**Setting the javaSCript array to the options array react hook*/
     useEffect(() => { setOptionsArray(array);}, []);
-
 
     function setStage(){
         setSimStage("boothSelect")
@@ -70,7 +63,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
         <div>
             The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
-            < MyGrid cols={optionsArray.length == 1? "1" : "2"}>
+            < MyGrid cols={optionsArray.length == 1? "1" : "2"} >
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
                     name={optionsArray.name} 

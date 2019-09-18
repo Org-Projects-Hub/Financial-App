@@ -34,16 +34,6 @@ const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUse
   const [modal, setModal] = React.useState(true);
   const [info, setInfo] = React.useState(true);
   return (
-    info ? 
-    <Wrap>
-        <ImgContainer>
-        </ImgContainer>
-        <Card style={{maxHeight: "400px", alignSelf: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-          incididunt ut labore et dolore magna aliqua
-
-         <button className="btn center" onClick={()=>setInfo(false)}>Go to Settings</button>
-        </Card>
-    </Wrap> :
       <Wrapper className="full-height">
         <div className="container" >
           <Grid cols="1">
@@ -53,8 +43,6 @@ const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUse
           <div className="center bold txt-sm">Terms, Data Policy and Cookies Policy.</div>
         </div>
       </Wrapper>
-
-
   );
 }
 export default Setting;

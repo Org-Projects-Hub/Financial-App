@@ -164,6 +164,37 @@ const SettingsButton = styled.img`
   }
 `;
 
+const NavButton = styled.button`
+  background-color: white;
+  color: #1f3d7d;
+  margin-top: 10px;
+  min-width: 150px;
+  min-height: 40px;
+  border: 2px solid #1f3d7d;
+  border-radius: 4px;
+  font-weight: bold;
+
+  &:focus {
+    background-color: #7da2d6;
+  }
+
+  &:hover {
+    background-color: white;
+    cursor: pointer;
+    font-size: 108%;
+  }
+
+  &:disabled {
+    background-color: white;
+    color: #7da2d6;
+    border-color: #7da2d6;
+    cursor: not-allowed;
+    &:hover {
+    font-size: 100%;
+    }
+  }
+`;
+
 const ResourcesButton = styled(AddClass)`
     bottom: 10%;
 `;
@@ -211,4 +242,4 @@ const ClassDiv = styled.div`
     }
 `;
 
-export {Card, Badge, Grid, GridColItem, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim, ClassDiv};
+export {Card, Badge, Grid, GridColItem, NavButton, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim, ClassDiv};
