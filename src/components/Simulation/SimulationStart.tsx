@@ -8,6 +8,7 @@ import { SelectInput } from '..';
 
 
 const Wrapper = styled.div`
+display: grid;
 grid-template-rows: auto; 
 min-height: 100vh;
 grid-template-columns: 25% 50% 25%;
@@ -37,8 +38,23 @@ grid-column: 1 / span 1;`;
  */
 const SimulationStart = ({stage, setStage}:any) => {
 
+
+    
+    interface career
+    {
+        position: String;
+        annualSalary: number;
+        hourlyRate: number; 
+        federalTax: number;
+        socialSecurity: number;
+        medicare: number;
+        stateTax: number;
+        education: string;
+    }
+
     const [edlevel, setEd] = useState(null); //Sets the users education level (Used in Wheel.tsx)
     const [job, setJob] = useState(null); //Sets the users job (Used in Wheel.tsx)
+    const [career, setCareer] = useState(null);
     
     const [simStage, setSimStage] = useState(null) //Used for switching between the stages of the simulation
     const [currentBooth, setCurrentBooth] = useState(null)
@@ -58,7 +74,7 @@ const SimulationStart = ({stage, setStage}:any) => {
         
         setSimStage("job"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
 
-        
+
     }
 
     const {jobs} = data
@@ -75,7 +91,23 @@ const SimulationStart = ({stage, setStage}:any) => {
                 else if(job != null && currentIncome == null)
                 {
                     if(jobs[i].occupations[j].position == job){                
-                        setIncome(jobs[i].occupations[j].grossmonthly);           
+                        var y = jobs[i].occupations[j].grossmonthly;
+                        setIncome(y);
+
+                        var userCareer: career = {
+                            position: job,
+                            annualSalary: y * 12,
+                            hourlyRate: y / 160,
+                            federalTax: y * .15,
+                            socialSecurity: y * .06,
+                            medicare: y * .014,
+                            stateTax: y * .033,
+                            education: jobs[i].reqed
+                        }         
+
+                        setCareer(userCareer);
+                        
+                        
                         console.log("SETINCOME");
                     }
                 }
@@ -92,7 +124,7 @@ return(
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" ?
                 <>
-                    <Wheel input={jobOptions} stage={simStage} setChoice={setJob} setStage={setSimStage}/>
+                    <Wheel input={jobOptions} stage={simStage} setChoice={setJob} setStage={setSimStage} career={career}/>
                 </>
                 :
                     <></>
