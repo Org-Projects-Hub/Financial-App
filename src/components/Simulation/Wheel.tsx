@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import useInterval from '@use-it/interval';
+import JobSummary from './JobSummary';
 
 import './simulation.css';
 
@@ -200,7 +201,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
                 <div>
                     {/**Display the selection (Blank if wheel hasnt spun, if it has it displays what they chose) */}
                     <div>
-                        <Text>{text}</Text>
+                         {stage == "education" && <Text>{text}</Text> }
+                         {stage == "job" && <JobSummary/> }
 
                         <br/>
                         Click next to continue
