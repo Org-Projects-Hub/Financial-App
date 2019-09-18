@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "../style/styled";
 import { QuestionListButton, QuestionListCard, ListHeading, Line } from "../style/preposttest";
 
 interface Questions {

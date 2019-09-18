@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {booths} from './SimJSON'
 import BoothOption from './BoothOption';
-
+import { Grid } from '../../style/styled';
 interface boothOptions{
-
     name: string,
     desc: string[],
     costbreakdown: string[],
     price: number
-
 }
 
-
+const MyGrid = styled(Grid)`
+    @media(max-width: 770px){
+        grid-template-columns: 1fr;
+    }
+`;
 const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any) => {
 
     const [userOptions, setOptions]  = useState(null);
@@ -68,7 +70,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
         <div>
             The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
-            
+            < MyGrid cols={optionsArray.length == 1? "1" : "2"}>
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
                     name={optionsArray.name} 
@@ -80,6 +82,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     setSimStage={setStage}
                     key={i} />
             )}
+            </MyGrid>
         </div>
         
     )

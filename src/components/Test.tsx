@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tests from './Tests.json';
 import Question from './Question';
 import QuestionList from './QuestionList';
 import { Container, NavButton } from '../style/preposttest';
 import { Card, Grid, GridColItem } from '../style/styled';
+import api from '../api';
 
 
 /**
@@ -15,12 +16,31 @@ import { Card, Grid, GridColItem } from '../style/styled';
  * @return TSX to be rendered.
  */
 
+
 type Props = {
   testType: string,
-  setTestComplete: Function
+  CompleteTest: Function
 }
 
-const Test = ({testType, setTestComplete}: Props)=> {
+const Test = ({testType, CompleteTest}: Props)=> {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(function() {
+    window.addEventListener('resize', handleWindowSizeChange);
+    console.log("componentwillmount");
+
+    return function cleanup() {
+      window.removeEventListener('resize', handleWindowSizeChange);
+      console.log("componentwillUNmount");
+    }
+  });
+
+  const isMobile = width <= 500;
+
   const [qNum, setQNum] = useState(0);
   const [selections, setSelections] = useState([]);
   const [answered, setAnswered] = useState("fade-out");
@@ -29,6 +49,27 @@ const Test = ({testType, setTestComplete}: Props)=> {
     const questions = testType === 'pretest'?  Tests.testType.pretest.questions : Tests.testType.posttest.questions;
     const answers = testType === 'pretest'?  Tests.testType.pretest.answers : Tests.testType.posttest.answers;
     
+    /**
+     * Called when answer selected, sends selection to backend
+     * @param id     question number
+     * @param answer user's selection
+     */
+    const SubmitAnswer = (id: string, answer : string) => { //move this to test component
+      const obj = {answer: answer, typesType: testType, q_id: id}; //makes typesType accept test var
+      
+      console.log(obj);
+      
+      api.answer(obj)
+      .then(res => {
+        if (res.success) {
+          console.log("success")
+        } else {
+          //alert(res.message);
+        }
+      })
+        .catch(err => console.log(err));
+    };
+
     /**
      * Called when answer selected, updates states, saves user selection
      * @param id    question # associated w question
@@ -46,6 +87,16 @@ const Test = ({testType, setTestComplete}: Props)=> {
         tempArray[qNum].value = value;
         setSelections(tempArray);
       }
+    }
+
+    /**
+     * Called when answer selected, stores in selections hook & backend
+     * @param id     question number
+     * @param answer user's selection
+     */
+    const Save = (id: string, answer: string) => { //move this to test component
+      SubmitAnswer (id, answer);
+      storeSelection(id, answer);
     }
 
     const nextQuestion = () => {
@@ -67,29 +118,53 @@ const Test = ({testType, setTestComplete}: Props)=> {
     }
     
     while(qNum < questions.length){ /** render questions until all have been answered */
-      return(
-        <Grid cols="3" style={{width : "100%"}}>
-          <QuestionList 
-            answerList={selections} 
-            questions={questions}
-            current={qNum} 
-            setQuestion={setQuestion} />
-
-          <div style={{width: "100%", minWidth: "100%"}} className={answered} >
-            <Question 
-              id={questions[qNum].id.toString()} 
-              question={questions[qNum].q} 
-              answers={answers} 
-              value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
-              storeSelection={storeSelection} 
-              total={questions.length} />
-            <Grid cols="2">
-              <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
-              <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
-            </Grid>
-          </div>
-        </Grid>
-      );
+      if(isMobile) { //if on mobile device/smaller screen
+        return(
+            <div style={{width: "100%", minWidth: "100%"}} className={answered} >
+              <Question 
+                id={questions[qNum].id.toString()} 
+                question={questions[qNum].q} 
+                answers={answers} 
+                value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
+                Save={Save}
+                total={questions.length} />
+              <Grid cols="2">
+                <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
+                <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
+              </Grid>
+            </div>
+        );
+      } else {
+        return(
+          <Grid cols="3">
+  
+            <GridColItem colStart="1" colEnd="2" align="center">
+              <QuestionList 
+                answerList={selections} 
+                questions={questions}
+                current={qNum} 
+                setQuestion={setQuestion} />
+            </GridColItem>
+  
+            <GridColItem colStart="2" colEnd="3" align="center">
+              <div style={{width: "100%", minWidth: "100%"}} className={answered} >
+                <Question 
+                  id={questions[qNum].id.toString()} 
+                  question={questions[qNum].q} 
+                  answers={answers} 
+                  value={selections[qNum] === undefined? null : selections[qNum].value} /** set value to null if current question hasn't been answered */
+                  Save={Save}
+                  total={questions.length} />
+                <Grid cols="2">
+                  <GridColItem colStart="1" colEnd="2" align="start"><NavButton disabled={qNum <= 0} onClick={(e) => prevQuestion()}>PREVIOUS</NavButton> {/** if there is a previous question, display back button */}</GridColItem>
+                  <GridColItem colStart="2" colEnd="3" align="end">{<NavButton disabled={selections[qNum] === undefined} onClick={(e) => nextQuestion()}>NEXT</NavButton>} {/** if current question has answer, show next button */}</GridColItem>
+                </Grid>
+              </div>
+            </GridColItem>
+  
+          </Grid>
+        );
+      }
     }
 
     return (
@@ -101,13 +176,10 @@ const Test = ({testType, setTestComplete}: Props)=> {
         </GridColItem>
         <Grid cols="2">
           <GridColItem colStart="1" colEnd="2" align="center"><NavButton onClick={(e) => prevQuestion()}>BACK</NavButton></GridColItem>
-          <GridColItem colStart="2" colEnd="3" align="center"><NavButton onClick={(e) => setTestComplete(true)}>SUBMIT</NavButton></GridColItem>
+          <GridColItem colStart="2" colEnd="3" align="center"><NavButton onClick={(e) => CompleteTest()}>SUBMIT</NavButton></GridColItem>
         </Grid>
       </Grid>
     );
-  }
-  else {
-
   }
 };
 
