@@ -129,26 +129,24 @@ const UserStartPage = (props: any) => {
                                 :
 
                                 // if the user is a student, display the JoinClass Component
-                                user.account === 'student' ?
-                                    <div>
-                                        <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
-                                        <UserModal 
-                                            joinClass={joinClass} 
-                                            accountType={user.account} 
-                                            backgroundColor={buttonBackgroundColor} 
-                                            modalTitle='Enter Class Code' 
-                                            inputText='Class Code' 
-                                            buttonText='Join' 
-                                            show={modal} 
-                                            onClose={()=>setModal(false)}>
-                                        </UserModal>
-                                    </div>
-                                    :
+                                <div>
+                                    <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
+                                    <UserModal 
+                                        joinClass={joinClass} 
+                                        accountType={user.account} 
+                                        backgroundColor={buttonBackgroundColor} 
+                                        modalTitle='Enter Class Code' 
+                                        inputText='Class Code' 
+                                        buttonText='Join' 
+                                        show={modal} 
+                                        onClose={()=>setModal(false)}>
+                                    </UserModal>
+                                </div>
 
                                     // if the user is neither a teacher or student, then display the TakeSimulation Component for the 'Other' account type
-                                    <Link to='/simulation'>
+                                   /*  <Link to='/simulation'>
                                         <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
-                                    </Link>
+                                    </Link> */
                         }
 
 
