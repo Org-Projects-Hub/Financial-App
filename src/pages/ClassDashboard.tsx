@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Students, UserModal, Loader } from '../components';
-import { classes } from '../fakeJson';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddStudent, BackButton} from '../style/styled';
 import api from '../api';
@@ -19,6 +18,7 @@ const ClassDashboard = (props : any) => {
     const [modal, setModal] = React.useState(false);
     const [contentLoaded, setContentLoaded] = React.useState(false);
     const [students, setStudents] = React.useState();
+    const [classTitle, setClassTitle] = React.useState('');
 
     // Getting the class id from the URL
     const url = window.location.href;
@@ -30,6 +30,23 @@ const ClassDashboard = (props : any) => {
 
 
     let getClassStudents = () => {
+        api.getClass()
+            .then((res)=> {
+                if(res.success){
+                    for(let x = 0; x < res.class.length; x ++) {
+        
+                        if (res.class[x].c_id.code === code){
+                            setClassTitle(res.class[x].c_id.className);
+                            return;
+                        }
+                    }
+                }
+                else alert(res.message);
+            })
+            .catch((err)=>{
+                alert(err);
+            })
+
         api.getStudent(code)
         .then((res) => {
             if (res.success) {
@@ -45,6 +62,10 @@ const ClassDashboard = (props : any) => {
             setContentLoaded(true);
         })
     }
+
+
+
+
 
     let addStudent = () => {
         alert('waiting on route in backend');
@@ -70,7 +91,6 @@ const ClassDashboard = (props : any) => {
     }
 
 
-
     React.useEffect(() => {getClassStudents()}, []);
 
 
@@ -80,8 +100,7 @@ const ClassDashboard = (props : any) => {
             
             <Border>
                 <Container>
-                    {console.log()}
-                    <ClassTitle>{}</ClassTitle>
+                    <ClassTitle>{classTitle}</ClassTitle>
                     <p style={{fontSize: '125%'}}>Code: {code}</p>
 
                     {/* Passes the appropriate array of student username's to the Students component */}
