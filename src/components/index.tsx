@@ -1,12 +1,12 @@
 import Header from './Header';
 import Loader from './Loader';
 import Navbar from './Navbar';
-import Class from './Class';
+import Class from './UserStartPage/Class';
 import PrePostTest from './PrePostTest';
 import SettingItem from './SettingItem';
 import AccountPick from './AccountPick';
 import Results from './Results';
-import Students from './Students';
+import Students from './ClassDashboard/Students';
 import {Modal, InfoModal} from './Modal'
 import UserModal from './UserModal'
 import Hints from './Hints';

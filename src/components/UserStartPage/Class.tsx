@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {GridColItem, Button} from '../style/styled';
+import {GridColItem, Button} from '../../style/styled';
 
 
 
@@ -42,7 +42,6 @@ const StartButton = styled(Button) `
 `;
 
 
-
 const Class = (props: any) => {
 
 
@@ -56,12 +55,12 @@ const Class = (props: any) => {
                 // if the user is a teacher display this class information
                 props.userObj.account === 'teacher' ?  
 
-                <Link style={{backgroundColor: "black"}} to={`/classDashboard/${props.classObj.code}`}>
+                <Link style={{color: 'black', backgroundColor: "black"}} to={`/classDashboard/${props.classObj.code}`}>
                     <ClassDiv>
 
                         <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
                             <p>{props.classObj.className}</p>
-                            <p>Requests: {props.classObj.signedUp}</p>
+                            <p>Requests: {props.classObj.signedUp /* props.classObj.UnVerified */}</p>
                             <p>Registered: {props.classObj.verified}</p>
                             <p>Completed: {props.classObj.completed}</p>
                         </GridColItem>

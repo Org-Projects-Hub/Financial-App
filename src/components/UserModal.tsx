@@ -74,7 +74,17 @@ const UserModal = (props: any) => {
             <Wrapper>
                 <Modall>
                     <Btn style={{float: "right"}}  onClick={props.onClose}><XButton src={RedX}></XButton></Btn>
-                    <div style={{margin: "5% 0 5% 5%"}}>
+                    <div onKeyDown={(e: any) => {
+                                if (e.keyCode === 13){
+                                    props.buttonText === 'Create' ? 
+                                        props.createNewClass({className, school}) 
+                                        : 
+                                        props.buttonText === 'Add' ?
+                                            props.addStudent({student})
+                                            :
+                                            props.joinClass({code})
+                                }
+                            }}  style={{margin: "5% 0 5% 5%"}}>
                         <p className="ta-left" style={{fontSize: "175%", margin: "1% 1% 2% 1%"}}>{props.modalTitle}: </p>
                         <div className="ta-left" style={{borderRadius: '0.1em'}}>
 
