@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import useInterval from '@use-it/interval';
+import JobSummary from './JobSummary';
 
 import './simulation.css';
 
@@ -36,8 +37,7 @@ font-weight: bolder;
 color:yellow;
 `;
 
-
-const Wheel = ({ input, stage, setChoice, setStage}: any) => {
+const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
     
     
     const [index, setIndex] = useState(-1); //index of the props array, used for moving through the data (set to -1 to prevent errors)
@@ -200,7 +200,8 @@ const Wheel = ({ input, stage, setChoice, setStage}: any) => {
                 <div>
                     {/**Display the selection (Blank if wheel hasnt spun, if it has it displays what they chose) */}
                     <div>
-                        <Text>{text}</Text>
+                         {stage == "education" && <Text>{text}</Text> }
+                         {stage == "job" && <JobSummary career={career}></JobSummary>}
 
                         <br/>
                         Click next to continue

@@ -49,7 +49,7 @@
 
     "jobs":[
         {"reqed":"HighSchool Diploma", "occupations":[
-                {"id":0, "position":"Welder", "grossmonthly":3234.40},
+                {"id":0, "position":"Teller", "grossmonthly":2000.27},
                 {"id":1, "position":"Plumber", "grossmonthly":3731.87},
                 {"id":2, "position":"Truck Driver", "grossmonthly":3194.53},
                 {"id":3, "position":"Carpenter", "grossmonthly":2594.80}
@@ -62,12 +62,21 @@
                 {"id":3, "position":"Toxocologist", "grossmonthly":4745.53}
             ]},
 
-         {"reqed":"Associates Degree","occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
+         {"reqed":"Associates Degree","occupations":[
+             {"id":0,"position":"Welder", "grossmonthly":3234.40},
+             {"id":1,"position":"Fitness Trainer", "grossmonthly":2655.47}
+             ]},
 
-         {"reqed":"Masters Degree", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
+         {"reqed":"Masters Degree", "occupations":[
+             {"id":0,"position":"Physical Therapist", "grossmonthly":7670.00}
+            ]},
 
-         {"reqed":"PhD", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]},
+         {"reqed":"PhD", "occupations":[
+             {"id":0,"position":"Pharmacist", "grossmonthly":9533.33}
+             ]},
 
-         {"reqed":"GED/HSET", "occupations":[{"id":0,"position":"Electrical Engineer", "grossmonthly":4943.47}]}
+         {"reqed":"GED/HSET", "occupations":[
+             {"id":0,"position":"HouseKeeper", "grossmonthly":1495.87}
+             ]}
     ]
 }
