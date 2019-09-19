@@ -32,6 +32,10 @@ z-index:0;
         border-width: 10vh 2vw 10vh 2vw ;
         
         }
+    .red-light{
+
+    }
+
 }
 
 /*When the wheel is not spinning*/
@@ -84,8 +88,8 @@ z-index:0;
     background: rgb(121, 8, 8);
     height: 10vh;
     width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
     z-index:1;
+    padding: 1vh 2.2vh 1vh 2.2vh;
     position:relative;
     top:6vh;
     left:3vw;

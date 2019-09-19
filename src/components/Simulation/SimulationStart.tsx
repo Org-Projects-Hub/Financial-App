@@ -107,8 +107,6 @@ const SimulationStart = ({stage, setStage}:any) => {
 
                         setCareer(userCareer);
                         
-                        
-                        console.log("SETINCOME");
                     }
                 }
             }
@@ -132,7 +130,7 @@ return(
                 {simStage == "boothSelect" ?
                     <div>
                         <UserInfo>
-                            Current Income: {currentIncome}
+                            Remaining Income: {currentIncome}
                         </UserInfo>
                         <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>
                     </div>
@@ -144,7 +142,7 @@ return(
                         <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data} 
                                 currentIncome={currentIncome} setIncome={setIncome}/>                
                         <UserInfo>
-                            Current Income: {currentIncome}
+                            Remaining Income: {currentIncome}
                         </UserInfo>
                     </div>
                 :

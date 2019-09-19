@@ -62,6 +62,7 @@ export default class App extends React.Component <{}, Props>{
       this.setState({modal: false})
     }
 
+
     return(
           <>{this.state.tokenChecked?
                 <Router>

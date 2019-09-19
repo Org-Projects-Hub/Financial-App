@@ -12,7 +12,10 @@ text-align:center;
 background-color:yellow;
 padding:2vh;
 margin: .5vh
-min-width: 20vw;`;
+min-width: 20vw;
+max-height: 10vh;
+
+`;
 
 const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
 
