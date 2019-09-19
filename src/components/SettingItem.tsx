@@ -17,10 +17,10 @@ const SettingItem = (props: any) => {
           <span className="bold text-md justify-start">{defaultValue}</span> :
           <input defaultValue={value} name="email" onChange={(e: any) => setValue(e.target.value)} />}
         {!edit ?
-          <i className={iconClass} onClick={() => { setEdit(true) }}>edit</i> :
-          <span>
-            <i className={iconClass + " txt-green"} onClick={() => { setEdit(false) }}>clear</i>
-            <i className={iconClass + " txt-green"}
+          <button className="justify-end btn" onClick={() => { setEdit(true) }}><i className={iconClass}>edit</i> </button>:
+          <span className="justify-end">
+            <button className="btn"> <i className={iconClass + " txt-green"} onClick={() => { setEdit(false) }}>clear</i></button>
+            <button className="btn"><i className={iconClass + " txt-green"}
               onClick={() => {
                 api.updateInfo({ field, value })
                   .then((res) => {
@@ -35,7 +35,7 @@ const SettingItem = (props: any) => {
                     setEdit(false);}
                   )
               }
-              }>done</i>
+              }>done</i></button>
           </span>}
       </Grid>
     </Card>

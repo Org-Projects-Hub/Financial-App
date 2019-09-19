@@ -1,9 +1,24 @@
-import React  from 'react';
+import React, {useState} from 'react';
+import {Grid, Card} from '../../style/styled'
 import styled from 'styled-components';
 
 
-const Wrapper = styled.div`
+const Red = styled.span`
+color:red;
+font-size: 16pt;
 `;
+
+const Green = styled.span`
+color:green;
+font-size: 16pt;
+`;
+
+const Card2 = styled(Card)`
+font-family: 'Capriola', sans-serif;
+min-width:60vw;
+`;
+
+
 
 
 const JobSummary = ({career}:any) => {
@@ -15,40 +30,46 @@ const JobSummary = ({career}:any) => {
     const medicare = career.medicare.toFixed(2);
     const sTax = career.stateTax.toFixed(2);
     const edu = career.education;
+    const position = career.position;
 
     const netMonth = (grossSal - fedTax - socialS -medicare - sTax); 
 
+    const vowel = new Set(['A','E','I','O','U'])
+
+    const [grammar, setGram] = useState("a")
+    const [flag, setFlag] = useState(false)
+
+    if(vowel.has(position.charAt(0)) && flag == false){
+        setGram("an");
+        setFlag(true);
+    }
+
+
     return(
     
-            <Wrapper>
+            <Card2>
             
-                You were hired as a {career.position}, 
-                which requires an education level of at least {edu} <br/>
+                You were hired as {grammar} {position}, 
+                which requires an education level of at least a {edu}! <br/>
 
-                Your annual salary is ${anSal} <br/>
+                <hr/><br/>
 
-                You gross ${grossSal.toFixed(2)} a month.<br/>
+                As {grammar} {position}, you will make <Green>${anSal}</Green> a year.<br/><br/>
 
-                Your taxes include: 
-                    <table>
-                        <th></th>
-                            <tr>
-                                <td>Federal Taxes: ${fedTax}</td>
-                            </tr>
-                            <tr>
-                                <td>Social Security: ${socialS}</td>
-                            </tr>
-                            <tr>
-                                <td>Medicare: ${medicare}</td>
-                            </tr>
-                            <tr>
-                                <td>State Tax: ${sTax}</td>
-                            </tr>
-                    </table>
+                This means your gross monthly salary is <Green>${grossSal.toFixed(2)}</Green><br/><br/>
 
-                Which means you bring home ${netMonth.toFixed(2)}!
+                You will have to pay the following taxes:
+                    
+                    <ul>        
+                        <li>Federal Taxes: <Red>${fedTax}</Red></li>
+                        <li>Social Security: <Red>${socialS}</Red></li>
+                        <li>Medicare: <Red>${medicare}</Red></li>
+                        <li>State Tax: <Red>${sTax}</Red></li>
+                    </ul>
 
-            </Wrapper>
+                    <br/>Which means your net monthly income is <Green>${netMonth.toFixed(2)}</Green>!
+
+            </Card2>
         
         
         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Card} from '../../style/styled';
+import {Grid, Card , NavButton} from '../../style/styled';
 import styled from 'styled-components';
 
 type Props = {
@@ -8,6 +8,13 @@ type Props = {
     costBreakdown: string[];
     price: Number;
 }
+const MyCard = styled(Card)`
+display: grid;
+    width: 90%;
+    height: 90%;
+    box-sizing: content-box;
+    grid-template-rows: auto;
+`;
 
 const Name = styled.div`
     font-size: 18px;
@@ -39,48 +46,17 @@ const HorLine = () => (
         marginTop: "5px"
     }} />
 );
-const NavButton = styled.button`
-  background-color: white;
-  color: #1f3d7d;
-  margin-top: 10px;
-  min-width: 150px;
-  min-height: 40px;
-  border: 2px solid #1f3d7d;
-  border-radius: 4px;
-  font-weight: bold;
-
-  &:focus {
-    background-color: #7da2d6;
-  }
-
-  &:hover {
-    background-color: white;
-    cursor: pointer;
-    font-size: 108%;
-  }
-
-  &:disabled {
-    background-color: white;
-    color: #7da2d6;
-    border-color: #7da2d6;
-    cursor: not-allowed;
-    &:hover {
-    font-size: 100%;
-    }
-  }
-`;
-
 
 const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage}: any) => {
     
-
     function buy(){
+        window.scrollTo(0, 0)
         setIncome(currentIncome - price);
         setSimStage();
     }
     
     return(
-        <Card>
+        <MyCard >
             <Name>{name}</Name>
 
             <Grid cols="3">
@@ -104,7 +80,7 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
             <HorLine />
             <Grid cols="1"><NavButton onClick={()=>buy()}className="btn">Purchase</NavButton></Grid>
             
-        </Card>
+        </MyCard>
     );
 }
 

@@ -37,6 +37,10 @@ font-weight: bolder;
 color:yellow;
 `;
 
+const Center = styled.div`
+margin-left:25vw;
+`;
+
 const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
     
     
@@ -50,7 +54,6 @@ const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
     
     useInterval(() => {timer()}, spinTime) //setting the interval to run the timer() function
 
-    console.log("INPUT: " + input)
     
 
     /*TODO change color randomly every input */
@@ -80,8 +83,6 @@ const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
                 //sets selection to the current index
                 setSelect(input[index]);
 
-                //error checking
-                console.log("HERE: " + input[index]);
             }
             //if the index increments outside of the array
             else{
@@ -140,8 +141,6 @@ const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
             setSpin(true); //starting spinner
             
             //PART OF TODO (Always returns null)
-            console.log("FIRST Select: " + selection);
-            console.log("rand num: " + rand)
         }
     }
 
@@ -204,12 +203,12 @@ const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
                          {stage == "job" && <JobSummary career={career}></JobSummary>}
 
                         <br/>
-                        Click next to continue
+                        <Center>Click next to continue</Center>
                     </div>
                     <br/>
-                    <div>
+                    <Center>
                         <button className="btn" onClick={()=>next()}>NEXT</button>
-                    </div>
+                    </Center>
 
                 </div>
         
