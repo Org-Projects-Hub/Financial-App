@@ -131,19 +131,26 @@ const Class = (props: any) => {
                     </GridColItem>
 
                     {/* If the class/simulation is not completed display the Start button, if it is display 'Completed' instead */}
-                    { -1 === -1 ? 
+                    { false ? // isCompleted ? :
+
+                        <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
+                            <div className="ta-right txt-italic">Completed</div>
+                        </GridColItem>
+
+                        :
+                        true ? //isVerified ? :
+                        
+                        <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
+                            <div className="ta-right txt-italic">waiting on approval . . .</div>
+                        </GridColItem>
+
+                        :
 
                         <StartButton>
                             <Link to={'/Simulation'}>
                                 <div style={{cursor: "pointer"}} className="ta-center">Start</div>
                             </Link> 
                         </StartButton>
-
-                        :
-
-                        <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "125%"}}>
-                            <div className="ta-right txt-italic">Completed</div>
-                        </GridColItem>
                     }
                 </ClassDiv>
                     

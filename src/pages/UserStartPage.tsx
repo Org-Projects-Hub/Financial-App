@@ -85,7 +85,6 @@ const UserStartPage = (props: any) => {
 
         <>{contentLoaded ?
             <Border>
-
                 <Container>
                     {/* if there are classes in the classObjs array, loop over each element, if not display <p> tag */}
                     {resClass.length >= 1 ?
