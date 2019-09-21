@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Tests from './Tests.json';
+import Tests from '../json/Tests.json';
 import Question from './Question';
 import QuestionList from './QuestionList';
 import { Container, NavButton } from '../style/preposttest';

@@ -18,9 +18,6 @@ font-family: 'Capriola', sans-serif;
 min-width:60vw;
 `;
 
-
-
-
 const JobSummary = ({career}:any) => {
 
     const anSal = career.annualSalary.toFixed(2);
@@ -46,9 +43,7 @@ const JobSummary = ({career}:any) => {
 
 
     return(
-    
-            <Card2>
-            
+            <Card2>    
                 You were hired as {grammar} {position}, 
                 which requires an education level of at least a {edu}! <br/>
 

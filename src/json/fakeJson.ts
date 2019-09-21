@@ -1,6 +1,3 @@
-import { register } from "./serviceWorker";
-
-
 const classes = [
   {
     id: 'lkjlkijlkj',

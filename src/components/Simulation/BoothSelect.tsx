@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import data from './Simulation.json'
+import data from '../../json/Simulation.json'
 import './simulation.css';
 import {Grid , NavButton} from '../../style/styled';
 

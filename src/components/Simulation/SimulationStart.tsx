@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
-import data from './Simulation.json'; 
+import data from '../../json/Simulation.json'; 
 import BoothSelect from './BoothSelect'
 import Booth from './Booth'
 import { SelectInput } from '..';
@@ -9,18 +9,9 @@ import { SelectInput } from '..';
 
 const Wrapper = styled.div`
 display: grid;
-grid-template-rows: auto; 
 min-height: 100vh;
-grid-template-columns: 25% 50% 25%;
-place-items: center;
-justify-items: center;`;
-
-const WheelPlace = styled.div`
-grid-row: 2 / span 1;
-grid-column: 2 / span 1`;
-
-const Button = styled.div`
-grid-row: 3 / span 1;`;
+grid-template-columns: 1fr;
+place-items: center;`;
 
 const UserInfo = styled.div`
 backgorund: grey;
@@ -66,16 +57,8 @@ const SimulationStart = ({stage, setStage}:any) => {
     const [jobOptions, setJobOptions] = useState(null);
 
     //Setting the simStage to education at the begging of the simuatlion 
-    if(stage==="simulation" && simStage === null){ 
-        
-        
-        
-        
-        
-        setSimStage("job"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
+    if(stage==="simulation" && simStage === null)setSimStage("job"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
 
-
-    }
 
     const {jobs} = data
     let x  = new Array();
@@ -118,7 +101,7 @@ const SimulationStart = ({stage, setStage}:any) => {
 return(
         <Wrapper>
             {/**Displaying the spinner based on which stage the user is on */}
-            <WheelPlace style={{top:'10vh'}}>
+
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
                 {simStage === "job" ?
                 <>
@@ -147,13 +130,9 @@ return(
                     </div>
                 :
                     <></>
-                }
-
-            </WheelPlace>         
+                }        
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
-            <Button>
-                {simStage === "postTest" && <button className="btn" onClick={(e)=> setStage('posttest')}>TO POSTTEST</button>}
-            </Button>           
+                {simStage === "postTest" && <button className="btn" onClick={(e)=> setStage('posttest')}>TO POSTTEST</button>}        
         </Wrapper>
     )
 }

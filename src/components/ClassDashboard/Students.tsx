@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, GridColItem } from '../../style/styled';
-import { users } from '../../fakeJson';
+import { users } from '../../json/fakeJson';
 import RedX from '../assets/images/red_x.png';
 
 

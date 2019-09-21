@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {booths} from './SimJSON'
+import { booths } from '../../json/SimJSON'
 import BoothOption from './BoothOption';
 import { Grid } from '../../style/styled';
 interface boothOptions{

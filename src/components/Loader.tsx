@@ -1,5 +1,5 @@
 import React from 'react';
-import mySvg from './loader.svg'
+import mySvg from '../assets/loader.svg'
 import styled from 'styled-components';
 
 const Loader = styled.div`
