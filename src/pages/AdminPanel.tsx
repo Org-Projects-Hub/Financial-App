@@ -4,7 +4,7 @@ import { SelectInput} from '../components';
 import styled from 'styled-components';
 import { setLocalStorage } from '../utils/utils';
 import { Chart } from "react-google-charts";
-import Loader from '../components/Loader';
+import Loader from '../components/shared-components/Loader';
 const AdminPanel = ()=>{
  const options = ["All Users", "Age", "Gender", "Grade"];
     return (

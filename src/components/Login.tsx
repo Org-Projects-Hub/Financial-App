@@ -4,56 +4,48 @@ import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom"
 import LoginLogo from '../assets/images/UnitedWayLogo.png';
 import {Card} from '../style/styled';
  //
-
-const Login = ({login, loggedin}:{login: any, loggedin: any})=>{
- const [email, setEmail] = useState("");
- const [password, setPassword] = useState("");
-
-
- const Wrapper = styled.div`
- height: 100%;
- width: 100%;
- background: white;
- box-shadow: 0 .25em .5em rgba(0,0,0,.5);
- border-radius: .5em;
+ const Img = styled.img`
+ borderRadius: "1em";
+ overflow: "hidden";
+ width:auto;
+ width:75%;
  `;
 
- const MyCard = styled.div`
+const Login = ({login, loggedin}:{login: any, loggedin: any})=> {
 
- `;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  return(<Wrapper>
-          <div className="wrapper-item-center row card" style={{margin: "0"}}>
-            <form onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} className="container center" >
-            <div>
-                <div className="card-image ">
-                    <img src={LoginLogo} alt="Origin Logo"/>
-              </div>
-                <MyCard className="">
-                  <div className="row card-content">
-                    <div className="input-field col s12">
-                      <input placeholder={"Username or Email"} name="email" onChange={(e: any)=>{setEmail(e.target.value)}}/>
-                      <input placeholder={"Password"} type="password" name="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
-                    </div>
-                    <div className=" col s12 center">
-                      <p><a href="*">Forget Password ?</a></p>
-                    </div>
-                    <div className=" col s12 center">
-                      <p><NavLink to="/signup">Sign Up</NavLink></p>
+  return (
 
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col m12">
-                      <p className="center-align">
-                        <button className="btn btn-small waves-effect waves-light" onClick={()=>login({email, password})}>Login</button>
-                      </p>
-                    </div>
-                  </div>
-                </MyCard>
-                </div>
-              </form>
+      /* for for entire login card 
+      @function onSubmit preventDefault prevents blank data,
+           login is the api function that sets the users email and password
+      */
+      <form className="login-form" onSubmit={(e:any)=>{e.preventDefault(); login({email, password})}} >
+          
+          <Img src={LoginLogo} alt="Origin Logo"/>
+          
+          {/* sets the uers email to the input value */}
+          <input className="login-input" placeholder={"Username or Email"} name="email" onChange={(e: any)=>{setEmail(e.target.value)}}/>
+          
+          {/* sets the uers password to the input value */}
+          <input className="login-input" placeholder={"Password"} type="password" name="password" onChange={(e: any)=>{setPassword(e.target.value)}}/>
+
+          <div className="ta-center" style={{padding: "1%"}}>
+              <p>Forget Password ?</p>
+
+              {/* redirect to Sign Up page when clicked*/}
+              <NavLink to="/signup">Sign Up</NavLink>
+
           </div>
-          </Wrapper>);}
+          {/*Button for submit, sends the users email and password to the login function declared in App.tsx to be verified  */}
+          <div className="ta-center" style={{padding: "5%"}}>
+              <button className="btn btn-small waves-effect waves-light" onClick={()=>login({email, password})}>Login</button>
+          </div>
+          
+      </form>
+  );
+}
 
 export default Login;

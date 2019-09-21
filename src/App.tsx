@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
-import './App.css';
+import './style/App.css';
 import './style/animations.css';
 import {Navbar, Modal , Loader} from './components';
 import { Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';

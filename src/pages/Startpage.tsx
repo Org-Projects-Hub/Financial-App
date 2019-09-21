@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Wrapper, Banner, Logo, Desc, Logoutbutton,LoginPOS} from '../style/home';
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
-import {LoginNumberTwo } from '../components'
+import {Login } from '../components'
 import styled from 'styled-components';
 
 
@@ -28,7 +28,7 @@ return(
                     {/* Calling the LoginNumberTwo component with two props
                       @prop login an APi function for logging a user in
                       @prop loggedin a boolean to check if a user is logged in or not*/}
-                    <LoginNumberTwo login={login} loggedin={loggedin} />
+                    <Login login={login} loggedin={loggedin} />
 
                   </LoginPOS>
 
