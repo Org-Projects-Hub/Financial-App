@@ -48,7 +48,7 @@ margin: 0;
 height: 3em;`;
 
 
-  const Modal = ({text, close}: {text: any, close: any}) =>
+  const Modal = ({text, close}: {text: any, close: any}):JSX.Element =>
       (
         <Wrapper>
           <ReactCSSTransitionGroup

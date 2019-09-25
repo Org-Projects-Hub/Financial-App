@@ -18,7 +18,7 @@ font-family: 'Capriola', sans-serif;
 min-width:60vw;
 `;
 
-const JobSummary = ({career}:any) => {
+const JobSummary = ({career}:any):JSX.Element => {
 
     const anSal = career.annualSalary.toFixed(2);
     const grossSal = career.annualSalary / 12;

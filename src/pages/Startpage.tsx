@@ -9,7 +9,7 @@ import styled from 'styled-components';
 * Start page of the entire site, where users will get an overview of what this app is about, and where they will
 * login or creat their accounts
 */
-const Startpage = ({login, loggedin, logout}:{login: any, loggedin: boolean, logout: any})=>{
+const Startpage = ({login, loggedin, logout}:{login: any, loggedin: boolean, logout: any}): JSX.Element=>{
 return(
             <div>
               <Wrapper>

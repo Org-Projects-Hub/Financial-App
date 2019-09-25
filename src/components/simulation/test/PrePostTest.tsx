@@ -33,7 +33,7 @@ const Div = styled.div`
 const SimIntro: string = 'Simulation Introduction'; 
 const CompleteSim: string = 'Simulation Complete';
 
-const PrePostTest = ({stage, setStage}: any)=> {
+const PrePostTest = ({stage, setStage}: any):JSX.Element=> {
     const [begin, setBegin] = useState(false);
     const [testComplete, setTestComplete] = useState(false);
     

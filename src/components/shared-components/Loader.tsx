@@ -8,7 +8,7 @@ const Loader = styled.div`
   top: calc(50% - 40px);
   display: inline-block;`;
 
-const Loader1 = ()=> (
+const Loader1 = ():JSX.Element=> (
   <Loader className="blue-txt">
     <img width="70" src={mySvg} alt="A Loader" />
   </Loader>);

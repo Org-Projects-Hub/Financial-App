@@ -16,7 +16,7 @@ max-height: 10vh;
 
 `;
 
-const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
+const BoothSelect = ({setSimStage, setCurrentBooth}:any):JSX.Element =>{
 
     const [boothSelection, setBooth] = useState(null);
     const [text, setText] = useState(null);  

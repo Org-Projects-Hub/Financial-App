@@ -37,7 +37,7 @@ const FloatBtn = styled.button`
   `;
 
 const active = {textShadow: "2px 2px 4px #000000" , color: "white"};
-const Navbar = ({showNav, hide}: {showNav: any, hide: any})=> (
+const Navbar = ({showNav, hide}: {showNav: any, hide: any}):JSX.Element=> (
   <div>
     <Nav className={showNav? "show": "hide"}>
       <NavLink activeStyle={active}   className="nav-item txt-md" to="/setting"><i className="fas fa-cog"></i></NavLink>

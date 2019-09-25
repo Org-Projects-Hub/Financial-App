@@ -22,7 +22,7 @@ type Props = {
   CompleteTest: Function
 }
 
-const Test = ({testType, CompleteTest}: Props)=> {
+const Test = ({testType, CompleteTest}: Props):JSX.Element=> {
   const [width, setWidth] = useState(window.innerWidth);
 
   const handleWindowSizeChange = () => {

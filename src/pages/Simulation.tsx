@@ -5,7 +5,7 @@ import {Wrapper} from '../style/styled';
 
 
 //Sets the
-const Simulation =({user}:{user: any})=>
+const Simulation =({user}:{user: any}) : JSX.Element=>
 {
   //const [stage, setStage] = useState("pretest");
   const [stage, setStage] = useState("pretest");

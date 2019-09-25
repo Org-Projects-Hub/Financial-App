@@ -37,7 +37,7 @@ const Float = styled.div`
     height: auto;
   `;
 
-const Hints = ({msg} : any)=> {
+const Hints = ({msg} : any):JSX.Element=> {
   const [pointer, setPointer ]  = useState(0);
 
   const increasePointer = () =>{

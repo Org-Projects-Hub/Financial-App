@@ -11,7 +11,7 @@ import {Card} from '../style/styled';
  width:75%;
  `;
 
-const Login = ({login, loggedin}:{login: any, loggedin: any})=> {
+const Login = ({login, loggedin}:{login: any, loggedin: any}):JSX.Element=> {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
