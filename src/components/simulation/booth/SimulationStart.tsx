@@ -25,7 +25,7 @@ grid-column: 1 / span 1;`;
  * @param {Function} setStage     Sets the overal stage of the simulation (preTest, simulation, postTest)
  * @return TSX to be rendered.
  */
-const SimulationStart = ({stage, setStage}:any) => {
+const SimulationStart = ({stage, setStage}:any):JSX.Element => {
 
 
     

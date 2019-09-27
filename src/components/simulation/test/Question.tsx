@@ -23,7 +23,7 @@ type Props = {
   total: Number
 }
 
-const Question = ({id, question, answers, value, Save, total}: Props)=>{
+const Question = ({id, question, answers, value, Save, total}: Props):JSX.Element=>{
 
   return (
     <Card>

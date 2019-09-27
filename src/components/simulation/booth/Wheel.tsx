@@ -38,7 +38,7 @@ const Center = styled.div`
 margin-left:25vw;
 `;
 
-const Wheel = ({ input, stage, setChoice, setStage, career}: any) => {
+const Wheel = ({ input, stage, setChoice, setStage, career}: any):JSX.Element => {
     
     
     const [index, setIndex] = useState(-1); //index of the props array, used for moving through the data (set to -1 to prevent errors)

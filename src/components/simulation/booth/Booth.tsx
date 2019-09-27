@@ -16,7 +16,7 @@ grid-grap: 1em;
         grid-template-columns: 1fr;
     }
 `;
-const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any) => {
+const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any):JSX.Element => {
 
     const [userOptions, setOptions]  = useState(null);
     const [optionsArray, setOptionsArray] = useState([]);

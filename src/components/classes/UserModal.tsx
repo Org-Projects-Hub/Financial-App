@@ -59,7 +59,7 @@ const CreateClass = styled(Button)`
     margin: 0.5% 20%;
 `;
 
-const UserModal = (props: any) => {
+const UserModal = (props: any):JSX.Element => {
 
     const [className, setClassName] = useState('');
     const [school, setSchool] = useState('');

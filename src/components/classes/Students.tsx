@@ -48,7 +48,7 @@ const Btn = styled.i`
 
 
 // This component is made to condense the repetition of code on the ClassDashboard component since the only difference would be the Title and the array that's being used.
-const Students = (props: any) => {
+const Students = (props: any):JSX.Element => {
     const [code, setCode] = React.useState(props.code);
     return (
         <div>

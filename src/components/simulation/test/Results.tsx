@@ -13,7 +13,7 @@ const Div = styled.div`
     padding: 10px;
 `;
 
-const Results = () => {
+const Results = ():JSX.Element => {
     return(
         <Container>
             <Div>

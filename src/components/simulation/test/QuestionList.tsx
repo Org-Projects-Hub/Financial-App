@@ -25,7 +25,7 @@ const HorLine = () => (
     }} />
 );
 
-const QuestionList = ({answerList, questions, current, setQuestion}: Props) => {
+const QuestionList = ({answerList, questions, current, setQuestion}: Props):JSX.Element => {
 
 
     return(

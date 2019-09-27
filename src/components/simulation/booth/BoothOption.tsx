@@ -47,7 +47,7 @@ const HorLine = () => (
     }} />
 );
 
-const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage}: any) => {
+const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage}: any):JSX.Element => {
     
     function buy(){
         window.scrollTo(0, 0)

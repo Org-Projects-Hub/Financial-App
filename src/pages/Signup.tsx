@@ -34,7 +34,7 @@ background-position: bottom right;
 
 // AccountPick componenet is so the user can choose what kind of account they have (Administrator or User),
 
-const AccountPick = ({loggedin}: {loggedin: any}) => {
+const AccountPick = ({loggedin}: {loggedin: boolean}):JSX.Element => {
 
 // Hook for storing the admin state
 const [admin, setAdmin] = useState(null);

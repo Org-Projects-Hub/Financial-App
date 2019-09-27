@@ -38,7 +38,7 @@ import {Modal, Hints} from '../index';
         background-repeat: no-repeat;
         background-position: bottom right;
         `;
-const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin : any, isStudent: any}) => {
+const Account =({loggedin , clearAdmin, isStudent}: {loggedin: any, clearAdmin : any, isStudent: any}):JSX.Element => {
        const [state, setState] = useState(0);
        const [clicked, setClicked] = useState(false)
        const [modal, setModal] = useState(false);

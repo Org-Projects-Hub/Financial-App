@@ -58,7 +58,7 @@ const ClassInfo = styled.p`
     z-index: -1;
 `;
 
-const Class = (props: any) => {
+const Class = (props: any):JSX.Element => {
 
     const [isArchived, setIsArchived] = React.useState(false); /* Replace this with props.classObj.isArchived whenever it's added */
 

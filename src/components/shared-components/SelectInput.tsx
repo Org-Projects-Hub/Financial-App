@@ -2,7 +2,7 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 
-const SelectInput = ({arr, action, name, required, style}: any)=>
+const SelectInput = ({arr, action, name, required, style}: any):JSX.Element=>
                                     (<Select native name={name} style={style} onChange={action} defaultValue={"Random"}
                                         input={<Input className="blue-txt" />}>
                                         {!required?
