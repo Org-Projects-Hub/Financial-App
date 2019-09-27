@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Class, UserModal, Loader } from '..';
+import { Class, UserModal, Loader, TakeSimModal } from '..';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../../style/styled';
 import api from '../../api/index';
@@ -78,6 +78,7 @@ const UserStartPage = (props: any) => {
 
     return(
         <>{contentLoaded ?
+            
             <Border>
                 <Container>
                     {/* if there are classes in the classObjs array, loop over each element, if not display <p> tag */}
@@ -134,6 +135,11 @@ const UserStartPage = (props: any) => {
                                         show={modal} 
                                         onClose={()=>setModal(false)}>
                                     </UserModal>
+                                    <TakeSimModal 
+                                        backgroundColor={buttonBackgroundColor}  
+                                        show={modal} 
+                                        onClose={()=>setModal(false)}>
+                                    </TakeSimModal>
                                 </div>
 
                                     // if the user is neither a teacher or student, then display the TakeSimulation Component for the 'Other' account type

@@ -92,6 +92,9 @@ const Class = (props: any) => {
                     </ArchivedClassDiv>
 
                     :
+                    
+
+                    //display this if they are a teacher
 
                     <Link style={{color: 'black'}} to={`/classDashboard/${props.classObj.code}`}>
                         <ClassDiv>
