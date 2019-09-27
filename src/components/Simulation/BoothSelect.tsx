@@ -9,11 +9,12 @@ const Booths = styled.div`
 font-size: 20pt;
 font-weight:bolder;
 text-align:center;
-background-color:yellow;
+background-color:rgb(0, 139, 255);
 padding:2vh;
 margin: .5vh
 min-width: 20vw;
 max-height: 10vh;
+color:black;
 
 `;
 
@@ -39,7 +40,7 @@ const BoothSelect = ({setSimStage, setCurrentBooth}:any) =>{
                     <NavButton 
                     style={{margin: "1em"}}
                     disabled={boothSelection === info.category}>
-                        <Booths key={i} onClick={()=>setBooth(info.category)}>
+                        <Booths key={info.id} onClick={()=>setBooth(info.category)}>
                             {info.category}
                         </Booths>
                     </NavButton>

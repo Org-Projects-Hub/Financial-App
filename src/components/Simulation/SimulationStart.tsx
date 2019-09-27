@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import data from './Simulation.json'; 
 import BoothSelect from './BoothSelect'
 import Booth from './Booth'
+import Summary from './Summary'
 import { SelectInput } from '..';
 
 
@@ -13,7 +14,8 @@ grid-template-rows: auto;
 min-height: 100vh;
 grid-template-columns: 25% 50% 25%;
 place-items: center;
-justify-items: center;`;
+justify-items: center;
+`;
 
 const WheelPlace = styled.div`
 grid-row: 2 / span 1;
@@ -64,6 +66,13 @@ const SimulationStart = ({stage, setStage}:any) => {
     const [currentIncome, setIncome] = useState(null);
 
     const [jobOptions, setJobOptions] = useState(null);
+
+    let incomeFlag = true
+    if(currentIncome <= 0 && incomeFlag && currentIncome != null){
+        setSimStage("summary");
+        incomeFlag = false;
+        console.log('here');
+    }
 
     //Setting the simStage to education at the begging of the simuatlion 
     if(stage==="simulation" && simStage === null){ 
@@ -126,28 +135,31 @@ return(
                 </>
                 :
                     <></>
-                }        
+                }    
                 {simStage == "boothSelect" ?
                     <div>
                         <UserInfo>
-                            Remaining Income: {currentIncome}
+                            Remaining Income: {currentIncome.toFixed(2)}
                         </UserInfo>
                         <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>
                     </div>
                 :
                 <></>
-                }          
+                }   
                 {simStage == "booth" ?  
                     <div>
                         <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data} 
                                 currentIncome={currentIncome} setIncome={setIncome}/>                
                         <UserInfo>
-                            Remaining Income: {currentIncome}
+                            Remaining Income: {currentIncome.toFixed(2)}
                         </UserInfo>
                     </div>
                 :
                     <></>
                 }
+
+                {simStage == "summary" && <Summary/>}
+                
 
             </WheelPlace>         
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}

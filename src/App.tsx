@@ -16,7 +16,7 @@ const GetInfoContext = createContext(()=>{console.log("No Context")});
 export default class App extends React.Component <{}, Props>{
   constructor(props: Props){
     super(props);
-    this.state = { loggedin: false, tokenChecked: false, showNav: true, user: {}, modal: false};
+    this.state = { loggedin: true, tokenChecked: false, showNav: true, user: {}, modal: false};
   }
 
   getUserInfo = () : boolean=>{
