@@ -24,7 +24,7 @@ background-position:left center;`;
 
 
 // const Intro = () => ;
-const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUserInfo: any }) => {
+const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUserInfo: any }):JSX.Element => {
   const fields = [{ name: "First Name", value: user.firstName, field: "firstName" },
   { name: "Last Name", value: user.lastName, field: "lastName" },
   { name: "Username", value: user.username, field: "username" },

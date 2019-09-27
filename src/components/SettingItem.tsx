@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Card, Grid } from '../style/styled';
 import api from '../api';
 
-const SettingItem = (props: any) => {
+const SettingItem = (props: any):JSX.Element => {
   let { name, value: defaultValue, field, getUserInfo } = props;
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(defaultValue);

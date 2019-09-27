@@ -4,8 +4,8 @@ import { SelectInput} from '../components';
 import styled from 'styled-components';
 import { setLocalStorage } from '../utils/utils';
 import { Chart } from "react-google-charts";
-import Loader from '../components/Loader';
-const AdminPanel = ()=>{
+import Loader from '../components/shared-components/Loader';
+const AdminPanel = ():JSX.Element=>{
  const options = ["All Users", "Age", "Gender", "Grade"];
     return (
       <Wrapper className="full-height">
