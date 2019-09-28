@@ -31,6 +31,7 @@ const Setting = ({ logout, user, getUserInfo }: { logout: any, user: any, getUse
   { name: "Phone", value: "", field: "phone" },
   { name: "Email", value: user.email, field: "email" }
   ];
+
   const [modal, setModal] = React.useState(true);
   const [info, setInfo] = React.useState(true);
   return (

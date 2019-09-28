@@ -48,54 +48,54 @@ margin: 0;
 height: 3em;`;
 
 
-  const Modal = ({text, close}: {text: any, close: any}):JSX.Element =>
-      (
-        <Wrapper>
-          <ReactCSSTransitionGroup
-            transitionName="pop"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionLeaveTimeout={300}
-            transitionEnter={true}
-            transitionLeave={true}>
-              <Modall>
+const Modal = ({ text, close }: { text: any, close: any }): JSX.Element =>
+  (
+    <Wrapper>
+      <ReactCSSTransitionGroup
+        transitionName="pop"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionLeaveTimeout={300}
+        transitionEnter={true}
+        transitionLeave={true}>
+        <Modall>
 
-                <Header>
-                  <Btn style={{float: "right"}} className="bt right-corner"  onClick={close}> &nbsp;X&nbsp; </Btn>
-                </Header>
+          <Header>
+            <Btn style={{ float: "right" }} className="bt right-corner" onClick={close}> &nbsp;X&nbsp; </Btn>
+          </Header>
 
-                <div >
+          <div >
 
-                  <div style={{minHeight: "5em", padding: "2em"}} className="blue-txt bold txt-md">
-                    <h5>{text}</h5>
-                  </div>
+            <div style={{ minHeight: "5em", padding: "2em" }} className="blue-txt bold txt-md">
+              <h5>{text}</h5>
+            </div>
 
-                  <div>
-                    <button className="btn hoverr full" onClick={close}>Cancel</button>
-                  </div>
+            <div>
+              <button className="btn hoverr full" onClick={close}>Cancel</button>
+            </div>
 
-                </div>
-              </Modall>
-          </ReactCSSTransitionGroup>
-        </Wrapper> );
+          </div>
+        </Modall>
+      </ReactCSSTransitionGroup>
+    </Wrapper>);
 
-const InfoModal = ({text, close, img}: any) =>
-            (
-              <Wrapper>
-                    <Modall>
-                      <Header>
-                        <Btn style={{float: "right"}} className="bt right-corner"  onClick={close}> &nbsp;X&nbsp; </Btn>
-                      </Header>
-                      <div >
-                        <div style={{minHeight: "5em", padding: "2em"}} className="blue-txt bold txt-md">
-                        <img src={img} className="img-lg"/>
-                          <h5>{text}</h5>
-                        </div>
-                        <div>
-                          <button className="btn hoverr full" onClick={close}>Okay, Got it!</button>
-                        </div>
+const InfoModal = ({ text, close, img }: any) =>
+  (
+    <Wrapper>
+      <Modall>
+        <Header>
+          <Btn style={{ float: "right" }} className="bt right-corner" onClick={close}> &nbsp;X&nbsp; </Btn>
+        </Header>
+        <div >
+          <div style={{ minHeight: "5em", padding: "2em" }} className="blue-txt bold txt-md">
+            <img src={img} className="img-lg" />
+            <h5>{text}</h5>
+          </div>
+          <div>
+            <button className="btn hoverr full" onClick={close}>Okay, Got it!</button>
+          </div>
 
-                      </div>
-                    </Modall>
-              </Wrapper> );
-  export { Modal, InfoModal };
+        </div>
+      </Modall>
+    </Wrapper>);
+export { Modal, InfoModal };
