@@ -17,14 +17,23 @@ color:black;
 
 `;
 
-const BoothSelect = ({setSimStage, setCurrentBooth}:any):JSX.Element =>{
+const BoothSelect = ({setSimStage, setCurrentBooth, currentIncome}:any):JSX.Element =>{
 
     const [boothSelection, setBooth] = useState(null);
     const [text, setText] = useState(null);  
 
+
+    if(currentIncome <= 0)
+    {
+        setSimStage("summary");
+        console.log("HERE!!!!!!!!!!");
+    } 
     function goToBooth(){
-        setSimStage("booth");
-        setCurrentBooth(boothSelection);  
+        if(currentIncome > 0)
+        {
+            setSimStage("booth");
+            setCurrentBooth(boothSelection);
+        }
     }
     function warning(){
         setText("You must select a booth to continue");

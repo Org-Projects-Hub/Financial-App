@@ -2,34 +2,24 @@ import React, {useState, useEffect} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
 import data from '../../../json/Simulation.json'; 
-import BoothSelect from './BoothSelect'
-import Booth from './Booth'
-<<<<<<< HEAD:src/components/Simulation/SimulationStart.tsx
-import Summary from './Summary'
-import { SelectInput } from '..';
-
-=======
->>>>>>> 65e300404f433fbf9e2b78f7f8663617b9991f17:src/components/simulation/booth/SimulationStart.tsx
+import BoothSelect from './BoothSelect';
+import Booth from './Booth';
+import Summary from './Summary';
 
 const Wrapper = styled.div`
 display: grid;
 min-height: 100vh;
-<<<<<<< HEAD:src/components/Simulation/SimulationStart.tsx
 grid-template-columns: 25% 50% 25%;
 place-items: center;
 justify-items: center;
 `;
 
 const WheelPlace = styled.div`
-grid-row: 2 / span 1;
+grid-row: 1 / span 1;
 grid-column: 2 / span 1`;
 
 const Button = styled.div`
 grid-row: 3 / span 1;`;
-=======
-grid-template-columns: 1fr;
-place-items: center;`;
->>>>>>> 65e300404f433fbf9e2b78f7f8663617b9991f17:src/components/simulation/booth/SimulationStart.tsx
 
 const UserInfo = styled.div`
 backgorund: grey;
@@ -73,13 +63,6 @@ const SimulationStart = ({stage, setStage}:any):JSX.Element => {
     const [currentIncome, setIncome] = useState(null);
 
     const [jobOptions, setJobOptions] = useState(null);
-
-    let incomeFlag = true
-    if(currentIncome <= 0 && incomeFlag && currentIncome != null){
-        setSimStage("summary");
-        incomeFlag = false;
-        console.log('here');
-    }
 
     //Setting the simStage to education at the begging of the simuatlion 
     if(stage==="simulation" && simStage === null)setSimStage("job"); //CHANGED FOR DEBUGGING, SET TO {"education"} TO RUN PROPERLY
@@ -125,6 +108,7 @@ const SimulationStart = ({stage, setStage}:any):JSX.Element => {
 
 return(
         <Wrapper>
+            <WheelPlace>
             {/**Displaying the spinner based on which stage the user is on */}
 
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
@@ -140,7 +124,7 @@ return(
                         <UserInfo>
                             Remaining Income: {currentIncome.toFixed(2)}
                         </UserInfo>
-                        <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>
+                        <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth} currentIncome={currentIncome}/>
                     </div>
                 :
                 <></>
@@ -155,16 +139,12 @@ return(
                     </div>
                 :
                     <></>
-<<<<<<< HEAD:src/components/Simulation/SimulationStart.tsx
                 }
 
                 {simStage == "summary" && <Summary/>}
                 
 
             </WheelPlace>         
-=======
-                }        
->>>>>>> 65e300404f433fbf9e2b78f7f8663617b9991f17:src/components/simulation/booth/SimulationStart.tsx
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
                 {simStage === "postTest" && <button className="btn" onClick={(e)=> setStage('posttest')}>TO POSTTEST</button>}        
         </Wrapper>

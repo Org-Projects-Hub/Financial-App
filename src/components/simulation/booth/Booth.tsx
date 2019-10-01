@@ -20,6 +20,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
     const [userOptions, setOptions]  = useState(null);
     const [optionsArray, setOptionsArray] = useState([]);
+    const [text, setText] = useState(null)
 
     console.log(booths[0].options[0].price);
 
@@ -73,9 +74,11 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     setIncome={setIncome}
                     currentIncome={currentIncome}
                     setSimStage={setStage}
+                    setText={setText}
                     key={i} />
             )}
             </MyGrid>
+            {text}
         </div>
         
     )

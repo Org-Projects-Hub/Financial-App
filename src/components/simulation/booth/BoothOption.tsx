@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Grid, Card , NavButton} from '../../../style/styled';
 import styled from 'styled-components';
 
@@ -47,12 +47,19 @@ const HorLine = () => (
     }} />
 );
 
-const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage}: any):JSX.Element => {
+const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage, setText}: any):JSX.Element => {
     
     function buy(){
-        window.scrollTo(0, 0)
-        setIncome(currentIncome - price);
-        setSimStage();
+        if(currentIncome > price)
+        {
+            window.scrollTo(0, 0)
+            setIncome(currentIncome - price);
+            setSimStage();
+        }
+        else if(currentIncome < price)
+        {
+            setText("You do not have enough money to purchase this")
+        }
     }
     
     return(
