@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { booths } from '../../../json/SimJSON';
 import BoothOption from './BoothOption';
 import { Grid } from '../../../style/styled';
-interface boothOptions{
+interface boothOptions {
     name: string,
     desc: string[],
     costbreakdown: string[],
@@ -16,9 +16,9 @@ grid-grap: 1em;
         grid-template-columns: 1fr;
     }
 `;
-const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any):JSX.Element => {
+const Booth = ({ setSimStage, currentBooth, data, setIncome, currentIncome }: any): JSX.Element => {
 
-    const [userOptions, setOptions]  = useState(null);
+    const [userOptions, setOptions] = useState(null);
     const [optionsArray, setOptionsArray] = useState([]);
     const [text, setText] = useState(null)
 
@@ -27,20 +27,20 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
     var array = new Array();
 
     //Reading through the SimJSON booth data to find the currentbooth
-    for(var i = 0; i < booths.length; i++){
+    for (var i = 0; i < booths.length; i++) {
 
-        if(booths[i].category === currentBooth){ //when currentbooth is found
+        if (booths[i].category === currentBooth) { //when currentbooth is found
             var booth = booths[i] //used for readability  
-            for(var j = 0; j < booth.options.length; j++){ //read through the options array of the current booth
+            for (var j = 0; j < booth.options.length; j++) { //read through the options array of the current booth
 
                 var boothOption = booth.options[j] //used for readability
 
-                let x: boothOptions = {name: boothOption.name, 
-                    desc: boothOption.desc, 
+                let x: boothOptions = {
+                    name: boothOption.name,
+                    desc: boothOption.desc,
                     costbreakdown: boothOption.costbreakdown,
-                    price: boothOption.price} 
-
-
+                    price: boothOption.price
+                }
                 /**
                  * Save the current option data into the array (where array index = the boothOptions id)
                  * passing an object with the name, desc, costbreakdown, and price
@@ -49,18 +49,18 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
             }
             i = booths.length + 1; // break statement
         }
-        else{
+        else {
             console.log("ERROR"); //error checking
         }
     }
 
     /**Setting the javaSCript array to the options array react hook*/
-    useEffect(() => { setOptionsArray(array);}, []);
+    useEffect(() => { setOptionsArray(array); }, []);
 
-    function setStage(){
+    function setStage() {
         setSimStage("boothSelect")
     }
-    return(
+    return (
 
         <div>
             The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
@@ -80,7 +80,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
             </MyGrid>
             {text}
         </div>
-        
+
     )
 }
 

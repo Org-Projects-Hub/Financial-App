@@ -95,10 +95,8 @@ const UserModal = (props: any):JSX.Element => {
                                     <input onChange={(e: any) => setStudent(e.target.value)} className="add-input" placeholder={props.inputText}></input>
                                     : 
                                     <input onChange={(e: any) => setCode(e.target.value)} className="add-input" placeholder={props.inputText}></input>
-                            }
-                            
+                            }    
                         </div>
-
                         {props.buttonText === 'Create' ?
                             <CreateClass onClick={()=> props.createNewClass({className, school})} color={props.backgroundColor} >{props.buttonText}</CreateClass>
                             :

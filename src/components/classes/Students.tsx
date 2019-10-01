@@ -9,10 +9,7 @@ const InfoTitle = styled.div`
     font-size: 175%;
     margin-top: 4%;
     margin-bottom: 1%;
-    margin-left: 4%;
-`;
-
-//margin: 0px 20% 1% 20%;
+    margin-left: 4%;`;
 
 const StudentDiv = styled.div`
     display: grid;
@@ -32,20 +29,16 @@ const StudentDiv = styled.div`
 
     @media(max-width: 600px){
         display: inline-block;
-    }
-`;
+    }`;
 
 const Btn = styled.i`
     cursor: pointer;
     background: white;
     border: 0;
     transition: text-shadow 500ms;
-
     &:hover {
         text-shadow: 2px 2px 7px gray;
-    }
-`;
-
+    }`;
 
 // This component is made to condense the repetition of code on the ClassDashboard component since the only difference would be the Title and the array that's being used.
 const Students = (props: any):JSX.Element => {
@@ -53,10 +46,8 @@ const Students = (props: any):JSX.Element => {
     return (
         <div>
             <InfoTitle>{props.title}: {props.array.length}</InfoTitle>
-
             {/* For every student that was found, display a StudentDiv for each one */}
-            {props.array.map((student: any, index: number) => 
-                
+            {props.array.map((student: any, index: number) =>          
                 <Grid cols="16" >
                     <GridColItem colStart="2" colEnd="13" align="" >
                         {console.log(student)}
@@ -68,34 +59,24 @@ const Students = (props: any):JSX.Element => {
                         </StudentDiv>
                     </GridColItem>
                     <GridColItem colStart="14" colEnd="15" align="">
-                        { 
-                            props.title === "Needs Confirming" ? 
-
+                        { props.title === "Needs Confirming" &&
                             <Btn style={{color: "green", fontSize: "320%"}} className="material-icons" 
                             onClick={() => {
                                 let s_id = student._id;
                                 props.verifyStudentRequest({code, s_id});
                             }}>check_circle</Btn> 
-                            :
-                            null 
                         }
                     </GridColItem>
                     <GridColItem colStart="15" colEnd="16" align="">
-                        { 
-                            props.title === "Needs Confirming" ? 
-                            
-                            <Btn style={{color: "red", fontSize: "320%"}} className="material-icons" onClick={() => console.log('button clicked')}>cancel</Btn> 
-                            : 
-                            null 
+                        { props.title === "Needs Confirming" &&         
+                         <Btn style={{color: "red", fontSize: "320%"}} className="material-icons" onClick={() => console.log('button clicked')}>cancel</Btn> 
                         }
                     </GridColItem>
                     
                 </Grid>
             )}
-
             <hr style={{margin: '4%'}}/>
         </div>
-
     );
 }
 
