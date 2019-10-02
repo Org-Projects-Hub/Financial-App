@@ -5,6 +5,7 @@ import data from '../../../json/Simulation.json';
 import BoothSelect from './BoothSelect';
 import Booth from './Booth';
 import Summary from './Summary';
+import PriceWarning from './PriceWarning';
 
 const Wrapper = styled.div`
 display: grid;
@@ -142,6 +143,7 @@ return(
                 }
 
                 {simStage == "summary" && <Summary/>}
+                {simStage == "pricewarning" && <PriceWarning setSimStage={setSimStage}/>}
                 
 
             </WheelPlace>         

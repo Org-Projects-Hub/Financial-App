@@ -26,7 +26,6 @@ const BoothSelect = ({setSimStage, setCurrentBooth, currentIncome}:any):JSX.Elem
     if(currentIncome <= 0)
     {
         setSimStage("summary");
-        console.log("HERE!!!!!!!!!!");
     } 
     function goToBooth(){
         if(currentIncome > 0)

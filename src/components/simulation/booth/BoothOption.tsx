@@ -47,7 +47,7 @@ const HorLine = () => (
     }} />
 );
 
-const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage, setText}: any):JSX.Element => {
+const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage, setText, lowestprice}: any):JSX.Element => {
     
     function buy(){
         if(currentIncome > price)
@@ -58,10 +58,18 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
         }
         else if(currentIncome < price)
         {
-            setText("You do not have enough money to purchase this")
+            setText("You do not have enough money to purchase this");
+        }
+        if(currentIncome < lowestprice)
+        {
+            setSimStage("pricewarning");
+            console.log("SHOULD BE HERE: ");
+
         }
     }
-    
+
+    console.log("LOWEST PRICE: " + lowestprice);
+
     return(
         <MyCard >
             <Name>{name}</Name>
