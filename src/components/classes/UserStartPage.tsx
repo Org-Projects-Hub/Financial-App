@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Class, UserModal, Loader } from '..';
+import { Class, UserModal, Loader, TakeSimModal } from '..';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../../style/styled';
 import api from '../../api/index';
@@ -28,7 +28,6 @@ const UserStartPage = (props: any) :JSX.Element=> {
         buttonBackgroundColor = '#ffa51a';
     }
 
-
    let getInitClasses = () => {
         api.getClass()
             .then((res)=> {
@@ -40,20 +39,16 @@ const UserStartPage = (props: any) :JSX.Element=> {
                 alert(err);
                 setContentLoaded(true);
             })
-            .finally(() => {setModal(false)});
-
-        
+            .finally(() => {setModal(false)});   
     }
 
     let createNewClass = ({className, school} : any) => {
         setContentLoaded(false);
-
         api.createClass({className, school})
             .then((res) => {
                 if(res.success)setResClass([...resClass, res.class]);
                 else alert(res.message);
                 getInitClasses()
-
             })
             .catch((err) => {alert(err)})
             .finally(() => setModal(false))
@@ -75,9 +70,9 @@ const UserStartPage = (props: any) :JSX.Element=> {
 
     useEffect(() => {getInitClasses()}, []);
 
-
     return(
         <>{contentLoaded ?
+            
             <Border>
                 <Container>
                     {/* if there are classes in the classObjs array, loop over each element, if not display <p> tag */}
@@ -87,9 +82,7 @@ const UserStartPage = (props: any) :JSX.Element=> {
 
                             // for every element in the classObjs array, display a class component while also passing the index, the classObj, and the current user to props
                             <Class num={index + 1} classObj={cla.c_id} userObj={user} key={index} />)
-
                         :
-
                         <div style={{textAlign: 'center', fontSize: '200%'}}>
                             <div className="centered-img">
                                 <img className="img-lg" src={noData} alt="No Data" />
@@ -97,7 +90,6 @@ const UserStartPage = (props: any) :JSX.Element=> {
                             </div>
                         </div>
                     }
-
 
                     {/* This is where all the buttons are rendered on the page, in a browser the position is fixed so it doesn't matter
                             where they are, but on mobile the position is changed to relative so they need to be at the bottom so they stack on the page. */}
@@ -120,7 +112,6 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                     </UserModal>
                                 </div>
                                 :
-
                                 // if the user is a student, display the JoinClass Component
                                 <div>
                                     <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
@@ -134,6 +125,11 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                         show={modal} 
                                         onClose={()=>setModal(false)}>
                                     </UserModal>
+                                    <TakeSimModal 
+                                        backgroundColor={buttonBackgroundColor}  
+                                        show={modal} 
+                                        onClose={()=>setModal(false)}>
+                                    </TakeSimModal>
                                 </div>
 
                                     // if the user is neither a teacher or student, then display the TakeSimulation Component for the 'Other' account type
@@ -141,8 +137,6 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                         <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
                                     </Link> */
                         }
-
-
                         {/* <div style={{width: "100%"}}><Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link></div>
                         <div style={{width: "100%"}}><Link to="/home"><HomeButton>&lt; Home</HomeButton></Link></div>
                         <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div> */}

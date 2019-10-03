@@ -2,14 +2,25 @@ import React, {useState, useEffect} from 'react';
 import Wheel from './Wheel';
 import styled from 'styled-components';
 import data from '../../../json/Simulation.json'; 
-import BoothSelect from './BoothSelect'
-import Booth from './Booth'
+import BoothSelect from './BoothSelect';
+import Booth from './Booth';
+import Summary from './Summary';
+import PriceWarning from './PriceWarning';
 
 const Wrapper = styled.div`
 display: grid;
 min-height: 100vh;
-grid-template-columns: 1fr;
-place-items: center;`;
+grid-template-columns: 25% 50% 25%;
+place-items: center;
+justify-items: center;
+`;
+
+const WheelPlace = styled.div`
+grid-row: 1 / span 1;
+grid-column: 2 / span 1`;
+
+const Button = styled.div`
+grid-row: 3 / span 1;`;
 
 const UserInfo = styled.div`
 backgorund: grey;
@@ -98,6 +109,7 @@ const SimulationStart = ({stage, setStage}:any):JSX.Element => {
 
 return(
         <Wrapper>
+            <WheelPlace>
             {/**Displaying the spinner based on which stage the user is on */}
 
                 {simStage === "education" && <Wheel input={education} stage={simStage} setChoice={setEd} setStage={setSimStage}/>}
@@ -107,28 +119,34 @@ return(
                 </>
                 :
                     <></>
-                }        
+                }    
                 {simStage == "boothSelect" ?
                     <div>
                         <UserInfo>
-                            Remaining Income: {currentIncome}
+                            Remaining Income: {currentIncome.toFixed(2)}
                         </UserInfo>
-                        <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth}/>
+                        <BoothSelect setSimStage={setSimStage} setCurrentBooth={setCurrentBooth} currentIncome={currentIncome}/>
                     </div>
                 :
                 <></>
-                }          
+                }   
                 {simStage == "booth" ?  
                     <div>
                         <Booth setSimStage={setSimStage} currentBooth={currentBooth} data={data} 
                                 currentIncome={currentIncome} setIncome={setIncome}/>                
                         <UserInfo>
-                            Remaining Income: {currentIncome}
+                            Remaining Income: {currentIncome.toFixed(2)}
                         </UserInfo>
                     </div>
                 :
                     <></>
-                }        
+                }
+
+                {simStage == "summary" && <Summary/>}
+                {simStage == "pricewarning" && <PriceWarning setSimStage={setSimStage}/>}
+                
+
+            </WheelPlace>         
             {/**Display the button to take the PostTest when the user has reached the end of the simulation */}
                 {simStage === "postTest" && <button className="btn" onClick={(e)=> setStage('posttest')}>TO POSTTEST</button>}        
         </Wrapper>
