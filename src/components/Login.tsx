@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import LoginLogo from '../assets/images/UnitedWayLogo.png';
-import {Card} from '../style/styled';
- //
- const Img = styled.img`
+
+const Img = styled.img`
  borderRadius: "1em";
  overflow: "hidden";
  width:auto;

@@ -29,6 +29,7 @@ export default class App extends React.Component <{}, Props>{
       this.socketSubscribe(res.user.email);
      }
       this.setState({tokenChecked: true});
+      console.log(res.user)
       })
     .catch((err)=>alert(err))
     .finally(()=>{this.setState({tokenChecked: true})});
@@ -72,6 +73,8 @@ export default class App extends React.Component <{}, Props>{
         setLocalStorage("token", "");
         this.setState({ loggedin: false });
     }
+
+
     let { user }  = this.state; 
     return(
           <>{this.state.tokenChecked?
