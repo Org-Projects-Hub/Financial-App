@@ -20,8 +20,12 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
 
     const [userOptions, setOptions]  = useState(null);
     const [optionsArray, setOptionsArray] = useState([]);
+    const [text, setText] = useState(null)
 
-    console.log(booths[0].options[0].price);
+    const [priceArray, setPriceArray] = useState([]);
+
+    const [lowestprice, setLow] = useState(999999999999);    
+
 
     var array = new Array();
 
@@ -38,6 +42,11 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     desc: boothOption.desc, 
                     costbreakdown: boothOption.costbreakdown,
                     price: boothOption.price} 
+
+                    if(lowestprice > boothOption.price)
+                    {
+                        setLow(boothOption.price);
+                    }
 
 
                 /**
@@ -73,9 +82,12 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     setIncome={setIncome}
                     currentIncome={currentIncome}
                     setSimStage={setStage}
+                    setText={setText}
+                    lowestprice={lowestprice}
                     key={i} />
             )}
             </MyGrid>
+            {text}
         </div>
         
     )

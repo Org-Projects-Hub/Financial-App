@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Border, Container, AddStudent, BackButton} from '../../style/styled';
 import api from '../../api';
 
-
 const ClassTitle = styled.div`
     text-align: center;
     font-size: 200%;`;
@@ -43,6 +42,7 @@ const ClassDashboard = (props : any):JSX.Element => {
         api.getStudent(code)
         .then((res) => {
             if (res.success) {
+                console.log(res)
                 setStudents(res.students);
             } else {
                 alert(res.message);
@@ -90,7 +90,7 @@ const ClassDashboard = (props : any):JSX.Element => {
                     <p style={{fontSize: '125%'}}>Code: {code}</p>
 
                     {/* Passes the appropriate array of student username's to the Students component */}
-                    <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.unVerifiedstudents} title='Needs Confirming'></Students>
+                    <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.unverifiedstudents} title='Needs Confirming'></Students>
                     <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.verifiedstudents} title='Registered'></Students>
                     <Students verifyStudentRequest={verifyStudentRequest} code={code} array={students.completedStudents} title='Completed'></Students>
 

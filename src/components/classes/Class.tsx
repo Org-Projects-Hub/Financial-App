@@ -51,15 +51,12 @@ const StartButton = styled(Button) `
     grid-column-start: 3;
     grid-column-end: 4;
     color: white;
-    background-color: #36c459;
-`;
+    background-color: #36c459;`;
 
 const ClassInfo = styled.p`
-    z-index: -1;
-`;
+    z-index: -1;`;
 
 const Class = (props: any):JSX.Element => {
-
     const [isArchived, setIsArchived] = React.useState(false); /* Replace this with props.classObj.isArchived whenever it's added */
 
     return(
@@ -67,7 +64,6 @@ const Class = (props: any):JSX.Element => {
 
             {/* No matter what the account type, we want anything that is rendered to be centered */}
             <div id="other div" style={{width: '70%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
-
             {   
                 // if the user is a teacher display this class information
                 props.userObj.account === 'teacher' ?  
@@ -92,13 +88,8 @@ const Class = (props: any):JSX.Element => {
                     </ArchivedClassDiv>
 
                     :
-                    
-
-                    //display this if they are a teacher
-
                     <Link style={{color: 'black'}} to={`/classDashboard/${props.classObj.code}`}>
                         <ClassDiv>
-
                             <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
                                 <p>{props.classObj.className}</p>
                                 <p>Requests: {props.classObj.signedUp /* props.classObj.UnVerified */}</p>
@@ -119,7 +110,6 @@ const Class = (props: any):JSX.Element => {
 
                 :
                 // if the user is a student display this class information
-
                 <ClassDiv style={{cursor: "initial"}}>
 
                     <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
@@ -139,9 +129,7 @@ const Class = (props: any):JSX.Element => {
                         <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
                             <div className="ta-right txt-italic">waiting on approval . . .</div>
                         </GridColItem>
-
                         :
-
                         <StartButton>
                             <Link to={'/Simulation'}>
                                 <div style={{cursor: "pointer"}} className="ta-center">Start</div>
@@ -152,7 +140,6 @@ const Class = (props: any):JSX.Element => {
                     
                    /*  // if the user is neither a teacher or student display this class information
                     <ClassDiv style={{cursor: "initial"}}>
-
                         <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
                             <p>Simulation #{props.num}</p>
                         </GridColItem>
@@ -166,7 +153,6 @@ const Class = (props: any):JSX.Element => {
                         <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
                             <p>This simulation was completed on</p>
                         </GridColItem>
-
                     </ClassDiv> */
             }  
             </div>
