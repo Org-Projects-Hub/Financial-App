@@ -24,6 +24,7 @@ export default class App extends React.Component <{}, Props>{
     .then((res)=> {
       if(res.success){ this.setState({loggedin : true, user : res.user});}
       this.setState({tokenChecked: true});
+      console.log(res.user)
       })
     .catch((err)=>alert(err))
     .finally(()=>{this.setState({tokenChecked: true})});
@@ -31,7 +32,7 @@ export default class App extends React.Component <{}, Props>{
   }
 
   componentWillMount() {
-    if(!this.state.tokenChecked) this.getUserInfo()
+    if(!this.state.tokenChecked) this.getUserInfo();
   }
 
   render(){
@@ -62,7 +63,6 @@ export default class App extends React.Component <{}, Props>{
       this.setState({modal: false})
     }
 
-
     return(
           <>{this.state.tokenChecked?
                 <Router>
@@ -91,7 +91,6 @@ export default class App extends React.Component <{}, Props>{
               <Loader />
           }
         </>
-
       );
     }
 }

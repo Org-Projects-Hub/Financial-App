@@ -2,22 +2,18 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import LoginLogo from '../assets/images/UnitedWayLogo.png';
-import {Card} from '../style/styled';
- //
- const Img = styled.img`
+
+const Img = styled.img`
  borderRadius: "1em";
  overflow: "hidden";
  width:auto;
- width:75%;
- `;
+ width:75%;`;
 
 const Login = ({login, loggedin}:{login: any, loggedin: any}):JSX.Element=> {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-
       /* for for entire login card 
       @function onSubmit preventDefault prevents blank data,
            login is the api function that sets the users email and password
@@ -34,7 +30,6 @@ const Login = ({login, loggedin}:{login: any, loggedin: any}):JSX.Element=> {
 
           <div className="ta-center" style={{padding: "1%"}}>
               <p>Forget Password ?</p>
-
               {/* redirect to Sign Up page when clicked*/}
               <NavLink to="/signup">Sign Up</NavLink>
 
