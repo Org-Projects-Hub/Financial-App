@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import { Button, Grid, GridRow } from '../../style/styled'
 import RedX from '../../assets/images/red_x.png';
@@ -68,7 +68,7 @@ const LinkButton = styled.div`
 
 const TakeSimModal = (props: any) => {
 
-    if(false){
+    if(props.show){
         return (
             <Wrapper>
                 <Modall>

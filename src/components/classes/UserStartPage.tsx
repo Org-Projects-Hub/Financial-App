@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Class, UserModal, Loader, TakeSimModal } from '..';
-import { Link } from 'react-router-dom';
-import { Border, Container, AddClass, TakeSim, Grid } from '../../style/styled';
+import { Border, Container, AddClass, Grid } from '../../style/styled';
 import api from '../../api/index';
 import noData from '../../assets/no-data.svg';
 
 
-const JoinClass = styled(AddClass)``;
+/* const JoinClass = styled(AddClass)`
+
+    @media screen and (max-width: 879px) {
+        position: relative;
+        width: 50vw;
+        margin: 2% 3%;
+    }
+`;
+const TakeSim = styled(AddClass)`
+    bottom: 26%;
+
+    @media screen and (max-width: 879px) {
+        position: relative;
+        width: 50vw;
+        margin: 2% 3%;
+      }
+`; */
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
 const UserStartPage = (props: any) :JSX.Element=> {
 
     const [modal, setModal] = useState(false);
+    const [takeSimModal, setTakeSimModal] = useState(false);
     const [contentLoaded, setContentLoaded] = useState(false);
     const [resClass, setResClass] = useState([]);
     let user = props.user;
@@ -121,7 +137,8 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                 
                                 // if the user is a student, display the JoinClass Component
                                 <div>
-                                    <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
+                                    <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</AddClass>
+                                    <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setTakeSimModal(true)}>Take Simulation</AddClass>
                                     <UserModal 
                                         joinClass={joinClass} 
                                         accountType={user.account} 
@@ -134,8 +151,8 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                     </UserModal>
                                     <TakeSimModal 
                                         backgroundColor={buttonBackgroundColor}  
-                                        show={modal} 
-                                        onClose={()=>setModal(false)}>
+                                        show={takeSimModal} 
+                                        onClose={()=>setTakeSimModal(false)}>
                                     </TakeSimModal>
                                 </div>
                         }
