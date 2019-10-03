@@ -84,13 +84,16 @@ const UserStartPage = (props: any) :JSX.Element=> {
 
                             // for every element in the classObjs array, display a class component while also passing the index, the classObj, and the current user to props
                             <Class num={index + 1} classObj={cla.c_id} userObj={user} key={index} />)
+
                         :
+
                         <div style={{textAlign: 'center', fontSize: '200%'}}>
                             <div className="centered-img">
                                 <img className="img-lg" src={noData} alt="No Data" />
                             <p className="center bold">No classes registered</p>
                             </div>
                         </div>
+
                     }
 
                     {/* This is where all the buttons are rendered on the page, in a browser the position is fixed so it doesn't matter
@@ -113,7 +116,9 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                         onClose={()=>setModal(false)}>
                                     </UserModal>
                                 </div>
+
                                 :
+                                
                                 // if the user is a student, display the JoinClass Component
                                 <div>
                                     <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
@@ -133,15 +138,7 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                         onClose={()=>setModal(false)}>
                                     </TakeSimModal>
                                 </div>
-
-                                    // if the user is neither a teacher or student, then display the TakeSimulation Component for the 'Other' account type
-                                   /*  <Link to='/simulation'>
-                                        <TakeSim style={{backgroundColor: buttonBackgroundColor}}>Take New Simulation</TakeSim>
-                                    </Link> */
                         }
-                        {/* <div style={{width: "100%"}}><Link to="/resources"><ResourcesButton style={{backgroundColor: buttonBackgroundColor}}>Resources</ResourcesButton></Link></div>
-                        <div style={{width: "100%"}}><Link to="/home"><HomeButton>&lt; Home</HomeButton></Link></div>
-                        <div style={{width: "100%"}}><Link to="/setting"><SettingsButton src={SettingsGear}></SettingsButton></Link></div> */}
 
                     </Grid>
                 </Container>

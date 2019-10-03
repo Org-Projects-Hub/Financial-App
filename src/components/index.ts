@@ -3,6 +3,7 @@ import Loader from './shared-components/Loader';
 import Navbar from './shared-components/Navbar';
 import Class from './classes/Class';
 import ArchivedClass from './classes/ArchivedClass';
+import StudentClass from './classes/StudentClass';
 import TeacherClass from './classes/TeacherClass';
 import PrePostTest from './simulation/test/PrePostTest';
 import SettingItem from './SettingItem';
@@ -15,6 +16,6 @@ import Hints from './shared-components/Hints';
 import SelectInput from './shared-components/SelectInput';
 import SimulationStart from './simulation/booth/SimulationStart';
 import Login from './Login';
-export {Header, Loader, Navbar, SettingItem, Results, Class, ArchivedClass, TeacherClass, Students, Modal,
+export {Header, Loader, Navbar, SettingItem, Results, Class, ArchivedClass, StudentClass, TeacherClass, Students, Modal,
      Hints, SelectInput, PrePostTest, SimulationStart, InfoModal, UserModal, Login,
      TakeSimModal};
