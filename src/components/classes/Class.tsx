@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {GridColItem, Button} from '../../style/styled';
+import TeacherClass from './TeacherClass';
+import ArchivedClass from './ArchivedClass';
 
 const Wrapper = styled.div`
     margin: 1em 0;
@@ -70,43 +72,11 @@ const Class = (props: any):JSX.Element => {
 
                 isArchived ? /* Replace this with props.classObj.isArchived whenever it's added */
                 
-                    <ArchivedClassDiv>
-                        <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
-                            <p>{props.classObj.className}</p>
-                            <p>Requests: {props.classObj.signedUp /* props.classObj.UnVerified */}</p>
-                            <p>Registered: {props.classObj.verified}</p>
-                            <p>Completed: {props.classObj.completed}</p>
-                        </GridColItem>
-
-                        <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
-                            <p>Code: {props.classObj.code}</p>
-                        </GridColItem>
-
-                        <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
-                            <p>This class will archive on ####{/* props.classObj.archiveOn */}</p>
-                        </GridColItem>
-                    </ArchivedClassDiv>
+                    <ArchivedClass classProps={props}></ArchivedClass>
 
                     :
-                    <Link style={{color: 'black'}} to={`/classDashboard/${props.classObj.code}`}>
-                        <ClassDiv>
-                            <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
-                                <p>{props.classObj.className}</p>
-                                <p>Requests: {props.classObj.signedUp /* props.classObj.UnVerified */}</p>
-                                <p>Registered: {props.classObj.verified}</p>
-                                <p>Completed: {props.classObj.completed}</p>
-                            </GridColItem>
 
-                            <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
-                                <p>Code: {props.classObj.code}</p>
-                            </GridColItem>
-
-                            <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
-                                <p>This class will archive on ####{/* props.classObj.archiveOn */}</p>
-                            </GridColItem>
-
-                        </ClassDiv>
-                    </Link> 
+                    <TeacherClass classProps={props}></TeacherClass>
 
                 :
                 // if the user is a student display this class information

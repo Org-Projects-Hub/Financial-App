@@ -4,7 +4,9 @@ import { Class, UserModal, Loader, TakeSimModal } from '..';
 import { Link } from 'react-router-dom';
 import { Border, Container, AddClass, TakeSim, Grid } from '../../style/styled';
 import api from '../../api/index';
-import noData from '../../assets/no-data.svg'
+import noData from '../../assets/no-data.svg';
+
+
 const JoinClass = styled(AddClass)``;
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
