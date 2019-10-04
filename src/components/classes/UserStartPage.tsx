@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import { Class, UserModal, Loader, TakeSimModal } from '..';
 import { Border, Container, AddClass, Grid } from '../../style/styled';
@@ -7,7 +7,6 @@ import noData from '../../assets/no-data.svg';
 
 
 /* const JoinClass = styled(AddClass)`
-
     @media screen and (max-width: 879px) {
         position: relative;
         width: 50vw;
@@ -16,7 +15,6 @@ import noData from '../../assets/no-data.svg';
 `;
 const TakeSim = styled(AddClass)`
     bottom: 26%;
-
     @media screen and (max-width: 879px) {
         position: relative;
         width: 50vw;
@@ -24,27 +22,35 @@ const TakeSim = styled(AddClass)`
       }
 `; */
 
+interface State {class: any[], contentLoaded: boolean };
+
+let initialState: State = { class: [], contentLoaded: true} 
+
+type Action = { type: 'GET_CLASSES', classes ?: any[], contentLoaded ?: boolean  };
+
+function reducer(state : any = initialState, action : Action){
+    switch (action.type){
+        case'GET_CLASSES':
+        return {
+            class: action.classes,
+            contentLoaded: true
+        };
+    default:
+      state.toObject();
+    };
+}
+
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
 const UserStartPage = (props: any) :JSX.Element=> {
 
-    const [modal, setModal] = useState(false);
-    const [takeSimModal, setTakeSimModal] = useState(false);
-    const [contentLoaded, setContentLoaded] = useState(false);
-    const [resClass, setResClass] = useState([]);
-    let user = props.user;
-
-    let buttonBackgroundColor;
-
+    const [modal, setModal] = useState<boolean>(false);
+    const [takeSimModal, setTakeSimModal] = useState<boolean>(false);
+    const [contentLoaded, setContentLoaded] = useState<boolean>(false);
+    const [resClass, setResClass] = useState<Array<any>>([]);
+    const [classes, dispatch ] = useReducer(reducer, {class: [], contentLoaded: true});
+    let { user } = props;
     // determines button color depending on account type
-    if (user.account === 'teacher') {
-        buttonBackgroundColor = '#d6a862';
-
-    } else if(user.account === 'student') {
-        buttonBackgroundColor = '#649d96';
-
-    } else {
-        buttonBackgroundColor = '#ffa51a';
-    }
+    let buttonBackgroundColor =  user.account === 'teacher'? '#d6a862' : user.account === 'student'? '#649d96' : '#ffa51a';
 
    let getInitClasses = () => {
         api.getClass()
