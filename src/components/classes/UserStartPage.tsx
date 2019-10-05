@@ -2,10 +2,9 @@ import React, { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import { Class, UserModal, Loader, TakeSimModal } from '..';
 import { Border, Container, AddClass, Grid } from '../../style/styled';
-import api from '../../api/index';
+import { getInitClasses, createNewClass, joinClass } from './classApi';
 import noData from '../../assets/no-data.svg';
-
-
+import { Action, ClassState, reducer } from './reducer';
 /* const JoinClass = styled(AddClass)`
     @media screen and (max-width: 879px) {
         position: relative;
@@ -21,56 +20,7 @@ const TakeSim = styled(AddClass)`
         margin: 2% 3%;
       }
 `; */
-
-interface ClassState {class: any[], contentLoaded: boolean, error: boolean, modal : boolean };
-
 let initialState: ClassState = { class: [], contentLoaded: false, error: false, modal : false }; 
-
-type Action = { type: string, class ?: any[], contentLoaded ?: boolean, error ?: boolean, modal ?: boolean };
-
-function reducer(state: ClassState = initialState, action: Action): ClassState {
-    switch (action.type) {
-        case 'GET_CLASSES':
-            console.log(action.class)
-            return {
-                class: action.class,
-                contentLoaded: true,
-                error: action.error || false,
-                modal: false
-            };
-
-        case 'CREATE_CLASS':
-            return {
-                class: action.class.concat(state.class),
-                contentLoaded: true,
-                error: action.error || false,
-                modal: false
-            };
-        case 'API_CALL':
-            return {
-                ...state,
-                contentLoaded: false
-            };
-        case 'ERROR':
-            return {
-                ...state,
-                error: true
-            };
-        case 'DISABLE_MODAL':
-            return {
-                ...state,
-                modal: false
-            };
-        case 'ACTIVATE_MODAL':
-            return {
-                ...state,
-               modal: true
-            };
-        default:
-            JSON.parse(JSON.stringify(state))
-    };
-}
-
 
 //This page is the container for the first page that a user sees when they log in, it renders the simulations / current class components and all the buttons.
 const UserStartPage = (props: any) : JSX.Element=> {
@@ -79,41 +29,7 @@ const UserStartPage = (props: any) : JSX.Element=> {
     let { user } = props;
     // determines button color depending on account type
     let buttonBackgroundColor =  user.account === 'teacher'? '#d6a862' : user.account === 'student'? '#649d96' : '#ffa51a';
-
-    let getInitClasses = () => {
-        dispatch({type: 'API_CALL'});
-        api.getClass()
-            .then((res)=> {
-                if(res.success)dispatch({type: 'GET_CLASSES', class: res.class});
-                else dispatch({type: 'GET_CLASSES', error: true, class: [] });
-            })
-            .catch((err)=>alert(err));
-    }
-    
-    let createNewClass = ({className, school} : any) => {
-        dispatch({type: 'API_CALL'});
-        api.createClass({className, school})
-            .then((res) => {
-                console.log(res)
-                if(res.success) dispatch({type: 'CREATE_CLASS', class:  [{c_id : res.class}]});
-                else alert(res.message);
-            })
-            .catch((err) => {alert(err)})
-            .finally(() => dispatch({ type: 'DISABLE_MODAL'}))
-    }
-    
-    let joinClass = ({code}: any) => {
-        dispatch({type: 'API_CALL'});
-        api.addClass({code})
-            .then((res) => {
-                if(!res.success) alert(res.message);
-                else getInitClasses();
-            })
-            .catch((err) => {alert(err)})
-            .finally(() =>  dispatch({ type: 'DISABLE_MODAL'}));
-    }
-
-    useEffect(() => {getInitClasses()}, []);
+    useEffect(() => {getInitClasses(dispatch)}, []);
     return(
         <>{state.contentLoaded ?     
             <Border>
@@ -139,7 +55,7 @@ const UserStartPage = (props: any) : JSX.Element=> {
                                 <div>
                                     <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>dispatch({type: 'ACTIVATE_MODAL'})}>Add Class</AddClass>
                                     <UserModal 
-                                        createNewClass={createNewClass}  
+                                        createNewClass={(data : any)=>createNewClass(dispatch, data)}  
                                         accountType={user.account} 
                                         backgroundColor={buttonBackgroundColor} 
                                         modalTitle='Enter Class Name' 
@@ -155,7 +71,7 @@ const UserStartPage = (props: any) : JSX.Element=> {
                                     <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>dispatch({type: 'ACTIVATE_MODAL'})}>Join Class</AddClass>
                                     <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setTakeSimModal(true)}>Take Simulation</AddClass>
                                     <UserModal 
-                                        joinClass={joinClass} 
+                                        joinClass={(code : string)=>joinClass(dispatch, code)} 
                                         accountType={user.account} 
                                         backgroundColor={buttonBackgroundColor} 
                                         modalTitle='Enter Class Code' 
