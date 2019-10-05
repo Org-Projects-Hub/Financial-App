@@ -27,7 +27,7 @@ export default class App extends React.Component<{}, AppProps>{
         if (res.success) {
           this.setState({ loggedin: true, user: res.user });
           this.socketSubscribe(res.user.email);
-        }
+        } else this.setState({ loggedin: false });
       })
       .catch((err) => alert(err))
       .finally(() => { this.setState({ tokenChecked: true }) });
