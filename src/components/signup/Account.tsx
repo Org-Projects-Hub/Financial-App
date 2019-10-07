@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useReducer } from 'react';
 import styled from 'styled-components';
 import { Grid, Wrapper, Card } from '../../style/styled';
 import SignupItem from './SignupItem';
@@ -38,7 +38,10 @@ const MyWrapper = styled(Wrapper)`
         background-repeat: no-repeat;
         background-position: bottom right;`;
 
-const Account = ({ loggedin, clearAdmin, isStudent }: { loggedin: any, clearAdmin: any, isStudent: any }): JSX.Element => {
+type Account = { loggedin: Function, clearAdmin: Function, isStudent: boolean };
+
+//Todo: Add Reducer
+const Account = ({ loggedin, clearAdmin, isStudent }: Account ): JSX.Element => {
   const [state, setState] = useState(0);
   const [clicked, setClicked] = useState(false)
   const [modal, setModal] = useState(false);
@@ -50,16 +53,11 @@ const Account = ({ loggedin, clearAdmin, isStudent }: { loggedin: any, clearAdmi
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const SignupAPI = () => {
+  const SignupAPI = () : void => {
     const obj = { firstName, lastName, username, email, password, isStudent };
-    console.log(obj);
     api.signup(obj)
       .then(res => {
-        if (res.success) {
-          loggedin(res.token, res.user);
-        } else {
-          alert(res.message);
-        }
+        return res.success? loggedin(res.token, res.user) : alert(res.message);
       })
       .catch(err => alert(err));
   };
@@ -90,9 +88,7 @@ const Account = ({ loggedin, clearAdmin, isStudent }: { loggedin: any, clearAdmi
       setClicked(true);
       setTimeout(() => setClicked(false), 700);
     }
-    else {
-      clearAdmin();
-    }
+    else clearAdmin();
   }
   return (
     <MyWrapper className="flex-center" style={{ alignItems: "center" }}>
