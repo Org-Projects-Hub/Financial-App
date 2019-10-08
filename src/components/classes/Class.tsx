@@ -15,6 +15,8 @@ const Wrapper = styled.div`
 const Class = (props: any):JSX.Element => {
     const [isArchived, setIsArchived] = React.useState(false); /* Replace this with props.classObj.isArchived whenever it's added */
 
+    let { account } = props.userObj;
+
     return(
         <Wrapper id="wrap">
 
@@ -22,7 +24,7 @@ const Class = (props: any):JSX.Element => {
             <div id="other div" style={{width: '70%', display: 'inline-block', borderRadius: '1em', textAlign: 'center'}}>
             {   
                 // if the user is a teacher display this class information
-                props.userObj.account === 'teacher' ?  
+                account === 'teacher' ?  
 
                     isArchived ? /* Replace this with props.classObj.isArchived whenever it's added */
                         <ArchivedClass classProps={props}></ArchivedClass> 

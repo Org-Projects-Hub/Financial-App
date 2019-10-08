@@ -6,21 +6,12 @@ import api from '../../api/index';
 import noData from '../../assets/no-data.svg';
 
 
-/* const JoinClass = styled(AddClass)`
-    @media screen and (max-width: 879px) {
-        position: relative;
-        width: 50vw;
-        margin: 2% 3%;
-    }
+const JoinClass = styled(AddClass)`
+    
 `;
 const TakeSim = styled(AddClass)`
-    bottom: 26%;
-    @media screen and (max-width: 879px) {
-        position: relative;
-        width: 50vw;
-        margin: 2% 3%;
-      }
-`; */
+    bottom: 26%; 
+`;
 
 interface State {class: any[], contentLoaded: boolean };
 
@@ -49,8 +40,12 @@ const UserStartPage = (props: any) :JSX.Element=> {
     const [resClass, setResClass] = useState<Array<any>>([]);
     const [classes, dispatch ] = useReducer(reducer, {class: [], contentLoaded: true});
     let { user } = props;
+
+
+    console.log(resClass);
+    
     // determines button color depending on account type
-    let buttonBackgroundColor =  user.account === 'teacher'? '#d6a862' : user.account === 'student'? '#649d96' : '#ffa51a';
+    let buttonBackgroundColor =  user.account === 'teacher' ? '#d6a862' : user.account === 'student'? '#649d96' : '#ffa51a';
 
    let getInitClasses = () => {
         api.getClass()
@@ -105,7 +100,7 @@ const UserStartPage = (props: any) :JSX.Element=> {
                         resClass.map((cla: any, index: number) =>
 
                             // for every element in the classObjs array, display a class component while also passing the index, the classObj, and the current user to props
-                            <Class num={index + 1} classObj={cla.c_id} userObj={user} key={index} />)
+                            <Class classObj={cla} userObj={user} key={index} />)
 
                         :
 
@@ -143,8 +138,8 @@ const UserStartPage = (props: any) :JSX.Element=> {
                                 
                                 // if the user is a student, display the JoinClass Component
                                 <div>
-                                    <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</AddClass>
-                                    <AddClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setTakeSimModal(true)}>Take Simulation</AddClass>
+                                    <JoinClass style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setModal(true)}>Join Class</JoinClass>
+                                    <TakeSim style={{backgroundColor: buttonBackgroundColor}} onClick={()=>setTakeSimModal(true)}>Take Simulation</TakeSim>
                                     <UserModal 
                                         joinClass={joinClass} 
                                         accountType={user.account} 

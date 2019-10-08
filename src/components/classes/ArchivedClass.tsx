@@ -24,14 +24,14 @@ const ArchivedClass = (props:any) => {
 
     <ArchivedClassDiv>
         <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
-            <p>{props.classProps.classObj.className}</p>
-            <p>Requests: {props.classProps.classObj.signedUp /* props.classProps.classObj.UnVerified */}</p>
-            <p>Registered: {props.classProps.classObj.verified}</p>
-            <p>Completed: {props.classProps.classObj.completed}</p>
+            <p>{props.classProps.classObj.cla_id.className}</p>
+            <p>Requests: {props.classProps.classObj.cla_id.signedUp /* props.classProps.classObj.UnVerified */}</p>
+            <p>Registered: {props.classProps.classObj.cla_id.verified}</p>
+            <p>Completed: {props.classProps.classObj.cla_id.completed}</p>
         </GridColItem>
 
         <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
-            <p>Code: {props.classProps.classObj.code}</p>
+            <p>Code: {props.classProps.classObj.cla_id.code}</p>
         </GridColItem>
 
         <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">

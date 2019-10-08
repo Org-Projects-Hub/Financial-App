@@ -34,12 +34,17 @@ const StartButton = styled(Button) `
 
 
 const StudentClass = (props: any) => {
+
+    let { classObj } = props.classProps;
+    let { className } = classObj.c_id;
+    let { verified } = classObj;
+
     return(
 
         <ClassDiv style={{cursor: "initial"}}>
 
                     <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
-                        <p>{props.classProps.classObj.className}</p>
+                        <p>{className}</p>
                     </GridColItem>
 
                     {/* If the class/simulation is not completed display the Start button, if it is display 'Completed' instead */}
@@ -51,17 +56,19 @@ const StudentClass = (props: any) => {
 
                         :
 
-                        true ? //isVerified ? :
-                        
-                        <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
-                            <div className="ta-right txt-italic">waiting on approval . . .</div>
-                        </GridColItem>
-                        :
+                        verified ? //isVerified ? :
+                    
                         <StartButton>
                             <Link to={'/Simulation'}>
                                 <div style={{cursor: "pointer"}} className="ta-center">Start</div>
                             </Link> 
-                        </StartButton>
+                        </StartButton> 
+
+                        :
+                         
+                        <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
+                            <div className="ta-right txt-italic">waiting on approval . . .</div>
+                        </GridColItem>
                     }
                 </ClassDiv>
 

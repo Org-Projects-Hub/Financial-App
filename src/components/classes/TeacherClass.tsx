@@ -22,18 +22,23 @@ const ClassDiv = styled.div`
 
 
 const TeacherClass = (props: any) => {
-    return(
-        <Link style={{color: 'black'}} to={`/classDashboard/${props.classProps.classObj.code}`}>
+
+    let {className, unverified, verified, completed, code } = props.classProps.classObj.c_id;
+
+    console.log(props.classProps);
+
+    return( 
+        <Link style={{color: 'black'}} to={`/classDashboard/${code}`}>
             <ClassDiv>
                 <GridColItem colStart="1" colEnd="4" align="left" style={{gridRowStart: "1"}}>
-                    <p>{props.classProps.classObj.className}</p>
-                    <p>Requests: {props.classProps.classObj.signedUp /* props.classObj.UnVerified */}</p>
-                    <p>Registered: {props.classProps.classObj.verified}</p>
-                    <p>Completed: {props.classProps.classObj.completed}</p>
+                    <p>{className}</p>
+                    <p>Requests: {unverified}</p>
+                    <p>Registered: {verified}</p>
+                    <p>Completed: {completed}</p>
                 </GridColItem>
 
                 <GridColItem colStart="3" colEnd="6" align="right" style={{gridRowStart: "1"}}>
-                    <p>Code: {props.classProps.classObj.code}</p>
+                    <p>Code: {code}</p>
                 </GridColItem>
 
                 <GridColItem colStart="1" colEnd="6" align="right" className="txt-italic txt-green">
