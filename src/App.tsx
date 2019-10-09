@@ -1,53 +1,51 @@
 import React, { createContext } from 'react';
-import { BrowserRouter as Router,  Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './style/App.css';
 import './style/animations.css';
-import {Navbar, Modal , Loader} from './components';
-import { Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel} from './pages';
+import { Navbar, Modal, Loader } from './components';
+import { Setting, Simulation, Startpage, Signup, UserStartPage, ClassDashboard, AdminPanel } from './pages';
 import api from './api';
 import { setLocalStorage } from './utils/utils';
 import openSocket from 'socket.io-client';
 
-type Props = {
+type AppProps = {
   loggedin: boolean, tokenChecked: boolean, showNav: boolean, user: object, modal: boolean
 };
 
 const GetInfoContext = createContext(null);
-const  socket = openSocket('https://finapp.aayushh.com');
+const socket = openSocket('https://finapp.aayushh.com');
 
-export default class App extends React.Component <{}, Props>{
-  constructor(props: Props){
+export default class App extends React.Component<{}, AppProps>{
+  constructor(props: AppProps) {
     super(props);
-    this.state = { loggedin: true, tokenChecked: false, showNav: true, user: {}, modal: false};
+    this.state = { loggedin: true, tokenChecked: false, showNav: true, user: {}, modal: false };
   }
 
-  getUserInfo = () : boolean=>{
+  getUserInfo = (): boolean => {
     api.auth()
-    .then((res)=> {
-      if(res.success){ 
-      this.setState({loggedin : true, user : res.user});
-      this.socketSubscribe(res.user.email);
-     }
-      this.setState({tokenChecked: true});
+      .then((res) => {
+        if (res.success) {
+          this.setState({ loggedin: true, user: res.user });
+          this.socketSubscribe(res.user.email);
+        } else this.setState({ loggedin: false });
       })
-    .catch((err)=>alert(err))
-    .finally(()=>{this.setState({tokenChecked: true})});
+      .catch((err) => alert(err))
+      .finally(() => { this.setState({ tokenChecked: true }) });
     return true;
   }
 
-  socketSubscribe = (email: string) => {
-    socket.emit('join', email)
-    socket.on('msg', (res: any) => { 
-      console.log(res);
+  socketSubscribe = (email: string): void => {
+    socket.emit('join', email);
+    socket.on('msg', (res: any) => {
       alert(`New Student Requested to Join a Class!`)
     });
   }
 
   componentWillMount() {
-    if(!this.state.tokenChecked) this.getUserInfo();
+    if (!this.state.tokenChecked) this.getUserInfo();
   }
 
-  render(){
+  render(): JSX.Element {
     const login = (e: React.FormEvent<HTMLSelectElement>) => {
       api.login(e)
         .then(res => {
@@ -60,47 +58,48 @@ export default class App extends React.Component <{}, Props>{
           }
         })
         .catch(err => alert(err));
-     };
+    };
 
-    const loggedin = (token : string, user: any) => {
-        setLocalStorage("token", token);
-        this.socketSubscribe(user.email);
-        this.setState({user: user, loggedin: true});
+    const loggedin = (token: string, user: any) => {
+      setLocalStorage("token", token);
+      this.socketSubscribe(user.email);
+      this.setState({ user: user, loggedin: true });
     }
 
     const logout = () => {
-        setLocalStorage("token", "");
-        this.setState({ loggedin: false });
+      setLocalStorage("token", "");
+      this.setState({ loggedin: false });
     }
-    let { user }  = this.state; 
-    return(
-          <>{this.state.tokenChecked?
-                <Router>
-                    {this.state.loggedin ?
-                      <div className={this.state.showNav? "grid-main": ""}>
-                         <GetInfoContext.Provider value="message">
-                        <Navbar showNav={this.state.showNav} hide={()=>{this.setState({showNav: !this.state.showNav})}}/>
-                        <Switch>
-                          <Route path="/classes" render={() => <UserStartPage user={user}/>} />
-                          <Route path="/classDashboard" render={() => <ClassDashboard user={user}/>} />
-                          <Route path="/Simulation" render={()=> <Simulation user={user} />} />
-                          <Route path="/setting" render={()=> <Setting logout={logout} getUserInfo={this.getUserInfo} user={user}/>} />
-                          <Route path="/admin-pannel" render={()=> <AdminPanel />} />
-                          <Route path="*" render={()=> <Startpage login={login} loggedin={this.state.loggedin} logout={logout}/>} />
-                        </Switch>
-                        </GetInfoContext.Provider>
-                    </div>
-                   :
-                   <Switch>
-                      <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
-                      <Route path="*" render={()=> <Startpage login={login} loggedin={this.state.loggedin} logout={logout}/>} />
-                    </Switch>
-                  }
-              </Router>
-                :
-              <Loader />
+
+    let { user } = this.state;
+    return (
+      <>{this.state.tokenChecked ?
+        <Router>
+          {this.state.loggedin ?
+            <div className={this.state.showNav ? "grid-main" : ""}>
+              <GetInfoContext.Provider value="message">
+                <Navbar showNav={this.state.showNav} hide={() => { this.setState({ showNav: !this.state.showNav }) }} />
+                <Switch>
+                  <Route path="/classes" render={() => <UserStartPage user={user} />} />
+                  <Route path="/classDashboard" render={() => <ClassDashboard user={user} />} />
+                  <Route path="/Simulation" render={() => <Simulation user={user} />} />
+                  <Route path="/setting" render={() => <Setting logout={logout} getUserInfo={this.getUserInfo} user={user} />} />
+                  <Route path="/admin-pannel" render={() => <AdminPanel />} />
+                  <Route path="*" render={() => <Startpage login={login} loggedin={this.state.loggedin} logout={logout} />} />
+                </Switch>
+              </GetInfoContext.Provider>
+            </div>
+            :
+            <Switch>
+              <Route path="/signup" render={() => <Signup loggedin={loggedin} />} />
+              <Route path="*" render={() => <Startpage login={login} loggedin={this.state.loggedin} logout={logout} />} />
+            </Switch>
           }
-        </>
-      );
-    }
+        </Router>
+        :
+        <Loader />
+      }
+      </>
+    );
+  }
 }

@@ -24,10 +24,10 @@ const ClassDashboard = (props : any):JSX.Element => {
 
     let getClassStudents = () => {
         api.getClass()
-            .then((res)=> {
-                if(res.success){
-                    for(let x = 0; x < res.class.length; x ++) {
-                      if (res.class[x].c_id.code === code){
+            .then((res) => {
+                if (res.success) {
+                    for (let x = 0; x < res.class.length; x++) {
+                        if (res.class[x].c_id.code === code) {
                             setClassTitle(res.class[x].c_id.className);
                             return;
                         }
@@ -35,25 +35,25 @@ const ClassDashboard = (props : any):JSX.Element => {
                 }
                 else alert(res.message);
             })
-            .catch((err)=>{
+            .catch((err) => {
                 alert(err);
             })
 
         api.getStudent(code)
-        .then((res) => {
-            if (res.success) {
-                console.log(res)
-                setStudents(res.students);
-            } else {
-                alert(res.message);
-            }
-            
-            setContentLoaded(true);
-        })
-        .catch((err) => {
-            alert(err);
-            setContentLoaded(true);
-        })
+            .then((res) => {
+                if (res.success) {
+                    console.log(res)
+                    setStudents(res.students);
+                } else {
+                    alert(res.message);
+                }
+
+                setContentLoaded(true);
+            })
+            .catch((err) => {
+                alert(err);
+                setContentLoaded(true);
+            })
     }
 
 
@@ -61,14 +61,15 @@ const ClassDashboard = (props : any):JSX.Element => {
         alert('waiting on route in backend');
     }
 
-    let verifyStudentRequest = ({code, s_id} : any) => {
+    let verifyStudentRequest = ({ code, s_id }: any) => {
 
         setContentLoaded(false);
 
-        api.verifyStudent({code, s_id})
+        api.verifyStudent({ code, s_id })
             .then((res) => {
                 if (res.success) {
-                alert(res.message);}
+                    alert(res.message);
+                }
                 setContentLoaded(true);
                 getClassStudents();
             })
@@ -77,7 +78,6 @@ const ClassDashboard = (props : any):JSX.Element => {
                 setContentLoaded(true);
             })
     }
-
 
     React.useEffect(() => {getClassStudents()}, []);
 
