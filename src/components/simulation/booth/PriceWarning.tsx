@@ -3,6 +3,8 @@ import React from 'react';
 
 const PriceWarning = ({setSimStage}:any) =>{
 
+    console.log("PRICEWARNING");
+
     function goBack(){
         setSimStage("boothselect");
     }

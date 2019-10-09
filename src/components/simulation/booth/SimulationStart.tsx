@@ -23,9 +23,10 @@ const Button = styled.div`
 grid-row: 3 / span 1;`;
 
 const UserInfo = styled.div`
-backgorund: grey;
-grid-row: 2 / span 1;
-grid-column: 1 / span 1;`;
+grid-row: 1 / span 1;
+grid-column: 1 / span 1;
+padding-top: 10%;
+`;
 
 /**
  * SimulationStart.tsx
@@ -84,7 +85,7 @@ const SimulationStart = ({stage, setStage}:any):JSX.Element => {
                 {
                     if(jobs[i].occupations[j].position == job){                
                         var y = jobs[i].occupations[j].grossmonthly;
-                        setIncome(y);
+                        setIncome(1); //CHANGE TO y FOR NORMAL PROCESSING
 
                         var userCareer: career = {
                             position: job,

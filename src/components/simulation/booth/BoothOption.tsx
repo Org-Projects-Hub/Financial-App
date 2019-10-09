@@ -14,6 +14,7 @@ display: grid;
     height: 90%;
     box-sizing: content-box;
     grid-template-rows: auto;
+    margin: 5% 0px;
 `;
 
 const Name = styled.div`
@@ -39,6 +40,10 @@ const Heading = styled.div`
     justify-content: center;
 `;
 
+const Warning = styled.div`
+    padding: 0%;
+`;
+
 const HorLine = () => (
     <hr style={{
         borderTop: "1px",
@@ -49,29 +54,31 @@ const HorLine = () => (
 
 const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome, setSimStage, setText, lowestprice}: any):JSX.Element => {
     
+
+    function goBack(){
+        setSimStage("boothselect");
+    }
+
     function buy(){
         if(currentIncome > price)
         {
             window.scrollTo(0, 0)
             setIncome(currentIncome - price);
-            setSimStage();
+            setSimStage("boothSelect");
         }
         else if(currentIncome < price)
         {
             setText("You do not have enough money to purchase this");
         }
-        if(currentIncome < lowestprice)
-        {
-            setSimStage("pricewarning");
-            console.log("SHOULD BE HERE: ");
-
-        }
+        
     }
 
     console.log("LOWEST PRICE: " + lowestprice);
 
     return(
         <MyCard >
+            {currentIncome >= lowestprice ?
+            <div>
             <Name>{name}</Name>
 
             <Grid cols="3">
@@ -94,6 +101,17 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
 
             <HorLine />
             <Grid cols="1"><NavButton onClick={()=>buy()}className="btn">Purchase</NavButton></Grid>
+            </div>
+            :
+
+            <Warning>
+            You cannot afford anything on this booth, click continue
+            to select another booth
+
+            <button className="btn" onClick={()=>goBack()}>CONTINUE</button>
+            </Warning>
+            
+            }
             
         </MyCard>
     );

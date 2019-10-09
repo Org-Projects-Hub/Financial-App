@@ -38,7 +38,7 @@ const BoothSelect = ({setSimStage, setCurrentBooth, currentIncome}:any):JSX.Elem
         setText("You must select a booth to continue");
     }
 
-    const info = data.booths
+    const info = data.booths;
 
     return(
         <Grid cols="1">

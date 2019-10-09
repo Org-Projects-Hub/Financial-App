@@ -16,6 +16,11 @@ grid-grap: 1em;
         grid-template-columns: 1fr;
     }
 `;
+
+const Span = styled.div`
+    padding-bottom: 5%;
+`;
+
 const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any):JSX.Element => {
 
     const [userOptions, setOptions]  = useState(null);
@@ -71,7 +76,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
     return(
 
         <div>
-            The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a>
+            <Span>The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a></Span>
             < MyGrid cols={optionsArray.length == 1? "1" : "2"} >
             {optionsArray.map((optionsArray:any, i:any)=> 
                 <BoothOption 
