@@ -15,6 +15,7 @@ display: grid;
     box-sizing: content-box;
     grid-template-rows: auto;
     margin: 5% 0px;
+    justify-items: center;
 `;
 
 const Name = styled.div`
