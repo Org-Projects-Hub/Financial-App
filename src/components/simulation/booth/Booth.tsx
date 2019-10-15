@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { booths } from '../../../json/SimJSON';
 import BoothOption from './BoothOption';
 import { Grid } from '../../../style/styled';
+import PriceWarning from './PriceWarning';
 interface boothOptions{
     name: string,
     desc: string[],
@@ -76,6 +77,8 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
     return(
 
         <div>
+            {currentIncome > lowestprice ? 
+            <div>
             <Span>The CURRENT booth is <a onClick={()=>setSimStage("job")}>{currentBooth}</a></Span>
             < MyGrid cols={optionsArray.length == 1? "1" : "2"} >
             {optionsArray.map((optionsArray:any, i:any)=> 
@@ -91,8 +94,18 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
                     lowestprice={lowestprice}
                     key={i} />
             )}
+
             </MyGrid>
-            {text}
+
+                {text}
+            </div>
+            :
+            
+            <div>
+                <PriceWarning/>
+            </div>
+            
+            }
         </div>
         
     )

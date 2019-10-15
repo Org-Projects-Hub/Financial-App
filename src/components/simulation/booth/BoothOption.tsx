@@ -78,7 +78,6 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
 
     return(
         <MyCard >
-            {currentIncome >= lowestprice ?
             <div>
             <Name>{name}</Name>
 
@@ -103,17 +102,7 @@ const BoothOption = ({name, desc, costBreakdown, price, setIncome, currentIncome
             <HorLine />
             <Grid cols="1"><NavButton onClick={()=>buy()}className="btn">Purchase</NavButton></Grid>
             </div>
-            :
 
-            <Warning>
-            You cannot afford anything on this booth, click continue
-            to select another booth
-
-            <button className="btn" onClick={()=>goBack()}>CONTINUE</button>
-            </Warning>
-            
-            }
-            
         </MyCard>
     );
 }
