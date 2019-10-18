@@ -28,6 +28,16 @@ const Startpage = ({ login, loggedin, logout }: { login: any, loggedin: boolean,
         }
       </Wrapper>
 
+
+        <div>
+
+
+        </div>
+        <div>
+
+          
+
+        </div>
     </div>
   );
 }

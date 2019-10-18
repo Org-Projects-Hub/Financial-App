@@ -85,7 +85,7 @@ const SimulationStart = ({stage, setStage}:any):JSX.Element => {
                 {
                     if(jobs[i].occupations[j].position == job){                
                         var y = jobs[i].occupations[j].grossmonthly;
-                        setIncome(1); //CHANGE TO y FOR NORMAL PROCESSING
+                        setIncome(y); //CHANGE TO y FOR NORMAL PROCESSING
 
                         var userCareer: career = {
                             position: job,

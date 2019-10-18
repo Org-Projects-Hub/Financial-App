@@ -109,6 +109,8 @@ const Account = ({ loggedin, clearAdmin, isStudent }: { loggedin: any, clearAdmi
         </Arrow> : <button className="btn btn-small waves-effect waves-light" onClick={nextInput}>Create Account</button>}
       </Card>
       <Hints msg={["Welcome to FinApp!", "Please enter all your information correctly to access the app."]} />
+
+      <Link to="/"><a style={{color:"black"}}>TO HOMEPAGE</a></Link>
     </MyWrapper>
   )
 };

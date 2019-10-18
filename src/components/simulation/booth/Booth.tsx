@@ -102,7 +102,7 @@ const Booth = ( {setSimStage, currentBooth, data, setIncome, currentIncome}:any)
             :
             
             <div>
-                <PriceWarning/>
+                <PriceWarning setSimStage={setSimStage}/>
             </div>
             
             }

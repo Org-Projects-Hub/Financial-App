@@ -6,7 +6,7 @@ const PriceWarning = ({setSimStage}:any) =>{
     console.log("PRICEWARNING");
 
     function goBack(){
-        setSimStage("boothselect");
+        setSimStage("boothSelect");
     }
 
     console.log("PRICE WARNING");
