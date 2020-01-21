@@ -109,7 +109,11 @@ const TestController = (props: Props): JSX.Element => {
       }
 
     return(
+      <>
+      <button className="button" onClick={()=>props.setStage("simulation")}>To Simulation</button>
         <TestLayout nav={nav} save={Save} data={data}/>
+        
+        </>
     );
 }
 
