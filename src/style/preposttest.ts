@@ -63,7 +63,7 @@ const NavButton = styled.button`
   background-color: white;
   color: #1f3d7d;
   margin: 5px;
-  min-width: 150px;
+  min-width: 100px;
   min-height: 40px;
   border: 2px solid #1f3d7d;
   border-radius: 4px;
