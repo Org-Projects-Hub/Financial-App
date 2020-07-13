@@ -9,15 +9,32 @@ import TeacherClass from './classes/TeacherClass';
 import SettingItem from './SettingItem';
 //import Results from './simulation/test/Results';
 import Students from './classes/Students';
-import {Modal, InfoModal} from './shared-components/Modal';
+import { Modal, InfoModal } from './shared-components/Modal';
 import UserModal from './classes/UserModal';
-import TakeSimModal from './classes/TakeSimModal'
+import TakeSimModal from './classes/TakeSimModal';
 import Hints from './shared-components/Hints';
 import SelectInput from './shared-components/SelectInput';
-import SimulationStart from './Simulation/booth/SimulationStart';
+import SimulationStart from './simulation/booth/SimulationStart';
 import Login from './Login';
-import TestController from './Simulation/test1/TestController' //new
+import TestController from './simulation/test1/TestController'; //new
 
-export {Header, Loader, Navbar, SettingItem, Class, ArchivedClass, StudentClass, TeacherClass, Students, Modal,
-     Hints, SelectInput, SimulationStart, InfoModal, UserModal, Login,
-     TakeSimModal, TestController};
+export {
+  Header,
+  Loader,
+  Navbar,
+  SettingItem,
+  Class,
+  ArchivedClass,
+  StudentClass,
+  TeacherClass,
+  Students,
+  Modal,
+  Hints,
+  SelectInput,
+  SimulationStart,
+  InfoModal,
+  UserModal,
+  Login,
+  TakeSimModal,
+  TestController,
+};
