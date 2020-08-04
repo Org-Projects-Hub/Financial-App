@@ -18,7 +18,7 @@ const Nav = styled.div`
   position: fixed;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   place-items: center;
-  background: dodgerblue;
+  background: #005191;
   z-index: 10;
   @media (max-width: 879px) {
     height: 50px;
@@ -30,8 +30,8 @@ const Nav = styled.div`
 `;
 
 const Icon = styled.img`
- width: 2.25vw;
- src: ${props => props.src}
+  width: 2.25vw;
+  src: ${(props) => props.src};
 `;
 
 //REMOVED DISPLAY
@@ -45,7 +45,6 @@ const FloatBtn = styled.button`
     display: none;
   }
 `;
-
 
 // const FloatBtn2 = styled(FloatBtn)`
 //   left: 95%;

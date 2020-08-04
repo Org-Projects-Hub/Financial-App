@@ -11,54 +11,57 @@ const Badge = styled.div`
   border-radius: .4em;
   text-align: center;
   font-weight: bolder
-  background: ${props => props.color};
+  background: ${(props) => props.color};
 `;
 
 const Card = styled.div`
   margin: 1em 0.5em;
-  padding: .8em 1em;
+  padding: 0.8em 1em;
   background: white;
-  box-shadow: 0 .25em .5em rgba(0,0,0,.5);
-  border-radius: .5em;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
 `;
 
-const Grid = styled.div<{cols: string}>`
+const Grid = styled.div<{ cols: string }>`
   display: grid;
   place-items: center;
   grid-gaps: 1em;
-  grid-template-columns: repeat(${props => props.cols}, 1fr);
+  grid-template-columns: repeat(${(props) => props.cols}, 1fr);
 `;
 
-const GridColItem = styled.div<{colStart: string, colEnd: string, align: string}>`
-  grid-column-start: ${props => props.colStart};
-  grid-column-end: ${props => props.colEnd};
-  text-align: ${props => props.align};
+const GridColItem = styled.div<{
+  colStart: string;
+  colEnd: string;
+  align: string;
+}>`
+  grid-column-start: ${(props) => props.colStart};
+  grid-column-end: ${(props) => props.colEnd};
+  text-align: ${(props) => props.align};
 `;
 
-const GridRow = styled.div<{rows: string}>`
+const GridRow = styled.div<{ rows: string }>`
   display: grid;
   place-items: center;
-    grid-template-rows: repeat(${props => props.rows}, 1fr);
+  grid-template-rows: repeat(${(props) => props.rows}, 1fr);
 `;
 
-const Wrapper = styled.div`
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+const Wrapper = styled.div<{ backgroundImg?: any }>`
   min-height: 100vh;
   width: 100%;
   min-width: 320px;
   max-width: 100vw;
   text-align: center;
-  padding: .3em 1em;
+  padding: 0.3em 1em;
   padding-left: 55px;
-  background: ${props => props.color};
-  @media(max-width: 879px){
-  width: 100%;
-  padding-bottom: 5em;
-  padding-left: 1em;}
+  background-image: url(${(props) => props.backgroundImg || null});
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  @media (max-width: 879px) {
+    width: 100%;
+    padding-bottom: 5em;
+    padding-left: 1em;
+  }
 `;
-
-
-
 
 const Border = styled.div`
   margin: 0px;
@@ -80,7 +83,6 @@ const Container = styled.div`
     margin: 0;
   }
 `;
-
 
 const Notification = styled.div`
   background: red;
@@ -111,7 +113,7 @@ const Button = styled.button`
   &:hover {
     transform: scale(1.25);
   }
-  
+
   @media screen and (max-width: 879px) {
     position: static;
     width: 60%;
@@ -127,7 +129,6 @@ const HomeButton = styled(Button)`
 
 const BackButton = styled(HomeButton)``;
 
-
 const AddClass = styled(Button)`
   color: white;
   bottom: 18%;
@@ -138,9 +139,7 @@ const AddClass = styled(Button)`
     width: 50vw;
     margin: 2% 3%;
   }
-  
 `;
-
 
 const SettingsButton = styled.img`
   text-align: center;
@@ -190,13 +189,13 @@ const NavButton = styled.button`
     border-color: #7da2d6;
     cursor: not-allowed;
     &:hover {
-    font-size: 100%;
+      font-size: 100%;
     }
   }
 `;
 
 const ResourcesButton = styled(AddClass)`
-    bottom: 10%;
+  bottom: 10%;
 `;
 
 const AddStudent = styled(ResourcesButton)`
@@ -227,19 +226,38 @@ const TakeSim = styled(Button)`
 `;
 
 const ClassDiv = styled.div`
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    padding: 2%;
-    background: white;
-    cursor: pointer;
-    border: 2px solid blue;
-    border-radius: 1em;
-    transition: box-shadow 500ms;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 2%;
+  background: white;
+  cursor: pointer;
+  border: 2px solid blue;
+  border-radius: 1em;
+  transition: box-shadow 500ms;
 
-    &:hover {
-        box-shadow: 5px 5px 15px 1px gray;
-    }
+  &:hover {
+    box-shadow: 5px 5px 15px 1px gray;
+  }
 `;
 
-export {Card, Badge, Grid, GridColItem, NavButton, GridRow, Wrapper, Border, Container, Button, HomeButton, BackButton, AddClass, SettingsButton, ResourcesButton, AddStudent, TakeSim, ClassDiv};
+export {
+  Card,
+  Badge,
+  Grid,
+  GridColItem,
+  NavButton,
+  GridRow,
+  Wrapper,
+  Border,
+  Container,
+  Button,
+  HomeButton,
+  BackButton,
+  AddClass,
+  SettingsButton,
+  ResourcesButton,
+  AddStudent,
+  TakeSim,
+  ClassDiv,
+};
