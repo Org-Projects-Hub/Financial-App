@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import React from 'react';
-import { Card } from "./styled";
+import { Card } from './styled';
 
 const Container = styled.div`
-    min-width: 50%;
-    max-width: 50%;
+  min-width: 50%;
+  max-width: 50%;
 `;
 
 const NumberStr = styled.div`
   color: #8c8c8c;
-  padding-bottom: 8px;
+  margin: 2.5% 0;
   text-align: center;
   font-size: 12px;
   font-weight: bold;
@@ -20,19 +20,20 @@ const NumberStr = styled.div`
 `;
 
 const QuestionStr = styled.div`
+  color: #005191;
   padding-bottom: 15px;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.35em;
   font-weight: bold;
 `;
 
 const OptionButton = styled.button`
-  background-color: white;
-  color: #5c5c5c;
+  background-color: #539ed0;
+  color: white;
   margin: 5px;
   min-width: 200px;
   min-height: 30px;
-  border: 1px solid #969696;
+  border: none;
   border-radius: 4px;
 
   &:focus {
@@ -43,15 +44,15 @@ const OptionButton = styled.button`
     cursor: pointer;
     color: #f8b332;
     box-shadow: 4px 4px 2px #b5b5b5;
-    border-color: #f8b332;
     font-size: 104%;
   }
 
   &:disabled {
-    color: #1f3d7d;
-    border: 2px solid #1f3d7d;
+    color: #005191;
+    background-color: #ffb93e;
+
     box-shadow: 2px 2px 4px #adadad;
-    font-weight: bold;
+    font-weight: normal;
     &:hover {
       cursor: default;
       box-shadow: 4px 4px 2px #b5b5b5;
@@ -60,14 +61,18 @@ const OptionButton = styled.button`
 `;
 
 const NavButton = styled.button`
-  background-color: white;
-  color: #1f3d7d;
+  background-color: #fcb23d;
+  color: white;
   margin: 5px;
   min-width: 100px;
   min-height: 40px;
-  border: 2px solid #1f3d7d;
-  border-radius: 4px;
-  font-weight: bold;
+  border: none;
+
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1.15em;
+
+  margin-top: 1vh;
 
   &:focus {
     background-color: #7da2d6;
@@ -75,42 +80,44 @@ const NavButton = styled.button`
 
   &:hover {
     cursor: pointer;
-    font-size: 108%;
+    font-size: 118%;
+    font-weight: 700;
   }
 
   &:disabled {
-    background-color: white;
-    color: #7da2d6;
+    background-color: rgb(255 255 255 / 0.9);
+    color: #005191;
     border-color: #7da2d6;
     cursor: not-allowed;
+    font-weight: normal;
     &:hover {
-    font-size: 100%;
+      font-size: 90%;
     }
   }
 `;
 
 const QuestionListButton = styled.button`
-  background-color: white;
-  color: #1f3d7d;
-  font-weight: bold;
+  color: #005191;
   margin: 5px;
   border: 0px;
   min-height: 30px;
   min-width: 175px;
   text-align: left;
-  padding-left: 2px;
+  padding-left: 10%;
+  background-color: inherit;
 
   &:focus {
-    background-color: white;
+    background-color: inherit;
   }
 
   &:hover {
     cursor: pointer;
     font-size: 104%;
+    color: #005191;
+    font-weight: bold;
   }
 
   &:disabled {
-    color: #5c5c5c;
     font-weight: normal;
     &:hover {
       cursor: default;
@@ -119,24 +126,45 @@ const QuestionListButton = styled.button`
   }
 `;
 
+const Line = styled.hr`
+  background-color: #539ED0;
+  height: 1px;
+  border: none;
+}
+`;
+
+const Arrow = styled.img`
+  margin-left: 2em;
+  width: 1em;
+`;
+
 const QuestionListCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  background: white;
-  box-shadow: 0 .25em .5em rgba(0,0,0,.5);
-  border-radius: .5em;
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
 `;
 
-const ListHeading = styled.span`
-  padding: 6px 10px;
-  font-size: 20px;
+const ListHeading = styled.div`
+  padding: 6px 0;
+  color: #005191;
+  font-size: 1.75em;
   font-weight: bold;
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
 `;
 
-const Line = styled.hr`
-  border-top: 1px;
-  color: #cccccc;
-`;
-
-export { OptionButton, NumberStr, QuestionStr, NavButton, Container, QuestionListButton, QuestionListCard, ListHeading, Line }
+export {
+  OptionButton,
+  NumberStr,
+  QuestionStr,
+  NavButton,
+  Container,
+  QuestionListButton,
+  QuestionListCard,
+  ListHeading,
+  Line,
+  Arrow,
+};

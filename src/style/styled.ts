@@ -14,17 +14,19 @@ const Badge = styled.div`
   background: ${(props) => props.color};
 `;
 
-const Card = styled.div`
-  margin: 1em 0.5em;
+const Card = styled.div<{ width?: string }>`
+  margin: 0 0.5em;
   padding: 0.8em 1em;
-  background: white;
+  background: rgb(255 255 255 / 0.9);
   box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.5);
   border-radius: 0.5em;
+  width: ${(props) => (props.width ? props.width : 'auto')};
+  padding-bottom: 2em;
 `;
 
-const Grid = styled.div<{ cols: string }>`
+const Grid = styled.div<{ cols: string; placing?: string }>`
   display: grid;
-  place-items: center;
+  place-items: ${(props) => (props.placing ? props.placing : 'center')};
   grid-gaps: 1em;
   grid-template-columns: repeat(${(props) => props.cols}, 1fr);
 `;

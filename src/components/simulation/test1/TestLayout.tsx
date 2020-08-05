@@ -6,11 +6,6 @@ import QuestionCard from './QuestionCard';
 import styled from 'styled-components';
 // import backgroundimg from "../../../assets/select.svg";
 
-const Container = styled.div`
-  background-repeat: no-repeat;
-  background-position: center;
-`;
-
 interface Props {
   nav: any;
   save: Function;
@@ -52,13 +47,13 @@ const TestLayout = (props: Props): JSX.Element => {
   };
 
   return (
-    <Container className="flex-center">
+    <div className="flex-center">
       <div
         style={{ width: '100%', minWidth: '100%' }}
         className={props.data.answered}
       >
         <GridRow rows={row}>
-          <Grid cols={col}>
+          <Grid cols={col} placing="initial">
             <GridColItem
               colStart={colQList.colStart}
               colEnd={colQList.colEnd}
@@ -70,6 +65,7 @@ const TestLayout = (props: Props): JSX.Element => {
                 total={props.data.questions.length}
                 set={props.nav.set}
                 q={props.data.questions}
+                current={props.data.current}
               />
             </GridColItem>
 
@@ -91,7 +87,7 @@ const TestLayout = (props: Props): JSX.Element => {
                 save={props.save}
               />
 
-              <Grid cols="2">
+              <Grid cols="1">
                 <GridColItem colStart="0" colEnd="1" align="left">
                   <NavButton
                     disabled={props.data.current <= 0}
@@ -115,7 +111,7 @@ const TestLayout = (props: Props): JSX.Element => {
           </Grid>
         </GridRow>
       </div>
-    </Container>
+    </div>
   );
 };
 
