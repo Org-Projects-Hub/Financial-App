@@ -69,6 +69,19 @@
   z-index: 0;
 }
 
+.customButton {
+  background-color: #fcb23d;
+  color: white;
+  cursor: pointer;
+
+  border: none;
+  padding: 1%;
+
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
 /**Sizing for ipad and mobile*/
 @media only screen and (max-width: 1024px) {
   .wheel {

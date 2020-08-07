@@ -10,7 +10,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
   const [stage, setStage] = useState('pretest');
 
   return (
-    <Wrapper backgroundImg={backgroundImg} className="center">
+    <Wrapper className="center">
       <div className="top">Hello, {user.firstName}</div>
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />

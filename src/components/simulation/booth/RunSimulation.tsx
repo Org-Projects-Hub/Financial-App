@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import '../../../style/simulation.css';
 
 import Spinner from './Spinner';
+import JobSummary from './JobSummary';
 
 import data from '../../../json/Simulation.json'; // Data related to jobs
 
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
 const ScreenCenter = styled.div`
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
+  text-align: center;
 `;
 
 interface career {
@@ -67,6 +69,14 @@ const RunSimulation = (): JSX.Element => {
             setMyCareer={setMyCareer}
             setSimStage={setSimStage}
           />
+        )}
+        {simStage === 'Job-selected' && (
+          <>
+            <JobSummary career={myCareer} />{' '}
+            <button className="customButton" style={{ marginTop: '2%' }}>
+              Continue
+            </button>
+          </>
         )}
       </ScreenCenter>
     </Wrapper>
