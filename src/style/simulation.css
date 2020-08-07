@@ -1,230 +1,273 @@
-/*When the wheel is spinning*/
-.wheel-animate{
-text-align: center;
-animation-name:spin;
-animation-duration:100ms;
-animation-iteration-count: infinite;
-animation-timing-function: ease-in;
-z-index:0;
+.spinnerContainer {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  place-items: center;
 }
 
+.spinner {
+  width: 50vw;
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.spinnerText {
+  height: 80%;
+  width: 100%;
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+  margin-top: -14%;
+
+  display: flex;
+  align-items: center;
+
+  color: #005191;
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
+.spinnerButtons {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+  align-self: end;
+  width: 100%;
+  height: 25%;
+  text-align: center;
+}
+
+.spinnerButtons > button {
+  background-color: #005191;
+  color: white;
+  cursor: pointer;
+
+  height: 50%;
+  width: 25%;
+  border: none;
+
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1.15em;
+
+  margin-top: 5%;
+}
+
+.spinnerButtons :nth-child(3) {
+  background-color: #f30000;
+}
+
+.wheel-stationary {
+  text-align: center;
+  padding-top: 14%;
+}
+
+/*When the wheel is spinning*/
+.wheel-animate {
+  text-align: center;
+  animation-name: spin;
+  animation-duration: 150ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  z-index: 0;
+}
 
 /**Sizing for ipad and mobile*/
-@media only screen and (max-width : 1024px) {
-
-    .wheel{
-    
-        height: 50vh;
-        min-width: 50vw;
-        border-width: 8vh 2vw 8vh 2vw ;
-        
-        }
-
+@media only screen and (max-width: 1024px) {
+  .wheel {
+    height: 50vh;
+    min-width: 50vw;
+    border-width: 8vh 2vw 8vh 2vw;
+  }
 }
 
 /*Sizing for laptop and Desktop*/
-@media only screen  and (min-width : 1024px) {
-
-
-    .wheel{
-        height: 50vh;
-        width: 30vw;
-        border-width: 10vh 2vw 10vh 2vw ;
-        
-        }
-    .red-light{
-
-    }
-
+@media only screen and (min-width: 1024px) {
+  .wheel {
+    height: 50vh;
+    width: 30vw;
+    border-width: 10vh 2vw 10vh 2vw;
+  }
+  .red-light {
+  }
 }
 
 /*When the wheel is not spinning*/
-.wheel{
-    border-radius: 25%;
-    background: rgb(224, 224, 136);
-    text-align: center;
-    border-style:solid;
-    border-color: black;
-    z-index:0;
-    position:relative; 
-    
+.wheel {
+  border-radius: 25%;
+  background: rgb(224, 224, 136);
+  text-align: center;
+  border-style: solid;
+  border-color: black;
+  z-index: 0;
+  position: relative;
 }
 
 /*TODO (white stripe for the button)*/
-.white-stripe{
-    border-radius:75%;
-    opacity: 50%;
-    height: 10vh;
-    width: 10vh;
-    left:100px;
-    background:white;
-    z-index:2;
-    position:relative;
+.white-stripe {
+  border-radius: 75%;
+  opacity: 50%;
+  height: 10vh;
+  width: 10vh;
+  left: 100px;
+  background: white;
+  z-index: 2;
+  position: relative;
 }
 
-
 /*SPIN/STOP button underneath the spinner*/
-.spin-button{
-    background: rgb(43, 145, 43);;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0px -4px 0px  #999;
-    padding: 10px 25px;
-    position:relative;
-    z-index:2;
-    bottom:8vh;
+.spin-button {
+  background: rgb(43, 145, 43);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px -4px 0px #999;
+  padding: 10px 25px;
+  position: relative;
+  z-index: 2;
+  bottom: 8vh;
 }
 
 /*When the spin/stop button is pressed*/
-.spin-button:active{
-    background-color: #3e8e41;
-    box-shadow: 0 -1px #666;
-    transform: translateY(-4px);
+.spin-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 -1px #666;
+  transform: translateY(-4px);
 }
 
 /*Styling for the red light (OFF)*/
-.red-light{
-    border-radius:50%;
-    background: rgb(121, 8, 8);
-    height: 10vh;
-    width: 10vh;
-    z-index:1;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;
-    box-shadow: 1vh 1vh 5px black;  
+.red-light {
+  border-radius: 50%;
+  background: rgb(121, 8, 8);
+  height: 10vh;
+  width: 10vh;
+  z-index: 1;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
+  box-shadow: 1vh 1vh 5px black;
 }
 
 /*Styling for the red light (ON)*/
-.red-light-glow{
-    border-radius:50%;
+.red-light-glow {
+  border-radius: 50%;
+  background: rgb(121, 8, 8);
+  height: 10vh;
+  width: 10vh;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  z-index: 1;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
+  animation: red-glow 3s infinite;
+  animation-delay: 0s;
+}
+
+/*Animating the red light (On for 1 second, off for 2)*/
+@keyframes red-glow {
+  0%,
+  33% {
+    background: rgb(255, 0, 0);
+    box-shadow: 0px 0px 0.5vh 0.2vh yellow;
+  }
+  33%,
+  100% {
     background: rgb(121, 8, 8);
-    height: 10vh;
-    width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    z-index:1;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;
-    animation: red-glow 3s infinite;
-    animation-delay: 0s;
-    
+    box-shadow: 0px 0px 0.5vh 0.2vh black;
+  }
 }
 
 /*Animating the red light (On for 1 second, off for 2)*/
-@keyframes red-glow{
-
-    0%, 33%{
-        background: rgb(255, 0, 0);
-        box-shadow: 0px 0px .5vh .2vh yellow;  
-
-    }
-    33%, 100%{
-        background: rgb(121, 8, 8);
-        box-shadow: 0px 0px .5vh .2vh black; 
-    }
-
+.green-light {
+  border-radius: 50%;
+  background-color: rgb(1, 82, 1);
+  height: 10vh;
+  width: 10vh;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  z-index: 1;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
 }
 
-/*Animating the red light (On for 1 second, off for 2)*/
-.green-light{
-    border-radius:50%;
-    background-color: rgb(1, 82, 1);
-    height: 10vh;
-    width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    z-index:1;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;  
+.green-light-glow {
+  border-radius: 50%;
+  background: rgb(1, 82, 1);
+  height: 10vh;
+  width: 10vh;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  z-index: 1;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
+  animation: green-glow 3s infinite;
+  animation-delay: 1s;
 }
 
-.green-light-glow{
-    border-radius:50%;
+@keyframes green-glow {
+  0%,
+  33% {
+    background: green;
+    box-shadow: 0px 0px 0.5vh 0.2vh yellow;
+  }
+  33%,
+  100% {
     background: rgb(1, 82, 1);
-    height: 10vh;
-    width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    z-index:1;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;
-    animation: green-glow 3s infinite;
-    animation-delay: 1s;
-    
+    box-shadow: 0px 0px 0.5vh 0.2vh black;
+  }
 }
 
-@keyframes green-glow{
-
-    0%, 33%{
-        background: green;
-        box-shadow: 0px 0px .5vh .2vh yellow;  
-
-    }
-    33%, 100%{
-        background: rgb(1, 82, 1);
-        box-shadow: 0px 0px .5vh .2vh black; 
-    }
-
+.blue-light {
+  border-radius: 50%;
+  background: rgb(0, 0, 121);
+  height: 10vh;
+  width: 10vh;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  z-index: 1;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
 }
 
+.blue-light-glow {
+  border-radius: 50%;
+  background: rgb(0, 0, 121);
+  height: 10vh;
+  width: 10vh;
+  padding: 1vh 2.2vh 1vh 2.2vh;
+  z-index: 1;
+  position: relative;
+  top: 6vh;
+  left: 3vw;
+  margin: 0.5vw;
+  animation: blue-glow 3s infinite;
+  animation-delay: 2s;
+}
 
-
-
-.blue-light{
-    border-radius:50%;
+@keyframes blue-glow {
+  0%,
+  33% {
+    background: blue;
+    box-shadow: 0px 0px 0.5vh 0.2vh yellow;
+  }
+  33%,
+  100% {
     background: rgb(0, 0, 121);
-    height: 10vh;
-    width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    z-index:1;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;  
+    box-shadow: 0px 0px 0.5vh 0.2vh black;
+  }
 }
 
-.blue-light-glow{
-    border-radius:50%;
-    background: rgb(0, 0, 121);
-    height: 10vh;
-    width: 10vh;
-    padding: 1vh 2.2vh 1vh 2.2vh;
-    z-index:1;
-    position:relative;
-    top:6vh;
-    left:3vw;
-    margin: .5vw;
-    animation: blue-glow 3s infinite;
-    animation-delay: 2s;
+@keyframes spin {
+  from {
+    padding-top: 2%;
+  }
+  to {
+    padding-top: 48%;
+  }
 }
 
-@keyframes blue-glow{
-
-    0%, 33%{
-        background: blue;
-        box-shadow: 0px 0px .5vh .2vh yellow;  
-
-    }
-    33%, 100%{
-        background: rgb(0, 0, 121);
-        box-shadow: 0px 0px .5vh .2vh black; 
-    }
-
-}
-
-@keyframes spin{
-
-from {padding-top:2vh;}
-to {padding-top:30vh;}
-
-}
-
-.button-slide{
-    margin-left: 12.5vw;
+.button-slide {
+  margin-left: 12.5vw;
 }
