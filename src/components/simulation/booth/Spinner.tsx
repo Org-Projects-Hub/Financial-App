@@ -61,6 +61,7 @@ const Spinner = ({
           let y = occupation.grossmonthly;
           setMyCareer({
             position: occupation.position,
+            monthlySalary: y,
             annualSalary: y * 12,
             hourlyRate: y / 160,
             federalTax: y * 0.15,

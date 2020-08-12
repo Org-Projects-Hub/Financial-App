@@ -2,7 +2,7 @@
   "booths": [
     {
       "id": 0,
-      "category": "Clothing",
+      "category": "Clothing & Furtinure",
       "options": [
         {
           "id": 0,
@@ -99,8 +99,11 @@
     },
 
     { "id": 1, "category": "Household Expenses", "options": [] },
-    { "id": 2, "category": "Furniture", "options": [] },
-    { "id": 3, "category": "Charity", "options": [] }
+    { "id": 2, "category": "Transportation", "options": [] },
+    { "id": 3, "category": "Charity", "options": [] },
+    { "id": 4, "category": "Food & Activities", "options": [] },
+    { "id": 5, "category": "Temptation Island", "options": [] },
+    { "id": 6, "category": "Insurance", "options": [] }
   ],
 
   "education": [

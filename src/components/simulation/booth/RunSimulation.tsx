@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 import JobSummary from './JobSummary';
 
 import data from '../../../json/Simulation.json'; // Data related to jobs
+import BoothSelect from './BoothSelect';
 
 const Wrapper = styled.div`
   display: grid;
@@ -19,6 +20,12 @@ const ScreenCenter = styled.div`
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
   text-align: center;
+`;
+
+const UserInfo = styled.div`
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  padding-top: 10%;
 `;
 
 interface career {
@@ -38,7 +45,7 @@ const RunSimulation = (): JSX.Element => {
 
   const [jobOptions, setJobOptions] = useState([]); // Job options available to players
   const [myCareer, setMyCareer] = useState<career | undefined>(undefined);
-
+  const [currentBooth, setCurrentBooth] = useState(null);
   /**
    * Extracts job options from Simulation.json and stores in "jobOptions"
    */
@@ -73,10 +80,28 @@ const RunSimulation = (): JSX.Element => {
         {simStage === 'Job-selected' && (
           <>
             <JobSummary career={myCareer} />{' '}
-            <button className="customButton" style={{ marginTop: '2%' }}>
+            <button
+              className="customButton"
+              style={{ marginTop: '2%' }}
+              onClick={() => setSimStage('Booth-Selection')}
+            >
               Continue
             </button>
           </>
+        )}
+        {simStage === 'Booth-Selection' && (
+          <div>
+            <UserInfo>
+              {console.log(myCareer)}
+              Remaining Income:{' '}
+              {myCareer.monthlySalary ? myCareer.monthlySalary.toFixed(2) : ''}
+            </UserInfo>
+            <BoothSelect
+              setSimStage={setSimStage}
+              setCurrentBooth={setCurrentBooth}
+              currentIncome={myCareer.monthlySalary}
+            />
+          </div>
         )}
       </ScreenCenter>
     </Wrapper>
