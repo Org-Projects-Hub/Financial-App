@@ -7,6 +7,7 @@ import JobSummary from './JobSummary';
 
 import data from '../../../json/Simulation.json'; // Data related to jobs
 import BoothSelect from './BoothSelect';
+import Booth from './Booth';
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,6 +47,8 @@ const RunSimulation = (): JSX.Element => {
   const [jobOptions, setJobOptions] = useState([]); // Job options available to players
   const [myCareer, setMyCareer] = useState<career | undefined>(undefined);
   const [currentBooth, setCurrentBooth] = useState(null);
+  const [expenses, setExpenses] = useState(0);
+
   /**
    * Extracts job options from Simulation.json and stores in "jobOptions"
    */
@@ -64,8 +67,13 @@ const RunSimulation = (): JSX.Element => {
     getJobOptions();
   }, []);
 
-  // Let sipnner set the career.
-  useEffect(() => {}, []);
+  const increaseExpenses = (newExpense: number) => {
+    setExpenses(expenses + newExpense);
+  };
+
+  const getRemianingMoney = () => {
+    return (myCareer.monthlySalary - expenses).toFixed(2);
+  };
 
   return (
     <Wrapper>
@@ -77,7 +85,7 @@ const RunSimulation = (): JSX.Element => {
             setSimStage={setSimStage}
           />
         )}
-        {simStage === 'Job-selected' && (
+        {simStage === 'Job-Selected' && (
           <>
             <JobSummary career={myCareer} />{' '}
             <button
@@ -94,13 +102,25 @@ const RunSimulation = (): JSX.Element => {
             <UserInfo>
               {console.log(myCareer)}
               Remaining Income:{' '}
-              {myCareer.monthlySalary ? myCareer.monthlySalary.toFixed(2) : ''}
+              {myCareer.monthlySalary ? getRemianingMoney() : ''}
             </UserInfo>
             <BoothSelect
               setSimStage={setSimStage}
               setCurrentBooth={setCurrentBooth}
-              currentIncome={myCareer.monthlySalary}
+              currentIncome={getRemianingMoney()}
             />
+          </div>
+        )}
+        {simStage === 'Booth-Selected' && (
+          <div>
+            <Booth
+              setSimStage={setSimStage}
+              currentBooth={currentBooth}
+              data={data}
+              currentIncome={getRemianingMoney()}
+              increaseExpenses={increaseExpenses}
+            />
+            <UserInfo>Remaining Income: {getRemianingMoney()}</UserInfo>
           </div>
         )}
       </ScreenCenter>

@@ -60,7 +60,7 @@ const BoothOption = ({
   desc,
   costBreakdown,
   price,
-  setIncome,
+  increaseExpenses,
   currentIncome,
   setSimStage,
   setText,
@@ -73,7 +73,7 @@ const BoothOption = ({
   function buy() {
     if (currentIncome > price) {
       window.scrollTo(0, 0);
-      setIncome(currentIncome - price);
+      increaseExpenses(price);
       setSimStage('boothSelect');
     } else if (currentIncome < price) {
       setText('You do not have enough money to purchase this');

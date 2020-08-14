@@ -47,7 +47,7 @@ const Spinner = ({
   const nextStep = () => {
     setSpinning(false);
     getCareer();
-    setSimStage('Job-selected');
+    setSimStage('Job-Selected');
   };
 
   /**

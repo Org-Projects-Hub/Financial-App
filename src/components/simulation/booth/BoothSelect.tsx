@@ -47,7 +47,7 @@ const BoothSelect = ({
 
   function goToBooth(boothNo: string) {
     if (currentIncome > 0) {
-      setSimStage('booth');
+      setSimStage('Booth-Selected');
       setCurrentBooth(boothNo);
     }
   }
