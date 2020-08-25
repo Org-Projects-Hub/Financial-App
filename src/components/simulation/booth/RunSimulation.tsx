@@ -26,7 +26,11 @@ const ScreenCenter = styled.div`
 const UserInfo = styled.div`
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
-  padding-top: 10%;
+  padding: 4% 0;
+  color: white;
+
+  font-size: 1.05em;
+  font-weight: 500;
 `;
 
 interface career {
@@ -41,13 +45,25 @@ interface career {
   education: string;
 }
 
+const tempCareer = {
+  annualSalary: 31137.600000000002,
+  education: 'HighSchool Diploma',
+  federalTax: 389.22,
+  hourlyRate: 16.2175,
+  medicare: 36.327200000000005,
+  monthlySalary: 2594.8,
+  position: 'Carpenter',
+  socialSecurity: 155.68800000000002,
+  stateTax: 85.62840000000001,
+};
+
 const RunSimulation = (): JSX.Element => {
-  const [simStage, setSimStage] = useState('Job-Selection'); //Used for switching between the stages of the simulation
+  const [simStage, setSimStage] = useState('Job-Selected'); //Used for switching between the stages of the simulation
 
   const [jobOptions, setJobOptions] = useState([]); // Job options available to players
-  const [myCareer, setMyCareer] = useState<career | undefined>(undefined);
-  const [currentBooth, setCurrentBooth] = useState(null);
-  const [expenses, setExpenses] = useState(0);
+  const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
+  const [currentBooth, setCurrentBooth] = useState(0);
+  const [currentBalance, setCurrentBalance] = useState(0);
 
   /**
    * Extracts job options from Simulation.json and stores in "jobOptions"
@@ -67,14 +83,14 @@ const RunSimulation = (): JSX.Element => {
     getJobOptions();
   }, []);
 
-  const increaseExpenses = (newExpense: number) => {
-    setExpenses(expenses + newExpense);
-  };
+  useEffect(() => {
+    setCurrentBalance(myCareer.monthlySalary);
+  }, [myCareer]);
 
-  const getRemianingMoney = () => {
-    return (myCareer.monthlySalary - expenses).toFixed(2);
+  const purchase = (newExpense: number) => {
+    setCurrentBalance(currentBalance - newExpense);
   };
-
+  console.log(simStage);
   return (
     <Wrapper>
       <ScreenCenter>
@@ -102,12 +118,12 @@ const RunSimulation = (): JSX.Element => {
             <UserInfo>
               {console.log(myCareer)}
               Remaining Income:{' '}
-              {myCareer.monthlySalary ? getRemianingMoney() : ''}
+              {myCareer.monthlySalary ? currentBalance.toFixed(2) : ''}
             </UserInfo>
             <BoothSelect
               setSimStage={setSimStage}
               setCurrentBooth={setCurrentBooth}
-              currentIncome={getRemianingMoney()}
+              currentBalance={currentBalance}
             />
           </div>
         )}
@@ -117,10 +133,10 @@ const RunSimulation = (): JSX.Element => {
               setSimStage={setSimStage}
               currentBooth={currentBooth}
               data={data}
-              currentIncome={getRemianingMoney()}
-              increaseExpenses={increaseExpenses}
+              currentBalance={currentBalance}
+              increaseExpenses={purchase}
             />
-            <UserInfo>Remaining Income: {getRemianingMoney()}</UserInfo>
+            <UserInfo>Remaining Income: {currentBalance.toFixed(2)}</UserInfo>
           </div>
         )}
       </ScreenCenter>

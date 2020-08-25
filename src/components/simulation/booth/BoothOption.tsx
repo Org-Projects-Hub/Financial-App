@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Card, NavButton } from '../../../style/styled';
+import '../../../style/Booth.css';
 import styled from 'styled-components';
 
 type Props = {
@@ -8,15 +9,15 @@ type Props = {
   costBreakdown: string[];
   price: Number;
 };
-const MyCard = styled(Card)`
-  display: grid;
-  width: 90%;
-  height: 90%;
-  box-sizing: content-box;
-  grid-template-rows: auto;
-  margin: 5% 0px;
-  justify-items: center;
-`;
+// const MyCard = styled(Card)`
+//   display: grid;
+//   width: 90%;
+//   height: 90%;
+//   box-sizing: content-box;
+//   grid-template-rows: auto;
+//   margin: 5% 0px;
+//   justify-items: center;
+// `;
 
 const Name = styled.div`
   font-size: 18px;
@@ -29,16 +30,14 @@ const Desc = styled.div`
   margin: 3px;
 `;
 
-const Price = styled.div`
-  text-align: center;
-`;
-
 const Heading = styled.div`
-  text-align: center;
+  text-align: left;
   margin-top: 5px;
+
+  font-family: 'Roboto Condensed', sans-serif;
   font-weight: 600;
   font-size: 18px;
-  justify-content: center;
+  justify-content: left;
 `;
 
 const Warning = styled.div`
@@ -57,25 +56,22 @@ const HorLine = () => (
 
 const BoothOption = ({
   name,
+  icon,
   desc,
   costBreakdown,
   price,
   increaseExpenses,
-  currentIncome,
+  currentBalance,
   setSimStage,
   setText,
   lowestprice,
 }: any): JSX.Element => {
-  function goBack() {
-    setSimStage('boothselect');
-  }
-
   function buy() {
-    if (currentIncome > price) {
+    if (currentBalance > price) {
       window.scrollTo(0, 0);
       increaseExpenses(price);
-      setSimStage('boothSelect');
-    } else if (currentIncome < price) {
+      setSimStage('Booth-Selection');
+    } else if (currentBalance < price) {
       setText('You do not have enough money to purchase this');
     }
   }
@@ -83,34 +79,34 @@ const BoothOption = ({
   console.log('LOWEST PRICE: ' + lowestprice);
 
   return (
-    <MyCard>
-      <Name>{name}</Name>
+    <div className="boothItemOption">
+      <div className="section">
+        <img src={icon} className="boothItemIcon" />
+        <Heading>{name}</Heading>
+      </div>
 
-      <Grid cols="3">
+      <div className="section">
         {desc.map((store: string, i: Number) => (
-          <Desc>{store}</Desc>
+          <span>{`${store} | `}</span>
         ))}
-      </Grid>
+      </div>
+      <div className="section">
+        <Heading>Cost Breakdown</Heading>
 
-      <HorLine />
-      <Heading>Cost Breakdown</Heading>
-      <Grid cols="2">
         {costBreakdown.map((cost: string, i: Number) => (
           <div>{cost}</div>
         ))}
-      </Grid>
-
-      <HorLine />
-      <Heading>Total Price</Heading>
-      <Price>${price}</Price>
-
-      <HorLine />
-      <Grid cols="1">
-        <NavButton onClick={() => buy()} className="btn">
-          Purchase
-        </NavButton>
-      </Grid>
-    </MyCard>
+      </div>
+      <div className="section">
+        <Heading>Total Price</Heading>
+        <div>${price}</div>
+      </div>
+      <div className="section">
+        <div className="customButton" onClick={() => buy()}>
+          PURCHASE
+        </div>
+      </div>
+    </div>
   );
 };
 

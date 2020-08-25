@@ -22,8 +22,8 @@ const booths = [
           'The Cotton Patch',
         ],
         costbreakdown: [
-          'Clothing Allowance: $400/month',
-          'Moderate Dry Cleaning: $100/month',
+          'Clothing Allowance - $400',
+          'Moderate Dry Cleaning - $100',
         ],
         price: 500,
       },

@@ -39,14 +39,14 @@ const Option = styled.div`
 const BoothSelect = ({
   setSimStage,
   setCurrentBooth,
-  currentIncome,
+  currentBalance,
 }: any): JSX.Element => {
-  if (currentIncome <= 0) {
+  if (currentBalance <= 0) {
     setSimStage('summary');
   }
 
-  function goToBooth(boothNo: string) {
-    if (currentIncome > 0) {
+  function goToBooth(boothNo: number) {
+    if (currentBalance > 0) {
       setSimStage('Booth-Selected');
       setCurrentBooth(boothNo);
     }
@@ -61,7 +61,8 @@ const BoothSelect = ({
           <button
             className="customButton boothOption"
             onClick={(e) => {
-              goToBooth(e.currentTarget.children[1].className);
+              // goToBooth(e.currentTarget.children[1].className);
+              goToBooth(i);
             }}
           >
             <img src={BoothIcons[i]} className="boothIcon" />
