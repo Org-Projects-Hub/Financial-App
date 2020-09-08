@@ -13,6 +13,24 @@ import money2 from '../../../assets/icons/icon-money-2.svg';
 import money3 from '../../../assets/icons/icon-money-3.svg';
 import money4 from '../../../assets/icons/icon-money-4.svg';
 
+import housingIcon from '../../../assets/icons/rev/icon-booth-rev-housing.svg';
+import clothingIcon from '../../../assets/icons/rev/icon-booth-rev-clothing.svg';
+import charityIcon from '../../../assets/icons/rev/icon-booth-rev-charity.svg';
+import foodIcon from '../../../assets/icons/rev/icon-booth-rev-food.svg';
+import insuranceIcon from '../../../assets/icons/rev/icon-booth-rev-insurance.svg';
+import transportationIcon from '../../../assets/icons/rev/icon-booth-rev-transportation.svg';
+import temptationIcon from '../../../assets/icons/rev/icon-booth-rev-temptation.svg';
+
+const BoothIcons = [
+  clothingIcon,
+  housingIcon,
+  transportationIcon,
+  charityIcon,
+  foodIcon,
+  temptationIcon,
+  insuranceIcon,
+];
+
 interface boothOptions {
   name: string;
   desc: string[];
@@ -30,6 +48,7 @@ const MyGrid = styled(Grid)`
 const Span = styled.div`
   margin: 3% 0;
   color: white;
+  display: flex;
 `;
 
 const Icons: any[] = [money1, money2, money3, money4];
@@ -97,7 +116,10 @@ const Booth = ({
         <div>
           <Span>
             {/* <ReactLogo /> */}
-            The Current Booth is {`${boothName}.`}
+            <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
+            <div className="currentBoothIdentifier">
+              The Current Booth is {`${boothName}.`}
+            </div>
             {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
           </Span>
           <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>

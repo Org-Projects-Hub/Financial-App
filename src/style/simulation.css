@@ -149,3 +149,17 @@
 .boothOption > p {
   width: 75%;
 }
+
+/* Any Single Booth */
+
+.curentBoothIcon {
+  height: 2.5em;
+  margin: 2%;
+}
+
+.currentBoothIdentifier {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
