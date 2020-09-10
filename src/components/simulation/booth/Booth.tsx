@@ -5,8 +5,12 @@ import BoothOption from './BoothOption';
 import { Grid } from '../../../style/styled';
 import PriceWarning from './PriceWarning';
 
-// import { BoothIcons } from './BoothSelect';
-import { ReactComponent as ReactLogo } from '../../../assets/icons/icon-money-1.svg';
+import { useDispatch } from 'react-redux';
+import {
+  showBackFunction,
+  hideBackFunction,
+  changeBackFunction,
+} from '../../../store/action/backButtonActions';
 
 import money1 from '../../../assets/icons/icon-money-1.svg';
 import money2 from '../../../assets/icons/icon-money-2.svg';
@@ -46,9 +50,15 @@ const MyGrid = styled(Grid)`
 `;
 
 const Span = styled.div`
-  margin: 3% 0;
+  margin: 3% 0 1% 0;
   color: white;
   display: flex;
+`;
+
+const Info = styled.div`
+  padding-left: 2.5%;
+  color: #fffefd;
+  font-weight: 500;
 `;
 
 const Icons: any[] = [money1, money2, money3, money4];
@@ -59,14 +69,15 @@ const Booth = ({
   data,
   increaseExpenses,
   currentBalance,
+  remainingBalance,
 }: any): JSX.Element => {
-  const [userOptions, setOptions] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [optionsArray, setOptionsArray] = useState([]);
   const [text, setText] = useState(null);
   const [priceArray, setPriceArray] = useState([]);
   const [lowestprice, setLow] = useState(999999999999);
   const [boothName, setBoothName] = useState('');
-  var boothIcon: any = null;
+  const dispatch = useDispatch();
 
   var array = new Array();
 
@@ -108,47 +119,62 @@ const Booth = ({
       }
     }
     setOptionsArray(array);
+    setLoading(false);
+    dispatch(showBackFunction());
+    dispatch(
+      changeBackFunction(() => {
+        setSimStage('Booth-Selection');
+      })
+    );
+
+    return () => {
+      dispatch(hideBackFunction());
+    };
   }, []);
 
-  return (
-    <div>
-      {currentBalance > lowestprice ? (
-        <div>
-          <Span>
-            {/* <ReactLogo /> */}
-            <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
-            <div className="currentBoothIdentifier">
-              The Current Booth is {`${boothName}.`}
-            </div>
-            {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
-          </Span>
-          <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>
-            {optionsArray.map((optionsArray: any, i) => (
-              <BoothOption
-                name={optionsArray.name}
-                icon={Icons[i]}
-                desc={optionsArray.desc}
-                costBreakdown={optionsArray.costbreakdown}
-                price={optionsArray.price}
-                increaseExpenses={increaseExpenses}
-                currentBalance={currentBalance}
-                setSimStage={setSimStage}
-                setText={setText}
-                lowestprice={lowestprice}
-                key={i}
-              />
-            ))}
-          </MyGrid>
-
-          {text}
-        </div>
-      ) : (
-        <div>
-          <PriceWarning setSimStage={setSimStage} />
-        </div>
-      )}
-    </div>
-  );
+  if (loading) {
+    return null;
+  } else {
+    return (
+      <div>
+        {currentBalance > lowestprice ? (
+          <div>
+            <Span>
+              {/* <ReactLogo /> */}
+              <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
+              <div className="currentBoothIdentifier">
+                The Current Booth is {`${boothName}.`}
+              </div>
+              {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
+            </Span>
+            <Info>Remaining Balance: {remainingBalance}</Info>
+            <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>
+              {optionsArray.map((optionsArray: any, i) => (
+                <BoothOption
+                  name={optionsArray.name}
+                  icon={Icons[i]}
+                  desc={optionsArray.desc}
+                  costBreakdown={optionsArray.costbreakdown}
+                  price={optionsArray.price}
+                  increaseExpenses={increaseExpenses}
+                  currentBalance={currentBalance}
+                  setSimStage={setSimStage}
+                  setText={setText}
+                  lowestprice={lowestprice}
+                  key={i}
+                />
+              ))}
+            </MyGrid>
+            {text}
+          </div>
+        ) : (
+          <div>
+            <PriceWarning setSimStage={setSimStage} />
+          </div>
+        )}
+      </div>
+    );
+  }
 };
 
 export default Booth;

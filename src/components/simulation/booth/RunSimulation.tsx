@@ -135,8 +135,9 @@ const RunSimulation = (): JSX.Element => {
               data={data}
               currentBalance={currentBalance}
               increaseExpenses={purchase}
+              remainingBalance={currentBalance.toFixed(2)}
             />
-            <UserInfo>Remaining Income: {currentBalance.toFixed(2)}</UserInfo>
+            {/* <UserInfo>Remaining Income: {currentBalance.toFixed(2)}</UserInfo> */}
           </div>
         )}
       </ScreenCenter>

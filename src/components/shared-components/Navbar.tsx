@@ -10,6 +10,10 @@ import {
   Link,
   NavLink,
 } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducer';
+
 import { Hints } from '../index';
 const Nav = styled.div`
   top: 0em;
@@ -38,7 +42,7 @@ const Icon = styled.img`
 const FloatBtn = styled.button`
   position: fixed;
   bottom: 1em;
-  left: 1em;
+  right: 1em;
   border: 0;
   border-radius: 50%;
   @media (max-width: 879px) {
@@ -57,37 +61,46 @@ const Navbar = ({
 }: {
   showNav: any;
   hide: any;
-}): JSX.Element => (
-  <div>
-    <Nav className={showNav ? 'show' : 'hide'}>
-      <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
-        <Icon src={IconGear} alt="" />
-      </NavLink>
-      <NavLink activeStyle={active} className="nav-item txt-md" to="/home">
-        <Icon src={Home} alt="" />
-      </NavLink>
-      <NavLink
-        activeStyle={active}
-        className="nav-item txt-md"
-        to="/simulation"
-      >
-        <Icon src={Game} alt="" />
-      </NavLink>
-      <NavLink activeStyle={active} className="nav-item txt-md" to="/classes">
-        <Icon src={BackPack} alt="" />
-      </NavLink>
-    </Nav>
+}): JSX.Element => {
+  const backButton = useSelector((state: RootState) => state.back);
+  return (
+    <div>
+      <Nav className={showNav ? 'show' : 'hide'}>
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
+          <Icon src={IconGear} alt="" />
+        </NavLink>
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/home">
+          <Icon src={Home} alt="" />
+        </NavLink>
+        <NavLink
+          activeStyle={active}
+          className="nav-item txt-md"
+          to="/simulation"
+        >
+          <Icon src={Game} alt="" />
+        </NavLink>
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/classes">
+          <Icon src={BackPack} alt="" />
+        </NavLink>
+      </Nav>
+      {backButton.display ? (
+        <FloatBtn onClick={() => backButton.backFunction()}>
+          <i className="fa fa-angle-left txt-md"></i>
+        </FloatBtn>
+      ) : null}
+      {/* Originally meant to show and hide the navabar 
     <FloatBtn onClick={hide}>
       <i
         className={
           showNav ? 'fa fa-angle-left txt-md' : 'fa fa-angle-right txt-md'
         }
       ></i>
-    </FloatBtn>
-    <Hints
+    </FloatBtn> */}
+      {/* <Hints
       msg={['Welcome to FinApp!', 'Take the Simulation when you are ready']}
-    />
-  </div>
-);
+    /> */}
+    </div>
+  );
+};
 
 export default Navbar;

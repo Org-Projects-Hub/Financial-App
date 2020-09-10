@@ -1,0 +1,7 @@
+const actionTypes = {
+  ADD_BACK_FUNCTION: 'ADD_BACK_FUNCTION',
+  HIDE_BACK_FUNCTION: 'HIDE_BACK_FUNCTION',
+  SHOW_BACK_FUNCTION: 'SHOW_BACK_FUNCTION',
+};
+
+export default actionTypes;
