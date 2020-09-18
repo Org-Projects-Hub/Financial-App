@@ -1,6 +1,6 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css';
 @import './normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;600;800;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 
 *,
@@ -226,4 +226,25 @@ a:visited {
 
 .add-input:hover {
   box-shadow: 2px 2px 5px 1px gray !important;
+}
+
+.general-heading {
+  color: #005191;
+  font-size: 1.75em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.yellow-button {
+  background-color: #fcb23d;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+
+  width: fit-content;
+  padding: 1% 2%;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
 }

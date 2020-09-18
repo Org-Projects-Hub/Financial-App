@@ -47,22 +47,36 @@ const Setting = ({
   const [info, setInfo] = React.useState(true);
   return (
     <Wrapper className="full-height" backgroundImg={backgroundImg}>
-      <div className="container">
+      <div
+        className="container settingPage"
+        style={{
+          backgroundColor: 'rgb(255 255 255 / 0.9)',
+          marginTop: '8%',
+          padding: '0px 3% 0.5% 3%',
+          borderRadius: '10px',
+          fontSize: '1.10rem',
+          fontWeight: 200,
+          color: 'gray',
+        }}
+      >
         <Grid cols="1">
-          <button
-            className="btn justify-end"
-            onClick={() => {
-              logout();
-            }}
-          >
-            Logout
-          </button>
+          <div className="general-heading " style={{ margin: '2%' }}>
+            Settings
+          </div>
         </Grid>
         {fields.map((data, i) => (
           <SettingItem getUserInfo={getUserInfo} {...data} key={i} />
         ))}
-        <div className="center bold txt-sm">
-          Terms, Data Policy and Cookies Policy.
+
+        {/* Terms, Data Policy and Cookies Policy. */}
+        <div
+          className="yellow-button"
+          style={{ margin: '3% auto' }}
+          onClick={() => {
+            logout();
+          }}
+        >
+          LOG OUT
         </div>
       </div>
     </Wrapper>
