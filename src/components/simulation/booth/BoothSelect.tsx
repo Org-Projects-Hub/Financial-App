@@ -41,15 +41,17 @@ const BoothSelect = ({
   setCurrentBooth,
   currentBalance,
 }: any): JSX.Element => {
-  if (currentBalance <= 0) {
-    setSimStage('summary');
-  }
+  // if (currentBalance <= 0) {
+  //   setSimStage('summary');
+  // }
 
   function goToBooth(boothNo: number) {
-    if (currentBalance > 0) {
-      setSimStage('Booth-Selected');
-      setCurrentBooth(boothNo);
-    }
+    setSimStage('Booth-Selected');
+    setCurrentBooth(boothNo);
+    // if (currentBalance > 0) {
+    //   setSimStage('Booth-Selected');
+    //   setCurrentBooth(boothNo);
+    // }
   }
 
   const boothsInfo = data.booths;

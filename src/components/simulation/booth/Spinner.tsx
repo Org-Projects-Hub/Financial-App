@@ -69,6 +69,8 @@ const Spinner = ({
             medicare: y * 0.014,
             stateTax: y * 0.033,
             education: job.reqed,
+            afterTaxMontlySalary:
+              y - y * 0.15 - y * 0.06 - y * 0.014 - y * 0.033,
           });
           return;
         }

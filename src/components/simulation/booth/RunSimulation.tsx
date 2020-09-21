@@ -33,7 +33,7 @@ const UserInfo = styled.div`
   font-weight: 500;
 `;
 
-interface career {
+export interface career {
   position: String;
   monthlySalary: number;
   annualSalary: number;
@@ -43,6 +43,7 @@ interface career {
   medicare: number;
   stateTax: number;
   education: string;
+  afterTaxMontlySalary: number;
 }
 
 const tempCareer = {
@@ -55,10 +56,11 @@ const tempCareer = {
   position: 'Carpenter',
   socialSecurity: 155.68800000000002,
   stateTax: 85.62840000000001,
+  afterTaxMontlySalary: 1190.235648,
 };
 
 const RunSimulation = (): JSX.Element => {
-  const [simStage, setSimStage] = useState('Job-Selected'); //Used for switching between the stages of the simulation
+  const [simStage, setSimStage] = useState('Job-Selection'); //Used for switching between the stages of the simulation
 
   const [jobOptions, setJobOptions] = useState([]); // Job options available to players
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
@@ -84,7 +86,8 @@ const RunSimulation = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    setCurrentBalance(myCareer.monthlySalary);
+    console.log(myCareer);
+    setCurrentBalance(myCareer.afterTaxMontlySalary);
   }, [myCareer]);
 
   const purchase = (newExpense: number) => {
@@ -103,7 +106,7 @@ const RunSimulation = (): JSX.Element => {
         )}
         {simStage === 'Job-Selected' && (
           <>
-            <JobSummary career={myCareer} />{' '}
+            <JobSummary career={myCareer} />
             <button
               className="customButton"
               style={{ marginTop: '2%' }}
@@ -116,9 +119,8 @@ const RunSimulation = (): JSX.Element => {
         {simStage === 'Booth-Selection' && (
           <div>
             <UserInfo>
-              {console.log(myCareer)}
               Remaining Income:{' '}
-              {myCareer.monthlySalary ? currentBalance.toFixed(2) : ''}
+              {myCareer.afterTaxMontlySalary ? currentBalance.toFixed(2) : ''}
             </UserInfo>
             <BoothSelect
               setSimStage={setSimStage}

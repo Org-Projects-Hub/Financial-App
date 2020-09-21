@@ -67,13 +67,16 @@ const BoothOption = ({
   lowestprice,
 }: any): JSX.Element => {
   function buy() {
-    if (currentBalance > price) {
-      window.scrollTo(0, 0);
-      increaseExpenses(price);
-      setSimStage('Booth-Selection');
-    } else if (currentBalance < price) {
-      setText('You do not have enough money to purchase this');
-    }
+    window.scrollTo(0, 0);
+    increaseExpenses(price);
+    setSimStage('Booth-Selection');
+    // if (currentBalance > price) {
+    //   window.scrollTo(0, 0);
+    //   increaseExpenses(price);
+    //   setSimStage('Booth-Selection');
+    // } else if (currentBalance < price) {
+    //   setText('You do not have enough money to purchase this');
+    // }
   }
 
   console.log('LOWEST PRICE: ' + lowestprice);

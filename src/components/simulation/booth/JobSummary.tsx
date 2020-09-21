@@ -27,7 +27,7 @@ const JobSummary = ({ career }: any): JSX.Element => {
   const edu = career.education;
   const position = career.position;
 
-  const netMonth = grossSal - fedTax - socialS - medicare - sTax;
+  const netMonth = career.afterTaxMontlySalary.toFixed(2);
 
   const vowel = new Set(['A', 'E', 'I', 'O', 'U']);
 
@@ -71,8 +71,7 @@ const JobSummary = ({ career }: any): JSX.Element => {
         </li>
       </ul>
       <br />
-      Which means your net monthly income is{' '}
-      <Green>${netMonth.toFixed(2)}!</Green>
+      Which means your net monthly income is <Green>${netMonth}!</Green>
     </Card2>
   );
 };

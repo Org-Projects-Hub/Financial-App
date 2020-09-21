@@ -137,41 +137,44 @@ const Booth = ({
   } else {
     return (
       <div>
-        {currentBalance > lowestprice ? (
-          <div>
-            <Span>
-              {/* <ReactLogo /> */}
-              <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
-              <div className="currentBoothIdentifier">
-                The Current Booth is {`${boothName}.`}
-              </div>
-              {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
-            </Span>
-            <Info>Remaining Balance: {remainingBalance}</Info>
-            <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>
-              {optionsArray.map((optionsArray: any, i) => (
-                <BoothOption
-                  name={optionsArray.name}
-                  icon={Icons[i]}
-                  desc={optionsArray.desc}
-                  costBreakdown={optionsArray.costbreakdown}
-                  price={optionsArray.price}
-                  increaseExpenses={increaseExpenses}
-                  currentBalance={currentBalance}
-                  setSimStage={setSimStage}
-                  setText={setText}
-                  lowestprice={lowestprice}
-                  key={i}
-                />
-              ))}
-            </MyGrid>
-            {text}
-          </div>
-        ) : (
-          <div>
-            <PriceWarning setSimStage={setSimStage} />
-          </div>
-        )}
+        {/* {currentBalance > lowestprice ? ( */}
+        <div>
+          <Span>
+            {/* <ReactLogo /> */}
+            <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
+            <div className="currentBoothIdentifier">
+              The Current Booth is {`${boothName}.`}
+            </div>
+            {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
+          </Span>
+          <Info>Remaining Balance: {remainingBalance}</Info>
+          <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>
+            {optionsArray.map((optionsArray: any, i) => (
+              <BoothOption
+                name={optionsArray.name}
+                icon={Icons[i]}
+                desc={optionsArray.desc}
+                costBreakdown={optionsArray.costbreakdown}
+                price={optionsArray.price}
+                increaseExpenses={increaseExpenses}
+                currentBalance={currentBalance}
+                setSimStage={setSimStage}
+                setText={setText}
+                lowestprice={lowestprice}
+                key={i}
+              />
+            ))}
+          </MyGrid>
+          {text}
+        </div>
+        {
+          // )
+          //  : (
+          //   <div>
+          //     <PriceWarning setSimStage={setSimStage} />
+          //   </div>
+          // )}
+        }
       </div>
     );
   }
