@@ -25,7 +25,7 @@ type AppProps = {
 };
 
 const GetInfoContext = createContext(null);
-const socket = openSocket('https://finapp.aayushh.com');
+const socket = openSocket('http://localhost:8000');
 
 export default class App extends React.Component<{}, AppProps> {
   constructor(props: AppProps) {
