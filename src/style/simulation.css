@@ -141,6 +141,11 @@
   align-items: center;
 }
 
+.customButton.boothOption.disabledBooth {
+  background-color: rgb(255 255 255 / 0.9);
+  cursor: not-allowed;
+}
+
 .boothIcon {
   width: 25%;
   margin: 2%;

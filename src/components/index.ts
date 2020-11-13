@@ -14,7 +14,6 @@ import UserModal from './classes/UserModal';
 import TakeSimModal from './classes/TakeSimModal';
 import Hints from './shared-components/Hints';
 import SelectInput from './shared-components/SelectInput';
-import SimulationStart from './simulation/booth/SimulationStart';
 import RunSimulation from './simulation/booth/RunSimulation';
 import Login from './Login';
 import TestController from './simulation/test1/TestController'; //new
@@ -32,7 +31,6 @@ export {
   Modal,
   Hints,
   SelectInput,
-  SimulationStart,
   RunSimulation,
   InfoModal,
   UserModal,

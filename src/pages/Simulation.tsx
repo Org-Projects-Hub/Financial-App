@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { SimulationStart, TestController, RunSimulation } from '../components';
+import { TestController, RunSimulation } from '../components';
 import { Wrapper } from '../style/styled';
 import backgroundImg from '../assets/backgrounds/bg-home.svg';
 
@@ -15,10 +15,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />
       )}
-      {stage === 'simulation' && (
-        // <SimulationStart stage={stage} setStage={setStage} />
-        <RunSimulation />
-      )}
+      {stage === 'simulation' && <RunSimulation />}
       {stage === 'posttest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

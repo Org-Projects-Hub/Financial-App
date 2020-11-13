@@ -66,6 +66,7 @@ const RunSimulation = (): JSX.Element => {
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
   const [currentBooth, setCurrentBooth] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
+  const [visitedBooths, setVisitedBooths] = useState([]);
 
   /**
    * Extracts job options from Simulation.json and stores in "jobOptions"
@@ -125,6 +126,8 @@ const RunSimulation = (): JSX.Element => {
             <BoothSelect
               setSimStage={setSimStage}
               setCurrentBooth={setCurrentBooth}
+              visitedBooths={visitedBooths}
+              setVisitedBooths={setVisitedBooths}
               currentBalance={currentBalance}
             />
           </div>

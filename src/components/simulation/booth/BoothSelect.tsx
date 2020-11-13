@@ -39,6 +39,8 @@ const Option = styled.div`
 const BoothSelect = ({
   setSimStage,
   setCurrentBooth,
+  setVisitedBooths,
+  visitedBooths,
   currentBalance,
 }: any): JSX.Element => {
   // if (currentBalance <= 0) {
@@ -61,12 +63,17 @@ const BoothSelect = ({
       {boothsInfo.map((info: any, i: number) => (
         <div key={info.id}>
           <button
-            className="customButton boothOption"
+            className={`customButton boothOption ${
+              visitedBooths.includes(i) ? 'disabledBooth' : ''
+            }`}
             onClick={(e) => {
-              // goToBooth(e.currentTarget.children[1].className);
-              goToBooth(i);
+              if (!visitedBooths.includes(i)) {
+                setVisitedBooths([...visitedBooths, i]);
+                goToBooth(i);
+              }
             }}
           >
+            {console.log(visitedBooths.includes(i) ? 'disabledBooth' : '')}
             <img src={BoothIcons[i]} className="boothIcon" />
             <p className={info.id}>{info.category}</p>
           </button>
