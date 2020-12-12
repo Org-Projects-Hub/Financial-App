@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   text-align: center;
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 16vw auto 12vw;
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 10vh 8vh 60vh 5vh auto;
   background-image: url(${backgroundimg});
   background-repeat: no-repeat;
@@ -62,7 +62,7 @@ const Desc = styled.div`
     /*Sizing for laptop and desktop */
   }}
   @media only screen  and (min-width : 1024px) {
-    grid-column: 2 / span 1;
+    grid-column: 3 / span 6;
     grid-row: 3 / span 1;
     padding: 5%;
   }
@@ -95,7 +95,7 @@ const LoginPOS = styled.div`
     /*Sizing for laptop and desktop */
   }}
   @media only screen  and (min-width : 1024px) {
-    grid-column-start: 3;
+    grid-column: 4 / span 4;
     grid-row-start: 3;
     grid-row-end: 5;
     justify-self: end;

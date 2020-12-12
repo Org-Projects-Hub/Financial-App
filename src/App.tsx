@@ -149,22 +149,24 @@ export default class App extends React.Component<{}, AppProps> {
                 </GetInfoContext.Provider>
               </div>
             ) : (
-              <Switch>
-                <Route
-                  path="/signup"
-                  render={() => <Signup loggedin={loggedin} />}
-                />
-                <Route
-                  path="*"
-                  render={() => (
-                    <Startpage
-                      login={login}
-                      loggedin={this.state.loggedin}
-                      logout={logout}
-                    />
-                  )}
-                />
-              </Switch>
+              <div className=" bg-gradient">
+                <Switch>
+                  <Route
+                    path="/signup"
+                    render={() => <Signup loggedin={loggedin} />}
+                  />
+                  <Route
+                    path="*"
+                    render={() => (
+                      <Startpage
+                        login={login}
+                        loggedin={this.state.loggedin}
+                        logout={logout}
+                      />
+                    )}
+                  />
+                </Switch>
+              </div>
             )}
           </Router>
         ) : (

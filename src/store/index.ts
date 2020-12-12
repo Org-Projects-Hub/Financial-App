@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import rootReducer from './reducer/index';
 
 var mystore = createStore(rootReducer);
