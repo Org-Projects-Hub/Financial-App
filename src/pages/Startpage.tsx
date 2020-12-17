@@ -17,40 +17,44 @@ import { Login } from '../components';
  * login or creat their accounts
  */
 const Startpage = ({
-  login,
+  loginUser,
   loggedin,
   logout,
 }: {
-  login: any;
+  loginUser: any;
   loggedin: boolean;
   logout: any;
 }): JSX.Element => {
   return (
-    <div>
-      <Wrapper>
-        {loggedin ? (
-          <>
-            <Desc>
-              <DescTitle>Dollars & $ense Reality Fair</DescTitle>
-              <DescText>
-                The United Way of Northeast Louisiana Dollars & $ense Reality
-                Fair is a financial education simulation during which high
-                school students actively learn how to make better financial
-                decisions and gain knowledge of budgeting, saving, and spending.
-              </DescText>
-            </Desc>
-            <Logoutbutton onClick={() => logout()}> sign out </Logoutbutton>
-          </>
-        ) : (
-          <LoginPOS>
-            {/* Calling the LoginNumberTwo component with two props
-                      @prop login an APi function for logging a user in
-                      @prop loggedin a boolean to check if a user is logged in or not*/}
-            <Login login={login} loggedin={loggedin} />
-          </LoginPOS>
-        )}
-      </Wrapper>
-    </div>
+    <>
+      {loggedin ? (
+        <div>
+          <Wrapper>
+            <>
+              <Desc>
+                <DescTitle>Dollars & $ense Reality Fair</DescTitle>
+                <DescText>
+                  The United Way of Northeast Louisiana Dollars & $ense Reality
+                  Fair is a financial education simulation during which high
+                  school students actively learn how to make better financial
+                  decisions and gain knowledge of budgeting, saving, and
+                  spending.
+                </DescText>
+              </Desc>
+              <Logoutbutton onClick={() => logout()}> sign out </Logoutbutton>
+            </>
+          </Wrapper>
+        </div>
+      ) : (
+        // <LoginPOS>
+        //   {/* Calling the LoginNumberTwo component with two props
+        //           @prop login an APi function for logging a user in
+        //           @prop loggedin a boolean to check if a user is logged in or not*/}
+        //   <Login login={login} loggedin={loggedin} />
+        // </LoginPOS>
+        <Login loginUser={loginUser} loggedin={loggedin} />
+      )}
+    </>
   );
 };
 

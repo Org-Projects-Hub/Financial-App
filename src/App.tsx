@@ -25,7 +25,7 @@ type AppProps = {
 };
 
 const GetInfoContext = createContext(null);
-const socket = openSocket('http://localhost:8000');
+// const socket = openSocket('http://localhost:8000');
 
 export default class App extends React.Component<{}, AppProps> {
   constructor(props: AppProps) {
@@ -45,7 +45,7 @@ export default class App extends React.Component<{}, AppProps> {
       .then((res) => {
         if (res.success) {
           this.setState({ loggedin: true, user: res.user });
-          this.socketSubscribe(res.user.email);
+          // this.socketSubscribe(res.user.email);
         } else this.setState({ loggedin: false });
       })
       .catch((err) => alert(err))
@@ -56,10 +56,15 @@ export default class App extends React.Component<{}, AppProps> {
   };
 
   socketSubscribe = (email: string): void => {
-    socket.emit('join', email);
-    socket.on('msg', (res: any) => {
-      alert(`New Student Requested to Join a Class!`);
-    });
+    // socket.emit('join', email);
+    // socket.on('msg', (res: any) => {
+    //   alert(`New Student Requested to Join a Class!`);
+    // });
+  };
+
+  loginUser = (res: any) => {
+    this.setState({ loggedin: true, user: res.user });
+    setLocalStorage('token', res.token);
   };
 
   componentWillMount() {
@@ -68,6 +73,20 @@ export default class App extends React.Component<{}, AppProps> {
 
   render(): JSX.Element {
     const login = (e: React.FormEvent<HTMLSelectElement>) => {
+      // try {
+      //   let res = await api.login(e);
+      //   if (res.success) {
+      //     this.setState({ loggedin: true, user: res.user });
+      //     setLocalStorage('token', res.token);
+      //     this.socketSubscribe(res.user.email);
+      //     return null;
+      //   } else {
+      //     alert(res.message);
+      //     return res.message;
+      //   }
+      // } catch (err) {
+      //   alert(err);
+      // }
       api
         .login(e)
         .then((res) => {
@@ -75,8 +94,10 @@ export default class App extends React.Component<{}, AppProps> {
             this.setState({ loggedin: true, user: res.user });
             setLocalStorage('token', res.token);
             this.socketSubscribe(res.user.email);
+            return null;
           } else {
             alert(res.message);
+            return res.message;
           }
         })
         .catch((err) => alert(err));
@@ -139,7 +160,7 @@ export default class App extends React.Component<{}, AppProps> {
                       path="*"
                       render={() => (
                         <Startpage
-                          login={login}
+                          loginUser={this.loginUser}
                           loggedin={this.state.loggedin}
                           logout={logout}
                         />
@@ -159,7 +180,7 @@ export default class App extends React.Component<{}, AppProps> {
                     path="*"
                     render={() => (
                       <Startpage
-                        login={login}
+                        loginUser={this.loginUser}
                         loggedin={this.state.loggedin}
                         logout={logout}
                       />
