@@ -1,52 +1,37 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-} from 'react-router-dom';
-import LoginLogo from '../assets/images/UnitedWayLogo.png';
-import LoginBg from '../assets/backgrounds/bg-signup.png';
-import api from '../api';
+import { NavLink } from 'react-router-dom';
+import LoginBg from '../assets/backgrounds/bg-signup.png'; // The png image behind the login form
+import api from '../api'; // api is used to send login request to backend
 
-const Img = styled.img`
-  borderradius: '1em';
-  overflow: 'hidden';
-  width: auto;
-  width: 75%;
-`;
+/**
+ * This component contains the Login form shown in "/login" page
+ * @param loginUser A function passed down by App.tsx to set the token in the browser and update the loggedin state of the App
+ */
 
-const Login = ({
-  loginUser,
-  loggedin,
-}: {
-  loginUser: any;
-  loggedin: any;
-}): JSX.Element => {
+const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMessage, setErrMessage] = useState(null);
 
+  /**
+   * Function that login the user in the browser. Called by form submit
+   * Uses the loginUser function passed down by App.tsx
+   */
   const login = () => {
     api
       .login({ email, password })
       .then((res) => {
+        // If login is not successful, show error beneath the form inputs
         if (res.success) {
           loginUser(res);
         } else {
           setErrMessage(res.message);
-          return res.message;
         }
       })
       .catch((err) => alert(err));
   };
 
   return (
-    /* for for entire login card 
-        @function onSubmit preventDefault prevents blank data,
-             login is the api function that sets the users email and password
-        */
     <div style={{ height: '100vh', display: 'flex' }}>
       <div className="login-form-container">
         <img src={LoginBg} style={{ height: '100%' }} />
@@ -58,9 +43,7 @@ const Login = ({
             login();
           }}
         >
-          {/* <Img src={LoginLogo} alt="Origin Logo" /> */}
-
-          {/* sets the uers email to the input value */}
+          {/* sets the users email to the input value */}
           <input
             className="login-input"
             placeholder={'Username or Email'}
@@ -70,7 +53,7 @@ const Login = ({
             }}
           />
 
-          {/* sets the uers password to the input value */}
+          {/* sets the users password to the input value */}
           <input
             className="login-input"
             placeholder={'Password'}
@@ -81,13 +64,16 @@ const Login = ({
             }}
           />
 
+          {/* Div containing the login button and the signup option */}
+
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              marginTop: `${errMessage ? '0' : '1em'}`,
+              marginTop: `${errMessage ? '0' : '1em'}`, // Margin based on existence of error message
             }}
           >
+            {/* p Only Displayed when there is an error while logging in */}
             <p
               hidden={errMessage ? false : true}
               style={{
@@ -117,13 +103,16 @@ const Login = ({
             </div>
           </div>
         </form>
+        {/*
+        
+        To be Done
         <div className="topic">
           <p>Dollars & $ense Reality Fair</p>
           <p>
             Login to Join United Way NELA's financial education simulation. Have
             fun!
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

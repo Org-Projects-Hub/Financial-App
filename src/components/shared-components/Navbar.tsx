@@ -69,7 +69,7 @@ const Navbar = ({
         <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
           <Icon src={IconGear} alt="" />
         </NavLink>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/home">
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/">
           <Icon src={Home} alt="" />
         </NavLink>
         <NavLink

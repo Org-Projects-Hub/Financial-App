@@ -10,12 +10,15 @@ import { createStore, applyMiddleware } from 'redux';
 import store from './store';
 
 import Loader from './components/shared-components/Loader';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(<Loader />, document.getElementById('root'));
 setTimeout(() => {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>,
     document.getElementById('root')
   );

@@ -123,25 +123,25 @@ const Button = styled.button`
   }
 `;
 
-const HomeButton = styled(Button)`
-  background-color: white;
-  top: 5%;
-  left: 6%;
-`;
+// const HomeButton = styled(Button)`
+//   background-color: white;
+//   top: 5%;
+//   left: 6%;
+// `;
 
-const BackButton = styled(HomeButton)``;
+// const BackButton = styled(HomeButton)``;
 
-const AddClass = styled(Button)`
-  color: white;
-  bottom: 18%;
-  right: 2%;
+// const AddClass = styled(Button)`
+//   color: white;
+//   bottom: 18%;
+//   right: 2%;
 
-  @media screen and (max-width: 879px) {
-    position: relative;
-    width: 50vw;
-    margin: 2% 3%;
-  }
-`;
+//   @media screen and (max-width: 879px) {
+//     position: relative;
+//     width: 50vw;
+//     margin: 2% 3%;
+//   }
+// `;
 
 const SettingsButton = styled.img`
   text-align: center;
@@ -196,13 +196,13 @@ const NavButton = styled.button`
   }
 `;
 
-const ResourcesButton = styled(AddClass)`
-  bottom: 10%;
-`;
+// const ResourcesButton = styled(Button)`
+//   bottom: 10%;
+// `;
 
-const AddStudent = styled(ResourcesButton)`
-  background-color: #d67762;
-`;
+// const AddStudent = styled(ResourcesButton)`
+//   background-color: #d67762;
+// `;
 
 const TakeSim = styled(Button)`
   position: fixed;
@@ -254,12 +254,12 @@ export {
   Border,
   Container,
   Button,
-  HomeButton,
-  BackButton,
-  AddClass,
+  Button as HomeButton,
+  Button as BackButton,
+  Button as AddClass,
   SettingsButton,
-  ResourcesButton,
-  AddStudent,
+  // ResourcesButton,
+  // AddStudent,
   TakeSim,
   ClassDiv,
 };

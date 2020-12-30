@@ -269,3 +269,21 @@ a:visited {
   cursor: not-allowed;
   border: 1px solid #005291b0;
 }
+
+/* Added by Ashish */
+
+.general-font {
+  font-family: 'Roboto';
+}
+
+.bold-font {
+  font-family: 'Roboto Condensed';
+}
+
+.white-text {
+  color: white !important;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

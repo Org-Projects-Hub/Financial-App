@@ -45,15 +45,15 @@ const Startpage = ({
             </>
           </Wrapper>
         </div>
-      ) : (
-        // <LoginPOS>
-        //   {/* Calling the LoginNumberTwo component with two props
-        //           @prop login an APi function for logging a user in
-        //           @prop loggedin a boolean to check if a user is logged in or not*/}
-        //   <Login login={login} loggedin={loggedin} />
-        // </LoginPOS>
-        <Login loginUser={loginUser} loggedin={loggedin} />
-      )}
+      ) : null
+      // <LoginPOS>
+      //   {/* Calling the LoginNumberTwo component with two props
+      //           @prop login an APi function for logging a user in
+      //           @prop loggedin a boolean to check if a user is logged in or not*/}
+      //   <Login login={login} loggedin={loggedin} />
+      // </LoginPOS>
+      // <Login loginUser={loginUser} />
+      }
     </>
   );
 };
