@@ -103,7 +103,9 @@ const TestLayout = (props: Props): JSX.Element => {
                     }
                     onClick={() => props.nav.next()}
                   >
-                    Next
+                    {props.data.current != props.data.questions.length - 1
+                      ? 'Next'
+                      : 'Finish'}
                   </NavButton>
                 </GridColItem>
               </Grid>
