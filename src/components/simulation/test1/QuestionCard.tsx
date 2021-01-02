@@ -12,7 +12,7 @@ interface Props {
   num: number;
   q: string;
   a: string[];
-  sel: string;
+  sel: number;
   total: number;
   save: Function;
 }
@@ -32,9 +32,10 @@ const QuestionCard = (props: Props): JSX.Element => {
           {props.a.map((answer: string, i: any) => (
             <li key={i}>
               <OptionButton
-                onClick={(e: any) => props.save(props.num, e.target.value)}
+                onClick={(e: any) => props.save(props.num, e.target.id)}
+                id={i}
                 value={answer}
-                disabled={props.sel === answer}
+                disabled={props.a[props.sel] === answer}
               >
                 {answer}
               </OptionButton>

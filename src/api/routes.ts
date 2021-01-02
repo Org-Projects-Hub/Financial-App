@@ -20,6 +20,12 @@ const API: any = {
   answer: `${URL}/answer`,
   submitAnswers: `${URL}/answer`,
   getAnswers: `${URL}/answer`,
+
+  //Simulation
+  createOrRetriveSimulation: `${URL}/simulation`,
+  updateSimulation: `${URL}/simulation`,
+  updateTest: `${URL}/simulation/test`,
+  retriveTest: `${URL}/simulation`,
 };
 
 export { URL, API };

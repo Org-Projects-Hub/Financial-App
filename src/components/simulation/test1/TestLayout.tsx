@@ -22,11 +22,9 @@ const TestLayout = (props: Props): JSX.Element => {
   //window size change
   useEffect(function () {
     window.addEventListener('resize', handleWindowSizeChange);
-    console.log('componentwillmount');
 
     return function cleanup() {
       window.removeEventListener('resize', handleWindowSizeChange);
-      console.log('componentwillUNmount');
     };
   });
 
@@ -81,7 +79,7 @@ const TestLayout = (props: Props): JSX.Element => {
                 sel={
                   props.data.selections[props.data.current] === undefined
                     ? null
-                    : props.data.selections[props.data.current].value
+                    : props.data.selections[props.data.current]
                 }
                 total={props.data.questions.length}
                 save={props.save}
@@ -101,7 +99,11 @@ const TestLayout = (props: Props): JSX.Element => {
                     disabled={
                       props.data.selections[props.data.current] === undefined
                     }
-                    onClick={() => props.nav.next()}
+                    onClick={() =>
+                      props.nav.next(
+                        props.data.current == props.data.questions.length - 1
+                      )
+                    }
                   >
                     {props.data.current != props.data.questions.length - 1
                       ? 'Next'
