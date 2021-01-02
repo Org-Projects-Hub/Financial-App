@@ -68,7 +68,7 @@ export default {
     return authPut(API.updateTest, { sim_id, testType, answers });
   },
 
-  retriveTest: function ({ sim_id, testType }: any) {
+  retriveTest: function (sim_id: string, testType: string) {
     return authGet(API.retriveTest, `/${testType}/${sim_id}`);
   },
 };

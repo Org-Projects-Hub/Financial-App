@@ -74,9 +74,9 @@ const NavButton = styled.button`
 
   margin-top: 1vh;
 
-  &:focus {
-    background-color: #7da2d6;
-  }
+  // &:focus {
+  //   background-color: #7da2d6;
+  // }
 
   &:hover {
     cursor: pointer;

@@ -1,28 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Tests from '../../../json/Tests.json';
 import TestLayout from './TestLayout';
 import api from '../../../api';
+import useStateCallback from '../../../utils/useStateCallback';
 
 interface Props {
   stage: string;
   setStage: Function;
   sim_id: string;
 }
-const TestController = (props: Props): JSX.Element => {
-  //get questions & answers
-  const questionList = Tests.questions;
-  const answerList = Tests.answers;
-  const [qNum, setQNum] = useState(0); //question number
-  const [selections, setSelections] = useState(new Array(11)); //selected answers
-  const [answered, setAnswered] = useState('fade-out'); //for transition
+
+const useBackendConnection = (sim_id: string, stage: string) => {
+  const [qNum, setQNum] = useStateCallback(null); //question number
+  const [selections, setSelections] = useStateCallback(new Array(11)); //selected answers
+  const [loading, setLoading] = useState(true);
 
   let store: any = useRef();
 
   useEffect(() => {
-    store.current = { ...props, selections };
+    store.current = { sim_id, stage, selections };
     window.addEventListener('unload', () => {
       submitAnswers();
     });
+
+    retriveTest();
 
     return () => {
       submitAnswers(
@@ -41,9 +42,59 @@ const TestController = (props: Props): JSX.Element => {
     store.current = { ...store.current, selections };
   }, [selections]);
 
-  useEffect(() => {
-    store.current = { ...store.current, ...props };
-  }, [props]);
+  const changePointer = (answers: any) => {
+    let current = answers.length - 1;
+
+    for (let i = 0; i < answers.length; i++) {
+      if (!answers[i]) {
+        current = i;
+        break;
+      }
+    }
+
+    setQNum(current, () => setLoading(false));
+  };
+
+  const retriveTest = () => {
+    api
+      .retriveTest(sim_id, stage)
+      .then((res: any) => {
+        console.log(res);
+
+        setSelections(res, changePointer);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const submitAnswers = (
+    id: string = sim_id,
+    testType: string = stage,
+    answers = selections
+  ) => {
+    api.updateTest({
+      sim_id: id,
+      testType,
+      answers,
+    });
+  };
+
+  return { qNum, setQNum, selections, setSelections, submitAnswers, loading };
+};
+
+const TestController = (props: Props): JSX.Element => {
+  //get questions & answers
+  const questionList = Tests.questions;
+  const answerList = Tests.answers;
+  const {
+    qNum,
+    setQNum,
+    selections,
+    setSelections,
+    submitAnswers,
+    loading,
+  } = useBackendConnection(props.sim_id, props.stage);
+
+  const [answered, setAnswered] = useState('fade-out'); //for transition
 
   /**
    * Called by Save when answer selected, updates states, saves user selection
@@ -55,18 +106,6 @@ const TestController = (props: Props): JSX.Element => {
     temp[qNumber] = answer;
 
     setSelections(temp);
-  };
-
-  const submitAnswers = (
-    sim_id = props.sim_id,
-    testType = props.stage,
-    answers = selections
-  ) => {
-    api.updateTest({
-      sim_id,
-      testType,
-      answers,
-    });
   };
 
   /**
@@ -132,7 +171,7 @@ const TestController = (props: Props): JSX.Element => {
       <button className="button" onClick={() => props.setStage('simulation')}>
         To Simulation
       </button>
-      <TestLayout nav={nav} save={Save} data={data} />
+      {!loading ? <TestLayout nav={nav} save={Save} data={data} /> : null}
     </>
   );
 };
