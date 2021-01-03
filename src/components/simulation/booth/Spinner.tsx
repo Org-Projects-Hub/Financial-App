@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '../../../api';
 import SpinnerSVG from '../../../assets/spinner.svg';
 import data from '../../../json/Simulation.json';
 
@@ -31,7 +32,7 @@ const Spinner = ({
   };
 
   /**
-   * Periodically changes the option displayed on screen
+   * Periodically changes the option displayed on screen by increasing value of "selection"
    */
   useEffect(() => {
     if (spinning) {
@@ -46,36 +47,31 @@ const Spinner = ({
    */
   const nextStep = () => {
     setSpinning(false);
-    getCareer();
-    setSimStage('Job-Selected');
-  };
+    api
+      .getJobDetail(jobOptions[selection].replaceAll('/', '_')) // String needs to be fixed before sending to backend
+      .then((occupation) => {
+        let y = occupation.annual_salary / 12; // Monthly salary
+        let { training, credit } = occupation;
+        setMyCareer({
+          position: jobOptions[selection],
+          monthlySalary: y.toFixed(2),
+          annualSalary: occupation.annual_salary,
+          hourlyRate: y / 160,
+          federalTax: y * 0.15,
+          socialSecurity: y * 0.06,
+          medicare: y * 0.014,
+          stateTax: y * 0.033,
+          insurance: y * 0.035,
+          education: 'Bachelor',
+          training,
+          credit,
+          afterTaxMontlySalary:
+            y - y * (0.15 + 0.06 + 0.014 + 0.033 + 0.035) - training - credit,
+        });
 
-  /**
-   * Called by nextStep to get career data from Simulation.json
-   * sets career in RunSimulation.tsx
-   */
-  const getCareer = () => {
-    for (let job of data.jobs) {
-      for (let occupation of job.occupations) {
-        if (occupation.position === jobOptions[selection]) {
-          let y = occupation.grossmonthly;
-          setMyCareer({
-            position: occupation.position,
-            monthlySalary: y,
-            annualSalary: y * 12,
-            hourlyRate: y / 160,
-            federalTax: y * 0.15,
-            socialSecurity: y * 0.06,
-            medicare: y * 0.014,
-            stateTax: y * 0.033,
-            education: job.reqed,
-            afterTaxMontlySalary:
-              y - y * 0.15 - y * 0.06 - y * 0.014 - y * 0.033,
-          });
-          return;
-        }
-      }
-    }
+        setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

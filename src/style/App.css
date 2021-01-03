@@ -283,6 +283,9 @@ a:visited {
 .white-text {
   color: white !important;
 }
+.blue-text {
+  color: #005191 !important;
+}
 
 .uppercase {
   text-transform: uppercase;

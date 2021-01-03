@@ -8,6 +8,7 @@ import JobSummary from './JobSummary';
 import data from '../../../json/Simulation.json'; // Data related to jobs
 import BoothSelect from './BoothSelect';
 import Booth from './Booth';
+import api from '../../../api';
 
 const Wrapper = styled.div`
   display: grid;
@@ -68,33 +69,31 @@ const RunSimulation = (): JSX.Element => {
   const [currentBalance, setCurrentBalance] = useState(0);
   const [visitedBooths, setVisitedBooths] = useState([]);
 
-  /**
-   * Extracts job options from Simulation.json and stores in "jobOptions"
-   */
-  const getJobOptions = () => {
-    let tempJobs = new Array();
-    for (let job of data.jobs) {
-      for (let occupation of job.occupations) {
-        tempJobs.push(occupation.position);
-      }
-    }
-
-    setJobOptions(tempJobs);
-  };
-
   useEffect(() => {
-    getJobOptions();
+    // Get jon names from backend and store it in jobOptions
+    api
+      .getJobNames()
+      .then((res) => {
+        setJobOptions(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
+  /**
+   * Update Salary after a career is selected
+   */
   useEffect(() => {
-    console.log(myCareer);
     setCurrentBalance(myCareer.afterTaxMontlySalary);
   }, [myCareer]);
 
+  /**
+   * Decreases the value of "currentBalance" after a purchase in "Booth" component
+   * @param newExpense The dollar amount of a new expense
+   */
   const purchase = (newExpense: number) => {
     setCurrentBalance(currentBalance - newExpense);
   };
-  console.log(simStage);
+
   return (
     <Wrapper>
       <ScreenCenter>

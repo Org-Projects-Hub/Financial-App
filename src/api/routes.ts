@@ -26,6 +26,9 @@ const API: any = {
   updateSimulation: `${URL}/simulation`,
   updateTest: `${URL}/simulation/test`,
   retriveTest: `${URL}/simulation`,
+
+  retriveJobNames: `${URL}/jobs/names`,
+  retriveJobDetail: `${URL}/jobs/`,
 };
 
 export { URL, API };

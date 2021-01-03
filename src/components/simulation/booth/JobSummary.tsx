@@ -24,6 +24,7 @@ const JobSummary = ({ career }: any): JSX.Element => {
   const socialS = career.socialSecurity.toFixed(2);
   const medicare = career.medicare.toFixed(2);
   const sTax = career.stateTax.toFixed(2);
+  const insurance = career.insurance.toFixed(2);
   const edu = career.education;
   const position = career.position;
 
@@ -42,8 +43,9 @@ const JobSummary = ({ career }: any): JSX.Element => {
   return (
     <Card2>
       <span style={{ fontWeight: 500, fontSize: '1.15em' }}>
-        You were hired as {grammar} {position}, which requires an education
-        level of at least a {edu}!
+        You were hired as {grammar}{' '}
+        <span className="blue-text">{position}</span>, which requires an
+        education level of at least a {edu}!
       </span>{' '}
       <br />
       <hr />
@@ -68,6 +70,15 @@ const JobSummary = ({ career }: any): JSX.Element => {
         </li>
         <li>
           State Tax: <Red>${sTax}</Red>
+        </li>
+        <li>
+          Insurance: <Red>${insurance}</Red>
+        </li>
+        <li>
+          Credit Card Debt: <Red>${career.credit}</Red>
+        </li>
+        <li>
+          Continuing Education/Training: <Red>${career.training}</Red>
         </li>
       </ul>
       <br />

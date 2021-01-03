@@ -71,4 +71,12 @@ export default {
   retriveTest: function (sim_id: string, testType: string) {
     return authGet(API.retriveTest, `/${testType}/${sim_id}`);
   },
+
+  getJobNames: function () {
+    return authGet(API.retriveJobNames, '');
+  },
+
+  getJobDetail: function (jobName: string) {
+    return authGet(API.retriveJobDetail, jobName);
+  },
 };
