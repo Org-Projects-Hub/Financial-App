@@ -37,7 +37,7 @@ const UserInfo = styled.div`
 export interface career {
   position: String;
   monthlySalary: number;
-  annualSalary: number;
+  annual_salary: number;
   hourlyRate: number;
   federalTax: number;
   socialSecurity: number;
@@ -45,10 +45,13 @@ export interface career {
   stateTax: number;
   education: string;
   afterTaxMontlySalary: number;
+  training: number;
+  credit: number;
+  insurance: number;
 }
 
 const tempCareer = {
-  annualSalary: 31137.600000000002,
+  annual_salary: 31137.600000000002,
   education: 'HighSchool Diploma',
   federalTax: 389.22,
   hourlyRate: 16.2175,
@@ -58,25 +61,34 @@ const tempCareer = {
   socialSecurity: 155.68800000000002,
   stateTax: 85.62840000000001,
   afterTaxMontlySalary: 1190.235648,
+  training: 0,
+  credit: 0,
+  insurance: 0,
 };
 
-const RunSimulation = (): JSX.Element => {
-  const [simStage, setSimStage] = useState('Job-Selection'); //Used for switching between the stages of the simulation
+const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
+  const [simStage, setSimStage] = useState(null); //Used for switching between the stages of the simulation
 
-  const [jobOptions, setJobOptions] = useState([]); // Job options available to players
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
   const [currentBooth, setCurrentBooth] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [visitedBooths, setVisitedBooths] = useState([]);
 
+  /**
+   * Check if the user has already performed job selection. If so, don't let them select a new job
+   */
   useEffect(() => {
-    // Get jon names from backend and store it in jobOptions
     api
-      .getJobNames()
+      .getAssignedJob(sim_id)
       .then((res) => {
-        setJobOptions(res);
+        let { jobSelected } = res;
+        if (jobSelected) getJobDetail(jobSelected);
+        else setSimStage('Job-Selection');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setSimStage('Job-Selection');
+        console.log(err);
+      });
   }, []);
 
   /**
@@ -85,6 +97,38 @@ const RunSimulation = (): JSX.Element => {
   useEffect(() => {
     setCurrentBalance(myCareer.afterTaxMontlySalary);
   }, [myCareer]);
+
+  /**
+   * Gets details of the user selected job from backend and sets simStage to "Job-Selected"
+   * @param jobname Name of the job selected by user
+   */
+  const getJobDetail = (jobname: string) => {
+    api
+      .getJobDetail(jobname.replaceAll('/', '_')) // String needs to be fixed before sending to backend
+      .then((occupation: career) => {
+        let y: number = occupation.annual_salary / 12; // Monthly salary
+        let { training, credit } = occupation;
+        setMyCareer({
+          position: jobname,
+          monthlySalary: parseFloat(y.toFixed(2)),
+          annual_salary: occupation.annual_salary,
+          hourlyRate: y / 160,
+          federalTax: y * 0.15,
+          socialSecurity: y * 0.06,
+          medicare: y * 0.014,
+          stateTax: y * 0.033,
+          insurance: y * 0.035,
+          education: 'Bachelor',
+          training,
+          credit,
+          afterTaxMontlySalary:
+            y - y * (0.15 + 0.06 + 0.014 + 0.033 + 0.035) - training - credit,
+        });
+
+        setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
+      })
+      .catch((err) => console.log(err));
+  };
 
   /**
    * Decreases the value of "currentBalance" after a purchase in "Booth" component
@@ -98,11 +142,7 @@ const RunSimulation = (): JSX.Element => {
     <Wrapper>
       <ScreenCenter>
         {simStage === 'Job-Selection' && (
-          <Spinner
-            jobOptions={jobOptions}
-            setMyCareer={setMyCareer}
-            setSimStage={setSimStage}
-          />
+          <Spinner getJobDetail={getJobDetail} />
         )}
         {simStage === 'Job-Selected' && (
           <>

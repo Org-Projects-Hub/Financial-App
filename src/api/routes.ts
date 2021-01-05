@@ -25,10 +25,12 @@ const API: any = {
   createOrRetriveSimulation: `${URL}/simulation`,
   updateSimulation: `${URL}/simulation`,
   updateTest: `${URL}/simulation/test`,
-  retriveTest: `${URL}/simulation`,
+  retriveTest: `${URL}/simulation/test`,
 
   retriveJobNames: `${URL}/jobs/names`,
   retriveJobDetail: `${URL}/jobs/`,
+  assignJob: `${URL}/simulation/job`,
+  getAssignedJob: `${URL}/simulation/job/`,
 };
 
 export { URL, API };

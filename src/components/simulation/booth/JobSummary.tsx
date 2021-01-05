@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Card } from '../../../style/styled';
 import styled from 'styled-components';
+import { career } from './RunSimulation';
 
 const Red = styled.span`
   color: red;
@@ -17,9 +18,11 @@ const Card2 = styled(Card)`
   min-width: 60vw;
 `;
 
-const JobSummary = ({ career }: any): JSX.Element => {
-  const anSal = career.annualSalary.toFixed(2);
-  const grossSal = career.annualSalary / 12;
+const JobSummary = ({ career }: { career: career }): JSX.Element => {
+  console.log(career);
+
+  const anSal = career.annual_salary.toFixed(2);
+  const grossSal = career.annual_salary / 12;
   const fedTax = career.federalTax.toFixed(2);
   const socialS = career.socialSecurity.toFixed(2);
   const medicare = career.medicare.toFixed(2);

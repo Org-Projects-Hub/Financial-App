@@ -79,4 +79,12 @@ export default {
   getJobDetail: function (jobName: string) {
     return authGet(API.retriveJobDetail, jobName);
   },
+
+  assignJob: function (sim_id: string, jobSelected: string) {
+    return authPost(API.assignJob, { sim_id, jobSelected });
+  },
+
+  getAssignedJob: function (sim_id: string) {
+    return authGet(API.getAssignedJob, sim_id);
+  },
 };

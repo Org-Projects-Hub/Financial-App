@@ -9,7 +9,7 @@ import api from '../api';
 const Simulation = ({ user }: { user: any }): JSX.Element => {
   //const [stage, setStage] = useState("pretest");
   const [stage, setStage] = useState(null);
-  const [sim_id, set_sim_id] = useState(null);
+  const [sim_id, set_sim_id] = useState<string>(null);
 
   useEffect(() => {
     api
@@ -34,7 +34,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
       {stage === 'pretest' && (
         <TestController sim_id={sim_id} stage={stage} setStage={setStage} />
       )}
-      {stage === 'simulation' && <RunSimulation />}
+      {stage === 'simulation' && <RunSimulation sim_id={sim_id} />}
       {stage === 'posttest' && (
         <TestController sim_id={sim_id} stage={stage} setStage={setStage} />
       )}
