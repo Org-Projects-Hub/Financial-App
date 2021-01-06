@@ -1,17 +1,50 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo, useCallback } from 'react';
 import { Card, Grid } from '../style/styled';
 import api from '../api';
 
 import editButton from '../assets/icons/button-edit.svg';
 import buttonX from '../assets/icons/button-x.svg';
 import checkButton from '../assets/icons/button-check.svg';
+import { parse } from 'url';
 
 const SettingItem = (props: any): JSX.Element => {
-  let { name, value: defaultValue, field, getUserInfo } = props;
+  let {
+    name,
+    value: defaultValue,
+    field,
+    getUserInfo,
+    updatable,
+    userEmail,
+  } = props;
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(defaultValue);
   const [loading, setLoading] = useState(false);
   const iconClass = 'material-icons pointer justify-end';
+
+  const numberToPhoneNo = (number = value) => {
+    let parsedNo: string = '';
+
+    for (let i = 0; i < number.length; i++) {
+      parsedNo += number[i];
+
+      if (i == 2 || i == 5) parsedNo += '-';
+    }
+
+    if (parsedNo.charAt(parsedNo.length - 1) == '-')
+      parsedNo = parsedNo.substring(0, parsedNo.length - 1);
+    return parsedNo;
+  };
+
+  const phoneNoToNumber = (phoneNo: string): string => {
+    console.log(phoneNo);
+    phoneNo = phoneNo.replaceAll('-', '');
+    console.log(phoneNo);
+
+    if (isNaN(Number(phoneNo))) return '';
+
+    return phoneNo;
+  };
+
   return (
     <>
       <div style={{ minHeight: '4em', display: 'grid' }}>
@@ -26,85 +59,73 @@ const SettingItem = (props: any): JSX.Element => {
             {name}
           </span>
           {!edit ? (
-            <span className="bold text-md justify-start">{defaultValue}</span>
+            <span className="bold text-md justify-start">
+              {field == 'phone' ? numberToPhoneNo(defaultValue) : defaultValue}
+            </span>
           ) : (
             <input
-              defaultValue={value}
+              value={field == 'phone' ? numberToPhoneNo() : value}
               name="email"
-              onChange={(e: any) => setValue(e.target.value)}
+              onChange={(e: any) => {
+                let { value } = e.target;
+
+                if (field == 'phone') value = phoneNoToNumber(e.target.value);
+
+                if (value.length <= 10) setValue(value);
+              }}
             />
           )}
 
-          {!edit ? (
-            <img
-              src={editButton}
-              style={{ height: '1.75em', cursor: 'pointer' }}
-              onClick={() => setEdit(true)}
-            />
-          ) : (
-            // <button className="justify-end btn" onClick={() => setEdit(true)}>
-            //   <i className={iconClass}>edit</i>{' '}
-            // </button>
-            <span className="justify-end">
-              <img
-                src={buttonX}
-                style={{
-                  height: '1.75em',
-                  cursor: 'pointer',
-                  marginRight: '.5em',
-                }}
-                onClick={() => setEdit(false)}
-              />
-              {/* {' '}
-                <i
-                  className={iconClass + ' txt-green'}
-                  onClick={() => {
-                    setEdit(false);
-                  }}
-                >
-                  clear
-                </i> */}
-              <img
-                src={checkButton}
-                style={{ height: '1.75em', cursor: 'pointer' }}
-                onClick={() => {
-                  api
-                    .updateInfo({ field, value })
-                    .then((res) => {
-                      //call rerender
-                      if (res.success) getUserInfo();
-                      else setValue(defaultValue);
-                    })
-                    .catch((err) => {
-                      alert(err);
-                      setValue(defaultValue);
-                    })
-                    .finally(() => setEdit(false));
-                }}
-              />
-              {/* <button className="btn">
-                <i
-                  className={iconClass + ' txt-green'}
-                  onClick={() => {
-                    api
-                      .updateInfo({ field, value })
-                      .then((res) => {
-                        //call rerender
-                        if (res.success) getUserInfo();
-                        else setValue(defaultValue);
-                      })
-                      .catch((err) => {
-                        alert(err);
-                        setValue(defaultValue);
-                      })
-                      .finally(() => setEdit(false));
-                  }}
-                >
-                  done
-                </i>
-              </button> */}
-            </span>
-          )}
+          {updatable ? (
+            <>
+              {!edit ? (
+                <img
+                  src={editButton}
+                  style={{ height: '1.75em', cursor: 'pointer' }}
+                  onClick={() => setEdit(true)}
+                />
+              ) : (
+                <span className="justify-end">
+                  <img
+                    src={buttonX}
+                    style={{
+                      height: '1.75em',
+                      cursor: 'pointer',
+                      marginRight: '.5em',
+                    }}
+                    onClick={() => setEdit(false)}
+                  />
+
+                  <img
+                    src={checkButton}
+                    style={{
+                      height: '1.75em',
+                      cursor: value.length !== 10 ? 'not-allowed' : 'pointer',
+                    }}
+                    onClick={(event) => {
+                      event.preventDefault();
+
+                      if (value.length == 10) {
+                        api
+                          .updateInfo({ field, value, email: userEmail })
+                          .then((res) => {
+                            if (res.success) getUserInfo();
+                            else setValue(defaultValue);
+                          })
+                          .catch((err) => {
+                            alert(
+                              'Something went wrong on our end. Please try again!'
+                            );
+                            setValue(defaultValue);
+                          })
+                          .finally(() => setEdit(false));
+                      }
+                    }}
+                  />
+                </span>
+              )}{' '}
+            </>
+          ) : null}
         </Grid>
       </div>
       <hr />

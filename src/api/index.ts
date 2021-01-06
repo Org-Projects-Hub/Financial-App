@@ -27,8 +27,8 @@ export default {
   auth: function () {
     return authPost(API.auth, {});
   },
-  updateInfo: function ({ field, value }: any) {
-    return authPost(API.updateInfo, { field, value });
+  updateInfo: function ({ email, field, value }: any) {
+    return authPut(API.updateInfo, { field, value, email });
   },
   getClass: function () {
     return authGet(API.getClass, '');

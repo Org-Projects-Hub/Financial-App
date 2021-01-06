@@ -6,7 +6,7 @@ const API: any = {
   login: URL + '/login',
   signup: URL + '/signup',
   auth: `${URL}/auth`,
-  updateInfo: `${URL}/update-info`,
+  updateInfo: `${URL}/users`,
   getClass: `${URL}/class`,
 
   //teacher

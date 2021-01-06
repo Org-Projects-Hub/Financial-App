@@ -1,31 +1,8 @@
 import React from 'react';
 import { Wrapper, Grid, Card } from '../style/styled';
-import styled from 'styled-components';
 import { SettingItem, InfoModal } from '../components';
-import settingSvg from '../assets/settings.svg';
 import backgroundImg from '../assets/backgrounds/bg-settings.svg';
 
-const Wrap = styled(Wrapper)`
-  text-align: center;
-  display: grid;
-  grid-template-columns: 70% auto;
-  background-position: left center;
-  @media only screen and (max-width: 690px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const ImgContainer = styled.div`
-  text-align: center;
-  display: grid;
-  min-width: 100%;
-  background-image: url(${settingSvg});
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left center;
-`;
-
-// const Intro = () => ;
 const Setting = ({
   logout,
   user,
@@ -35,16 +12,22 @@ const Setting = ({
   user: any;
   getUserInfo: any;
 }): JSX.Element => {
-  const fields = [
+  const updatableFields = [
     { name: 'First Name', value: user.firstName, field: 'firstName' },
     { name: 'Last Name', value: user.lastName, field: 'lastName' },
+    { name: 'Phone', value: user.phone, field: 'phone' },
+  ];
+
+  const notUpdatableFields = [
     { name: 'Username', value: user.username, field: 'username' },
-    { name: 'Phone', value: '', field: 'phone' },
     { name: 'Email', value: user.email, field: 'email' },
   ];
 
   const [modal, setModal] = React.useState(true);
   const [info, setInfo] = React.useState(true);
+
+  console.log(user);
+
   return (
     <Wrapper className="full-height" backgroundImg={backgroundImg}>
       <div
@@ -64,8 +47,22 @@ const Setting = ({
             Settings
           </div>
         </Grid>
-        {fields.map((data, i) => (
-          <SettingItem getUserInfo={getUserInfo} {...data} key={i} />
+        {updatableFields.map((data, i) => (
+          <SettingItem
+            getUserInfo={getUserInfo}
+            userEmail={user.email}
+            {...data}
+            updatable={true}
+            key={i}
+          />
+        ))}
+        {notUpdatableFields.map((data, i) => (
+          <SettingItem
+            getUserInfo={getUserInfo}
+            {...data}
+            updatable={false}
+            key={i}
+          />
         ))}
 
         {/* Terms, Data Policy and Cookies Policy. */}
