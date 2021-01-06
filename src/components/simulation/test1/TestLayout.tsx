@@ -15,6 +15,10 @@ interface Props {
 const TestLayout = (props: Props): JSX.Element => {
   const [width, setWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    console.log(props.data);
+  }, [props.data.selections]);
+
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
   };
@@ -96,7 +100,7 @@ const TestLayout = (props: Props): JSX.Element => {
                 </GridColItem>
                 <GridColItem colStart="2" colEnd="3" align="right">
                   <NavButton
-                    disabled={!props.data.selections[props.data.current]}
+                    disabled={props.data.selections[props.data.current] == null}
                     onClick={() =>
                       props.nav.next(
                         props.data.current == props.data.questions.length - 1

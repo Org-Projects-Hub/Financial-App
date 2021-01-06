@@ -43,10 +43,10 @@ const QuestionList = (props: Props): JSX.Element => {
           <div key={i}>
             <QuestionListButton
               onClick={() => props.set(i)}
-              disabled={!props.sel[i]}
+              disabled={props.sel[i] == null}
               value={!props.sel[i] ? null : props.sel[i].value}
             >
-              {i + 1}. {!props.sel[i] ? 'Unanswered' : 'Answered'}
+              {i + 1}. {props.sel[i] == null ? 'Unanswered' : 'Answered'}
               {i === props.current ? <Arrow src={Arrowsvg} alt="" /> : null}
             </QuestionListButton>
             <Line />

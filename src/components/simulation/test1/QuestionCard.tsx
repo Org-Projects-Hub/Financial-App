@@ -32,7 +32,9 @@ const QuestionCard = (props: Props): JSX.Element => {
           {props.a.map((answer: string, i: any) => (
             <li key={i}>
               <OptionButton
-                onClick={(e: any) => props.save(props.num, e.target.id)}
+                onClick={(e: any) => {
+                  props.save(props.num, e.target.id);
+                }}
                 id={i}
                 value={answer}
                 disabled={props.a[props.sel] === answer}
