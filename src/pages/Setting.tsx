@@ -26,8 +26,6 @@ const Setting = ({
   const [modal, setModal] = React.useState(true);
   const [info, setInfo] = React.useState(true);
 
-  console.log(user);
-
   return (
     <Wrapper className="full-height" backgroundImg={backgroundImg}>
       <div

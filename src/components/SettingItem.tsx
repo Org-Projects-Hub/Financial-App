@@ -17,11 +17,13 @@ const SettingItem = (props: any): JSX.Element => {
     userEmail,
   } = props;
   const [edit, setEdit] = useState(false);
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(!defaultValue ? '' : defaultValue);
   const [loading, setLoading] = useState(false);
   const iconClass = 'material-icons pointer justify-end';
 
   const numberToPhoneNo = (number = value) => {
+    if (!number) return null;
+
     let parsedNo: string = '';
 
     for (let i = 0; i < number.length; i++) {

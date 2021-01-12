@@ -46,12 +46,9 @@ const App = () => {
   });
 
   const getUserInfo = (): boolean => {
-    console.log('Here');
     api
       .auth()
       .then((res) => {
-        console.log(res);
-
         if (res.success) {
           setState({
             ...state,
@@ -64,7 +61,11 @@ const App = () => {
           setState({ ...state, loggedin: false, tokenChecked: true });
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        console.log(err);
+
+        setState({ ...state, loggedin: false, tokenChecked: true });
+      });
 
     return true;
   };
@@ -83,8 +84,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(getLocalStorage('token'));
-
     if (!state.tokenChecked) getUserInfo();
   }, []);
 
