@@ -47,6 +47,20 @@ const SettingItem = (props: any): JSX.Element => {
     return phoneNo;
   };
 
+  const updateInfo = () => {
+    api
+      .updateInfo({ field, value, email: userEmail })
+      .then((res) => {
+        if (res.success) getUserInfo();
+        else setValue(defaultValue);
+      })
+      .catch((err) => {
+        alert('Something went wrong on our end. Please try again!');
+        setValue(defaultValue);
+      })
+      .finally(() => setEdit(false));
+  };
+
   return (
     <>
       <div style={{ minHeight: '4em', display: 'grid' }}>
@@ -102,26 +116,18 @@ const SettingItem = (props: any): JSX.Element => {
                     src={checkButton}
                     style={{
                       height: '1.75em',
-                      cursor: value.length !== 10 ? 'not-allowed' : 'pointer',
+                      cursor:
+                        field == 'phone'
+                          ? value.length !== 10
+                            ? 'not-allowed'
+                            : 'pointer'
+                          : 'pointer',
                     }}
                     onClick={(event) => {
                       event.preventDefault();
 
-                      if (value.length == 10) {
-                        api
-                          .updateInfo({ field, value, email: userEmail })
-                          .then((res) => {
-                            if (res.success) getUserInfo();
-                            else setValue(defaultValue);
-                          })
-                          .catch((err) => {
-                            alert(
-                              'Something went wrong on our end. Please try again!'
-                            );
-                            setValue(defaultValue);
-                          })
-                          .finally(() => setEdit(false));
-                      }
+                      if (field !== 'phone' || value.length == 10) updateInfo();
+                      // else if () updateInfo();
                     }}
                   />
                 </span>
