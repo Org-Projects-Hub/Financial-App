@@ -57,7 +57,7 @@ const Spinner = ({ getJobDetail }: any): JSX.Element => {
    * @param selected The job selected by user.
    */
   const nextStep = (selected: any = jobOptions[selection]) => {
-    getJobDetail(selected);
+    getJobDetail(selected, true);
   };
 
   if (loading) return null;

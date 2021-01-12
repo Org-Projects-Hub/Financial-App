@@ -102,7 +102,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
    * Gets details of the user selected job from backend and sets simStage to "Job-Selected"
    * @param jobname Name of the job selected by user
    */
-  const getJobDetail = (jobname: string) => {
+  const getJobDetail = (jobname: string, setJobInBackend: boolean = false) => {
     api
       .getJobDetail(jobname.replaceAll('/', '_')) // String needs to be fixed before sending to backend
       .then((occupation: career) => {
@@ -126,6 +126,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
         });
 
         setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
+        if (setJobInBackend) api.assignJob(sim_id, jobname);
       })
       .catch((err) => console.log(err));
   };
