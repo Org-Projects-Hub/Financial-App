@@ -55,7 +55,7 @@ const SettingItem = (props: any): JSX.Element => {
         else setValue(defaultValue);
       })
       .catch((err) => {
-        alert('Something went wrong on our end. Please try again!');
+        alert(err);
         setValue(defaultValue);
       })
       .finally(() => setEdit(false));
