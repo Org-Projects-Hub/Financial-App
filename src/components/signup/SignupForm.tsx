@@ -2,6 +2,7 @@ import { AnyPtrRecord } from 'dns';
 import React, { EffectCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignupBg from '../../assets/backgrounds/bg-signup.png';
+import OrgLookup from './OrgLookup';
 
 const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
   const [basicInfo, setBasicInfo] = useState({
@@ -20,6 +21,9 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
     cPassword: false,
   });
 
+  const [orgListState, setOrgListState] = useState(false);
+  const [organization, setOrganization] = useState('');
+
   const emailRef: React.RefObject<HTMLInputElement> = React.createRef();
   const cPasswordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
@@ -30,8 +34,15 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    setOrgListState(true);
+  };
+
+  const signUpUser = () => {
+    console.log(organization);
+
     SignupAPI({
       password,
+      organization,
       email: basicInfo.email,
       lastName: basicInfo.lname,
       firstName: basicInfo.fname,
@@ -110,97 +121,108 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
       <div className="login-form-container">
         <img src={SignupBg} style={{ height: '100%' }} />
 
-        <form className="auth-form signup-form " onSubmit={handleSubmit}>
-          <input
-            className="login-input "
-            placeholder={'First Name'}
-            value={basicInfo.fname}
-            style={{ marginRight: '1em' }}
-            onChange={infoHandler}
-            onBlur={() =>
-              updateAcceptableValues(true, 'fname', basicInfo.fname)
-            }
-            name="fname"
+        {orgListState ? (
+          <OrgLookup
+            signUpUser={signUpUser}
+            setSelectedOrganization={setOrganization}
           />
-          {/* sets the uers password to the input value */}
-          <input
-            className="login-input"
-            placeholder={'Last Name'}
-            value={basicInfo.lname}
-            onChange={infoHandler}
-            name="lname"
-            onBlur={() =>
-              updateAcceptableValues(true, 'lname', basicInfo.lname)
-            }
-          />
-          <input
-            className="login-input"
-            placeholder={'Email'}
-            ref={emailRef}
-            value={basicInfo.email}
-            name="email"
-            style={{ gridColumn: '1/span 2' }}
-            onChange={(e) => {
-              infoHandler(e);
-              emailChecker(e);
-            }}
-            onBlur={emailChecker}
-          />
-          <input
-            className="login-input "
-            placeholder={'Password'}
-            type="password"
-            style={{ marginRight: '1em' }}
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={() => updateAcceptableValues(true, 'password', password)}
-          />
-          <input
-            className="login-input "
-            placeholder={'Confirm Password'}
-            type="password"
-            style={{ marginRight: '1em' }}
-            name="confirm_password"
-            ref={cPasswordRef}
-            value={cPassword}
-            onChange={(e) => setcPassword(e.target.value)}
-          />
-
-          <div
-            style={{
-              gridColumn: '1/span 2',
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              marginTop: '1em',
-            }}
-          >
-            <button
-              className="yellow-button"
-              disabled={
-                Object.values(acceptable).includes(false) ||
-                Object.values(acceptable).includes(null)
-                  ? true
-                  : false
+        ) : (
+          <form className="auth-form signup-form " onSubmit={handleSubmit}>
+            <input
+              className="login-input "
+              placeholder={'First Name'}
+              value={basicInfo.fname}
+              style={{ marginRight: '1em' }}
+              onChange={infoHandler}
+              onBlur={() =>
+                updateAcceptableValues(true, 'fname', basicInfo.fname)
               }
-              type="submit"
+              name="fname"
+            />
+            {/* sets the uers password to the input value */}
+            <input
+              className="login-input"
+              placeholder={'Last Name'}
+              value={basicInfo.lname}
+              onChange={infoHandler}
+              name="lname"
+              onBlur={() =>
+                updateAcceptableValues(true, 'lname', basicInfo.lname)
+              }
+            />
+            <input
+              className="login-input"
+              placeholder={'Email'}
+              ref={emailRef}
+              value={basicInfo.email}
+              name="email"
+              style={{ gridColumn: '1/span 2' }}
+              onChange={(e) => {
+                infoHandler(e);
+                emailChecker(e);
+              }}
+              onBlur={emailChecker}
+            />
+            <input
+              className="login-input "
+              placeholder={'Password'}
+              type="password"
+              style={{ marginRight: '1em' }}
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={() => updateAcceptableValues(true, 'password', password)}
+            />
+            <input
+              className="login-input "
+              placeholder={'Confirm Password'}
+              type="password"
+              style={{ marginRight: '1em' }}
+              name="confirm_password"
+              ref={cPasswordRef}
+              value={cPassword}
+              onChange={(e) => setcPassword(e.target.value)}
+            />
+
+            <div
               style={{
-                fontSize: '1.25em',
-                padding: '.25em 1em',
-                alignSelf: 'center',
+                gridColumn: '1/span 2',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                marginTop: '1em',
               }}
             >
-              SUBMIT
-            </button>
-            <div
-              style={{ textAlign: 'right', paddingTop: '4%', color: '#005191' }}
-            >
-              <Link to="/" onClick={() => console.log('Clicked')}>
-                Back to Sign In
-              </Link>
+              <button
+                className="yellow-button"
+                disabled={
+                  Object.values(acceptable).includes(false) ||
+                  Object.values(acceptable).includes(null)
+                    ? true
+                    : false
+                }
+                type="submit"
+                style={{
+                  fontSize: '1.25em',
+                  padding: '.25em 1em',
+                  alignSelf: 'center',
+                }}
+              >
+                NEXT
+              </button>
+              <div
+                style={{
+                  textAlign: 'right',
+                  paddingTop: '4%',
+                  color: '#005191',
+                }}
+              >
+                <Link to="/" onClick={() => console.log('Clicked')}>
+                  Back to Sign In
+                </Link>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </div>
   );

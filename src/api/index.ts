@@ -14,6 +14,7 @@ export default {
     lastName,
     username,
     isStudent,
+    organization,
   }: any) {
     return post(API.signup, {
       email,
@@ -22,6 +23,7 @@ export default {
       lastName,
       username,
       isStudent,
+      organization,
     });
   },
   auth: function () {

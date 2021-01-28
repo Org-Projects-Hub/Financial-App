@@ -253,6 +253,7 @@ a:visited {
   background-color: #fcb23d;
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.35em;
 
   width: fit-content;
   width: -moz-fit-content;
@@ -283,10 +284,20 @@ a:visited {
 .white-text {
   color: white !important;
 }
-.blue-text {
+.blue-text-light {
+  color: #2196f3 !important;
+}
+
+.blue-text-dark {
   color: #005191 !important;
 }
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.desc-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: 'Roboto Condensed', sans-serif;
 }
