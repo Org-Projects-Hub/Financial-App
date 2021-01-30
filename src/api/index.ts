@@ -1,4 +1,4 @@
-import { authGet, post, authPost, authPut } from './request';
+import { authGet, post, authPost, authPut, get } from './request';
 import { API } from './routes';
 import { tsRestType } from '@babel/types';
 
@@ -34,6 +34,9 @@ export default {
   },
   getClass: function () {
     return authGet(API.getClass, '');
+  },
+  getOrganizationNames: () => {
+    return authGet(API.getOrganizationNames, '');
   },
 
   //Students Route

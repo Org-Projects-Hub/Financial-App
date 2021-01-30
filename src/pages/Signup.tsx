@@ -92,10 +92,14 @@ const Signup = ({ loginUser }: { loginUser: any }) => {
         if (res.success) {
           loginUser(res);
         } else {
+          setAdmin(null);
           alert(res.message);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        setAdmin(null);
+        alert(err);
+      });
   };
 
   return (

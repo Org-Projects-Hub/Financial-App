@@ -1,16 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
+import api from '../../api';
 
-const OrgLookup = ({
-  signUpUser,
-  setSelectedOrganization,
-}: {
+type props = {
   signUpUser: () => void;
   setSelectedOrganization: any;
-}) => {
+};
+
+/**
+ * Third part of the submit form. Called by SignupForm.tsx
+ * Makes the user select an option from a list of organizations retrieved from the backend
+ * @param signUpUser Function to aggregate all entered data and initiate an API call
+ * @param setSelectedOrganization Update state of SignupForm.tsx
+ */
+const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
+  /**
+   * List of avialable organizations
+   */
   const [organizations, setOrganizations] = useState([]);
+  /**
+   * Form disabled or active flag.
+   * set to "false" when an organization is selected
+   */
+  const [disableSubmit, setdisableSubmit] = useState<boolean>(true);
 
   useEffect(() => {
     // API call
+    // api
+    //   .getOrganizationNames()
+    //   .then((res) => {
+    //     if (res.success) {
+    //       setOrganizations(res.organizations)
+    //     } else {
+    //       alert(res.message);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     alert(err);
+    //     setOrganizations([])
+    //   });
+
     setOrganizations([
       'Lorem ipsum dolor sit',
       'amet, consectetur adipiscing elit.',
@@ -40,6 +68,9 @@ const OrgLookup = ({
     ]);
   }, []);
 
+  /**
+   * Function to create dropdown options from organizations array
+   */
   const getOptions = () => {
     return organizations.map((org) => {
       return <option>{org}</option>;
@@ -55,16 +86,23 @@ const OrgLookup = ({
         <select
           name=""
           id=""
-          onChange={(e) => setSelectedOrganization(e.target.value)}
+          onChange={(e) => {
+            setdisableSubmit(false); // Make the submit button active
+            setSelectedOrganization(e.target.value); // Update the selected organization
+          }}
           style={{ display: 'block', marginTop: '1em', marginBottom: '1em' }}
         >
+          <option hidden disabled selected>
+            -- select an option --
+          </option>
           {getOptions()}
         </select>
         <button
           className="yellow-button"
+          disabled={disableSubmit}
           onClick={(e) => {
             e.preventDefault();
-            signUpUser();
+            signUpUser(); // API call
           }}
         >
           Submit

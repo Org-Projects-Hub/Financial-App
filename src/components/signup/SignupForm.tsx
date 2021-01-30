@@ -1,9 +1,12 @@
-import { AnyPtrRecord } from 'dns';
-import React, { EffectCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignupBg from '../../assets/backgrounds/bg-signup.png';
 import OrgLookup from './OrgLookup';
 
+/**
+ * A Signup form asking user for account details
+ * @param SignupAPI Function for API call that performs signup user action
+ */
 const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
   const [basicInfo, setBasicInfo] = useState({
     fname: '',
@@ -13,6 +16,8 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
 
   const [password, setPassword] = useState('');
   const [cPassword, setcPassword] = useState('');
+
+  // Which fields have valid values
   const [acceptable, setAcceptable] = useState({
     fname: false,
     lname: false,
@@ -21,25 +26,34 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
     cPassword: false,
   });
 
-  const [orgListState, setOrgListState] = useState(false);
-  const [organization, setOrganization] = useState('');
+  const [orgListState, setOrgListState] = useState(false); // Show <OrgLookup />?
+  const [organization, setOrganization] = useState(''); // User's organization
 
   const emailRef: React.RefObject<HTMLInputElement> = React.createRef();
   const cPasswordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
+  /**
+   * Updates "basicInfo" state based on new data
+   * @param event Onchange event of input fields
+   */
   const infoHandler = (event: React.FormEvent<HTMLInputElement>) => {
     let { name } = event.currentTarget;
     setBasicInfo({ ...basicInfo, [name]: event.currentTarget.value });
   };
 
+  /**
+   * Propts the display of <OrgLookup />
+   * @param event Form submit event
+   */
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setOrgListState(true);
   };
 
+  /**
+   * Calls the SignupAPI with form data
+   */
   const signUpUser = () => {
-    console.log(organization);
-
     SignupAPI({
       password,
       organization,
@@ -49,19 +63,24 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
     });
   };
 
+  /**
+   * Regex Function to check the validity of email provided
+   * @param email email provided by user
+   */
   function validateEmail(email: string) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
+
+  /**
+   * Function to check email validity and show error in email field if needed
+   * @param event event created by the email field
+   */
   const emailChecker = (event: React.FormEvent<HTMLInputElement>) => {
     let email = event.currentTarget.value;
 
+    // Empty field means no error
     let error = email.length !== 0 && !validateEmail(email) ? true : false;
-
-    if (event.type === 'change') {
-      console.log(email);
-      console.log(basicInfo.email);
-    }
 
     if (event.type !== 'change' || !error) {
       setError(emailRef, error);
@@ -70,20 +89,31 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
     updateAcceptableValues(!error, 'email', basicInfo.email);
   };
 
-  const setError = (ref: React.RefObject<HTMLInputElement>, arg: boolean) => {
-    let color = arg ? 'red' : '#9e9e9e';
+  /**
+   * Function to show a red underline in an input field with invalid data
+   * @param ref Reference of the input field
+   * @param showError whether to show error or not
+   */
+  const setError = (
+    ref: React.RefObject<HTMLInputElement>,
+    showError: boolean
+  ) => {
+    let color = showError ? 'red' : '#9e9e9e';
 
     ref.current.style.borderBottomColor = color;
   };
 
   useEffect(() => {
-    setcPassword('');
+    setcPassword(''); // Change in pasword clears the cPassword field
   }, [password]);
 
   useEffect(() => {
     passwordChecker();
   }, [cPassword]);
 
+  /**
+   * Compares "confirm password" field to the password field
+   */
   const passwordChecker = () => {
     let len = cPassword.length;
 
@@ -93,7 +123,7 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
         ? true
         : false;
 
-    setError(cPasswordRef, error);
+    setError(cPasswordRef, error); //Show error in the field
     if (!error && password === cPassword) {
       updateAcceptableValues(true, 'cPassword', cPassword);
     } else {
@@ -101,13 +131,17 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
     }
   };
 
+  /**
+   * Updates "acceptable" state
+   * @param isAcceptable is field acceptable?
+   * @param name Name of the field
+   * @param value Value of the field
+   */
   const updateAcceptableValues = (
     isAcceptable: boolean,
     name: string,
     value: string
   ) => {
-    console.log(isAcceptable, name, value);
-
     if (isAcceptable && value.length > 0) {
       setAcceptable({
         ...acceptable,
@@ -216,9 +250,7 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
                   color: '#005191',
                 }}
               >
-                <Link to="/" onClick={() => console.log('Clicked')}>
-                  Back to Sign In
-                </Link>
+                <Link to="/">Back to Sign In</Link>
               </div>
             </div>
           </form>

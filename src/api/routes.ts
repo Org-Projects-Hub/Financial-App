@@ -31,6 +31,8 @@ const API: any = {
   retriveJobDetail: `${URL}/jobs/`,
   assignJob: `${URL}/simulation/job`,
   getAssignedJob: `${URL}/simulation/job/`,
+
+  getOrganizationNames: `${URL}/organizations/`,
 };
 
 export { URL, API };
