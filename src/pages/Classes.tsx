@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { ChangeEventHandler, useEffect, useState } from 'react';
 import backgroundImage from '../assets/backgrounds/bg-classes.svg';
+import { StudentDashboard } from '../components';
 
-const ClassesPage = (): JSX.Element => {
+const ClassesPage = ({ userType }: { userType: String }): JSX.Element => {
   return (
     <div
       className="bg-gradient fill-screen bg-image general-container "
       style={{ backgroundImage: `url(${backgroundImage})`, display: 'grid' }}
-    ></div>
+    >
+      {userType == 'student' ? <StudentDashboard /> : null}
+    </div>
   );
 };
 

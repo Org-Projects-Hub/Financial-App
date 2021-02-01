@@ -3,7 +3,7 @@ import Loader from './shared-components/Loader';
 import Navbar from './shared-components/Navbar';
 import Class from './classes/Class';
 import ArchivedClass from './classes/ArchivedClass';
-import StudentClass from './classes/StudentClass';
+import StudentDashboard from './classes/StudentDashboard';
 import TeacherClass from './classes/TeacherClass';
 //import PrePostTest from './simulation/test/PrePostTest';
 import SettingItem from './SettingItem';
@@ -25,7 +25,7 @@ export {
   SettingItem,
   Class,
   ArchivedClass,
-  StudentClass,
+  StudentDashboard,
   TeacherClass,
   Students,
   Modal,

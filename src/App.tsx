@@ -23,11 +23,31 @@ import { getLocalStorage, setLocalStorage } from './utils/utils';
 import openSocket from 'socket.io-client';
 import ClassesPage from './pages/Classes';
 
-type AppProps = {
+const initUser: userType = {
+  phone: '',
+  organization: '',
+  email: '',
+  lastName: '',
+  firstName: '',
+  username: '',
+  type: '',
+};
+
+type userType = {
+  phone: String;
+  organization: String;
+  email: String;
+  lastName: String;
+  firstName: String;
+  username: String;
+  type: String;
+};
+
+type stateType = {
   loggedin: boolean;
   tokenChecked: boolean;
   showNav: boolean;
-  user: object;
+  user: userType;
   modal: boolean;
 };
 
@@ -38,11 +58,11 @@ const App = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<stateType>({
     loggedin: false,
     tokenChecked: false,
     showNav: true,
-    user: {},
+    user: initUser,
     modal: false,
   });
 
@@ -125,7 +145,10 @@ const App = () => {
                 }}
               />
 
-              <Route path="/classes" render={() => <ClassesPage />} />
+              <Route
+                path="/classes"
+                render={() => <ClassesPage userType={state.user.type} />}
+              />
               {/* <Route
                       path="/classDashboard"
                       render={() => <ClassDashboard user={user} />}
