@@ -27,14 +27,12 @@ const Setting = ({
   const [info, setInfo] = React.useState(true);
 
   return (
-    <Wrapper className="full-height" backgroundImg={backgroundImg}>
+    <Wrapper className="fill-screen" backgroundImg={backgroundImg}>
       <div
-        className="container settingPage"
+        className="container settingPage generic-card"
         style={{
-          backgroundColor: 'rgb(255 255 255 / 0.9)',
           marginTop: '8%',
           padding: '0px 3% 0.5% 3%',
-          borderRadius: '10px',
           fontSize: '1.10rem',
           fontWeight: 200,
           color: 'gray',

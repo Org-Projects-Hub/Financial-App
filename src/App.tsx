@@ -21,6 +21,7 @@ import {
 import api from './api';
 import { getLocalStorage, setLocalStorage } from './utils/utils';
 import openSocket from 'socket.io-client';
+import ClassesPage from './pages/Classes';
 
 type AppProps = {
   loggedin: boolean;
@@ -124,10 +125,7 @@ const App = () => {
                 }}
               />
 
-              <Route
-                path="/classes"
-                render={() => <UserStartPage user={state.user} />}
-              />
+              <Route path="/classes" render={() => <ClassesPage />} />
               {/* <Route
                       path="/classDashboard"
                       render={() => <ClassDashboard user={user} />}

@@ -13,11 +13,6 @@ const Green = styled.span`
   font-size: 16pt;
 `;
 
-const Card2 = styled(Card)`
-  padding: 3%;
-  min-width: 60vw;
-`;
-
 const JobSummary = ({ career }: { career: career }): JSX.Element => {
   console.log(career);
 
@@ -44,7 +39,7 @@ const JobSummary = ({ career }: { career: career }): JSX.Element => {
   }
 
   return (
-    <Card2>
+    <div className="generic-card" style={{ minWidth: '60vw' }}>
       <span style={{ fontWeight: 500, fontSize: '1.15em' }}>
         You were hired as {grammar}{' '}
         <span className="blue-text">{position}</span>, which requires an
@@ -86,7 +81,7 @@ const JobSummary = ({ career }: { career: career }): JSX.Element => {
       </ul>
       <br />
       Which means your net monthly income is <Green>${netMonth}!</Green>
-    </Card2>
+    </div>
   );
 };
 

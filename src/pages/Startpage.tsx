@@ -42,7 +42,7 @@ const Startpage = ({
                     and spending.
                   </DescText>
                 </Desc>
-                <Logoutbutton onClick={() => logout()}> sign out </Logoutbutton>
+                {/* <Logoutbutton onClick={() => logout()}> sign out </Logoutbutton> */}
               </>
             </Wrapper>
           </div>
