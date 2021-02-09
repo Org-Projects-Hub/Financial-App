@@ -1,0 +1,36 @@
+/* Shown in teacher's dashboard */
+.class-card {
+  display: grid;
+  min-height: 10vh;
+  border-radius: 10px;
+
+  grid-template-rows: 1fr auto auto;
+  grid-template-columns: 80% 20%;
+  cursor: pointer;
+
+  background-color: white;
+  box-shadow: 2px 3.5px 3px 1px #848181db;
+  margin: 1%;
+  margin-bottom: 2%;
+  padding: 1%;
+}
+
+.class-card > div {
+  align-self: end;
+}
+
+.class-card > .class-name {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  font-size: 1.35em;
+}
+.class-card > .creation-date {
+}
+.class-card > .student-no {
+}
+.class-card > .auth-code {
+  grid-row: 1 / span 3;
+  grid-column: 2 / span 1;
+  align-self: center;
+  justify-self: center;
+}

@@ -115,6 +115,16 @@ a:visited {
 .bold {
   font-weight: bolder;
 }
+
+.txt-underline {
+  text-decoration: underline;
+}
+
+.meta-txt {
+  color: #808080e0;
+  font-style: italic;
+}
+
 .full {
   width: 100%;
 }
@@ -125,6 +135,10 @@ a:visited {
 
 .pointer {
   cursor: pointer;
+}
+
+.center-margin {
+  margin: auto;
 }
 .justify-start {
   justify-self: start;

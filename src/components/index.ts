@@ -4,7 +4,7 @@ import Navbar from './shared-components/Navbar';
 import Class from './classes/Class';
 import ArchivedClass from './classes/ArchivedClass';
 import StudentDashboard from './classes/StudentDashboard';
-import TeacherClass from './classes/TeacherClass';
+import TeacherDashboard from './classes/TeacherDashboard';
 //import PrePostTest from './simulation/test/PrePostTest';
 import SettingItem from './SettingItem';
 //import Results from './simulation/test/Results';
@@ -26,7 +26,7 @@ export {
   Class,
   ArchivedClass,
   StudentDashboard,
-  TeacherClass,
+  TeacherDashboard,
   Students,
   Modal,
   Hints,
