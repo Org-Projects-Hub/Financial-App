@@ -92,4 +92,12 @@ export default {
   getAssignedJob: function (sim_id: string) {
     return authGet(API.getAssignedJob, sim_id);
   },
+
+  // Class Routes
+  createNewClass: function (name: string) {
+    return authPost(API.createNewClass, { name });
+  },
+  getMyClasses: function () {
+    return authGet(API.getMyClasses, '');
+  },
 };

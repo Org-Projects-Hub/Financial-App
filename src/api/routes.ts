@@ -33,6 +33,10 @@ const API: any = {
   getAssignedJob: `${URL}/simulation/job/`,
 
   getOrganizationNames: `${URL}/organizations/`,
+
+  //Classes
+  createNewClass: `${URL}/classes/`,
+  getMyClasses: `${URL}/classes/`,
 };
 
 export { URL, API };

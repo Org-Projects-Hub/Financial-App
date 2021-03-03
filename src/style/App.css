@@ -354,3 +354,17 @@ a:visited {
   font-size: 1.5em;
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+#customModal {
+  display: block;
+  width: fit-content;
+  padding: 2%;
+  margin-top: 25vh;
+  border-radius: 5px;
+  min-width: 35vw;
+}
+
+#customModal > .content {
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
