@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { GridColItem, Button } from '../../style/styled';
 import { useState, useEffect } from 'react';
+import { CustomModal, Modal } from '../shared-components/Modal';
+import api from '../../api';
 
 const ClassDiv = styled.div`
   margin: 0;
@@ -35,6 +37,31 @@ const StartButton = styled(Button)`
 const StudentDashboard = (props: any) => {
   const [code, setCode] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(true);
+  const [myClass, setMyClass] = useState(null);
+
+  useEffect(() => {
+    api
+      .getMyClasses()
+      .then((res) => {
+        if (res.success) {
+          if (res.classes.length > 0) {
+            setMyClass(res.classes[0]);
+          } else {
+            setMyClass(null);
+          }
+        } else {
+          window.alert(
+            'Something went wrong \nPlease refresh the page and try again!'
+          );
+        }
+      })
+      .catch((err) => {
+        window.alert(
+          'Something went wrong \nPlease refresh the page and try again!'
+        );
+      });
+  }, []);
 
   useEffect(() => {
     if (code.length != 5) {
@@ -59,56 +86,73 @@ const StudentDashboard = (props: any) => {
     // api call
   };
 
+  const modalBody = () => {
+    return (
+      <div>
+        <p className="bold" style={{ fontSize: '1.15em' }}>
+          Class 1
+        </p>
+        <p className="meta-txt">Created by: Ashish Dev</p>
+        <p>Organization: University of Louisiana Monroe</p>
+      </div>
+    );
+  };
+
+  const ModalActions = () => {
+    return (
+      <div>
+        <button
+          className="yellow-button"
+          style={{ minWidth: '10%', marginRight: '1%' }}
+        >
+          Yes
+        </button>
+        <button
+          className="blue-button"
+          style={{ minWidth: '10%', marginRight: '1%' }}
+        >
+          No
+        </button>
+      </div>
+    );
+  };
+
   return (
-    <div
-      className="generic-card"
-      style={{ margin: 'auto', width: '65vw', marginTop: '15%' }}
-    >
-      <div className="general-heading">Join A Class</div>
-      <div className="ta-center">
-        Enter the 5 digit code provided by your instructor to join a class
-      </div>
-      <div className="ta-center" style={{ margin: '1% 0' }}>
-        <input
-          className="ta-center"
-          type="text"
-          style={{ width: '60%' }}
-          onChange={handleChange}
-          value={code}
+    <>
+      {!myClass ? (
+        <div
+          className="generic-card"
+          style={{ margin: 'auto', width: '65vw', marginTop: '15%' }}
+        >
+          <div className="general-heading">Join A Class</div>
+          <div className="ta-center">
+            Enter the 5 digit code provided by your instructor to join a class
+          </div>
+          <div className="ta-center" style={{ margin: '1% 0' }}>
+            <input
+              className="ta-center"
+              type="text"
+              style={{ width: '60%' }}
+              onChange={handleChange}
+              value={code}
+            />
+          </div>
+          <button className="yellow-button center" disabled={disabled}>
+            Submit
+          </button>
+        </div>
+      ) : null}
+
+      {showConfirmation ? (
+        <CustomModal
+          header={'Is this your class?'}
+          body={modalBody}
+          actions={ModalActions}
+          close={() => setShowConfirmation(false)}
         />
-      </div>
-      <button className="yellow-button center" disabled={disabled}>
-        Submit
-      </button>
-    </div>
+      ) : null}
+    </>
   );
-  // let { classObj } = props.classProps;
-  // let { className } = classObj.c_id;
-  // let { verified } = classObj;
-  // return(
-  //     <ClassDiv style={{cursor: "initial"}}>
-  //                 <GridColItem colStart="2" colEnd="5" align="center" style={{fontSize: "150%"}}>
-  //                     <p>{className}</p>
-  //                 </GridColItem>
-  //                 {/* If the class/simulation is not completed display the Start button, if it is display 'Completed' instead */}
-  //                 { false ? // isCompleted ? :
-  //                     <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
-  //                         <div className="ta-right txt-italic">Completed</div>
-  //                     </GridColItem>
-  //                     :
-  //                     verified ? //isVerified ? :
-  //                     <StartButton>
-  //                         <Link to={'/Simulation'}>
-  //                             <div style={{cursor: "pointer"}} className="ta-center">Start</div>
-  //                         </Link>
-  //                     </StartButton>
-  //                     :
-  //                     <GridColItem colStart="4" colEnd="6" align="right" style={{gridRowStart: "2", fontSize: "120%"}}>
-  //                         <div className="ta-right txt-italic">waiting on approval . . .</div>
-  //                     </GridColItem>
-  //                 }
-  //             </ClassDiv>
-  // );
 };
 
 export default StudentDashboard;

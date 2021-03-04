@@ -95,7 +95,7 @@ export default {
 
   // Class Routes
   createNewClass: function (name: string) {
-    return authPost(API.createNewClass, { name });
+    return authPost(API.createNewClass, { cName: name });
   },
   getMyClasses: function () {
     return authGet(API.getMyClasses, '');

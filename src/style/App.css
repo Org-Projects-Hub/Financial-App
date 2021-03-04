@@ -317,6 +317,21 @@ a:visited {
   cursor: pointer;
 }
 
+.blue-button {
+  background-color: #005191;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.35em;
+
+  width: fit-content;
+  width: -moz-fit-content;
+  padding: 1% 2%;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
 .yellow-button:disabled {
   background-color: rgb(255 255 255 / 0.9);
   color: #005191;

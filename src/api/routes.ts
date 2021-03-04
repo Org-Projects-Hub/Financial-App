@@ -35,8 +35,8 @@ const API: any = {
   getOrganizationNames: `${URL}/organizations/`,
 
   //Classes
-  createNewClass: `${URL}/classes/`,
-  getMyClasses: `${URL}/classes/`,
+  createNewClass: `${URL}/class/`,
+  getMyClasses: `${URL}/class/`,
 };
 
 export { URL, API };

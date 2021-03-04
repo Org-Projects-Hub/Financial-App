@@ -122,7 +122,11 @@ const InfoModal = ({ text, close, img }: any) => (
 const CustomModal = ({ header, body, actions, close }: any) => {
   return (
     <Wrapper onClick={close}>
-      <div className="ui modal transition visible active" id="customModal">
+      <div
+        className="ui modal transition visible active"
+        id="customModal"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="blue-text-dark desc-title">{header}</div>
         <div className="content">{body()}</div>
         <div className="actions">{actions()}</div>
