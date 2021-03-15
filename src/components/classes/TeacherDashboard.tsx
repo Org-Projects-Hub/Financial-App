@@ -98,7 +98,7 @@ const TeacherDashboard = () => {
             Created on: {new Date(classInfo.date).toLocaleString()}
           </div>
           <div className="student-no">
-            No of students: {classInfo.noOfStudents}
+            No of students: {classInfo.students.length}
           </div>
           <div className="auth-code">
             <div>Auth Code</div>
@@ -116,6 +116,8 @@ const TeacherDashboard = () => {
         width: '50vw',
         margin: 'auto',
         minHeight: '80vh',
+        maxHeight: '90vh',
+        overflow: 'auto',
       }}
     >
       <div className="ta-center general-heading">Your Classes</div>

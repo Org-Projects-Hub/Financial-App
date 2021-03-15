@@ -37,6 +37,8 @@ const API: any = {
   //Classes
   createNewClass: `${URL}/class/`,
   getMyClasses: `${URL}/class`,
+  getStudentClass: `${URL}/users/student/class_info`,
+  getStudentAuthorized: `${URL}/users/student/authorize`,
   getClassDetails: `${URL}/class/`,
   leaveClass: `${URL}/class/leave`,
 };

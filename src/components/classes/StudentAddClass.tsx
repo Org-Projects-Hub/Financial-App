@@ -3,6 +3,7 @@ import api from '../../api';
 import { CustomModal } from '../shared-components/Modal';
 import useNonInitialEffect from '../../utils/useNonInitialEffect';
 import { classType } from './StudentDashboard';
+import useStateCallback from '../../utils/useStateCallback';
 
 const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -20,18 +21,6 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
       setDisabled(false);
     }
   }, [code]);
-
-  useNonInitialEffect(() => {
-    if (!classDetails) {
-      window.alert(
-        'Invalid authentication code! \n Please enter a valid code.'
-      );
-
-      return;
-    }
-
-    setShowConfirmation(true);
-  }, [classDetails]);
 
   /**
    * Doesn't let the length of authCode be more than 5
@@ -65,6 +54,21 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
     );
   };
 
+  const registerToClass = () => {
+    api
+      .getStudentAuthorized(code)
+      .then((res) => {
+        if (!res.success) setMyClass(classDetails);
+        else {
+          setMyClass(null);
+        }
+      })
+      .catch((err) => {
+        window.alert('Something went wrong \nPlease try again!');
+        setMyClass(null);
+      });
+  };
+
   /**
    * Actions of the confirmation modal
    */
@@ -74,7 +78,10 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
         <button
           className="yellow-button"
           style={{ minWidth: '10%', marginRight: '1%' }}
-          onClick={() => setMyClass(classDetails)}
+          onClick={() => {
+            registerToClass();
+            setShowConfirmation(false);
+          }}
         >
           Yes
         </button>
@@ -99,7 +106,13 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
     api
       .getClassDetails(code)
       .then((res) => {
-        setClassDetails(res);
+        if (res.success) {
+          setClassDetails(res.classInfo);
+          setShowConfirmation(true);
+        } else
+          window.alert(
+            'Invalid authentication code! \n Please enter a valid code.'
+          );
       })
       .catch((err) => {
         setClassDetails(null);

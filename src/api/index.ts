@@ -100,8 +100,14 @@ export default {
   getMyClasses: function () {
     return authGet(API.getMyClasses, '');
   },
+  getStudentClass: function () {
+    return authGet(API.getStudentClass, '');
+  },
+  getStudentAuthorized: function (code: string) {
+    return authPost(API.getStudentAuthorized, { code });
+  },
   getClassDetails: function (authCode: string) {
-    return get(API.getClassDetails + `${authCode}`);
+    return authGet(API.getClassDetails, `${authCode}`);
   },
 
   leaveClass: function () {

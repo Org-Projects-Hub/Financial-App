@@ -15,24 +15,21 @@ const StudentDashboard = (props: any) => {
 
   useEffect(() => {
     api
-      .getMyClasses()
+      .getStudentClass()
       .then((res) => {
         if (res.success) {
-          if (res.classes.length > 0) {
-            setMyClass(res.classes[0]);
-          } else {
-            setMyClass(null);
-          }
-        } else {
-          window.alert(
-            'Something went wrong \nPlease refresh the page and try again!'
-          );
+          // if (res.classes.length > 0) {
+          //   setMyClass(res.classes[0]);
+          // } else {
+          //   setMyClass(null);
+          // }
+          setMyClass(res.classDetails);
         }
       })
       .catch((err) => {
-        // window.alert(
-        //   'Something went wrong \nPlease refresh the page and try again!'
-        // );
+        window.alert(
+          'Something went wrong \nPlease refresh the page and try again!'
+        );
       });
   }, []);
 
