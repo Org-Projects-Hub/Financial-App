@@ -6,21 +6,13 @@ const TeacherDashboard = () => {
   const [create, setCreate] = useState(false);
   const [newClassName, setNewClassName] = useState('');
   const [myClasses, setMyClasses] = useState([]);
-  const temp = [
-    {
-      name: 'Hello',
-      date: new Date().toISOString().slice(0, 10),
-      noOfStudents: 23,
-      authCode: 71203,
-    },
-    { name: 'Hello', date: Date.now(), noOfStudents: 23, authCode: 71203 },
-    { name: 'Hello', date: Date.now(), noOfStudents: 23, authCode: 71203 },
-  ];
 
   const updateClassList = () => {
     api
       .getMyClasses()
       .then((res) => {
+        console.log(res);
+
         if (res.success) {
           setMyClasses(res.classes);
         } else {
@@ -34,6 +26,8 @@ const TeacherDashboard = () => {
           'Something went wrong \nPlease refresh the page and try again!'
         );
       });
+
+    setCreate(false);
   };
 
   useEffect(() => {
@@ -94,12 +88,14 @@ const TeacherDashboard = () => {
   };
 
   const classCardGenerator = () => {
-    return temp.map((classInfo, i) => {
+    return myClasses.map((classInfo, i) => {
       return (
         <div className="class-card" key={i}>
-          <div className="class-name bold-font bold">{classInfo.name}</div>
+          <div className="class-name bold-font bold">
+            {classInfo.name.toUpperCase()}
+          </div>
           <div className="creation-date meta-txt">
-            Created on: {classInfo.date}
+            Created on: {new Date(classInfo.date).toLocaleString()}
           </div>
           <div className="student-no">
             No of students: {classInfo.noOfStudents}
