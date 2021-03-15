@@ -36,7 +36,9 @@ const API: any = {
 
   //Classes
   createNewClass: `${URL}/class/`,
-  getMyClasses: `${URL}/class/`,
+  getMyClasses: `${URL}/class`,
+  getClassDetails: `${URL}/class/`,
+  leaveClass: `${URL}/class/leave`,
 };
 
 export { URL, API };
