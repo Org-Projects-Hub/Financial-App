@@ -140,53 +140,58 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
   };
 
   return (
-    <Wrapper>
-      <ScreenCenter>
-        {simStage === 'Job-Selection' && (
-          <Spinner getJobDetail={getJobDetail} />
-        )}
-        {simStage === 'Job-Selected' && (
-          <>
-            <JobSummary career={myCareer} />
-            <button
-              className="customButton"
-              style={{ marginTop: '2%' }}
-              onClick={() => setSimStage('Booth-Selection')}
-            >
-              Continue
-            </button>
-          </>
-        )}
-        {simStage === 'Booth-Selection' && (
-          <div>
-            <UserInfo>
-              Remaining Income:{' '}
-              {myCareer.afterTaxMontlySalary ? currentBalance.toFixed(2) : ''}
-            </UserInfo>
-            <BoothSelect
-              setSimStage={setSimStage}
-              setCurrentBooth={setCurrentBooth}
-              visitedBooths={visitedBooths}
-              setVisitedBooths={setVisitedBooths}
-              currentBalance={currentBalance}
-            />
-          </div>
-        )}
-        {simStage === 'Booth-Selected' && (
-          <div>
-            <Booth
-              setSimStage={setSimStage}
-              currentBooth={currentBooth}
-              data={data}
-              currentBalance={currentBalance}
-              increaseExpenses={purchase}
-              remainingBalance={currentBalance.toFixed(2)}
-            />
-            {/* <UserInfo>Remaining Income: {currentBalance.toFixed(2)}</UserInfo> */}
-          </div>
-        )}
-      </ScreenCenter>
-    </Wrapper>
+    <>
+      {simStage === 'Booth-Selected' ? (
+        <div>
+          <Booth
+            setSimStage={setSimStage}
+            currentBooth={currentBooth}
+            data={data}
+            currentBalance={currentBalance}
+            increaseExpenses={purchase}
+            remainingBalance={currentBalance.toFixed(2)}
+          />
+          {/* <UserInfo>Remaining Income: {currentBalance.toFixed(2)}</UserInfo> */}
+        </div>
+      ) : (
+        <Wrapper>
+          <ScreenCenter>
+            {simStage === 'Job-Selection' && (
+              <Spinner getJobDetail={getJobDetail} />
+            )}
+            {simStage === 'Job-Selected' && (
+              <>
+                <JobSummary career={myCareer} />
+                <button
+                  className="customButton"
+                  style={{ marginTop: '2%' }}
+                  onClick={() => setSimStage('Booth-Selection')}
+                >
+                  Continue
+                </button>
+              </>
+            )}
+            {simStage === 'Booth-Selection' && (
+              <div>
+                <UserInfo>
+                  Remaining Income:{' '}
+                  {myCareer.afterTaxMontlySalary
+                    ? currentBalance.toFixed(2)
+                    : ''}
+                </UserInfo>
+                <BoothSelect
+                  setSimStage={setSimStage}
+                  setCurrentBooth={setCurrentBooth}
+                  visitedBooths={visitedBooths}
+                  setVisitedBooths={setVisitedBooths}
+                  currentBalance={currentBalance}
+                />
+              </div>
+            )}
+          </ScreenCenter>
+        </Wrapper>
+      )}
+    </>
   );
 };
 

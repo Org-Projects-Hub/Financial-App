@@ -104,6 +104,9 @@ const BoothOption = ({
         <Heading>Total Price</Heading>
         <div>${price}</div>
       </div>
+
+      <div className="verticalFill"></div>
+
       <div className="section">
         <div className="customButton" onClick={() => buy()}>
           PURCHASE

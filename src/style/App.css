@@ -152,6 +152,10 @@ a:visited {
   justify-self: center;
 }
 
+.verticalFill {
+  flex: 1;
+}
+
 .txt-red {
   color: red;
 }

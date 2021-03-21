@@ -42,8 +42,15 @@ interface boothOptions {
   price: number;
 }
 
-const MyGrid = styled(Grid)`
+const MyGrid = styled.div`
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
   grid-grap: 1em;
+  max-width: 80vw;
+  margin: auto;
+  margin-top: 5%;
+  grid-auto-rows: auto;
   @media (max-width: 770px) {
     grid-template-columns: 1fr;
   }
@@ -53,12 +60,18 @@ const Span = styled.div`
   margin: 3% 0 1% 0;
   color: white;
   display: flex;
+  grid-row: 1/1;
+  grid-column: 1/3;
+  justify-self: left;
 `;
 
 const Info = styled.div`
   padding-left: 2.5%;
   color: #fffefd;
   font-weight: 500;
+  grid-row: 2/2;
+  grid-column: 1/3;
+  justify-self: left;
 `;
 
 const Icons: any[] = [money1, money2, money3, money4];
@@ -136,46 +149,41 @@ const Booth = ({
     return null;
   } else {
     return (
-      <div>
-        {/* {currentBalance > lowestprice ? ( */}
-        <div>
-          <Span>
-            {/* <ReactLogo /> */}
-            <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
-            <div className="currentBoothIdentifier">
-              The Current Booth is {`${boothName}.`}
-            </div>
-            {/* <a onClick={() => setSimStage('job')}>{currentBooth}</a> */}
-          </Span>
-          <Info>Remaining Balance: {remainingBalance}</Info>
-          <MyGrid cols={optionsArray.length == 1 ? '1' : '2'}>
-            {optionsArray.map((optionsArray: any, i) => (
-              <BoothOption
-                name={optionsArray.name}
-                icon={Icons[i]}
-                desc={optionsArray.desc}
-                costBreakdown={optionsArray.costbreakdown}
-                price={optionsArray.price}
-                increaseExpenses={increaseExpenses}
-                currentBalance={currentBalance}
-                setSimStage={setSimStage}
-                setText={setText}
-                lowestprice={lowestprice}
-                key={i}
-              />
-            ))}
-          </MyGrid>
-          {text}
+      <MyGrid>
+        <Span>
+          <img src={BoothIcons[currentBooth]} className="curentBoothIcon" />
+          <div className="currentBoothIdentifier">
+            The Current Booth is {`${boothName}.`}
+          </div>
+        </Span>
+        <Info>Remaining Balance: {remainingBalance}</Info>
+        <div
+          style={{
+            gridRow: '3/3',
+            gridColumn: '1/4',
+            height: 'fit-content',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3,1fr)',
+          }}
+        >
+          {optionsArray.slice(0, 3).map((optionsArray: any, i) => (
+            <BoothOption
+              name={optionsArray.name}
+              icon={Icons[i]}
+              desc={optionsArray.desc}
+              costBreakdown={optionsArray.costbreakdown}
+              price={optionsArray.price}
+              increaseExpenses={increaseExpenses}
+              currentBalance={currentBalance}
+              setSimStage={setSimStage}
+              setText={setText}
+              lowestprice={lowestprice}
+              key={i}
+            />
+          ))}
         </div>
-        {
-          // )
-          //  : (
-          //   <div>
-          //     <PriceWarning setSimStage={setSimStage} />
-          //   </div>
-          // )}
-        }
-      </div>
+        {text}
+      </MyGrid>
     );
   }
 };
