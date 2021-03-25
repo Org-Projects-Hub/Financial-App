@@ -80,7 +80,11 @@ const StudentDashboard = (props: any) => {
               <div>Teacher: {myClass.createdBy}</div>
               <div>Organization: {myClass.organization}</div>
 
-              <div className="red-button" onClick={leaveClass}>
+              <div
+                className="red-button"
+                onClick={leaveClass}
+                style={{ marginTop: '2%' }}
+              >
                 Leave
               </div>
             </div>

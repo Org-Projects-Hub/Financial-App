@@ -111,6 +111,6 @@ export default {
   },
 
   leaveClass: function () {
-    return authPost(API.leaveClass, {});
+    return authPut(API.leaveClass, {});
   },
 };

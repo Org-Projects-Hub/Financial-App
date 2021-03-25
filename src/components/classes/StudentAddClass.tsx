@@ -58,7 +58,7 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
     api
       .getStudentAuthorized(code)
       .then((res) => {
-        if (!res.success) setMyClass(classDetails);
+        if (res.success) setMyClass(classDetails);
         else {
           setMyClass(null);
         }
