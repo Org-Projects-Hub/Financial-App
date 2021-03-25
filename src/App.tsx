@@ -14,7 +14,6 @@ import {
   Simulation,
   Startpage,
   Signup,
-  UserStartPage,
   // ClassDashboard,
   AdminPanel,
 } from './pages';

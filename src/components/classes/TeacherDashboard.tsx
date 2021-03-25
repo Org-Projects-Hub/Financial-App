@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { CustomModal, Modal } from '../shared-components/Modal';
+import { Switch, useRouteMatch, Route } from 'react-router-dom';
+import ClassDetails from './ClassDetails';
 import api from '../../api';
 
 const TeacherDashboard = () => {
+  let { path } = useRouteMatch();
+
+  return (
+    <Switch>
+      <Route exact path={path} component={TeacherHome}></Route>
+      <Route path={`${path}/:classId`}>
+        <ClassDetails />
+      </Route>
+    </Switch>
+  );
+};
+
+const TeacherHome = () => {
   const [create, setCreate] = useState(false);
   const [newClassName, setNewClassName] = useState('');
   const [myClasses, setMyClasses] = useState([]);

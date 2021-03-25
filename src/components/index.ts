@@ -1,8 +1,6 @@
 import Header from './shared-components/Header';
 import Loader from './shared-components/Loader';
 import Navbar from './shared-components/Navbar';
-import Class from './classes/Class';
-import ArchivedClass from './classes/ArchivedClass';
 import StudentDashboard from './classes/StudentDashboard';
 import TeacherDashboard from './classes/TeacherDashboard';
 //import PrePostTest from './simulation/test/PrePostTest';
@@ -23,8 +21,6 @@ export {
   Loader,
   Navbar,
   SettingItem,
-  Class,
-  ArchivedClass,
   StudentDashboard,
   TeacherDashboard,
   Students,
