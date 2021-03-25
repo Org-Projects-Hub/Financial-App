@@ -20,8 +20,8 @@ const StudentDashboard = (props: any) => {
       .then((res) => {
         if (res.success) {
           setMyClass(res.classDetails);
-          setLoading(false);
         }
+        setLoading(false);
       })
       .catch((err) => {
         window.alert(
