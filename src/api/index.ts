@@ -106,8 +106,11 @@ export default {
   getStudentAuthorized: function (code: string) {
     return authPost(API.getStudentAuthorized, { code });
   },
-  getClassDetails: function (authCode: string) {
-    return authGet(API.getClassDetails, `${authCode}`);
+  getClassDetailsbyAuth: function (authCode: string) {
+    return authGet(API.getClassDetailsbyAuth, `${authCode}`);
+  },
+  getClassDetails: (classId: string) => {
+    return authGet(API.getClassDetails, classId);
   },
 
   leaveClass: function () {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CustomModal, Modal } from '../shared-components/Modal';
-import { Switch, useRouteMatch, Route } from 'react-router-dom';
+import { Switch, useRouteMatch, Route, Link } from 'react-router-dom';
 import ClassDetails from './ClassDetails';
 import api from '../../api';
 
@@ -26,8 +26,6 @@ const TeacherHome = () => {
     api
       .getMyClasses()
       .then((res) => {
-        console.log(res);
-
         if (res.success) {
           setMyClasses(res.classes);
         } else {
@@ -103,9 +101,15 @@ const TeacherHome = () => {
   };
 
   const classCardGenerator = () => {
-    return myClasses.map((classInfo, i) => {
+    return myClasses.map((classInfo) => {
       return (
-        <div className="class-card" key={i}>
+        <Link
+          to={`/classes/${classInfo._id}`}
+          style={{ color: 'black' }}
+          className="class-card"
+          id={classInfo._id}
+          key={classInfo._id}
+        >
           <div className="class-name bold-font bold">
             {classInfo.name.toUpperCase()}
           </div>
@@ -119,7 +123,7 @@ const TeacherHome = () => {
             <div>Auth Code</div>
             <div className="ta-center txt-grey">{classInfo.authCode}</div>
           </div>
-        </div>
+        </Link>
       );
     });
   };

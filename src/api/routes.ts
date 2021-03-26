@@ -39,7 +39,8 @@ const API: any = {
   getMyClasses: `${URL}/class`,
   getStudentClass: `${URL}/users/student/class_info`,
   getStudentAuthorized: `${URL}/users/student/authorize`,
-  getClassDetails: `${URL}/class/`,
+  getClassDetailsbyAuth: `${URL}/class/`,
+  getClassDetails: `${URL}/class/details/`,
   leaveClass: `${URL}/class/leave`,
 };
 
