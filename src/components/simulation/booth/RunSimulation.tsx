@@ -5,7 +5,6 @@ import '../../../style/simulation.css';
 import Spinner from './Spinner';
 import JobSummary from './JobSummary';
 
-import data from '../../../json/Simulation.json'; // Data related to jobs
 import BoothSelect from './BoothSelect';
 import Booth from './Booth';
 import api from '../../../api';
@@ -70,6 +69,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
   const [simStage, setSimStage] = useState(null); //Used for switching between the stages of the simulation
 
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
+  const [boothsInfo, setBoothsInfo] = useState(null);
   const [currentBooth, setCurrentBooth] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [visitedBooths, setVisitedBooths] = useState([]);
@@ -97,6 +97,21 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
   useEffect(() => {
     setCurrentBalance(myCareer.afterTaxMontlySalary);
   }, [myCareer]);
+
+  useEffect(() => {
+    if (simStage == 'Booth-Selection' && !boothsInfo) {
+      api
+        .getBoothsInfo()
+        .then((res) => {
+          if (res.success) {
+            setBoothsInfo(res.booths);
+          }
+        })
+        .catch((err) => {
+          window.alert('Something went wrong. \nPlease refresh the page!');
+        });
+    }
+  }, [simStage]);
 
   /**
    * Gets details of the user selected job from backend and sets simStage to "Job-Selected"
@@ -146,7 +161,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
           <Booth
             setSimStage={setSimStage}
             currentBooth={currentBooth}
-            data={data}
+            booths={boothsInfo}
             currentBalance={currentBalance}
             increaseExpenses={purchase}
             remainingBalance={currentBalance.toFixed(2)}
@@ -182,6 +197,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
                 <BoothSelect
                   setSimStage={setSimStage}
                   setCurrentBooth={setCurrentBooth}
+                  boothsInfo={boothsInfo}
                   visitedBooths={visitedBooths}
                   setVisitedBooths={setVisitedBooths}
                   currentBalance={currentBalance}

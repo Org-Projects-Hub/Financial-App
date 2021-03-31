@@ -81,6 +81,21 @@ const BoothOption = ({
 
   console.log('LOWEST PRICE: ' + lowestprice);
 
+  const showCostBreakdown = () => {
+    return costBreakdown.map(
+      (piece: string | { item: string; price: number }, i: number) => {
+        if (typeof piece == 'string') return <div key={i}>All Inclusive</div>;
+        else {
+          return (
+            <div key={i}>
+              {piece.item} : ${piece.price}
+            </div>
+          );
+        }
+      }
+    );
+  };
+
   return (
     <div className="boothItemOption">
       <div className="section">
@@ -93,12 +108,10 @@ const BoothOption = ({
           <span>{`${store} | `}</span>
         ))}
       </div>
-      <div className="section">
+      <div className="section" style={{ height: 'auto' }}>
         <Heading>Cost Breakdown</Heading>
 
-        {costBreakdown.map((cost: string, i: Number) => (
-          <div>{cost}</div>
-        ))}
+        {showCostBreakdown()}
       </div>
       <div className="section">
         <Heading>Total Price</Heading>

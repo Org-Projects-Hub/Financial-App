@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { booths } from '../../../json/SimJSON';
 import BoothOption from './BoothOption';
 import { Grid } from '../../../style/styled';
 import PriceWarning from './PriceWarning';
@@ -62,6 +61,7 @@ const Span = styled.div`
   display: flex;
   grid-row: 1/1;
   grid-column: 1/3;
+  width: 100%;
   justify-self: left;
 `;
 
@@ -79,7 +79,7 @@ const Icons: any[] = [money1, money2, money3, money4];
 const Booth = ({
   setSimStage,
   currentBooth,
-  data,
+  booths,
   increaseExpenses,
   currentBalance,
   remainingBalance,
@@ -96,41 +96,33 @@ const Booth = ({
 
   /**Setting the javaSCript array to the options array react hook*/
   useEffect(() => {
-    //Reading through the SimJSON booth data to find the currentbooth
-    for (var i = 0; i < booths.length; i++) {
-      if (booths[i].id == currentBooth) {
-        // when currentbooth is found
-        // boothIcon = BoothIcons[i];
-        var booth = booths[i]; //used for readability
-        setBoothName(booth.category);
+    var booth = booths[currentBooth - 1]; //used for readability
 
-        for (var j = 0; j < booth.options.length; j++) {
-          //read through the options array of the current booth
+    setBoothName(booth.category);
 
-          var boothOption = booth.options[j]; //used for readability
+    for (var j = 0; j < booth.options.length; j++) {
+      //read through the options array of the current booth
 
-          let x: boothOptions = {
-            name: boothOption.name,
-            desc: boothOption.desc,
-            costbreakdown: boothOption.costbreakdown,
-            price: boothOption.price,
-          };
+      var boothOption = booth.options[j]; //used for readability
 
-          if (lowestprice > boothOption.price) {
-            setLow(boothOption.price);
-          }
+      let x: boothOptions = {
+        name: boothOption.name,
+        desc: boothOption.desc,
+        costbreakdown: boothOption.costbreakdown,
+        price: boothOption.price,
+      };
 
-          /**
-           * Save the current option data into the array (where array index = the boothOptions id)
-           * passing an object with the name, desc, costbreakdown, and price
-           */
-          array[j] = x;
-        }
-        i = booths.length + 1; // break statement
-      } else {
-        console.log('ERROR'); //error checking
+      if (lowestprice > boothOption.price) {
+        setLow(boothOption.price);
       }
+
+      /**
+       * Save the current option data into the array (where array index = the boothOptions id)
+       * passing an object with the name, desc, costbreakdown, and price
+       */
+      array[j] = x;
     }
+
     setOptionsArray(array);
     setLoading(false);
     dispatch(showBackFunction());
@@ -166,7 +158,7 @@ const Booth = ({
             gridTemplateColumns: 'repeat(3,1fr)',
           }}
         >
-          {optionsArray.slice(0, 3).map((optionsArray: any, i) => (
+          {optionsArray.map((optionsArray: any, i) => (
             <BoothOption
               name={optionsArray.name}
               icon={Icons[i]}

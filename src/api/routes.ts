@@ -33,6 +33,7 @@ const API: any = {
   getAssignedJob: `${URL}/simulation/job/`,
 
   getOrganizationNames: `${URL}/organizations/`,
+  getBoothsInfo: `${URL}/booths/`,
 
   //Classes
   createNewClass: `${URL}/class/`,

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import data from '../../../json/Simulation.json';
 import { Grid, NavButton } from '../../../style/styled';
 import ClothingIcon from '../../../assets/icons/icon-booth-clothing.svg';
 import HousingIcon from '../../../assets/icons/icon-booth-housing.svg';
@@ -15,13 +14,15 @@ interface BoothIconsObjType {
   [id: number]: any;
 }
 export const BoothIcons: BoothIconsObjType = {
-  0: ClothingIcon,
-  1: HousingIcon,
-  2: transportationIcon,
-  3: CharityIcon,
+  1: ClothingIcon,
+  2: HousingIcon,
+  3: ClothingIcon,
+  // 3: CharityIcon,
   4: foodIcon,
-  5: temptationIcon,
-  6: insuranceIcon,
+  5: transportationIcon,
+
+  6: temptationIcon,
+  // 6: insuranceIcon,
 };
 
 const Option = styled.div`
@@ -41,6 +42,7 @@ const BoothSelect = ({
   setCurrentBooth,
   setVisitedBooths,
   visitedBooths,
+  boothsInfo,
   currentBalance,
 }: any): JSX.Element => {
   // if (currentBalance <= 0) {
@@ -56,31 +58,30 @@ const BoothSelect = ({
     // }
   }
 
-  const boothsInfo = data.booths;
-
-  return (
-    <Grid cols="1">
-      {boothsInfo.map((info: any, i: number) => (
-        <div key={info.id}>
-          <button
-            className={`customButton boothOption ${
-              visitedBooths.includes(i) ? 'disabledBooth' : ''
-            }`}
-            onClick={(e) => {
-              if (!visitedBooths.includes(i)) {
-                setVisitedBooths([...visitedBooths, i]);
-                goToBooth(i);
-              }
-            }}
-          >
-            {console.log(visitedBooths.includes(i) ? 'disabledBooth' : '')}
-            <img src={BoothIcons[i]} className="boothIcon" />
-            <p className={info.id}>{info.category}</p>
-          </button>
-        </div>
-      ))}
-    </Grid>
-  );
+  if (!boothsInfo) return null;
+  else
+    return (
+      <Grid cols="1">
+        {boothsInfo.map((info: any, i: number) => (
+          <div key={info.id}>
+            <button
+              className={`customButton boothOption ${
+                visitedBooths.includes(i + 1) ? 'disabledBooth' : ''
+              }`}
+              onClick={(e) => {
+                if (!visitedBooths.includes(i + 1)) {
+                  setVisitedBooths([...visitedBooths, i + 1]);
+                  goToBooth(i + 1);
+                }
+              }}
+            >
+              <img src={BoothIcons[i + 1]} className="boothIcon" />
+              <p className={info.id}>{info.category}</p>
+            </button>
+          </div>
+        ))}
+      </Grid>
+    );
 };
 
 export default BoothSelect;
