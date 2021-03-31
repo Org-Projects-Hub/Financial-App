@@ -20,7 +20,7 @@ const TeacherDashboard = () => {
 const TeacherHome = () => {
   const [create, setCreate] = useState(false);
   const [newClassName, setNewClassName] = useState('');
-  const [myClasses, setMyClasses] = useState([]);
+  const [myClasses, setMyClasses] = useState(null);
 
   const updateClassList = () => {
     api
@@ -101,7 +101,8 @@ const TeacherHome = () => {
   };
 
   const classCardGenerator = () => {
-    return myClasses.map((classInfo) => {
+    console.table(myClasses);
+    return myClasses.map((classInfo: any) => {
       return (
         <Link
           to={`/classes/${classInfo._id}`}
@@ -117,7 +118,7 @@ const TeacherHome = () => {
             Created on: {new Date(classInfo.date).toLocaleString()}
           </div>
           <div className="student-no">
-            No of students: {classInfo.students.length}
+            No of students: {classInfo.num_student}
           </div>
           <div className="auth-code">
             <div>Auth Code</div>
@@ -128,36 +129,38 @@ const TeacherHome = () => {
     });
   };
 
-  return (
-    <div
-      className="generic-card"
-      style={{
-        width: '50vw',
-        margin: 'auto',
-        minHeight: '80vh',
-        maxHeight: '90vh',
-        overflow: 'auto',
-      }}
-    >
-      <div className="ta-center general-heading">Your Classes</div>
-      <hr />
-      {classCardGenerator()}
+  if (!myClasses) return null;
+  else
+    return (
       <div
-        className="yellow-button center-margin "
-        onClick={() => setCreate(true)}
+        className="generic-card"
+        style={{
+          width: '50vw',
+          margin: 'auto',
+          minHeight: '80vh',
+          maxHeight: '90vh',
+          overflow: 'auto',
+        }}
       >
-        Create New Class
+        <div className="ta-center general-heading">Your Classes</div>
+        <hr />
+        {classCardGenerator()}
+        <div
+          className="yellow-button center-margin "
+          onClick={() => setCreate(true)}
+        >
+          Create New Class
+        </div>
+        {create ? (
+          <CustomModal
+            header={'Create New Class'}
+            body={ModalBody}
+            actions={ModalActions}
+            close={() => setCreate(false)}
+          />
+        ) : null}
       </div>
-      {create ? (
-        <CustomModal
-          header={'Create New Class'}
-          body={ModalBody}
-          actions={ModalActions}
-          close={() => setCreate(false)}
-        />
-      ) : null}
-    </div>
-  );
+    );
 };
 
 export default TeacherDashboard;

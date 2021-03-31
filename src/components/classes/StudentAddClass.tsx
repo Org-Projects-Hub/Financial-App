@@ -104,7 +104,7 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
    */
   const handleSubmit = () => {
     api
-      .getClassDetails(code)
+      .getClassDetailsbyAuth(code)
       .then((res) => {
         if (res.success) {
           setClassDetails(res.classInfo);
