@@ -6,10 +6,7 @@ import TeacherDashboard from './classes/TeacherDashboard';
 //import PrePostTest from './simulation/test/PrePostTest';
 import SettingItem from './SettingItem';
 //import Results from './simulation/test/Results';
-import Students from './classes/Students';
 import { Modal, InfoModal } from './shared-components/Modal';
-import UserModal from './classes/UserModal';
-import TakeSimModal from './classes/TakeSimModal';
 import Hints from './shared-components/Hints';
 import SelectInput from './shared-components/SelectInput';
 import RunSimulation from './simulation/booth/RunSimulation';
@@ -23,14 +20,11 @@ export {
   SettingItem,
   StudentDashboard,
   TeacherDashboard,
-  Students,
   Modal,
   Hints,
   SelectInput,
   RunSimulation,
   InfoModal,
-  UserModal,
   Login,
-  TakeSimModal,
   TestController,
 };

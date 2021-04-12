@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../../api';
 
 interface classInfoType {
@@ -86,12 +87,15 @@ const ClassDetails = () => {
           </p>
         </div>
 
-        <div
-          className="yellow-button"
-          style={{ margin: 'auto', fontSize: '1.2em', marginTop: '1%' }}
-        >
-          View Class Stats
-        </div>
+        <Link to={`/classes/stats/${classId}`}>
+          <div
+            className="yellow-button"
+            style={{ margin: 'auto', fontSize: '1.2em', marginTop: '1%' }}
+          >
+            View Class Stats
+          </div>
+        </Link>
+
         <div className="generic-card" style={{ marginTop: '1.7%' }}>
           <div
             className="general-heading ta-center"

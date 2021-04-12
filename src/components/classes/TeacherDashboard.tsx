@@ -3,6 +3,7 @@ import { CustomModal, Modal } from '../shared-components/Modal';
 import { Switch, useRouteMatch, Route, Link } from 'react-router-dom';
 import ClassDetails from './ClassDetails';
 import api from '../../api';
+import ClassStats from './ClassStats';
 
 const TeacherDashboard = () => {
   let { path } = useRouteMatch();
@@ -10,6 +11,9 @@ const TeacherDashboard = () => {
   return (
     <Switch>
       <Route exact path={path} component={TeacherHome}></Route>
+      <Route path={`${path}/stats/:classId`}>
+        <ClassStats />
+      </Route>
       <Route path={`${path}/:classId`}>
         <ClassDetails />
       </Route>
@@ -101,7 +105,6 @@ const TeacherHome = () => {
   };
 
   const classCardGenerator = () => {
-    console.table(myClasses);
     return myClasses.map((classInfo: any) => {
       return (
         <Link
