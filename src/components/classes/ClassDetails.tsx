@@ -2,27 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../api';
 
-const tempData = [
-  { name: 'Ashish', simulationStage: 'pretest' },
-  { name: 'Ashish', simulationStage: 'pretest' },
-  { name: 'Ashish', simulationStage: 'simulation' },
-  { name: 'Ashish', simulationStage: 'posttest' },
-  { name: 'Ashish', simulationStage: 'posttest' },
-  { name: 'Ashish', simulationStage: 'pretest' },
-  { name: 'Ashish', simulationStage: 'simulation' },
-  { name: 'Ashish', simulationStage: 'simulation' },
-  { name: 'Ashish', simulationStage: 'pretest' },
-  { name: 'Ashish', simulationStage: 'pretest' },
-  { name: 'Ashish', simulationStage: 'pretest' },
-];
+interface classInfoType {
+  name: string;
+  date: string;
+  authCode: string;
+  participants: { name: string; simulationStage: string }[];
+}
 
 const ClassDetails = () => {
-  const [classInfo, setClassInfo] = useState({
-    name: 'MyClass',
-    date: '2019/01/20',
-    authCode: 'anpao',
-    students: tempData,
-  });
+  const [classInfo, setClassInfo] = useState<classInfoType | null>(null);
   let { classId } = useParams<{ classId: string }>();
 
   useEffect(() => {
@@ -37,12 +25,14 @@ const ClassDetails = () => {
   }, []);
 
   const rowsGenerator = () => {
-    return classInfo.students.map((item, i) => {
+    return classInfo.participants.map((item, i) => {
       let color =
         item.simulationStage == 'simulation'
           ? '#fcb23d'
           : item.simulationStage == 'pretest'
           ? 'rgb(4 85 148)'
+          : item.simulationStage == 'Not started'
+          ? 'rgb(240 78 49)'
           : 'rgb(125 182 220)';
       return (
         <tr key={i}>
@@ -62,6 +52,8 @@ const ClassDetails = () => {
       );
     });
   };
+
+  if (!classInfo) return null;
 
   return (
     <>
@@ -86,7 +78,7 @@ const ClassDetails = () => {
             Created on: {new Date(classInfo.date).toLocaleString()}
           </p>
           <p className="student-no">
-            No of students: {classInfo.students.length}
+            No of students: {classInfo.participants.length}
           </p>
           <p>
             <span>Auth Code: </span>
