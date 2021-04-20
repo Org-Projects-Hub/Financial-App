@@ -25,47 +25,31 @@ const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
 
   useEffect(() => {
     // API call
-    // api
-    //   .getOrganizationNames()
-    //   .then((res) => {
-    //     if (res.success) {
-    //       setOrganizations(res.organizations)
-    //     } else {
-    //       alert(res.message);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert(err);
-    //     setOrganizations([])
-    //   });
+    api
+      .getOrganizationNames()
+      .then(
+        (res: {
+          success: boolean;
+          message: string;
+          organizations: Array<{ _id: string; name: string; __v: number }>;
+        }) => {
+          if (res.success) {
+            let temp: any = [];
 
-    setOrganizations([
-      'Lorem ipsum dolor sit',
-      'amet, consectetur adipiscing elit.',
-      'Mauris ut porta ipsum.',
-      'Cras pulvinar, ex eu',
-      'ornare sollicitudin, est justo',
-      'facilisis nibh, eu commodo',
-      'purus nulla quis nibh.',
-      'Etiam dignissim gravida augue,',
-      'vitae aliquam velit aliquam',
-      'nec. Mauris ut felis',
-      'ullamcorper, lacinia nibh at,',
-      'pharetra mi. Phasellus interdum',
-      'dapibus elit at condimentum.',
-      'Aenean vulputate semper dolor',
-      'ullamcorper fermentum. Nulla orci',
-      'arcu, rutrum sit amet',
-      'turpis id, varius volutpat',
-      'quam. Vestibulum pulvinar dolor',
-      'sit amet sem congue',
-      'fringilla. Nunc quis sapien',
-      'non sapien viverra eleifend',
-      'sit amet sit amet',
-      'mauris. Integer condimentum a',
-      'justo quis tristique. Nullam',
-      'imperdiet tempor turpis nec.',
-    ]);
+            for (var i = 0; i < res.organizations.length; i++) {
+              temp.push(res.organizations[i].name);
+            }
+
+            setOrganizations([...temp]);
+          } else {
+            alert(res.message);
+          }
+        }
+      )
+      .catch((err) => {
+        alert(err);
+        setOrganizations([]);
+      });
   }, []);
 
   /**
