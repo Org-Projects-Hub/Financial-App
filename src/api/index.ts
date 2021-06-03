@@ -1,6 +1,5 @@
 import { authGet, post, authPost, authPut, get } from './request';
 import { API } from './routes';
-import { tsRestType } from '@babel/types';
 
 export default {
   //User Route
@@ -69,12 +68,12 @@ export default {
     return authPut(API.updateSimulation, { inProgress });
   },
 
-  updateTest: function ({ sim_id, testType, answers }: any) {
-    return authPut(API.updateTest, { sim_id, testType, answers });
+  updateTest: function ({ testType, answers }: any) {
+    return authPut(API.updateTest, { testType, answers });
   },
 
-  retriveTest: function (sim_id: string, testType: string) {
-    return authGet(API.retriveTest, `/${testType}/${sim_id}`);
+  retriveTest: function (testType: string) {
+    return authGet(API.retriveTest, `/${testType}`);
   },
 
   getJobNames: function () {
@@ -85,12 +84,12 @@ export default {
     return authGet(API.retriveJobDetail, jobName);
   },
 
-  assignJob: function (sim_id: string, jobSelected: string) {
-    return authPost(API.assignJob, { sim_id, jobSelected });
+  assignJob: function (jobSelected: string) {
+    return authPost(API.assignJob, { jobSelected });
   },
 
-  getAssignedJob: function (sim_id: string) {
-    return authGet(API.getAssignedJob, sim_id);
+  getAssignedJob: function () {
+    return authGet(API.getAssignedJob, '');
   },
 
   getBoothsInfo: function () {
