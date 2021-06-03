@@ -65,7 +65,7 @@ const tempCareer = {
   insurance: 0,
 };
 
-const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
+const RunSimulation = (): JSX.Element => {
   const [simStage, setSimStage] = useState(null); //Used for switching between the stages of the simulation
 
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
@@ -79,7 +79,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
    */
   useEffect(() => {
     api
-      .getAssignedJob(sim_id)
+      .getAssignedJob()
       .then((res) => {
         let { jobSelected } = res;
         if (jobSelected) getJobDetail(jobSelected);
@@ -141,7 +141,7 @@ const RunSimulation = ({ sim_id }: { sim_id: string }): JSX.Element => {
         });
 
         setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
-        if (setJobInBackend) api.assignJob(sim_id, jobname);
+        if (setJobInBackend) api.assignJob(jobname);
       })
       .catch((err) => console.log(err));
   };

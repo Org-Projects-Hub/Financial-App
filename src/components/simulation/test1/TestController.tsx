@@ -7,10 +7,9 @@ import useStateCallback from '../../../utils/useStateCallback';
 interface Props {
   stage: string;
   setStage: Function;
-  sim_id: string;
 }
 
-const useBackendConnection = (sim_id: string, stage: string) => {
+const useBackendConnection = (stage: string) => {
   const [qNum, setQNum] = useStateCallback(null); //question number
   const [selections, setSelections] = useStateCallback(new Array(11)); //selected answers
   const [loading, setLoading] = useState(true);
@@ -18,7 +17,7 @@ const useBackendConnection = (sim_id: string, stage: string) => {
   let store: any = useRef();
 
   useEffect(() => {
-    store.current = { sim_id, stage, selections };
+    store.current = { stage, selections };
     window.addEventListener('unload', () => {
       submitAnswers();
     });
@@ -26,11 +25,7 @@ const useBackendConnection = (sim_id: string, stage: string) => {
     retriveTest();
 
     return () => {
-      submitAnswers(
-        store.current.sim_id,
-        store.current.stage,
-        store.current.selections
-      );
+      submitAnswers(store.current.stage, store.current.selections);
 
       window.removeEventListener('unload', () => {
         submitAnswers();
@@ -57,7 +52,7 @@ const useBackendConnection = (sim_id: string, stage: string) => {
 
   const retriveTest = () => {
     api
-      .retriveTest(sim_id, stage)
+      .retriveTest(stage)
       .then((res: any) => {
         console.log(res);
 
@@ -66,13 +61,8 @@ const useBackendConnection = (sim_id: string, stage: string) => {
       .catch((err) => console.log(err));
   };
 
-  const submitAnswers = (
-    id: string = sim_id,
-    testType: string = stage,
-    answers = selections
-  ) => {
+  const submitAnswers = (testType: string = stage, answers = selections) => {
     api.updateTest({
-      sim_id: id,
       testType,
       answers,
     });
@@ -85,14 +75,8 @@ const TestController = (props: Props): JSX.Element => {
   //get questions & answers
   const questionList = Tests.questions;
   const answerList = Tests.answers;
-  const {
-    qNum,
-    setQNum,
-    selections,
-    setSelections,
-    submitAnswers,
-    loading,
-  } = useBackendConnection(props.sim_id, props.stage);
+  const { qNum, setQNum, selections, setSelections, submitAnswers, loading } =
+    useBackendConnection(props.stage);
 
   const [answered, setAnswered] = useState('fade-out'); //for transition
 
