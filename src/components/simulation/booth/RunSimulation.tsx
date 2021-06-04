@@ -65,7 +65,11 @@ const tempCareer = {
   insurance: 0,
 };
 
-const RunSimulation = (): JSX.Element => {
+interface Props {
+  setStage: any;
+}
+
+const RunSimulation = (props: Props): JSX.Element => {
   const [simStage, setSimStage] = useState(null); //Used for switching between the stages of the simulation
 
   const [myCareer, setMyCareer] = useState<career | undefined>(tempCareer);
@@ -113,6 +117,14 @@ const RunSimulation = (): JSX.Element => {
     }
   }, [simStage]);
 
+  /**
+   * Updates the stage of the simulation when all booths are visited
+   */
+  useEffect(() => {
+    if (simStage == 'Booth-Selection' && visitedBooths.length == 6) {
+      props.setStage('posttest');
+    }
+  }, [simStage]);
   /**
    * Gets details of the user selected job from backend and sets simStage to "Job-Selected"
    * @param jobname Name of the job selected by user

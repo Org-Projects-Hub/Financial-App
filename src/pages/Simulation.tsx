@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { TestController, RunSimulation } from '../components';
 import { Wrapper } from '../style/styled';
 import api from '../api';
+import useStateCallback from '../utils/useStateCallback';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
-  const [stage, setStage] = useState(null);
+  const [stage, setStage] = useStateCallback(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api
       .createOrRetriveSimulation()
       .then((res) => {
-        setStage(res.inProgress);
+        setStage(res.inProgress, () => setLoading(false));
       })
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    if (stage) {
+    if (!loading) {
       api
         .updateSimulation(stage)
         .catch((err) =>
@@ -28,11 +30,10 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
 
   return (
     <Wrapper className="center">
-      <div className="top">Hello, {user.firstName}</div>
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />
       )}
-      {stage === 'simulation' && <RunSimulation />}
+      {stage === 'simulation' && <RunSimulation setStage={setStage} />}
       {stage === 'posttest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

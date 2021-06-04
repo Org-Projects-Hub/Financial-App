@@ -107,7 +107,7 @@ const TestController = (props: Props): JSX.Element => {
       "Are you sure you want to move to the next stage? \nYou won't be able to change your answers."
     );
     if (confirmed) {
-      props.setStage('simulation');
+      if (props.stage == 'pretest') props.setStage('simulation');
       submitAnswers();
     }
   };
@@ -151,12 +151,7 @@ const TestController = (props: Props): JSX.Element => {
   };
 
   return (
-    <>
-      <button className="button" onClick={() => props.setStage('simulation')}>
-        To Simulation
-      </button>
-      {!loading ? <TestLayout nav={nav} save={Save} data={data} /> : null}
-    </>
+    <>{!loading ? <TestLayout nav={nav} save={Save} data={data} /> : null}</>
   );
 };
 
