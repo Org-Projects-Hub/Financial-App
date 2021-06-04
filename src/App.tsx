@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, Suspense, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -107,10 +107,6 @@ const App = () => {
     if (!state.tokenChecked) getUserInfo();
   }, []);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   const logout = () => {
     setLocalStorage('token', '');
     setState({ ...state, loggedin: false });
@@ -126,17 +122,23 @@ const App = () => {
       if (url == '/login' || url == '/signup') return;
       else redirect('/login');
     } else {
-      if (url == '/signup') redirect('/');
+      if (url == '/signup' || url == '/login') redirect('/');
     }
   };
+
+  const loading = (
+    <div className="pt-3 text-center">
+      <div className="sk-spinner sk-spinner-pulse"></div>
+    </div>
+  );
 
   return (
     <>
       {state.tokenChecked ? (
-        <Switch>
-          {loginBasedRedirect()}
-          <div className={`${state.loggedin ? 'grid-main' : ''} bg-gradient`}>
-            <GetInfoContext.Provider value="message">
+        <Suspense fallback={loading}>
+          <Switch>
+            {loginBasedRedirect()}
+            <div className={`${state.loggedin ? 'grid-main' : ''} bg-gradient`}>
               <Navbar
                 showNav={state.showNav && state.loggedin}
                 hide={() => {
@@ -148,10 +150,6 @@ const App = () => {
                 path="/classes"
                 render={() => <ClassesPage userType={state.user.type} />}
               />
-              {/* <Route
-                      path="/classDashboard"
-                      render={() => <ClassDashboard user={user} />}
-                    /> */}
               <Route
                 path="/Simulation"
                 render={() => <Simulation user={state.user} />}
@@ -167,6 +165,16 @@ const App = () => {
                 )}
               />
               <Route path="/admin-pannel" render={() => <AdminPanel />} />
+
+              <Route
+                path="/signup"
+                render={() => <Signup loginUser={loginUser} />}
+              />
+              <Route
+                exact
+                path="/login"
+                render={() => <Login loginUser={loginUser} />}
+              />
               <Route
                 exact
                 path="/"
@@ -178,19 +186,9 @@ const App = () => {
                   />
                 )}
               />
-            </GetInfoContext.Provider>
-
-            <Route
-              path="/signup"
-              render={() => <Signup loginUser={loginUser} />}
-            />
-            <Route
-              exact
-              path="/login"
-              render={() => <Login loginUser={loginUser} />}
-            />
-          </div>
-        </Switch>
+            </div>
+          </Switch>
+        </Suspense>
       ) : (
         <Loader />
       )}
