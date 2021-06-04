@@ -14,25 +14,25 @@ const useBackendConnection = (stage: string) => {
   const [selections, setSelections] = useStateCallback(new Array(11)); //selected answers
   const [loading, setLoading] = useState(true);
 
-  let store: any = useRef();
+  let store: any = useRef(); //used to access selections state in componentWillUnmount
 
   useEffect(() => {
     store.current = { stage, selections };
-    window.addEventListener('unload', () => {
-      submitAnswers();
-    });
-
     retriveTest();
 
+    /**
+     * componentWillUnmount
+     * Submits the answers to backend before unmounting
+     */
     return () => {
-      submitAnswers(store.current.stage, store.current.selections);
-
-      window.removeEventListener('unload', () => {
-        submitAnswers();
-      });
+      let { stage, selections } = store.current;
+      submitAnswers(stage, selections);
     };
   }, []);
 
+  /**
+   * Updates the store ref
+   */
   useEffect(() => {
     store.current = { ...store.current, selections };
   }, [selections]);
@@ -50,32 +50,39 @@ const useBackendConnection = (stage: string) => {
     setQNum(current, () => setLoading(false));
   };
 
+  /**
+   * Retrive answers from backend
+   */
   const retriveTest = () => {
     api
       .retriveTest(stage)
       .then((res: any) => {
-        console.log(res);
-
         setSelections(res, changePointer);
       })
       .catch((err) => console.log(err));
   };
 
-  const submitAnswers = (testType: string = stage, answers = selections) => {
+  /**
+   * Submits the cuurent answers to backend
+   * @param testType "pretest" or "posttest"
+   * @param answers current answers
+   */
+  const submitAnswers = (testType: string, answers: any) => {
     api.updateTest({
       testType,
       answers,
     });
   };
 
-  return { qNum, setQNum, selections, setSelections, submitAnswers, loading };
+  return { qNum, setQNum, selections, setSelections, loading };
 };
 
 const TestController = (props: Props): JSX.Element => {
   //get questions & answers
   const questionList = Tests.questions;
   const answerList = Tests.answers;
-  const { qNum, setQNum, selections, setSelections, submitAnswers, loading } =
+
+  const { qNum, setQNum, selections, setSelections, loading } =
     useBackendConnection(props.stage);
 
   const [answered, setAnswered] = useState('fade-out'); //for transition
@@ -99,7 +106,6 @@ const TestController = (props: Props): JSX.Element => {
    */
   const Save = (qNumber: number, answer: string) => {
     storeSel(qNumber, parseInt(answer));
-    // submitAnswers(qNumber, answer);
   };
 
   const nextStageConfirmation = () => {
@@ -108,7 +114,6 @@ const TestController = (props: Props): JSX.Element => {
     );
     if (confirmed) {
       if (props.stage == 'pretest') props.setStage('simulation');
-      submitAnswers();
     }
   };
 

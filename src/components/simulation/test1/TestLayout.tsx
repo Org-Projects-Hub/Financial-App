@@ -3,8 +3,6 @@ import { Grid, GridRow, GridColItem } from '../../../style/styled';
 import { NavButton } from '../../../style/preposttest';
 import QuestionList from './QuestionList';
 import QuestionCard from './QuestionCard';
-import styled from 'styled-components';
-// import backgroundimg from "../../../assets/select.svg";
 
 interface Props {
   nav: any;
@@ -14,10 +12,6 @@ interface Props {
 
 const TestLayout = (props: Props): JSX.Element => {
   const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    console.log(props.data);
-  }, [props.data.selections]);
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
