@@ -131,38 +131,40 @@ const TeacherHome = () => {
     });
   };
 
-  if (!myClasses) return null;
-  else
-    return (
+  return (
+    <div
+      className="generic-card"
+      style={{
+        width: '50vw',
+        margin: 'auto',
+        minHeight: '80vh',
+        maxHeight: '90vh',
+        overflow: 'auto',
+      }}
+    >
+      <div className="ta-center general-heading">Your Classes</div>
+      <hr />
+      {myClasses ? (
+        <>{classCardGenerator()}</>
+      ) : (
+        <div style={{ height: '5vh' }}></div>
+      )}
       <div
-        className="generic-card"
-        style={{
-          width: '50vw',
-          margin: 'auto',
-          minHeight: '80vh',
-          maxHeight: '90vh',
-          overflow: 'auto',
-        }}
+        className="yellow-button center-margin "
+        onClick={() => setCreate(true)}
       >
-        <div className="ta-center general-heading">Your Classes</div>
-        <hr />
-        {classCardGenerator()}
-        <div
-          className="yellow-button center-margin "
-          onClick={() => setCreate(true)}
-        >
-          Create New Class
-        </div>
-        {create ? (
-          <CustomModal
-            header={'Create New Class'}
-            body={ModalBody}
-            actions={ModalActions}
-            close={() => setCreate(false)}
-          />
-        ) : null}
+        Create New Class
       </div>
-    );
+      {create ? (
+        <CustomModal
+          header={'Create New Class'}
+          body={ModalBody}
+          actions={ModalActions}
+          close={() => setCreate(false)}
+        />
+      ) : null}
+    </div>
+  );
 };
 
 export default TeacherDashboard;
