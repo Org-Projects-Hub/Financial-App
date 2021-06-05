@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CustomModal, Modal } from '../shared-components/Modal';
 import { Switch, useRouteMatch, Route, Link } from 'react-router-dom';
-import ClassDetails from './ClassDetails';
+import { ClassDetails, ClassStats } from '../index';
 import api from '../../api';
-import ClassStats from './ClassStats';
 
 const TeacherDashboard = () => {
   let { path } = useRouteMatch();

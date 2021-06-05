@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import '../../../style/simulation.css';
 
-import Spinner from './Spinner';
-import JobSummary from './JobSummary';
-
-import BoothSelect from './BoothSelect';
-import Booth from './Booth';
+import { Spinner, JobSummary, BoothSelect, Booth } from '../../index';
 import api from '../../../api';
 
 const Wrapper = styled.div`
