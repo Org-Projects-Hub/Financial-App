@@ -5,8 +5,8 @@ import {
   ListHeading,
   Line,
   Arrow,
-} from '../../../style/preposttest';
-import Arrowsvg from '../../../assets/icons/icon-arrow.svg';
+} from '../../style/preposttest';
+import Arrowsvg from '../../assets/icons/icon-arrow.svg';
 
 interface Props {
   isMobile: boolean;

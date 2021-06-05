@@ -4,7 +4,7 @@ import Header from './shared-components/Header';
 import Loader from './shared-components/Loader';
 import Navbar from './shared-components/Navbar';
 
-import SettingItem from './SettingItem';
+import SettingItem from './settings/SettingItem';
 
 import { Modal, InfoModal } from './shared-components/Modal';
 import Hints from './shared-components/Hints';
@@ -15,18 +15,13 @@ const ClassDetails = React.lazy(() => import('./classes/ClassDetails'));
 const ClassStats = React.lazy(() => import('./classes/ClassStats'));
 const TeacherDashboard = React.lazy(() => import('./classes/TeacherDashboard'));
 
-const Login = React.lazy(() => import('./Login'));
-const TestController = React.lazy(
-  () => import('./simulation/test1/TestController')
-);
-const RunSimulation = React.lazy(
-  () => import('./simulation/booth/RunSimulation')
-);
-const Spinner = React.lazy(() => import('./simulation/booth/Spinner'));
-const JobSummary = React.lazy(() => import('./simulation/booth/JobSummary'));
-const Booth = React.lazy(() => import('./simulation/booth/Booth'));
-const BoothSelect = React.lazy(() => import('./simulation/booth/BoothSelect'));
-const TestLayout = React.lazy(() => import('./simulation/test1/TestLayout'));
+const TestController = React.lazy(() => import('./tests/TestController'));
+const RunSimulation = React.lazy(() => import('./simulation/RunSimulation'));
+const Spinner = React.lazy(() => import('./jobs/Spinner'));
+const JobSummary = React.lazy(() => import('./jobs/JobSummary'));
+const Booth = React.lazy(() => import('./booth/Booth'));
+const BoothSelect = React.lazy(() => import('./booth/BoothSelect'));
+const TestLayout = React.lazy(() => import('./tests/TestLayout'));
 
 export {
   Header,
@@ -40,7 +35,6 @@ export {
   SelectInput,
   RunSimulation,
   InfoModal,
-  Login,
   TestController,
   Spinner,
   JobSummary,

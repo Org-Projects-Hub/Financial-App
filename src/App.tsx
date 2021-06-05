@@ -8,19 +8,18 @@ import {
 } from 'react-router-dom';
 import './style/App.css';
 import './style/animations.css';
-import { Navbar, Modal, Loader, Login } from './components';
+import { Navbar, Modal, Loader } from './components';
 import {
   Setting,
   Simulation,
   Startpage,
   Signup,
-  // ClassDashboard,
-  AdminPanel,
+  ClassesPage,
+  Login,
 } from './pages';
 import api from './api';
 import { getLocalStorage, setLocalStorage } from './utils/utils';
 import openSocket from 'socket.io-client';
-import ClassesPage from './pages/Classes';
 
 const initUser: userType = {
   phone: '',
@@ -158,7 +157,6 @@ const App = () => {
                   />
                 )}
               />
-              <Route path="/admin-pannel" render={() => <AdminPanel />} />
 
               <Route
                 path="/signup"

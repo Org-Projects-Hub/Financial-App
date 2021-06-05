@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BoothOption from './BoothOption';
-import { Grid } from '../../../style/styled';
+import { Grid } from '../../style/styled';
 import PriceWarning from './PriceWarning';
 
 import { useDispatch } from 'react-redux';
@@ -9,20 +9,20 @@ import {
   showBackFunction,
   hideBackFunction,
   changeBackFunction,
-} from '../../../store/action/backButtonActions';
+} from '../../store/action/backButtonActions';
 
-import money1 from '../../../assets/icons/icon-money-1.svg';
-import money2 from '../../../assets/icons/icon-money-2.svg';
-import money3 from '../../../assets/icons/icon-money-3.svg';
-import money4 from '../../../assets/icons/icon-money-4.svg';
+import money1 from '../../assets/icons/icon-money-1.svg';
+import money2 from '../../assets/icons/icon-money-2.svg';
+import money3 from '../../assets/icons/icon-money-3.svg';
+import money4 from '../../assets/icons/icon-money-4.svg';
 
-import housingIcon from '../../../assets/icons/rev/icon-booth-rev-housing.svg';
-import clothingIcon from '../../../assets/icons/rev/icon-booth-rev-clothing.svg';
-import charityIcon from '../../../assets/icons/rev/icon-booth-rev-charity.svg';
-import foodIcon from '../../../assets/icons/rev/icon-booth-rev-food.svg';
-import insuranceIcon from '../../../assets/icons/rev/icon-booth-rev-insurance.svg';
-import transportationIcon from '../../../assets/icons/rev/icon-booth-rev-transportation.svg';
-import temptationIcon from '../../../assets/icons/rev/icon-booth-rev-temptation.svg';
+import housingIcon from '../../assets/icons/rev/icon-booth-rev-housing.svg';
+import clothingIcon from '../../assets/icons/rev/icon-booth-rev-clothing.svg';
+import charityIcon from '../../assets/icons/rev/icon-booth-rev-charity.svg';
+import foodIcon from '../../assets/icons/rev/icon-booth-rev-food.svg';
+import insuranceIcon from '../../assets/icons/rev/icon-booth-rev-insurance.svg';
+import transportationIcon from '../../assets/icons/rev/icon-booth-rev-transportation.svg';
+import temptationIcon from '../../assets/icons/rev/icon-booth-rev-temptation.svg';
 
 const BoothIcons = [
   clothingIcon,

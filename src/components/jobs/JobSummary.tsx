@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Grid, Card } from '../../../style/styled';
+import { Grid, Card } from '../../style/styled';
 import styled from 'styled-components';
-import { career } from './RunSimulation';
+import { career } from '../simulation/RunSimulation';
 
 const Red = styled.span`
   color: red;

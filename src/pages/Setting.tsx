@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wrapper, Grid, Card } from '../style/styled';
-import { SettingItem, InfoModal } from '../components';
+import { Wrapper, Grid } from '../style/styled';
+import { SettingItem } from '../components';
 import backgroundImg from '../assets/backgrounds/bg-settings.svg';
 
 const Setting = ({

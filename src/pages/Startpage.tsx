@@ -10,7 +10,6 @@ import {
   LoginPOS,
 } from '../style/home';
 import bannerlogo from '../assets/images/unitedWayLogoShadow.png';
-import { Login } from '../components';
 
 /*
  * Start page of the entire site, where users will get an overview of what this app is about, and where they will

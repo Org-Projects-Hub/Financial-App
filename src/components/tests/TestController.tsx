@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Tests from '../../../json/Tests.json';
-import { TestLayout } from '../../index';
-import api from '../../../api';
-import useStateCallback from '../../../utils/useStateCallback';
+import Tests from '../../json/Tests.json';
+import { TestLayout } from '../index';
+import api from '../../api';
+import useStateCallback from '../../utils/useStateCallback';
 
 interface Props {
   stage: string;

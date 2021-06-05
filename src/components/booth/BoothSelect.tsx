@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, NavButton } from '../../../style/styled';
-import ClothingIcon from '../../../assets/icons/icon-booth-clothing.svg';
-import HousingIcon from '../../../assets/icons/icon-booth-housing.svg';
-import CharityIcon from '../../../assets/icons/icon-booth-charity.svg';
-import foodIcon from '../../../assets/icons/icon-booth-food.svg';
-import temptationIcon from '../../../assets/icons/icon-booth-temptation.svg';
-import insuranceIcon from '../../../assets/icons/icon-booth-insurance.svg';
-import transportationIcon from '../../../assets/icons/icon-booth-transportation.svg';
-import '../../../style/simulation.css';
+import { Grid, NavButton } from '../../style/styled';
+import ClothingIcon from '../../assets/icons/icon-booth-clothing.svg';
+import HousingIcon from '../../assets/icons/icon-booth-housing.svg';
+import CharityIcon from '../../assets/icons/icon-booth-charity.svg';
+import foodIcon from '../../assets/icons/icon-booth-food.svg';
+import temptationIcon from '../../assets/icons/icon-booth-temptation.svg';
+import insuranceIcon from '../../assets/icons/icon-booth-insurance.svg';
+import transportationIcon from '../../assets/icons/icon-booth-transportation.svg';
+import '../../style/simulation.css';
 
 interface BoothIconsObjType {
   [id: number]: any;

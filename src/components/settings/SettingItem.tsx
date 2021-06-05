@@ -1,10 +1,10 @@
 import React, { useState, useContext, useMemo, useCallback } from 'react';
-import { Card, Grid } from '../style/styled';
-import api from '../api';
+import { Card, Grid } from '../../style/styled';
+import api from '../../api';
 
-import editButton from '../assets/icons/button-edit.svg';
-import buttonX from '../assets/icons/button-x.svg';
-import checkButton from '../assets/icons/button-check.svg';
+import editButton from '../../assets/icons/button-edit.svg';
+import buttonX from '../../assets/icons/button-x.svg';
+import checkButton from '../../assets/icons/button-check.svg';
 import { parse } from 'url';
 
 const SettingItem = (props: any): JSX.Element => {

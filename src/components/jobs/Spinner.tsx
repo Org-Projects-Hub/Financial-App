@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import api from '../../../api';
-import SpinnerSVG from '../../../assets/spinner.svg';
+import SpinnerSVG from '../../assets/spinner.svg';
+import api from '../../api';
 
 /**
  * @author: Ashish DEv
