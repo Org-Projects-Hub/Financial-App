@@ -125,19 +125,32 @@ const App = () => {
     }
   };
 
+  const fallback = () => {
+    return (
+      <div
+        style={{
+          height: '100vh',
+          width: '100vw',
+          background:
+            'linear-gradient(90deg, rgba(83, 158, 208, 1) 15%, rgba(75, 151, 202, 1) 33%, rgba(0, 81, 145, 1) 100%)',
+        }}
+      ></div>
+    );
+  };
+
   return (
     <>
       {state.tokenChecked ? (
-        <Suspense fallback={Loader}>
-          <Switch>
-            {loginBasedRedirect()}
-            <div className={`${state.loggedin ? 'grid-main' : ''} bg-gradient`}>
-              <Navbar
-                showNav={state.showNav && state.loggedin}
-                hide={() => {
-                  setState({ ...state, showNav: !state.showNav });
-                }}
-              />
+        <div className={`${state.loggedin ? 'grid-main' : ''} bg-gradient`}>
+          <Navbar
+            showNav={state.showNav && state.loggedin}
+            hide={() => {
+              setState({ ...state, showNav: !state.showNav });
+            }}
+          />
+          <Suspense fallback={fallback()}>
+            <Switch>
+              {loginBasedRedirect()}
 
               <Route
                 path="/classes"
@@ -178,9 +191,9 @@ const App = () => {
                   />
                 )}
               />
-            </div>
-          </Switch>
-        </Suspense>
+            </Switch>
+          </Suspense>
+        </div>
       ) : (
         <Loader />
       )}
