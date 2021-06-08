@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Bar, defaults } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
+import { useParams } from 'react-router-dom';
+import api from '../../api';
 import test from '../../json/Tests.json';
 
 interface statType {
@@ -8,38 +10,30 @@ interface statType {
   backgroundColor: String;
 }
 
+// Get demo bar graph from https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/VerticalBar.js
 const ClassStats = () => {
   const [stats, setStats] = useState<statType[][]>([]);
+  let { authCode } = useParams<{ authCode: string }>();
 
   useEffect(() => {
     // Get data from backend
 
     let data: statType[][] = [];
+    api.getClassStats(authCode).then((res) => {
+      console.log(res);
+      data = res.classDetails;
 
-    for (let i = 0; i < data.length; i++) {
-      let x = data[i];
-      x[0]['backgroundColor'] = '#227dbf';
-      x[1]['backgroundColor'] = '#fcb23d';
-    }
+      for (let i = 0; i < data.length; i++) {
+        let x = data[i];
+        x[0]['backgroundColor'] = '#227dbf';
+        // x[0]['data'] = [12, 19, 3, 5, 2];
+        // x[1]['data'] = [2, 3, 20, 5, 1];
+        x[1]['backgroundColor'] = '#fcb23d';
+      }
 
-    setStats(data);
+      setStats(data);
+    });
   }, []);
-
-  const data = {
-    labels: test.answers,
-    datasets: [
-      {
-        label: 'Before Simulation',
-        data: [12, 19, 3, 5, 2],
-        backgroundColor: '#227dbf',
-      },
-      {
-        label: 'After Simulation',
-        data: [2, 3, 20, 5, 1],
-        backgroundColor: '#fcb23d',
-      },
-    ],
-  };
 
   const options = {
     scales: {
@@ -65,8 +59,11 @@ const ClassStats = () => {
         }}
       >
         <p className="ta-center">{question}</p>
-        {/* data will be replaced by stats[i] */}
-        <Bar data={data} height={120} />
+        <Bar
+          data={{ labels: test.answers, datasets: stats[i] }}
+          options={options}
+          height={120}
+        />
       </div>
     ));
   };

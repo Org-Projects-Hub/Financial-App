@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import api from '../../api';
 
 interface classInfoType {
@@ -87,7 +86,7 @@ const ClassDetails = () => {
           </p>
         </div>
 
-        <Link to={`/classes/stats/${classId}`}>
+        <Link to={`/classes/stats/${classInfo.authCode}`}>
           <div
             className="yellow-button"
             style={{ margin: 'auto', fontSize: '1.2em', marginTop: '1%' }}

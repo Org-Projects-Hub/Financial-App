@@ -43,6 +43,7 @@ const API: any = {
   getClassDetailsbyAuth: `${URL}/class/`,
   getClassDetails: `${URL}/class/details/`,
   leaveClass: `${URL}/class/leave`,
+  getClassStats: `${URL}/class/classStat/`,
 };
 
 export { URL, API };

@@ -119,4 +119,8 @@ export default {
   leaveClass: function () {
     return authPut(API.leaveClass, {});
   },
+
+  getClassStats: (authCode: string) => {
+    return authGet(API.getClassStats, authCode);
+  },
 };

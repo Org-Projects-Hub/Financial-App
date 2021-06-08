@@ -10,7 +10,7 @@ const TeacherDashboard = () => {
   return (
     <Switch>
       <Route exact path={path} component={TeacherHome}></Route>
-      <Route path={`${path}/stats/:classId`}>
+      <Route path={`${path}/stats/:authCode`}>
         <ClassStats />
       </Route>
       <Route path={`${path}/:classId`}>
