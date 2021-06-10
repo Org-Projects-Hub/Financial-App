@@ -3,6 +3,7 @@ import Tests from '../../json/Tests.json';
 import { TestLayout } from '../index';
 import api from '../../api';
 import useStateCallback from '../../utils/useStateCallback';
+import TestInfoCard from './TestInfoCard';
 
 interface Props {
   stage: string;
@@ -13,6 +14,7 @@ const useBackendConnection = (stage: string) => {
   const [qNum, setQNum] = useStateCallback(null); //question number
   const [selections, setSelections] = useStateCallback(new Array(11)); //selected answers
   const [loading, setLoading] = useState(true);
+  const [showInfoCard, setShowInfoCard] = useState(true);
 
   let store: any = useRef(); //used to access selections state in componentWillUnmount
 
@@ -56,8 +58,9 @@ const useBackendConnection = (stage: string) => {
   const retriveTest = () => {
     api
       .retriveTest(stage)
-      .then((res: any) => {
+      .then((res: Array<number>) => {
         setSelections(res, changePointer);
+        setShowInfoCard(res.every((element) => element === null));
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +77,15 @@ const useBackendConnection = (stage: string) => {
     });
   };
 
-  return { qNum, setQNum, selections, setSelections, loading };
+  return {
+    qNum,
+    setQNum,
+    selections,
+    setSelections,
+    loading,
+    showInfoCard,
+    setShowInfoCard,
+  };
 };
 
 const TestController = (props: Props): JSX.Element => {
@@ -82,8 +93,15 @@ const TestController = (props: Props): JSX.Element => {
   const questionList = Tests.questions;
   const answerList = Tests.answers;
 
-  const { qNum, setQNum, selections, setSelections, loading } =
-    useBackendConnection(props.stage);
+  const {
+    qNum,
+    setQNum,
+    selections,
+    setSelections,
+    loading,
+    showInfoCard,
+    setShowInfoCard,
+  } = useBackendConnection(props.stage);
 
   const [answered, setAnswered] = useState('fade-out'); //for transition
 
@@ -155,9 +173,14 @@ const TestController = (props: Props): JSX.Element => {
     answered: answered,
   };
 
-  return (
-    <>{!loading ? <TestLayout nav={nav} save={Save} data={data} /> : null}</>
-  );
+  if (loading) return null;
+  else if (showInfoCard) {
+    return (
+      <TestInfoCard stage={props.stage} setShowInfoCard={setShowInfoCard} />
+    );
+  } else {
+    return <TestLayout nav={nav} save={Save} data={data} />;
+  }
 };
 
 export default TestController;
