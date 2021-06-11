@@ -14,7 +14,7 @@ const useBackendConnection = (stage: string) => {
   const [qNum, setQNum] = useStateCallback(null); //question number
   const [selections, setSelections] = useStateCallback(new Array(11)); //selected answers
   const [loading, setLoading] = useState(true);
-  const [showInfoCard, setShowInfoCard] = useState(true);
+  const [showInfoCard, setShowInfoCard] = useState(false);
 
   let store: any = useRef(); //used to access selections state in componentWillUnmount
 
@@ -39,17 +39,19 @@ const useBackendConnection = (stage: string) => {
     store.current = { ...store.current, selections };
   }, [selections]);
 
-  const changePointer = (answers: any) => {
-    let current = answers.length - 1;
+  useEffect(() => {
+    console.log(showInfoCard);
+    if (qNum !== null) setLoading(false);
+  }, [qNum, showInfoCard, selections]);
 
-    for (let i = 0; i < answers.length; i++) {
-      if (!answers[i]) {
-        current = i;
-        break;
-      }
+  const changePointer = (answers: Array<number>) => {
+    let current = 0;
+
+    if (answers.length > 0) {
+      current = answers.length - 1;
     }
 
-    setQNum(current, () => setLoading(false));
+    setQNum(current);
   };
 
   /**
@@ -59,8 +61,10 @@ const useBackendConnection = (stage: string) => {
     api
       .retriveTest(stage)
       .then((res: Array<number>) => {
-        setSelections(res, changePointer);
-        setShowInfoCard(res.every((element) => element === null));
+        let x = res.length > 0 ? false : true;
+        setShowInfoCard(x);
+        setSelections(res);
+        changePointer(res);
       })
       .catch((err) => console.log(err));
   };
@@ -123,6 +127,8 @@ const TestController = (props: Props): JSX.Element => {
    * @param answer  user's selection
    */
   const Save = (qNumber: number, answer: string) => {
+    console.log(qNumber);
+
     storeSel(qNumber, parseInt(answer));
   };
 
