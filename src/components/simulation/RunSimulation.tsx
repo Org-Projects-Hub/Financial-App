@@ -63,6 +63,7 @@ const tempCareer = {
 
 interface Props {
   setStage: any;
+  setEvaluationVals: any;
 }
 
 const RunSimulation = (props: Props): JSX.Element => {
@@ -73,6 +74,12 @@ const RunSimulation = (props: Props): JSX.Element => {
   const [currentBooth, setCurrentBooth] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [visitedBooths, setVisitedBooths] = useState([]);
+
+  const [notedVals, setNotedVals] = useState<{
+    rent: number;
+    transport: number;
+    food: number;
+  }>({ rent: 0, transport: 0, food: 0 });
 
   /**
    * Check if the user has already performed job selection. If so, don't let them select a new job
@@ -118,7 +125,12 @@ const RunSimulation = (props: Props): JSX.Element => {
    */
   useEffect(() => {
     if (simStage == 'Booth-Selection' && visitedBooths.length == 6) {
-      props.setStage('posttest');
+      props.setEvaluationVals({
+        ...notedVals,
+        balance: currentBalance,
+        income: myCareer.monthlySalary,
+      });
+      props.setStage('evaluation');
     }
   }, [simStage]);
   /**
@@ -159,6 +171,14 @@ const RunSimulation = (props: Props): JSX.Element => {
    * @param newExpense The dollar amount of a new expense
    */
   const purchase = (newExpense: number) => {
+    // Update notedVals based on current booth
+    if (currentBooth == 2) {
+      setNotedVals({ ...notedVals, rent: newExpense });
+    } else if (currentBooth == 4) {
+      setNotedVals({ ...notedVals, food: newExpense });
+    } else if (currentBooth == 5) {
+      setNotedVals({ ...notedVals, transport: newExpense });
+    }
     setCurrentBalance(currentBalance - newExpense);
   };
 

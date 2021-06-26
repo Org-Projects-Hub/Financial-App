@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, GridRow, GridColItem } from '../../style/styled';
-import { NavButton } from '../../style/preposttest';
+import { Grid, GridRow, GridColItem } from 'style/styled';
+import { NavButton } from 'style/preposttest';
 import QuestionList from './QuestionList';
 import QuestionCard from './QuestionCard';
 

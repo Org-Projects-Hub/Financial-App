@@ -1,21 +1,31 @@
-import React, { FC, useState, useEffect } from 'react';
-import '../../style/simulation.css';
-import { ListHeading, Line } from '../../style/preposttest';
-import { Card } from '../../style/styled';
-import Criterias from './Evaluation/Criterias';
+import React, {
+  FC,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+import '../../../style/simulation.css';
+import { ListHeading, Line } from '../../../style/preposttest';
+import { Card } from '../../../style/styled';
+import Criterias from './Criterias';
 
-interface propsType {
+export interface valsType {
   balance: number;
-  vals: {
-    balance: number;
-    income: number;
-    rent: number;
-    food: number;
-    transport: number;
-  };
+  income: number;
+  rent: number;
+  food: number;
+  transport: number;
 }
 
-const Evaluation: FC<propsType> = ({ balance, vals }) => {
+interface propsType {
+  vals: valsType;
+  setStage: Dispatch<
+    SetStateAction<'simulation' | 'pretest' | 'evaluation' | 'posttest'>
+  >;
+}
+
+const Evaluation: FC<propsType> = ({ vals, setStage }) => {
   const [criteriaVals, setCriteriaVals] = useState<
     Array<{ show: String | number; positive: Boolean }>
   >([]);
@@ -68,6 +78,13 @@ const Evaluation: FC<propsType> = ({ balance, vals }) => {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (criteraNo == 4) {
+      setStage('posttest');
+    }
+    setLoading(false);
+  }, [criteraNo]);
+
   return (
     <Card width="50vw" className="evalCard">
       <ListHeading>Evaluation</ListHeading>
@@ -78,7 +95,10 @@ const Evaluation: FC<propsType> = ({ balance, vals }) => {
       <button
         className="yellow-button"
         style={{ margin: '3% auto 0' }}
-        onClick={() => setCriteriaNo(criteraNo + 1)}
+        onClick={() => {
+          setLoading(true);
+          setCriteriaNo(criteraNo + 1);
+        }}
       >
         Continue
       </button>

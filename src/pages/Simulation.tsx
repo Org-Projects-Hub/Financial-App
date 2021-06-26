@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { TestController, RunSimulation } from '../components';
+import { TestController, RunSimulation, Evaluation } from '../components';
+import { valsType as evaluationValsType } from '../components/simulation/Evaluation/Evaluation';
 import { Wrapper } from '../style/styled';
 import api from '../api';
 import useStateCallback from '../utils/useStateCallback';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
-  const [stage, setStage] = useStateCallback(null);
-  const [loading, setLoading] = useState(true);
+  const [stage, setStage] = useStateCallback<
+    'simulation' | 'pretest' | 'evaluation' | 'posttest'
+  >(null);
+  const [loading, setLoading] = useState<Boolean>(true);
+  const [evaluationVals, setEvaluationVals] = useState<evaluationValsType>({
+    balance: 0,
+    income: 0,
+    rent: 0,
+    food: 0,
+    transport: 0,
+  });
 
   useEffect(() => {
     api
@@ -33,7 +43,15 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />
       )}
-      {stage === 'simulation' && <RunSimulation setStage={setStage} />}
+      {stage === 'simulation' && (
+        <RunSimulation
+          setStage={setStage}
+          setEvaluationVals={setEvaluationVals}
+        />
+      )}
+      {stage === 'evaluation' && (
+        <Evaluation vals={evaluationVals} setStage={setStage} />
+      )}
       {stage === 'posttest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

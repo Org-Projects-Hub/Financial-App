@@ -22,7 +22,9 @@ const JobSummary = React.lazy(() => import('./jobs/JobSummary'));
 const Booth = React.lazy(() => import('./booth/Booth'));
 const BoothSelect = React.lazy(() => import('./booth/BoothSelect'));
 const TestLayout = React.lazy(() => import('./tests/TestLayout'));
-const Evaluation = React.lazy(() => import('./simulation/Evaluation'));
+const Evaluation = React.lazy(
+  () => import('./simulation/Evaluation/Evaluation')
+);
 
 export {
   Header,
