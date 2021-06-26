@@ -9,20 +9,11 @@ import '../../../style/simulation.css';
 import { ListHeading, Line } from '../../../style/preposttest';
 import { Card } from '../../../style/styled';
 import Criterias from './Criterias';
-
-export interface valsType {
-  balance: number;
-  income: number;
-  rent: number;
-  food: number;
-  transport: number;
-}
+import { evaluationValsType, simulation_stages } from 'types/shared';
 
 interface propsType {
-  vals: valsType;
-  setStage: Dispatch<
-    SetStateAction<'simulation' | 'pretest' | 'evaluation' | 'posttest'>
-  >;
+  vals: evaluationValsType;
+  setStage: Dispatch<SetStateAction<simulation_stages>>;
 }
 
 const Evaluation: FC<propsType> = ({ vals, setStage }) => {

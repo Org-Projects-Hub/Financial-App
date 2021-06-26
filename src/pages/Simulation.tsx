@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { TestController, RunSimulation, Evaluation } from '../components';
-import { valsType as evaluationValsType } from '../components/simulation/Evaluation/Evaluation';
+import { evaluationValsType, simulation_stages } from 'types/shared';
 import { Wrapper } from '../style/styled';
 import api from '../api';
 import useStateCallback from '../utils/useStateCallback';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
-  const [stage, setStage] = useStateCallback<
-    'simulation' | 'pretest' | 'evaluation' | 'posttest'
-  >(null);
+  const [stage, setStage] = useStateCallback<simulation_stages>(null);
   const [loading, setLoading] = useState<Boolean>(true);
   const [evaluationVals, setEvaluationVals] = useState<evaluationValsType>({
     balance: 0,
