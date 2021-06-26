@@ -7,8 +7,9 @@ import Navbar from './shared-components/Navbar';
 import SettingItem from './settings/SettingItem';
 
 import { Modal, InfoModal } from './shared-components/Modal';
-import Hints from './shared-components/Hints';
 import SelectInput from './shared-components/SelectInput';
+
+const SignupForm = React.lazy(() => import('./signup/SignupForm'));
 
 const StudentDashboard = React.lazy(() => import('./classes/StudentDashboard'));
 const ClassDetails = React.lazy(() => import('./classes/ClassDetails'));
@@ -34,7 +35,6 @@ export {
   StudentDashboard,
   TeacherDashboard,
   Modal,
-  Hints,
   SelectInput,
   RunSimulation,
   InfoModal,
@@ -47,4 +47,5 @@ export {
   Evaluation,
   ClassDetails,
   ClassStats,
+  SignupForm,
 };

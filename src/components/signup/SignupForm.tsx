@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import SignupBg from '../../assets/backgrounds/bg-signup.png';
+import { signup_background } from 'assets';
 import OrgLookup from './OrgLookup';
 
 /**
@@ -68,7 +68,8 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
    * @param email email provided by user
    */
   function validateEmail(email: string) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
@@ -153,7 +154,7 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
   return (
     <div style={{ height: '100vh', display: 'flex' }}>
       <div className="login-form-container">
-        <img src={SignupBg} style={{ height: '100%' }} />
+        <img src={signup_background} style={{ height: '100%' }} />
 
         {orgListState ? (
           <OrgLookup

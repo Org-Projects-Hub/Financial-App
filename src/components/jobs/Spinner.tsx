@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import SpinnerSVG from '../../assets/spinner.svg';
+import React, { useState, useEffect } from 'react';
+import { spinner } from 'assets';
 import api from '../../api';
 
 /**
@@ -64,7 +64,7 @@ const Spinner = ({ getJobDetail }: any): JSX.Element => {
   else
     return (
       <div className="spinnerContainer">
-        <img src={SpinnerSVG} className="spinner" />
+        <img src={spinner} className="spinner" />
         <div className="spinnerText">
           <span
             className={`${spinning ? 'wheel-animate' : 'wheel-stationary'}`}

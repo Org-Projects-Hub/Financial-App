@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
-
 import SignupForm from '../components/signup/SignupForm';
 import { Wrapper, Card, Grid, GridRow } from '../style/styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Admin from '../assets/admin.png';
-import User from '../assets/user.png';
+import { adminIcon, userIcon } from 'assets';
 import api from '../api';
 
 const MyCard = styled(Card)`
@@ -38,7 +35,7 @@ const AccountPick = ({ setAdmin }: { setAdmin: any }): JSX.Element => {
           {/**Card for admin account type
                 onClick sets admin to true (User is an teacher) */}
           <MyCard className="justify-end" onClick={makeAdmin}>
-            <img className="icon-md" src={Admin} alt="user" />
+            <img className="icon-md" src={adminIcon} alt="user" />
             <h3 className="center">Teacher</h3>
           </MyCard>
 
@@ -48,7 +45,7 @@ const AccountPick = ({ setAdmin }: { setAdmin: any }): JSX.Element => {
             <img
               style={{ paddingBottom: '1em' }}
               className="icon-md"
-              src={User}
+              src={userIcon}
               alt="user"
             />
             <h3 className="center">Student</h3>

@@ -1,28 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, NavButton } from '../../style/styled';
-import ClothingIcon from '../../assets/icons/icon-booth-clothing.svg';
-import HousingIcon from '../../assets/icons/icon-booth-housing.svg';
-import CharityIcon from '../../assets/icons/icon-booth-charity.svg';
-import foodIcon from '../../assets/icons/icon-booth-food.svg';
-import temptationIcon from '../../assets/icons/icon-booth-temptation.svg';
-import insuranceIcon from '../../assets/icons/icon-booth-insurance.svg';
-import transportationIcon from '../../assets/icons/icon-booth-transportation.svg';
+import {
+  housingIcon,
+  clothingIcon,
+  foodIcon,
+  temptationIcon,
+  transportationIcon,
+} from 'assets';
 import '../../style/simulation.css';
 
 interface BoothIconsObjType {
   [id: number]: any;
 }
 export const BoothIcons: BoothIconsObjType = {
-  1: ClothingIcon,
-  2: HousingIcon,
-  3: ClothingIcon,
-  // 3: CharityIcon,
+  1: clothingIcon,
+  2: housingIcon,
+  3: clothingIcon,
   4: foodIcon,
   5: transportationIcon,
-
   6: temptationIcon,
-  // 6: insuranceIcon,
 };
 
 const Option = styled.div`

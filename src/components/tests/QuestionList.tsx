@@ -6,7 +6,7 @@ import {
   Line,
   Arrow,
 } from '../../style/preposttest';
-import Arrowsvg from '../../assets/icons/icon-arrow.svg';
+import { Arrowsvg } from 'assets';
 
 interface Props {
   isMobile: boolean;

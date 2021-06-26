@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundimg from '../assets/backgrounds/bg-home.svg';
+import { home_background } from 'assets';
 
 //Contains the entire Startpage, sets the gridarea and the background
 const Wrapper = styled.div`
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   min-height: 100vh;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 10vh 8vh 60vh 5vh auto;
-  background-image: url(${backgroundimg});
+  background-image: url(${home_background});
   background-repeat: no-repeat;
   background-position: bottom center;
 `;
@@ -50,17 +50,21 @@ const Desc = styled.div`
   width: 75%;
   border-radius: 10px;
   margin-top: 0;
-  ${{
-    /*Sizing for ipad and mobile */
-  }}
+  ${
+    {
+      /*Sizing for ipad and mobile */
+    }
+  }
   @media only screen and (max-width: 1024px) {
     grid-column: 2 / span 2;
     grid-row: 2 / span 1;
   }
 
-  ${{
-    /*Sizing for laptop and desktop */
-  }}
+  ${
+    {
+      /*Sizing for laptop and desktop */
+    }
+  }
   @media only screen  and (min-width : 1024px) {
     grid-column: 3 / span 6;
     grid-row: 3 / span 1;
@@ -83,17 +87,21 @@ const DescText = styled.div`
 
 //Sets the position of the login card. Contains media queries to switch underneath the description on smaller screens
 const LoginPOS = styled.div`
-  ${{
-    /*Sizing for ipad and mobile */
-  }}
+  ${
+    {
+      /*Sizing for ipad and mobile */
+    }
+  }
   @media only screen and (max-width : 1024px) {
     grid-column: 2 / span 2;
     grid-row: 3 / span 1;
   }
 
-  ${{
-    /*Sizing for laptop and desktop */
-  }}
+  ${
+    {
+      /*Sizing for laptop and desktop */
+    }
+  }
   @media only screen  and (min-width : 1024px) {
     grid-column: 4 / span 4;
     grid-row-start: 3;

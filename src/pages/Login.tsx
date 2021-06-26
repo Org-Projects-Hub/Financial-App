@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LoginBg from '../assets/backgrounds/bg-signup.png';
+import { signup_background as LoginBg } from 'assets';
 import api from '../api';
-// import LoginBg from '../../assets/backgrounds/bg-signup.png'; // The png image behind the login form
 
 /**
  * This component contains the Login form shown in "/login" page

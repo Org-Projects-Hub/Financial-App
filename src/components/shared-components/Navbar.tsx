@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconGear from '../../assets/icons/icon-gear.svg';
-import Home from '../../assets/icons/icon-home.svg';
-import Game from '../../assets/icons/icon-game.svg';
-import BackPack from '../../assets/icons/icon-backpack.svg';
+import { IconGear, Home, Game, BackPack } from 'assets';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,7 +11,6 @@ import {
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducer';
 
-import { Hints } from '../index';
 const Nav = styled.div`
   top: 0em;
   height: 100vh;
