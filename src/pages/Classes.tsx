@@ -1,8 +1,8 @@
 import React from 'react';
 import { classes_background } from 'assets';
-import { StudentDashboard, TeacherDashboard } from '../components';
+import { StudentDashboard, TeacherDashboard } from 'components';
 
-import '../style/classes.css';
+import 'style/classes.css';
 
 const ClassesPage = ({ userType }: { userType: String }): JSX.Element => {
   return (

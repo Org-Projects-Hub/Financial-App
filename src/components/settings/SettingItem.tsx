@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo, useCallback } from 'react';
-import { Card, Grid } from '../../style/styled';
-import api from '../../api';
+import { Card, Grid } from 'style/styled';
+import api from 'api';
 
 import { editButton, buttonX, checkButton } from 'assets';
 import { parse } from 'url';

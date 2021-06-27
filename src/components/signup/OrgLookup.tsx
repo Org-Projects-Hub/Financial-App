@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
-import api from '../../api';
+import api from 'api';
 
 type props = {
   signUpUser: () => void;

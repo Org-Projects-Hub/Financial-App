@@ -7,7 +7,7 @@ import {
   showBackFunction,
   hideBackFunction,
   changeBackFunction,
-} from '../../store/action/backButtonActions';
+} from 'store/action/backButtonActions';
 
 import {
   money1,

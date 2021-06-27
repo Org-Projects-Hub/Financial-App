@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import SignupForm from '../components/signup/SignupForm';
-import { Wrapper, Card, Grid, GridRow } from '../style/styled';
+import { Wrapper, Card, Grid, GridRow } from 'style/styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { adminIcon, userIcon } from 'assets';
-import api from '../api';
+import api from 'api';
 
 const MyCard = styled(Card)`
   cursor: pointer;

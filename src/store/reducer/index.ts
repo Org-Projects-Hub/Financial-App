@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { action } from '../../models';
+import { action } from 'models';
 import {
   stateType as backStateType,
   backButtonReducer,

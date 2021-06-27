@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useParams } from 'react-router-dom';
-import api from '../../api';
-import test from '../../json/Tests.json';
+import api from 'api';
+import test from 'json/Tests.json';
 
 interface statType {
   label: String;

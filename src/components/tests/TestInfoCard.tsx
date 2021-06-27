@@ -5,8 +5,8 @@ import {
   OptionButton,
   ListHeading,
   Line,
-} from '../../style/preposttest';
-import { Card, Grid } from '../../style/styled';
+} from 'style/preposttest';
+import { Card, Grid } from 'style/styled';
 
 const TestInfoCard = ({
   stage,

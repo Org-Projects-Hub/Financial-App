@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../style/Startpage.css';
-import '../../style/materialize.css';
+import 'style/Startpage.css';
+import 'style/materialize.css';
 
 const Header = (): JSX.Element => (
   <nav>

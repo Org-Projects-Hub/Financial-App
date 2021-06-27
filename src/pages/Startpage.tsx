@@ -1,15 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Wrapper,
-  Banner,
-  Logo,
-  Desc,
-  DescText,
-  DescTitle,
-  Logoutbutton,
-  LoginPOS,
-} from '../style/home';
-import { bannerlogo } from 'assets';
+import React from 'react';
+import { Wrapper, Desc, DescText } from 'style/home';
 
 /*
  * Start page of the entire site, where users will get an overview of what this app is about, and where they will

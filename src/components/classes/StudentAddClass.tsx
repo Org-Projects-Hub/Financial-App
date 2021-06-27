@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../api';
+import api from 'api';
 import { CustomModal } from '../shared-components/Modal';
-import useNonInitialEffect from '../../utils/useNonInitialEffect';
 import { classType } from './StudentDashboard';
-import useStateCallback from '../../utils/useStateCallback';
 
 const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);

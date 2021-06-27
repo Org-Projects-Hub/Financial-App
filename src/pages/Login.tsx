@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { signup_background as LoginBg } from 'assets';
-import api from '../api';
+import api from 'api';
 
 /**
  * This component contains the Login form shown in "/login" page

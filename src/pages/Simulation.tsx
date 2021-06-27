@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { TestController, RunSimulation, Evaluation } from '../components';
+import { TestController, RunSimulation, Evaluation } from 'components';
 import { evaluationValsType, simulation_stages } from 'types/shared';
-import { Wrapper } from '../style/styled';
-import api from '../api';
-import useStateCallback from '../utils/useStateCallback';
+import { Wrapper } from 'style/styled';
+import api from 'api';
+import useStateCallback from 'utils/useStateCallback';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {

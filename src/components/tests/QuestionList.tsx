@@ -5,7 +5,7 @@ import {
   ListHeading,
   Line,
   Arrow,
-} from '../../style/preposttest';
+} from 'style/preposttest';
 import { Arrowsvg } from 'assets';
 
 interface Props {

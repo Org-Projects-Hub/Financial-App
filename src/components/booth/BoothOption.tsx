@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Grid, Card, NavButton } from '../../style/styled';
-import '../../style/Booth.css';
+import { Grid, Card, NavButton } from 'style/styled';
+import 'style/Booth.css';
 import styled from 'styled-components';
 
 type Props = {

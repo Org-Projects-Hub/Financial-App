@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wrapper, Grid } from '../style/styled';
-import { SettingItem } from '../components';
+import { Wrapper, Grid } from 'style/styled';
+import { SettingItem } from 'components';
 import { settings_background as backgroundImg } from 'assets';
 
 const Setting = ({

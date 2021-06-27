@@ -7,9 +7,9 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 
-import '../../../style/simulation.css';
-import { ListHeading, Line } from '../../../style/preposttest';
-import { Card } from '../../../style/styled';
+import 'style/simulation.css';
+import { ListHeading, Line } from 'style/preposttest';
+import { Card } from 'style/styled';
 import Criterias from './Criterias';
 import { evaluationValsType, simulation_stages } from 'types/shared';
 

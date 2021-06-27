@@ -1,4 +1,3 @@
-import { action } from '../../models';
 import actionTypes from '../action/actionTypes';
 
 export interface stateType {

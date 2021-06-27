@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/reducer';
+import { RootState } from 'store/reducer';
 
 const Nav = styled.div`
   top: 0em;

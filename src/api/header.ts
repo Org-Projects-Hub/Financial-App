@@ -1,12 +1,12 @@
-import { getLocalStorage, setLocalStorage } from '../utils/utils';
+import { getLocalStorage, setLocalStorage } from 'utils/utils';
 
 function header() {
-  return { "Content-Type": "application/json" };
+  return { 'Content-Type': 'application/json' };
 }
 
 function authHeader() {
-  let authtoken = getLocalStorage("token");
-  return { "Content-Type": "application/json", token: authtoken };
+  let authtoken = getLocalStorage('token');
+  return { 'Content-Type': 'application/json', token: authtoken };
 }
 
-export { header , authHeader };
+export { header, authHeader };

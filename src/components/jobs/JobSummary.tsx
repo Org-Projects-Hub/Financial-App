@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Grid, Card } from '../../style/styled';
 import styled from 'styled-components';
 import { career } from '../simulation/RunSimulation';
 

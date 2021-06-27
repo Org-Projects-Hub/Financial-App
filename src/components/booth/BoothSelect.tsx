@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, NavButton } from '../../style/styled';
+import { Grid, NavButton } from 'style/styled';
 import {
   housingIcon,
   clothingIcon,
@@ -8,7 +8,7 @@ import {
   temptationIcon,
   transportationIcon,
 } from 'assets';
-import '../../style/simulation.css';
+import 'style/simulation.css';
 
 interface BoothIconsObjType {
   [id: number]: any;

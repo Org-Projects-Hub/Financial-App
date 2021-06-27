@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { spinner } from 'assets';
-import api from '../../api';
+import api from 'api';
 
 /**
  * @author: Ashish DEv
