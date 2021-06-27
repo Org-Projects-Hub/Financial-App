@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import 'style/simulation.css';
@@ -12,13 +6,14 @@ import { ListHeading, Line } from 'style/preposttest';
 import { Card } from 'style/styled';
 import Criterias from './Criterias';
 import { evaluationValsType, setStageType } from 'types/shared';
+import api from 'api';
 
 interface propsType {
-  vals: evaluationValsType;
+  propVals: evaluationValsType;
   setStage: setStageType;
 }
 
-const Evaluation: FC<propsType> = ({ vals, setStage }) => {
+const Evaluation: FC<propsType> = ({ propVals, setStage }) => {
   /**
    * Props for Criterias component
    */
@@ -46,11 +41,21 @@ const Evaluation: FC<propsType> = ({ vals, setStage }) => {
    * Initiate {@link criteriaVals} state with values for each criteria
    */
   useEffect(() => {
+    let vals: evaluationValsType = propVals;
     let info: Array<{
       show: String | number;
       positive: Boolean;
       pMsg?: number;
     }> = [];
+
+    // api
+    //   .getEvalVals()
+    //   .then((res) => {
+    //     if (res.success) {
+    //       vals = res.evalVals;
+    //     }
+    //   })
+    //   .catch((err) => window.alert('Server Error!'));
 
     // balance criteria
     let sp = vals.balance / vals.income;

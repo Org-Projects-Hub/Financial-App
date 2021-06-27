@@ -35,6 +35,8 @@ const API: any = {
   getOrganizationNames: `${URL}/organizations/`,
   getBoothsInfo: `${URL}/booths/`,
 
+  updateEvalVals: `${URL}/users/evalVals`,
+
   //Classes
   createNewClass: `${URL}/class/`,
   getMyClasses: `${URL}/class`,

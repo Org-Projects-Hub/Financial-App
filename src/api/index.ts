@@ -1,3 +1,4 @@
+import { evaluationValsType } from 'types/shared';
 import { authGet, post, authPost, authPut, get } from './request';
 import { API } from './routes';
 
@@ -94,6 +95,14 @@ export default {
 
   getBoothsInfo: function () {
     return get(API.getBoothsInfo);
+  },
+
+  getEvalVals: () => {
+    return authGet(API.updateEvalVals, '');
+  },
+
+  updateEvalVals: (vals: evaluationValsType) => {
+    return authPut(API.updateEvalVals, vals);
   },
 
   // Class Routes

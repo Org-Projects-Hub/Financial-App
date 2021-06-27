@@ -9,6 +9,7 @@ import { evaluationValsType, simulation_stages } from 'types/shared';
 import { Wrapper } from 'style/styled';
 import api from 'api';
 import useStateCallback from 'utils/useStateCallback';
+import ReactDOM from 'react-dom';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
@@ -32,7 +33,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && stage !== 'additional') {
       api
         .updateSimulation(stage)
         .catch((err) =>
@@ -53,7 +54,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
         />
       )}
       {stage === 'evaluation' && (
-        <Evaluation vals={evaluationVals} setStage={setStage} />
+        <Evaluation propVals={evaluationVals} setStage={setStage} />
       )}
       {stage === 'additional' && <Additional_Resources setStage={setStage} />}
       {stage === 'posttest' && (
