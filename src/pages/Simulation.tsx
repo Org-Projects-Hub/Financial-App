@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { TestController, RunSimulation, Evaluation } from 'components';
+import {
+  TestController,
+  RunSimulation,
+  Evaluation,
+  Additional_Resources,
+} from 'components';
 import { evaluationValsType, simulation_stages } from 'types/shared';
 import { Wrapper } from 'style/styled';
 import api from 'api';
@@ -50,6 +55,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
       {stage === 'evaluation' && (
         <Evaluation vals={evaluationVals} setStage={setStage} />
       )}
+      {stage === 'additional' && <Additional_Resources setStage={setStage} />}
       {stage === 'posttest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

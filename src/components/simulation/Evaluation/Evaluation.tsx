@@ -11,11 +11,11 @@ import 'style/simulation.css';
 import { ListHeading, Line } from 'style/preposttest';
 import { Card } from 'style/styled';
 import Criterias from './Criterias';
-import { evaluationValsType, simulation_stages } from 'types/shared';
+import { evaluationValsType, setStageType } from 'types/shared';
 
 interface propsType {
   vals: evaluationValsType;
-  setStage: Dispatch<SetStateAction<simulation_stages>>;
+  setStage: setStageType;
 }
 
 const Evaluation: FC<propsType> = ({ vals, setStage }) => {
@@ -87,7 +87,7 @@ const Evaluation: FC<propsType> = ({ vals, setStage }) => {
 
   useEffect(() => {
     if (criteraNo == 4) {
-      setStage('posttest');
+      setStage('additional');
     }
   }, [criteraNo]);
 

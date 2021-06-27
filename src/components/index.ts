@@ -26,6 +26,9 @@ const TestLayout = React.lazy(() => import('./tests/TestLayout'));
 const Evaluation = React.lazy(
   () => import('./simulation/Evaluation/Evaluation')
 );
+const Additional_Resources = React.lazy(
+  () => import('components/simulation/Additional_Resources')
+);
 
 export {
   Header,
@@ -48,4 +51,5 @@ export {
   ClassDetails,
   ClassStats,
   SignupForm,
+  Additional_Resources,
 };
