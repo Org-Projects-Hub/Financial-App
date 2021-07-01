@@ -130,6 +130,13 @@ const RunSimulation = (props: Props): JSX.Element => {
         balance: currentBalance,
         income: myCareer.monthlySalary,
       });
+
+      // update evaluation vals in backend
+      api.updateEvalVals({
+        ...notedVals,
+        balance: currentBalance,
+        income: myCareer.monthlySalary,
+      });
       props.setStage('evaluation');
     }
   }, [simStage]);
