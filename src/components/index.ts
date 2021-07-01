@@ -29,6 +29,9 @@ const Evaluation = React.lazy(
 const Additional_Resources = React.lazy(
   () => import('components/simulation/Additional_Resources')
 );
+const Simulation_Finished = React.lazy(
+  () => import('components/simulation/Simulation_Finished')
+);
 
 export {
   Header,
@@ -52,4 +55,5 @@ export {
   ClassStats,
   SignupForm,
   Additional_Resources,
+  Simulation_Finished,
 };

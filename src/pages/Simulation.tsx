@@ -4,6 +4,7 @@ import {
   RunSimulation,
   Evaluation,
   Additional_Resources,
+  Simulation_Finished,
 } from 'components';
 import { evaluationValsType, simulation_stages } from 'types/shared';
 import { Wrapper } from 'style/styled';
@@ -60,6 +61,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
       {stage === 'posttest' && (
         <TestController stage={stage} setStage={setStage} />
       )}
+      {stage == 'completed' && <Simulation_Finished />}
     </Wrapper>
   );
 };

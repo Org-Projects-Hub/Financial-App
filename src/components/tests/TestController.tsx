@@ -138,6 +138,7 @@ const TestController = (props: Props): JSX.Element => {
     );
     if (confirmed) {
       if (props.stage == 'pretest') props.setStage('simulation');
+      else props.setStage('completed');
     }
   };
 
