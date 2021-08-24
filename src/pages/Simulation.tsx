@@ -10,7 +10,7 @@ import { evaluationValsType, simulation_stages } from 'types/shared';
 import { Wrapper } from 'style/styled';
 import api from 'api';
 import useStateCallback from 'utils/useStateCallback';
-import ReactDOM from 'react-dom';
+import RedirectToClass from 'components/simulation/RedirectToClass';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
@@ -26,11 +26,25 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
 
   useEffect(() => {
     api
-      .createOrRetriveSimulation()
+      .getStudentClass()
       .then((res) => {
-        setStage(res.inProgress, () => setLoading(false));
+        if (res.classDetails) {
+          api
+            .createOrRetriveSimulation()
+            .then((res) => {
+              setStage(res.inProgress, () => setLoading(false));
+            })
+            .catch((err) => console.log(err));
+        } else {
+          setStage('none');
+        }
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        window.alert(
+          'Something went wrong \nPlease refresh the page and try again!'
+        );
+      });
   }, []);
 
   useEffect(() => {
@@ -45,6 +59,7 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
 
   return (
     <Wrapper className="center">
+      {stage == 'none' && <RedirectToClass />}
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

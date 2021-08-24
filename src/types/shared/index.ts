@@ -8,6 +8,7 @@ export type simulation_stages =
   | 'evaluation'
   | 'posttest'
   | 'additional'
+  | 'none'
   | 'completed';
 
 export type setStageType = Dispatch<SetStateAction<simulation_stages>>;

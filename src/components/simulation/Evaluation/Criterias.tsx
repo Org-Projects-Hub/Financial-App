@@ -28,7 +28,7 @@ const evalOptions: Array<any> = [
     neg_message:
       'We noticed your food expenses are higher than the recommended range.',
     other:
-      'We recommend keeping food related expenses within 7% of your monthly income. A smart way to reduce your food expense is to cook at home. A Starbucks a day might be tempting but cooking at home can be enjoyable as well.',
+      'We recommend keeping food related expenses within 7% of your monthly income. A smart way to reduce your food expense is to cook at home. McDonald’s everyday might be tempting, but cooking at home can be enjoyable and cost saving as well.',
   },
   {
     name: 'transport',
