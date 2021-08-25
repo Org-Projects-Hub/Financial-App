@@ -13,6 +13,19 @@ function getLocalStorage(key: string) {
     return localStorage.getItem(key);
   }
 }
+
+const logoutAndRedirect = () => {
+  setLocalStorage('finapp-token', '');
+  window.location.href = window.location.origin + '/login';
+};
+
+const logoutTimer = () => {
+  setTimeout(logoutAndRedirect, 7200000);
+  setTimeout(() => {
+    alert('You will be logout automatically in 1 minute!');
+  }, 7140000);
+};
+
 function nameTest(name: string) {
   const nameRegex = /^[a-zA-Z]{2,20}$/;
   return nameRegex.test(name);
@@ -29,7 +42,8 @@ function emailTest(name: string) {
 }
 
 function passwordTest(name: string) {
-  const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{7,30})$/;
+  const passwordRegex =
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{7,30})$/;
   return passwordRegex.test(name);
 }
 
@@ -46,4 +60,6 @@ export {
   emailTest,
   passwordTest,
   numberTest,
+  logoutAndRedirect,
+  logoutTimer,
 };

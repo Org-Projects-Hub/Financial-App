@@ -18,7 +18,7 @@ import {
   Login,
 } from './pages';
 import api from './api';
-import { getLocalStorage, setLocalStorage } from './utils/utils';
+import { logoutTimer, setLocalStorage } from './utils/utils';
 import openSocket from 'socket.io-client';
 
 const initUser: userType = {
@@ -49,9 +49,6 @@ type stateType = {
   modal: boolean;
 };
 
-const GetInfoContext = createContext(null);
-// const socket = openSocket('http://localhost:8000');
-
 const App = () => {
   const history = useHistory();
   const location = useLocation();
@@ -75,6 +72,7 @@ const App = () => {
             user: res.user,
             tokenChecked: true,
           });
+          logoutTimer();
           // this.socketSubscribe(res.user.email);
         } else {
           setState({ ...state, loggedin: false, tokenChecked: true });
@@ -89,16 +87,10 @@ const App = () => {
     return true;
   };
 
-  const socketSubscribe = (email: string): void => {
-    // socket.emit('join', email);
-    // socket.on('msg', (res: any) => {
-    //   alert(`New Student Requested to Join a Class!`);
-    // });
-  };
-
   const loginUser = (res: any) => {
     setState({ ...state, loggedin: true, user: res.user });
-    setLocalStorage('token', res.token);
+    setLocalStorage('finapp-token', res.token);
+    logoutTimer();
     redirect('/');
   };
 
@@ -107,7 +99,7 @@ const App = () => {
   }, []);
 
   const logout = () => {
-    setLocalStorage('token', '');
+    setLocalStorage('finapp-token', '');
     setState({ ...state, loggedin: false });
   };
 
