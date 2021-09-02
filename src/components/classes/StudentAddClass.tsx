@@ -44,7 +44,7 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
           {classDetails.name}
         </div>
         <div className="creation-date meta-txt">
-          Created on: {classDetails.date}
+          Created on: {new Date(classDetails.date).toDateString()}
         </div>
         <div>Teacher: {classDetails.createdBy}</div>
         <div>Organization: {classDetails.organization}</div>

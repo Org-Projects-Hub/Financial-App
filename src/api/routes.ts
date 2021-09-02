@@ -1,5 +1,4 @@
-let URL = 'http://localhost:8000';
-//URL  = "http://localhost:8080";
+let URL = 'https://api.uwnelafinapp.com';
 
 const API: any = {
   //User
