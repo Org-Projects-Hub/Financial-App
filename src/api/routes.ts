@@ -1,4 +1,10 @@
-let URL = 'https://api.uwnelafinapp.com';
+let URL = '';
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  URL = 'http://localhost:8000';
+} else {
+  URL = 'https://api.uwnelafinapp.com';
+}
 
 const API: any = {
   //User
