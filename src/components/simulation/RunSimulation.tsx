@@ -92,10 +92,7 @@ const RunSimulation = (props: Props): JSX.Element => {
         if (jobSelected) getJobDetail(jobSelected);
         else setSimStage('Job-Selection');
       })
-      .catch((err) => {
-        setSimStage('Job-Selection');
-        console.log(err);
-      });
+      .catch((err) => alert(err.message));
   }, []);
 
   /**
@@ -109,14 +106,8 @@ const RunSimulation = (props: Props): JSX.Element => {
     if (simStage == 'Booth-Selection' && !boothsInfo) {
       api
         .getBoothsInfo()
-        .then((res) => {
-          if (res.success) {
-            setBoothsInfo(res.booths);
-          }
-        })
-        .catch((err) => {
-          window.alert('Something went wrong. \nPlease refresh the page!');
-        });
+        .then((res) => setBoothsInfo(res.booths))
+        .catch((err) => alert(err.message));
     }
   }, [simStage]);
 
@@ -132,11 +123,13 @@ const RunSimulation = (props: Props): JSX.Element => {
       });
 
       // update evaluation vals in backend
-      api.updateEvalVals({
-        ...notedVals,
-        balance: currentBalance,
-        income: myCareer.monthlySalary,
-      });
+      api
+        .updateEvalVals({
+          ...notedVals,
+          balance: currentBalance,
+          income: myCareer.monthlySalary,
+        })
+        .catch((err) => alert(err.message));
       props.setStage('evaluation');
     }
   }, [simStage]);
@@ -168,9 +161,10 @@ const RunSimulation = (props: Props): JSX.Element => {
         });
 
         setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
-        if (setJobInBackend) api.assignJob(jobname);
+        if (setJobInBackend)
+          api.assignJob(jobname).catch((err) => alert(err.message));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   /**

@@ -28,7 +28,9 @@ const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
           setErrMessage(res.message);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (
@@ -103,16 +105,6 @@ const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
             </div>
           </div>
         </form>
-        {/*
-        
-        To be Done
-        <div className="topic">
-          <p>Dollars & $ense Reality Fair</p>
-          <p>
-            Login to Join United Way NELA's financial education simulation. Have
-            fun!
-          </p>
-        </div> */}
       </div>
     </div>
   );

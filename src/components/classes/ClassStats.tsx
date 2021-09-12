@@ -19,20 +19,20 @@ const ClassStats = () => {
     // Get data from backend
 
     let data: statType[][] = [];
-    api.getClassStats(authCode).then((res) => {
-      console.log(res);
-      data = res.classDetails;
+    api
+      .getClassStats(authCode)
+      .then((res) => {
+        data = res.classDetails;
 
-      for (let i = 0; i < data.length; i++) {
-        let x = data[i];
-        x[0]['backgroundColor'] = '#227dbf';
-        // x[0]['data'] = [12, 19, 3, 5, 2];
-        // x[1]['data'] = [2, 3, 20, 5, 1];
-        x[1]['backgroundColor'] = '#fcb23d';
-      }
+        for (let i = 0; i < data.length; i++) {
+          let x = data[i];
+          x[0]['backgroundColor'] = '#227dbf';
+          x[1]['backgroundColor'] = '#fcb23d';
+        }
 
-      setStats(data);
-    });
+        setStats(data);
+      })
+      .catch((err) => alert(err.message));
   }, []);
 
   const options = {

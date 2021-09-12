@@ -1,9 +1,8 @@
-import React, { useState, useContext, useMemo, useCallback } from 'react';
-import { Card, Grid } from 'style/styled';
+import React, { useState } from 'react';
+import { Grid } from 'style/styled';
 import api from 'api';
 
 import { editButton, buttonX, checkButton } from 'assets';
-import { parse } from 'url';
 
 const SettingItem = (props: any): JSX.Element => {
   let {
@@ -16,8 +15,6 @@ const SettingItem = (props: any): JSX.Element => {
   } = props;
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(!defaultValue ? '' : defaultValue);
-  const [loading, setLoading] = useState(false);
-  const iconClass = 'material-icons pointer justify-end';
 
   const numberToPhoneNo = (number = value) => {
     if (!number) return null;
@@ -36,9 +33,7 @@ const SettingItem = (props: any): JSX.Element => {
   };
 
   const phoneNoToNumber = (phoneNo: string): string => {
-    console.log(phoneNo);
     phoneNo = phoneNo.replaceAll('-', '');
-    console.log(phoneNo);
 
     if (isNaN(Number(phoneNo))) return '';
 
@@ -49,11 +44,10 @@ const SettingItem = (props: any): JSX.Element => {
     api
       .updateInfo({ field, value, email: userEmail })
       .then((res) => {
-        if (res.success) getUserInfo();
-        else setValue(defaultValue);
+        getUserInfo();
       })
       .catch((err) => {
-        alert(err);
+        alert(err.message);
         setValue(defaultValue);
       })
       .finally(() => setEdit(false));
@@ -125,7 +119,6 @@ const SettingItem = (props: any): JSX.Element => {
                       event.preventDefault();
 
                       if (field !== 'phone' || value.length == 10) updateInfo();
-                      // else if () updateInfo();
                     }}
                   />
                 </span>
