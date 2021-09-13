@@ -86,16 +86,11 @@ const Signup = ({ loginUser }: { loginUser: any }) => {
     api
       .signup(values)
       .then((res) => {
-        if (res.success) {
-          loginUser(res);
-        } else {
-          setAdmin(null);
-          alert(res.message);
-        }
+        loginUser(res);
       })
       .catch((err) => {
+        alert(err.message);
         setAdmin(null);
-        alert(err);
       });
   };
 

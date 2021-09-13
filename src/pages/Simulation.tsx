@@ -34,26 +34,20 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
             .then((res) => {
               setStage(res.inProgress, () => setLoading(false));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => alert(err.message));
         } else {
           setStage('none');
+          setLoading(false);
         }
-        setLoading(false);
       })
       .catch((err) => {
-        window.alert(
-          'Something went wrong \nPlease refresh the page and try again!'
-        );
+        window.alert(err.message);
       });
   }, []);
 
   useEffect(() => {
     if (!loading && stage !== 'additional') {
-      api
-        .updateSimulation(stage)
-        .catch((err) =>
-          console.log('Something went wrong on our end! Please try again. ')
-        );
+      api.updateSimulation(stage).catch((err) => alert(err.message));
     }
   }, [stage]);
 

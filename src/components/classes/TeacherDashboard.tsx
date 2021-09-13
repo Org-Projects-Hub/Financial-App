@@ -29,19 +29,9 @@ const TeacherHome = () => {
     api
       .getMyClasses()
       .then((res) => {
-        if (res.success) {
-          setMyClasses(res.classes);
-        } else {
-          window.alert(
-            'Something went wrong \nPlease refresh the page and try again!'
-          );
-        }
+        setMyClasses(res.classes);
       })
-      .catch((err) => {
-        window.alert(
-          'Something went wrong \nPlease refresh the page and try again!'
-        );
-      });
+      .catch((err) => alert(err.message));
 
     setCreate(false);
   };
@@ -55,20 +45,10 @@ const TeacherHome = () => {
     api
       .createNewClass(newClassName)
       .then((res) => {
-        if (res.success) {
-          window.alert('Class Created Successfully!!');
-          updateClassList();
-        } else {
-          window.alert(
-            'Something went wrong \nPlease refresh the page and try again!'
-          );
-        }
+        alert('Class Created Successfully!!');
+        updateClassList();
       })
-      .catch((err) => {
-        window.alert(
-          'Something went wrong \nPlease refresh the page and try again!'
-        );
-      });
+      .catch((err) => alert(err.message));
   };
 
   const ModalBody = () => {

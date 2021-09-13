@@ -56,15 +56,12 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
     api
       .getStudentAuthorized(code)
       .then((res) => {
-        if (res.success) setMyClass(classDetails);
-        else {
-          setMyClass(null);
-        }
+        setMyClass(classDetails);
       })
       .catch((err) => {
-        window.alert('Something went wrong \nPlease try again!');
-        setMyClass(null);
-      });
+        alert(err.message);
+      })
+      .finally(() => setMyClass(null));
   };
 
   /**
@@ -104,19 +101,12 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
     api
       .getClassDetailsbyAuth(code)
       .then((res) => {
-        if (res.success) {
-          setClassDetails(res.classInfo);
-          setShowConfirmation(true);
-        } else
-          window.alert(
-            'Invalid authentication code! \n Please enter a valid code.'
-          );
+        setClassDetails(res.classInfo);
+        setShowConfirmation(true);
       })
       .catch((err) => {
         setClassDetails(null);
-        window.alert(
-          'Something went wrong! \nPlease refresh the page and try again'
-        );
+        alert(err.message);
       });
   };
 

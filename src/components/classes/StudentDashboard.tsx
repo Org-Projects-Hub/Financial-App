@@ -18,37 +18,24 @@ const StudentDashboard = (props: any) => {
     api
       .getStudentClass()
       .then((res) => {
-        if (res.success) {
-          setMyClass(res.classDetails);
-        }
-        setLoading(false);
+        setMyClass(res.classDetails);
       })
       .catch((err) => {
-        window.alert(
-          'Something went wrong \nPlease refresh the page and try again!'
-        );
-      });
+        window.alert(err.message);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const leaveClass = () => {
     let confirm = window.confirm('Are you sure you want to leave this class?');
     if (confirm) {
-      let handleError = () => {
-        window.alert(
-          'Something went wrong! \nPlease refresh the page and try again.'
-        );
-      };
-
       api
         .leaveClass()
         .then((res) => {
-          if (!res.success) handleError();
-          else {
-            setMyClass(null);
-          }
+          setMyClass(null);
         })
         .catch((err) => {
-          handleError();
+          alert(err.message);
         });
     }
   };

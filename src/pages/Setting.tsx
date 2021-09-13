@@ -23,9 +23,6 @@ const Setting = ({
     { name: 'Email', value: user.email, field: 'email' },
   ];
 
-  const [modal, setModal] = React.useState(true);
-  const [info, setInfo] = React.useState(true);
-
   return (
     <Wrapper className="fill-screen" backgroundImg={backgroundImg}>
       <div

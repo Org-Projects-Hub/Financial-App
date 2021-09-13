@@ -1,4 +1,4 @@
-import React, { createContext, Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import './style/App.css';
 import './style/animations.css';
-import { Navbar, Modal, Loader } from './components';
+import { Navbar, Loader } from './components';
 import {
   Setting,
   Simulation,
@@ -19,7 +19,6 @@ import {
 } from './pages';
 import api from './api';
 import { logoutTimer, setLocalStorage } from './utils/utils';
-import openSocket from 'socket.io-client';
 
 const initUser: userType = {
   phone: '',
@@ -65,22 +64,16 @@ const App = () => {
     api
       .auth()
       .then((res) => {
-        if (res.success) {
-          setState({
-            ...state,
-            loggedin: true,
-            user: res.user,
-            tokenChecked: true,
-          });
-          logoutTimer();
-          // this.socketSubscribe(res.user.email);
-        } else {
-          setState({ ...state, loggedin: false, tokenChecked: true });
-        }
+        setState({
+          ...state,
+          loggedin: true,
+          user: res.user,
+          tokenChecked: true,
+        });
+        logoutTimer();
       })
       .catch((err) => {
-        console.log(err);
-
+        if (err.status == 404) alert(err.message);
         setState({ ...state, loggedin: false, tokenChecked: true });
       });
 

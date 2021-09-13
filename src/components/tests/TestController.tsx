@@ -66,7 +66,7 @@ const useBackendConnection = (stage: string) => {
         setSelections(res);
         changePointer(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   /**
@@ -75,10 +75,12 @@ const useBackendConnection = (stage: string) => {
    * @param answers current answers
    */
   const submitAnswers = (testType: string, answers: any) => {
-    api.updateTest({
-      testType,
-      answers,
-    });
+    api
+      .updateTest({
+        testType,
+        answers,
+      })
+      .catch((err) => alert(err.message));
   };
 
   return {

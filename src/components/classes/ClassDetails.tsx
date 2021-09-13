@@ -17,11 +17,9 @@ const ClassDetails = () => {
     api
       .getClassDetails(classId)
       .then((res) => {
-        if (res.success) {
-          setClassInfo(res.classInfo);
-        }
+        setClassInfo(res.classInfo);
       })
-      .catch((err) => window.alert('404 Error'));
+      .catch((err) => alert(err.message));
   }, []);
 
   const rowsGenerator = () => {
