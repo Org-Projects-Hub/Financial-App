@@ -1,9 +1,16 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  MouseEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import api from 'api';
 
 type props = {
   signUpUser: () => void;
   setSelectedOrganization: any;
+  selectedOrganization: String;
 };
 
 /**
@@ -12,7 +19,11 @@ type props = {
  * @param signUpUser Function to aggregate all entered data and initiate an API call
  * @param setSelectedOrganization Update state of SignupForm.tsx
  */
-const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
+const OrgLookup = ({
+  signUpUser,
+  setSelectedOrganization,
+  selectedOrganization,
+}: props) => {
   /**
    * List of avialable organizations
    */
@@ -23,6 +34,7 @@ const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
    */
   const [disableSubmit, setdisableSubmit] = useState<boolean>(true);
 
+  const orgInputRef = useRef<HTMLInputElement>();
   useEffect(() => {
     // API call
     api
@@ -33,21 +45,17 @@ const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
           message: string;
           organizations: Array<{ _id: string; name: string; __v: number }>;
         }) => {
-          if (res.success) {
-            let temp: any = [];
+          let temp: any = [];
 
-            for (var i = 0; i < res.organizations.length; i++) {
-              temp.push(res.organizations[i].name);
-            }
-
-            setOrganizations([...temp]);
-          } else {
-            alert(res.message);
+          for (var i = 0; i < res.organizations.length; i++) {
+            temp.push(res.organizations[i].name);
           }
+
+          setOrganizations([...temp]);
         }
       )
       .catch((err) => {
-        alert(err);
+        alert(err.message);
         setOrganizations([]);
       });
   }, []);
@@ -56,8 +64,9 @@ const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
    * Function to create dropdown options from organizations array
    */
   const getOptions = () => {
-    return organizations.map((org) => {
-      return <option>{org}</option>;
+    // let organizations = ['a', 'baaa', 'aac'];
+    return organizations.map((org, i) => {
+      return <option key={i}>{org}</option>;
     });
   };
 
@@ -67,26 +76,33 @@ const OrgLookup = ({ signUpUser, setSelectedOrganization }: props) => {
         <div className="desc-title blue-text-dark">
           Choose your school/organization
         </div>
-        <select
-          name=""
-          id=""
-          onChange={(e) => {
-            setdisableSubmit(false); // Make the submit button active
-            setSelectedOrganization(e.target.value); // Update the selected organization
+
+        <input
+          ref={orgInputRef}
+          list="organizations"
+          onInput={(e) => {
+            let val = (e.target as any).value;
+            if (val != '') {
+              setdisableSubmit(false); // Make the submit button active
+              setSelectedOrganization(val); // Update the selected organization
+            } else {
+              setdisableSubmit(true);
+            }
           }}
-          style={{ display: 'block', marginTop: '1em', marginBottom: '1em' }}
-        >
-          <option hidden disabled selected>
-            -- select an option --
-          </option>
-          {getOptions()}
-        </select>
+        />
+        <datalist id="organizations">{getOptions()}</datalist>
+
         <button
           className="yellow-button"
           disabled={disableSubmit}
           onClick={(e) => {
             e.preventDefault();
-            signUpUser(); // API call
+            if (organizations.includes(selectedOrganization)) signUpUser();
+            // API call
+            else
+              alert(
+                'Invalid Organization name! \nPlease select an organization from the dropdown list.'
+              );
           }}
         >
           Submit
