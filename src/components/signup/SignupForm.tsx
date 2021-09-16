@@ -27,7 +27,7 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
   });
 
   const [orgListState, setOrgListState] = useState(false); // Show <OrgLookup />?
-  const [organization, setOrganization] = useState<String>(''); // User's organization
+  const [organization, setOrganization] = useState<string>(''); // User's organization
 
   const emailRef: React.RefObject<HTMLInputElement> = React.createRef();
   const cPasswordRef: React.RefObject<HTMLInputElement> = React.createRef();
