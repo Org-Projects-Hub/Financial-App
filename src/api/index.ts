@@ -38,6 +38,10 @@ export default {
   getOrganizationNames: () => {
     return authGet(API.getOrganizationNames, '');
   },
+  getOrganizationDetails: (orgName: string) => {
+    orgName = orgName.replaceAll(' ', '%20');
+    return authGet(API.getOrganizationDetails, orgName);
+  },
 
   //Students Route
   addClass: function ({ code }: any) {

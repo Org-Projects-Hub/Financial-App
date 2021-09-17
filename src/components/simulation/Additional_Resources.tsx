@@ -1,16 +1,66 @@
-import React, { MouseEvent } from 'react';
+import React, {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Card } from 'style/styled';
 import { ListHeading, Line } from 'style/preposttest';
 import { setStageType } from 'types/shared';
 
+const ContinueTimer: React.FC<{
+  setStage: setStageType;
+  setContinueType: Dispatch<SetStateAction<number>>;
+}> = ({ setStage, setContinueType }) => {
+  const [timer, setTimer] = useState<number>(300000);
+  const timerRef = useRef(timer);
+  timerRef.current = timer;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer(timerRef.current - 1000);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    timerRef.current = timer;
+    if (timer <= 0) setContinueType(3);
+  }, [timer]);
+
+  const getTime = () => {
+    var minutes: number = Math.floor(timer / 60000);
+    var seconds: number = parseInt(((timer % 60000) / 1000).toFixed(0));
+
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  };
+
+  return (
+    <button
+      className="yellow-button center-margin"
+      onClick={() => setStage('posttest')}
+    >
+      {timer > 0 ? `Continue in [${getTime()}]` : 'Continue'}
+    </button>
+  );
+};
+
 const Additional_Resources: React.FC<{ setStage: setStageType }> = ({
   setStage,
 }) => {
+  // The type of continue button to show
+  const [continueType, setContinueType] = useState<number>(1);
+
   /**
    * Open the resource in a new tab
    * @param e Anchor click event
    */
-  const openResource = (e: MouseEvent<HTMLAnchorElement>) => {
+  const openResource = (
+    e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+  ) => {
     e.preventDefault();
     window
       .open(
@@ -36,18 +86,31 @@ const Additional_Resources: React.FC<{ setStage: setStageType }> = ({
         className="ta-center"
         style={{ fontSize: '1.2em', marginBottom: '1rem' }}
       >
-        <a className="pointer" onClick={openResource}>
-          Click here
-        </a>{' '}
-        to view more resources and learn more about personal and business
-        finance
+        Let's look at some additional resources to help you learn more about
+        personal and business finance
       </div>
-      <button
-        className="yellow-button center-margin"
-        onClick={() => setStage('posttest')}
-      >
-        Continue
-      </button>
+      {continueType == 1 && (
+        <button
+          className="blue-button center-margin"
+          onClick={(e) => {
+            openResource(e);
+            setContinueType(2);
+          }}
+        >
+          Let's Go!
+        </button>
+      )}
+      {continueType == 2 && (
+        <ContinueTimer setStage={setStage} setContinueType={setContinueType} />
+      )}
+      {continueType == 3 && (
+        <button
+          className="yellow-button center-margin"
+          onClick={() => setStage('posttest')}
+        >
+          Continue
+        </button>
+      )}
     </Card>
   );
 };

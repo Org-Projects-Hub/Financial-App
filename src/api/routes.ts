@@ -37,7 +37,9 @@ const API: any = {
   assignJob: `${URL}/simulation/job`,
   getAssignedJob: `${URL}/simulation/job/`,
 
+  // Organizations
   getOrganizationNames: `${URL}/organizations/`,
+  getOrganizationDetails: `${URL}/organizationdetails/`,
   getBoothsInfo: `${URL}/booths/`,
 
   updateEvalVals: `${URL}/users/evalVals`,
