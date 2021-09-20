@@ -41,7 +41,7 @@ const ContinueTimer: React.FC<{
   return (
     <button
       className="yellow-button center-margin"
-      onClick={() => setStage('posttest')}
+      onClick={(e) => e.preventDefault()}
     >
       {timer > 0 ? `Continue in [${getTime()}]` : 'Continue'}
     </button>
