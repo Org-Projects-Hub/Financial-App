@@ -24,6 +24,7 @@ const OrgConfirmation = ({
 }): JSX.Element => {
   const [checked, setChecked] = useState([false, false]);
   const [organization, setOrganization] = useState(null);
+  const [invalidSubmit, setInvalidSubmit] = useState(false);
 
   useEffect(() => {
     api
@@ -59,7 +60,15 @@ const OrgConfirmation = ({
           style={{ alignSelf: 'center', marginRight: '0.5em' }}
           onChange={() => setChecked([!checked[0], checked[1]])}
         />
-        <label htmlFor="check1">Yes, This is my organization.</label>
+        <label htmlFor="check1">
+          <span
+            style={{
+              color: `${!checked[0] && invalidSubmit ? 'red' : '#9e9e9e'}`,
+            }}
+          >
+            Yes, This is my organization.
+          </span>
+        </label>
       </div>
       <div style={{ display: 'flex' }}>
         <input
@@ -71,8 +80,14 @@ const OrgConfirmation = ({
           onChange={() => setChecked([checked[0], !checked[1]])}
         />
         <label htmlFor="check2">
-          I understand that I won't be able to change my organization
-          afterwards.
+          <span
+            style={{
+              color: `${!checked[1] && invalidSubmit ? 'red' : '#9e9e9e'}`,
+            }}
+          >
+            I understand that I won't be able to change my organization
+            afterwards.
+          </span>
         </label>
       </div>
       <br />
@@ -88,8 +103,13 @@ const OrgConfirmation = ({
         <div style={{ flexGrow: 1 }}></div>
         <button
           className="yellow-button"
-          disabled={checked[0] && checked[1] ? false : true}
-          onClick={() => signUpUser()}
+          // disabled={checked[0] && checked[1] ? false : true}
+          onClick={() => {
+            if (checked[0] && checked[1]) signUpUser();
+            else {
+              setInvalidSubmit(true);
+            }
+          }}
         >
           Submit
         </button>
@@ -120,7 +140,6 @@ const OrgLookup = ({
   const [disableSubmit, setdisableSubmit] = useState<boolean>(true);
   const [askConfirmation, setAskConfirmation] = useState<boolean>(false);
 
-  const orgInputRef = useRef<HTMLInputElement>();
   useEffect(() => {
     // API call
     api
@@ -169,13 +188,19 @@ const OrgLookup = ({
       <>
         <form className="auth-form ">
           <div className="desc-title blue-text-dark">
-            Choose your school/organization
+            Enter your school/organization
           </div>
 
           <input
-            ref={orgInputRef}
+            autoFocus
+            placeholder={'Choose Orgnaization'}
             list="organizations"
             value={selectedOrganization}
+            style={{
+              border: '1px solid #005395',
+              paddingLeft: '2.5%',
+              margin: '3% 0 5%',
+            }}
             onInput={(e) => {
               let val = (e.target as any).value;
 

@@ -48,46 +48,51 @@ const Evaluation: FC<propsType> = ({ propVals, setStage }) => {
       pMsg?: number;
     }> = [];
 
-    // api
-    //   .getEvalVals()
-    //   .then((res) => {
-    //     if (res.success) {
-    //       vals = res.evalVals;
-    //     }
-    //   })
-    //   .catch((err) => window.alert('Server Error!'));
+    api
+      .getEvalVals()
+      .then((res) => {
+        vals = res.evalVals;
 
-    // balance criteria
-    let sp = vals.balance / vals.income;
-    if (vals.balance < 0) info.push({ show: vals.balance, positive: false });
-    else if (sp < savingTarget)
-      info.push({ show: (sp * 100).toFixed(2) + '%', positive: true, pMsg: 1 });
-    else {
-      info.push({ show: vals.balance, positive: true, pMsg: 0 });
-    }
+        // balance criteria
+        let sp = vals.balance / vals.income;
+        if (vals.balance < 0)
+          info.push({ show: vals.balance, positive: false });
+        else if (sp < savingTarget)
+          info.push({
+            show: (sp * 100).toFixed(2) + '%',
+            positive: true,
+            pMsg: 1,
+          });
+        else {
+          info.push({ show: vals.balance, positive: true, pMsg: 0 });
+        }
 
-    // Rent criteria
-    let rp = vals.rent / vals.income;
-    if (rp > rentTarget)
-      info.push({ show: (rp * 100).toFixed(2) + '%', positive: false });
-    else info.push({ show: (rp * 100).toFixed(2) + '%', positive: true });
+        // Rent criteria
+        let rp = vals.rent / vals.income;
+        if (rp > rentTarget)
+          info.push({ show: (rp * 100).toFixed(2) + '%', positive: false });
+        else info.push({ show: (rp * 100).toFixed(2) + '%', positive: true });
 
-    // Food criteria
-    let fp = vals.food / vals.income;
-    if (fp > foodTarget)
-      info.push({ show: (fp * 100).toFixed(2) + '%', positive: false });
-    else info.push({ show: (fp * 100).toFixed(2) + '%', positive: true });
+        // Food criteria
+        let fp = vals.food / vals.income;
+        if (fp > foodTarget)
+          info.push({ show: (fp * 100).toFixed(2) + '%', positive: false });
+        else info.push({ show: (fp * 100).toFixed(2) + '%', positive: true });
 
-    // Tranportation
-    if (vals.transport >= 920)
-      info.push({ show: 'New Vehicle', positive: false });
-    else if (vals.transport >= 490)
-      info.push({ show: 'Used Vehicle', positive: true, pMsg: 1 });
-    else info.push({ show: 'Public Transportation', positive: true, pMsg: 0 });
-
-    setCriteriaVals(info);
-    setLoading(false);
-    setInitialRender(false);
+        // Tranportation
+        if (vals.transport >= 920)
+          info.push({ show: 'New Vehicle', positive: false });
+        else if (vals.transport >= 490)
+          info.push({ show: 'Used Vehicle', positive: true, pMsg: 1 });
+        else
+          info.push({ show: 'Public Transportation', positive: true, pMsg: 0 });
+        setCriteriaVals(info);
+      })
+      .catch((err) => window.alert(err.message))
+      .finally(() => {
+        setLoading(false);
+        setInitialRender(false);
+      });
   }, []);
 
   useEffect(() => {
