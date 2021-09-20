@@ -19,6 +19,7 @@ const Setting = ({
   ];
 
   const notUpdatableFields = [
+    { name: 'Organization', value: user.organization, field: 'organization' },
     { name: 'Username', value: user.username, field: 'username' },
     { name: 'Email', value: user.email, field: 'email' },
   ];
