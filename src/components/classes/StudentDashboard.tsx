@@ -26,20 +26,6 @@ const StudentDashboard = (props: any) => {
       .finally(() => setLoading(false));
   }, []);
 
-  const leaveClass = () => {
-    let confirm = window.confirm('Are you sure you want to leave this class?');
-    if (confirm) {
-      api
-        .leaveClass()
-        .then((res) => {
-          setMyClass(null);
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
-    }
-  };
-
   if (loading) return null;
   else
     return (
@@ -66,14 +52,6 @@ const StudentDashboard = (props: any) => {
             </div>
             <div>Teacher: {myClass.createdBy}</div>
             <div>Organization: {myClass.organization}</div>
-
-            <div
-              className="red-button"
-              onClick={leaveClass}
-              style={{ marginTop: '2%' }}
-            >
-              Leave
-            </div>
           </div>
         )}
       </>
