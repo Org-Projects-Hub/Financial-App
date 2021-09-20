@@ -60,8 +60,8 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
       })
       .catch((err) => {
         alert(err.message);
-      })
-      .finally(() => setMyClass(null));
+        setMyClass(null);
+      });
   };
 
   /**
@@ -137,14 +137,14 @@ const StudentAddClass = ({ setMyClass }: { setMyClass: any }) => {
           Submit
         </button>
       </div>
-      {showConfirmation ? (
+      {showConfirmation && (
         <CustomModal
           header={'Is this your class?'}
           body={modalBody}
           actions={ModalActions}
           close={() => setShowConfirmation(false)}
         />
-      ) : null}
+      )}
     </>
   );
 };
