@@ -1,15 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconGear, Home, Game, BackPack } from 'assets';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-} from 'react-router-dom';
-
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/reducer';
+import { NavLink } from 'react-router-dom';
 
 const Nav = styled.div`
   top: 0em;
@@ -34,22 +26,6 @@ const Icon = styled.img`
   src: ${(props) => props.src};
 `;
 
-//REMOVED DISPLAY
-const FloatBtn = styled.button`
-  position: fixed;
-  bottom: 1em;
-  right: 1em;
-  border: 0;
-  border-radius: 50%;
-  @media (max-width: 879px) {
-    display: none;
-  }
-`;
-
-// const FloatBtn2 = styled(FloatBtn)`
-//   left: 95%;
-// `;
-
 const active = { textShadow: '2px 2px 4px #000000', color: 'white' };
 const Navbar = ({
   showNav,
@@ -58,7 +34,6 @@ const Navbar = ({
   showNav: any;
   hide: any;
 }): JSX.Element => {
-  const backButton = useSelector((state: RootState) => state.back);
   return (
     <div>
       <Nav className={showNav ? 'show' : 'hide'}>
@@ -79,22 +54,6 @@ const Navbar = ({
           <Icon src={BackPack} alt="" />
         </NavLink>
       </Nav>
-      {backButton.display ? (
-        <FloatBtn onClick={() => backButton.backFunction()}>
-          <i className="fa fa-angle-left txt-md"></i>
-        </FloatBtn>
-      ) : null}
-      {/* Originally meant to show and hide the navabar 
-    <FloatBtn onClick={hide}>
-      <i
-        className={
-          showNav ? 'fa fa-angle-left txt-md' : 'fa fa-angle-right txt-md'
-        }
-      ></i>
-    </FloatBtn> */}
-      {/* <Hints
-      msg={['Welcome to FinApp!', 'Take the Simulation when you are ready']}
-    /> */}
     </div>
   );
 };
