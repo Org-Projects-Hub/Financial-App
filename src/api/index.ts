@@ -36,7 +36,7 @@ export default {
     return authGet(API.getClass, '');
   },
   getOrganizationNames: () => {
-    return authGet(API.getOrganizationNames, '');
+    return get(API.getOrganizationNames);
   },
   getOrganizationDetails: (orgName: string) => {
     orgName = orgName.replaceAll(' ', '%20');
