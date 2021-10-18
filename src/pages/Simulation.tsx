@@ -11,6 +11,7 @@ import { Wrapper } from 'style/styled';
 import api from 'api';
 import useStateCallback from 'utils/useStateCallback';
 import RedirectToClass from 'components/simulation/RedirectToClass';
+import TeacherNotAuthorized from 'components/shared-components/TeacherNotAuthorized';
 
 //Sets the
 const Simulation = ({ user }: { user: any }): JSX.Element => {
@@ -53,7 +54,8 @@ const Simulation = ({ user }: { user: any }): JSX.Element => {
 
   return (
     <Wrapper className="center">
-      {stage == 'none' && <RedirectToClass />}
+      {stage == 'none' && user.type == 'teacher' && <TeacherNotAuthorized />}
+      {stage == 'none' && user.type == 'student' && <RedirectToClass />}
       {stage === 'pretest' && (
         <TestController stage={stage} setStage={setStage} />
       )}

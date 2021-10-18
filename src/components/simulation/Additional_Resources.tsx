@@ -11,9 +11,8 @@ import { ListHeading, Line } from 'style/preposttest';
 import { setStageType } from 'types/shared';
 
 const ContinueTimer: React.FC<{
-  setStage: setStageType;
   setContinueType: Dispatch<SetStateAction<number>>;
-}> = ({ setStage, setContinueType }) => {
+}> = ({ setContinueType }) => {
   const [timer, setTimer] = useState<number>(300000);
   const timerRef = useRef(timer);
   timerRef.current = timer;
@@ -41,7 +40,8 @@ const ContinueTimer: React.FC<{
   return (
     <button
       className="yellow-button center-margin"
-      onClick={() => setStage('posttest')}
+      onClick={(e) => e.preventDefault()}
+      style={{ cursor: 'not-allowed' }}
     >
       {timer > 0 ? `Continue in [${getTime()}]` : 'Continue'}
     </button>
@@ -100,9 +100,7 @@ const Additional_Resources: React.FC<{ setStage: setStageType }> = ({
           Let's Go!
         </button>
       )}
-      {continueType == 2 && (
-        <ContinueTimer setStage={setStage} setContinueType={setContinueType} />
-      )}
+      {continueType == 2 && <ContinueTimer setContinueType={setContinueType} />}
       {continueType == 3 && (
         <button
           className="yellow-button center-margin"

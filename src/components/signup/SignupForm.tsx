@@ -252,7 +252,7 @@ const SignupForm = ({ SignupAPI }: { SignupAPI: (values: any) => void }) => {
                   color: '#005191',
                 }}
               >
-                <Link to="/">Back to Sign In</Link>
+                <Link to="/">Back to Log-In</Link>
               </div>
             </div>
           </form>

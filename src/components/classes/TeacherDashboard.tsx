@@ -3,8 +3,8 @@ import { CustomModal } from '../shared-components/Modal';
 import { Switch, useRouteMatch, Route, Link } from 'react-router-dom';
 import { ClassDetails, ClassStats } from '../index';
 import api from 'api';
-import { Card } from 'style/styled';
-import { Line, ListHeading } from 'style/preposttest';
+
+import TeacherNotAuthorized from 'components/shared-components/TeacherNotAuthorized';
 
 const TeacherDashboard = () => {
   let { path } = useRouteMatch();
@@ -122,37 +122,7 @@ const TeacherHome = () => {
   };
 
   if (loading) return null;
-  else if (!isAuthorized)
-    return (
-      <Card
-        width="45vw"
-        style={{
-          margin: '20vh auto 0',
-          display: 'flex',
-          flexDirection: 'column',
-          height: 'fit-content',
-        }}
-      >
-        <ListHeading>Authorization Required!</ListHeading>
-        <Line />
-        <br />
-        <div
-          className="ta-center"
-          style={{ fontSize: '1.2em', marginBottom: '1rem' }}
-        >
-          <p>
-            You aren't authorized to create classes and invite students to the
-            simulation. Please contact United Way of Northeast Louisiana at{' '}
-            <u>spendsmart@unitedwaynela.org</u> to get authorized.
-          </p>
-          <br />
-          <p>
-            Please mention your full name and affiliated organization in the
-            email.
-          </p>
-        </div>
-      </Card>
-    );
+  else if (!isAuthorized) return <TeacherNotAuthorized />;
   else
     return (
       <div
