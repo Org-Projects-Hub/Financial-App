@@ -41,6 +41,7 @@ const ContinueTimer: React.FC<{
     <button
       className="yellow-button center-margin"
       onClick={(e) => e.preventDefault()}
+      style={{ cursor: 'not-allowed' }}
     >
       {timer > 0 ? `Continue in [${getTime()}]` : 'Continue'}
     </button>
