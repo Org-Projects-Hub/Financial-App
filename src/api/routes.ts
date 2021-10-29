@@ -39,7 +39,7 @@ const API: any = {
 
   // Organizations
   getOrganizationNames: `${URL}/organizations/`,
-  getOrganizationDetails: `${URL}/organizationdetails/`,
+  getOrganizationDetails: `${URL}/organizationdetails`,
   getBoothsInfo: `${URL}/booths/`,
 
   updateEvalVals: `${URL}/users/evalVals`,
